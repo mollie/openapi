@@ -3456,7 +3456,19 @@ paths:
               - string
               - 'null'
             example: 2024
+        - name: month
+          description: Filter for invoices of a specific month, for example `01`.
+          in: query
+          schema:
+            type:
+              - string
+              - 'null'
+            example: '01'
+            pattern: ^(0[1-9]|1[0-2])$
         - schema:
+            type:
+              - string
+              - 'null'
             example: inv_xBEbP9rvAq
           name: from
           description: Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -3465,6 +3477,17 @@ paths:
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
           schema: *ref_9
+        - name: sort
+          description: |-
+            Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
+
+            Possible values: `asc` `desc` (default: `desc`)
+          in: query
+          schema: &ref_27
+            type:
+              - string
+              - 'null'
+            example: desc
       responses:
         '200':
           description: A list of invoice objects. For a complete reference of the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
@@ -7901,7 +7924,7 @@ paths:
                 - billingAddress
                 - locale
               type: object
-              properties: &ref_27
+              properties: &ref_28
                 resource:
                   type: string
                   description: Indicates the response contains an order object. Will always contain the string `order` for this endpoint.
@@ -8255,7 +8278,7 @@ paths:
                   description: The date and time the order was completed, in ISO 8601 format. This parameter is omitted if the order is not completed (yet).
                   readOnly: true
                 testmode:
-                  type: &ref_34
+                  type: &ref_35
                     - boolean
                     - 'null'
                   description: |-
@@ -8293,7 +8316,7 @@ paths:
               examples:
                 create-order-201-1:
                   summary: The order object
-                  value: &ref_28
+                  value: &ref_29
                     resource: order
                     id: ord_pbjz8x
                     mode: live
@@ -9382,11 +9405,7 @@ paths:
 
             Possible values: `asc` `desc` (default: `desc`)
           in: query
-          schema: &ref_35
-            type:
-              - string
-              - 'null'
-            example: desc
+          schema: *ref_27
         - name: profileId
           description: |-
             The identifier referring to the [profile](get-profile) you wish to retrieve orders for.
@@ -16068,7 +16087,7 @@ paths:
         description: Provide the ID of the item you want to perform this operation on.
         in: path
         required: true
-        schema: &ref_31
+        schema: &ref_32
           type: string
     get:
       summary: Get order
@@ -16117,11 +16136,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_27
+                properties: *ref_28
               examples:
                 get-order-200-1:
                   summary: The order object
-                  value: *ref_28
+                  value: *ref_29
                 get-order-200-2:
                   summary: Get order with embedded payments
                   x-request: ./requests.yaml#/api-get-order-with-embedded-payments
@@ -16459,7 +16478,7 @@ paths:
                     - 'null'
                   description: If a payment method has already been selected, the original billing address may have already been forwarded to the payment method provider.
                 testmode:
-                  type: &ref_29
+                  type: &ref_30
                     - boolean
                     - 'null'
                   description: |-
@@ -16925,7 +16944,7 @@ paths:
         description: Provide the ID of the related order.
         in: path
         required: true
-        schema: &ref_30
+        schema: &ref_31
           type: string
           example: ord_pbjz8x
     patch:
@@ -17013,7 +17032,7 @@ paths:
                       - operation
                       - data
                 testmode:
-                  type: *ref_29
+                  type: *ref_30
                   description: |-
                     Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
 
@@ -17273,7 +17292,7 @@ paths:
                     required:
                       - id
                 testmode:
-                  type: *ref_29
+                  type: *ref_30
                   description: |-
                     Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
 
@@ -17377,13 +17396,13 @@ paths:
         description: Provide the ID of the related order.
         in: path
         required: true
-        schema: *ref_30
+        schema: *ref_31
       - example: odl_dgtxyl
         name: id
         description: Provide the ID of the item you want to perform this operation on.
         in: path
         required: true
-        schema: *ref_31
+        schema: *ref_32
     patch:
       summary: Update order line
       tags:
@@ -17466,7 +17485,7 @@ paths:
                     - 'null'
                   description: Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatAmount` is also provided in the same request.
                 testmode:
-                  type: *ref_29
+                  type: *ref_30
                   description: |-
                     Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
 
@@ -17815,7 +17834,7 @@ paths:
         description: Provide the ID of the related order.
         in: path
         required: true
-        schema: *ref_30
+        schema: *ref_31
     post:
       summary: Create order payment
       tags:
@@ -17991,7 +18010,7 @@ paths:
         description: Provide the ID of the related order.
         in: path
         required: true
-        schema: *ref_30
+        schema: *ref_31
     post:
       summary: Create shipment
       tags:
@@ -18020,7 +18039,7 @@ paths:
           application/json:
             schema:
               type: object
-              properties: &ref_32
+              properties: &ref_33
                 resource:
                   type: string
                   description: Indicates the response contains a shipment object. Will always contain the string `shipment` for this endpoint.
@@ -18157,7 +18176,7 @@ paths:
               examples:
                 get-shipment-200-1:
                   summary: The shipment object
-                  value: &ref_33
+                  value: &ref_34
                     resource: shipment
                     id: shp_3wmsgCJN4U
                     mode: live
@@ -18538,13 +18557,13 @@ paths:
         description: Provide the ID of the related order.
         in: path
         required: true
-        schema: *ref_30
+        schema: *ref_31
       - example: shp_3wmsgCJN4U
         name: id
         description: Provide the ID of the item you want to perform this operation on.
         in: path
         required: true
-        schema: *ref_31
+        schema: *ref_32
     get:
       summary: Get shipment
       tags:
@@ -18579,11 +18598,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_32
+                properties: *ref_33
               examples:
                 get-shipment-200-1:
                   summary: The shipment object
-                  value: *ref_33
+                  value: *ref_34
         '404':
           description: No entity with this ID exists.
           content: *ref_7
@@ -19538,7 +19557,7 @@ paths:
                   description: The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail (yet).
                   readOnly: true
                 testmode:
-                  type: *ref_34
+                  type: *ref_35
                   description: |-
                     Whether to create the entity in test mode or live mode.
 
@@ -20247,7 +20266,7 @@ paths:
 
             Possible values: `asc` `desc` (default: `desc`)
           in: query
-          schema: *ref_35
+          schema: *ref_27
         - name: testmode
           description: |-
             Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -22700,7 +22719,7 @@ paths:
                     - string
                     - 'null'
                 testmode:
-                  type: *ref_29
+                  type: *ref_30
                   description: |-
                     Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
 
@@ -26115,7 +26134,7 @@ paths:
                   description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                   readOnly: true
                 testmode:
-                  type: *ref_34
+                  type: *ref_35
                   description: |-
                     Whether to create the entity in test mode or live mode.
 
@@ -26684,7 +26703,7 @@ paths:
         description: Provide the ID of the related order.
         in: path
         required: true
-        schema: *ref_30
+        schema: *ref_31
     post:
       summary: Create order refund
       tags:
@@ -26807,7 +26826,7 @@ paths:
                   description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                   readOnly: true
                 testmode:
-                  type: *ref_34
+                  type: *ref_35
                   description: |-
                     Whether to create the entity in test mode or live mode.
 
@@ -29914,7 +29933,7 @@ paths:
 
             Possible values: `asc` `desc` (default: `desc`)
           in: query
-          schema: *ref_35
+          schema: *ref_27
         - name: testmode
           description: |-
             Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -30840,7 +30859,7 @@ paths:
                   description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                   readOnly: true
                 testmode:
-                  type: *ref_34
+                  type: *ref_35
                   description: |-
                     Whether to create the entity in test mode or live mode.
 
@@ -31449,7 +31468,7 @@ paths:
                     Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
                   example: pfl_QkEhN94Ba
                 testmode:
-                  type: *ref_29
+                  type: *ref_30
                   description: |-
                     Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
 
@@ -32054,7 +32073,7 @@ paths:
                   description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                   readOnly: true
                 testmode:
-                  type: *ref_34
+                  type: *ref_35
                   description: |-
                     Whether to create the entity in test mode or live mode.
 
@@ -32719,7 +32738,7 @@ paths:
                   description: The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the subscription is not canceled (yet).
                   readOnly: true
                 testmode:
-                  type: *ref_34
+                  type: *ref_35
                   description: |-
                     Whether to create the entity in test mode or live mode.
 
@@ -33855,7 +33874,7 @@ components:
       description: Provide the ID of the item you want to perform this operation on.
       in: path
       required: true
-      schema: *ref_31
+      schema: *ref_32
     parent-balance-id:
       name: balanceId
       description: Provide the ID of the related balance.
@@ -33868,6 +33887,14 @@ components:
       in: path
       required: true
       schema: *ref_12
+    list-sort:
+      name: sort
+      description: |-
+        Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
+
+        Possible values: `asc` `desc` (default: `desc`)
+      in: query
+      schema: *ref_27
     embed:
       name: embed
       description: This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
@@ -33876,20 +33903,12 @@ components:
         type:
           - string
           - 'null'
-    list-sort:
-      name: sort
-      description: |-
-        Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-
-        Possible values: `asc` `desc` (default: `desc`)
-      in: query
-      schema: *ref_35
     parent-order-id:
       name: orderId
       description: Provide the ID of the related order.
       in: path
       required: true
-      schema: *ref_30
+      schema: *ref_31
     include:
       name: include
       description: This endpoint allows you to include additional information via the `include` query string parameter.
@@ -34028,7 +34047,7 @@ components:
       required: *ref_24
       properties: *ref_25
     testmode-create:
-      type: *ref_34
+      type: *ref_35
       description: |-
         Whether to create the entity in test mode or live mode.
 
@@ -34037,9 +34056,9 @@ components:
       default: false
     entity-order:
       type: object
-      properties: *ref_27
+      properties: *ref_28
     testmode:
-      type: *ref_29
+      type: *ref_30
       description: |-
         Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
 
@@ -34048,7 +34067,7 @@ components:
       default: false
     entity-shipment:
       type: object
-      properties: *ref_32
+      properties: *ref_33
     recurring-line-item:
       type: object
       required: *ref_69
@@ -34121,10 +34140,10 @@ components:
       value: *ref_14
     get-order:
       summary: The order object
-      value: *ref_28
+      value: *ref_29
     get-shipment:
       summary: The shipment object
-      value: *ref_33
+      value: *ref_34
     get-payment:
       summary: The payment object
       value: *ref_37
