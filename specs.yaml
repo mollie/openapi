@@ -65,6 +65,7 @@ paths:
       summary: List balances
       tags:
         - Balances API
+      x-speakeasy-name-override: list
       operationId: list-balances
       security:
         - oAuth:
@@ -404,6 +405,7 @@ paths:
       summary: Get balance
       tags:
         - Balances API
+      x-speakeasy-name-override: get
       operationId: get-balance
       security:
         - oAuth:
@@ -676,6 +678,7 @@ paths:
       summary: Get primary balance
       tags:
         - Balances API
+      x-speakeasy-name-override: get-primary
       operationId: get-primary-balance
       security:
         - oAuth:
@@ -693,6 +696,7 @@ paths:
           description: The primary balance object. For a complete reference of the balance object, refer to the [Get balance](get-balance) endpoint documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 get-primary-balance-200-1:
                   summary: Get primary balance
@@ -781,6 +785,7 @@ paths:
       summary: Get balance report
       tags:
         - Balances API
+      x-speakeasy-name-override: get-report
       operationId: get-balance-report
       security:
         - oAuth:
@@ -1682,6 +1687,7 @@ paths:
       summary: List balance transactions
       tags:
         - Balances API
+      x-speakeasy-name-override: list-transactions
       operationId: list-balance-transactions
       security:
         - oAuth:
@@ -2553,6 +2559,7 @@ paths:
       summary: List settlements
       tags:
         - Settlements API
+      x-speakeasy-name-override: list
       operationId: list-settlements
       security:
         - oAuth:
@@ -2707,6 +2714,7 @@ paths:
       summary: Get settlement
       tags:
         - Settlements API
+      x-speakeasy-name-override: get
       operationId: get-settlement
       security:
         - oAuth:
@@ -2979,6 +2987,7 @@ paths:
       summary: Get open settlement
       tags:
         - Settlements API
+      x-speakeasy-name-override: get-open
       operationId: get-open-settlement
       security:
         - oAuth:
@@ -3045,6 +3054,7 @@ paths:
       summary: Get next settlement
       tags:
         - Settlements API
+      x-speakeasy-name-override: get-next
       operationId: get-next-settlement
       security:
         - oAuth:
@@ -3119,6 +3129,7 @@ paths:
       summary: Get settlement payments
       tags:
         - Settlements API
+      x-speakeasy-name-override: get-payments
       operationId: get-settlement-payments
       security:
         - oAuth:
@@ -3199,6 +3210,7 @@ paths:
       summary: Get settlement captures
       tags:
         - Settlements API
+      x-speakeasy-name-override: get-captures
       operationId: get-settlement-captures
       security:
         - oAuth:
@@ -3277,6 +3289,7 @@ paths:
       summary: Get settlement refunds
       tags:
         - Settlements API
+      x-speakeasy-name-override: get-refunds
       operationId: get-settlement-refunds
       security:
         - oAuth:
@@ -3355,6 +3368,7 @@ paths:
       summary: Get settlement chargebacks
       tags:
         - Settlements API
+      x-speakeasy-name-override: get-chargebacks
       operationId: get-settlement-chargebacks
       security:
         - oAuth:
@@ -3427,6 +3441,7 @@ paths:
       summary: List invoices
       tags:
         - Invoices API
+      x-speakeasy-name-override: list
       operationId: list-invoices
       security:
         - oAuth:
@@ -4485,6 +4500,7 @@ paths:
       summary: Get invoice
       tags:
         - Invoices API
+      x-speakeasy-name-override: get
       operationId: get-invoice
       security:
         - oAuth:
@@ -4700,6 +4716,7 @@ paths:
       summary: List permissions
       tags:
         - Permissions API
+      x-speakeasy-name-override: list
       operationId: list-permissions
       security:
         - oAuth: []
@@ -5044,6 +5061,7 @@ paths:
       summary: Get permission
       tags:
         - Permissions API
+      x-speakeasy-name-override: get
       operationId: get-permission
       security:
         - oAuth: []
@@ -5184,6 +5202,7 @@ paths:
       summary: Get organization
       tags:
         - Organizations API
+      x-speakeasy-name-override: get
       operationId: get-organization
       security:
         - oAuth:
@@ -5365,6 +5384,7 @@ paths:
       summary: Get current organization
       tags:
         - Organizations API
+      x-speakeasy-name-override: get-current
       operationId: get-current-organization
       security:
         - oAuth:
@@ -5485,6 +5505,7 @@ paths:
       summary: Get partner status
       tags:
         - Organizations API
+      x-speakeasy-name-override: get-partner-status
       operationId: get-partner-status
       security:
         - oAuth:
@@ -5644,6 +5665,7 @@ paths:
       summary: Create profile
       tags:
         - Profiles API
+      x-speakeasy-name-override: create
       operationId: create-profile
       security:
         - oAuth:
@@ -5818,6 +5840,7 @@ paths:
           description: The newly created profile object. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 create-profile-201-1:
                   summary: The profile object
@@ -5980,6 +6003,7 @@ paths:
       summary: List profiles
       tags:
         - Profiles API
+      x-speakeasy-name-override: list
       operationId: list-profiles
       security:
         - oAuth:
@@ -6125,6 +6149,7 @@ paths:
       summary: Get profile
       tags:
         - Profiles API
+      x-speakeasy-name-override: get
       operationId: get-profile
       security:
         - oAuth:
@@ -6218,6 +6243,7 @@ paths:
       summary: Update profile
       tags:
         - Profiles API
+      x-speakeasy-name-override: update
       operationId: update-profile
       security:
         - oAuth:
@@ -6297,6 +6323,7 @@ paths:
           description: The updated profile object. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 update-profile-200-1:
                   summary: The updated profile object
@@ -6458,6 +6485,7 @@ paths:
       summary: Delete profile
       tags:
         - Profiles API
+      x-speakeasy-name-override: delete
       operationId: delete-profile
       security:
         - oAuth:
@@ -6539,6 +6567,7 @@ paths:
       summary: Get current profile
       tags:
         - Profiles API
+      x-speakeasy-name-override: get-current
       operationId: get-current-profile
       security:
         - apiKey: []
@@ -6642,6 +6671,7 @@ paths:
       summary: Get onboarding status
       tags:
         - Onboarding API
+      x-speakeasy-name-override: get
       operationId: get-onboarding-status
       security:
         - oAuth:
@@ -6784,6 +6814,7 @@ paths:
       summary: Submit onboarding data
       tags:
         - Onboarding API
+      x-speakeasy-name-override: create
       operationId: submit-onboarding-data
       security:
         - oAuth:
@@ -6983,6 +7014,7 @@ paths:
       summary: List capabilities
       tags:
         - Capabilities API
+      x-speakeasy-name-override: list
       operationId: list-capabilities
       security:
         - oAuth:
@@ -7177,6 +7209,7 @@ paths:
       summary: List clients
       tags:
         - Clients API
+      x-speakeasy-name-override: list
       operationId: list-clients
       security:
         - oAuth:
@@ -7393,6 +7426,7 @@ paths:
       summary: Get client
       tags:
         - Clients API
+      x-speakeasy-name-override: get
       operationId: get-client
       security:
         - oAuth:
@@ -7613,6 +7647,7 @@ paths:
       summary: Create client link
       tags:
         - Client Links API
+      x-speakeasy-name-override: create
       operationId: create-client-link
       security:
         - oAuth:
@@ -7884,6 +7919,7 @@ paths:
       summary: Create order
       tags:
         - Orders API
+      x-speakeasy-name-override: create
       operationId: create-order
       security:
         - apiKey: []
@@ -8313,6 +8349,7 @@ paths:
           description: The newly created order object. For a complete reference of the order object, refer to the [Get order endpoint](get-order) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 create-order-201-1:
                   summary: The order object
@@ -9371,6 +9408,7 @@ paths:
       summary: List orders
       tags:
         - Orders API
+      x-speakeasy-name-override: list
       operationId: list-orders
       security:
         - apiKey: []
@@ -16093,6 +16131,7 @@ paths:
       summary: Get order
       tags:
         - Orders API
+      x-speakeasy-name-override: get
       operationId: get-order
       security:
         - apiKey: []
@@ -16426,6 +16465,7 @@ paths:
       summary: Update order
       tags:
         - Orders API
+      x-speakeasy-name-override: update
       operationId: update-order
       security:
         - apiKey: []
@@ -16492,6 +16532,7 @@ paths:
           description: The updated order object. For a complete reference of the order object, refer to the [Get order endpoint](get-order) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 update-orders-200-1:
                   summary: The updated order object
@@ -16816,6 +16857,7 @@ paths:
       summary: Cancel order
       tags:
         - Orders API
+      x-speakeasy-name-override: cancel
       operationId: cancel-order
       security:
         - apiKey: []
@@ -16848,6 +16890,7 @@ paths:
           description: The canceled order object. For a complete reference of the order object, refer to the [Get order endpoint](get-order) documentation.
           content:
             application/hal+json:
+              schema: {}
               example:
                 resource: order
                 id: ord_pbjz8x
@@ -16951,6 +16994,7 @@ paths:
       summary: Manage order lines
       tags:
         - Orders API
+      x-speakeasy-name-override: manage-lines
       operationId: manage-order-lines
       security:
         - apiKey: []
@@ -17046,6 +17090,7 @@ paths:
           description: The updated order object. For a complete reference of the order object, refer to the [Get order endpoint](get-order) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 manage-order-lines-200-1:
                   summary: The updated order object
@@ -17228,6 +17273,7 @@ paths:
       summary: Cancel order lines
       tags:
         - Orders API
+      x-speakeasy-name-override: cancel-lines
       operationId: cancel-order-lines
       security:
         - apiKey: []
@@ -17407,6 +17453,7 @@ paths:
       summary: Update order line
       tags:
         - Orders API
+      x-speakeasy-name-override: update-line
       operationId: update-order-line
       security:
         - apiKey: []
@@ -17497,6 +17544,7 @@ paths:
           description: The updated order object. For a complete reference of the order object, refer to the [Get order endpoint](get-order) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 update-order-line-200-1:
                   summary: The updated order object
@@ -17839,6 +17887,7 @@ paths:
       summary: Create order payment
       tags:
         - Orders API
+      x-speakeasy-name-override: create-payment
       operationId: create-order-payment
       security:
         - apiKey: []
@@ -17869,6 +17918,7 @@ paths:
           description: The newly created payment object. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 create-order-payments-201-1:
                   summary: The newly created payment object
@@ -18015,6 +18065,7 @@ paths:
       summary: Create shipment
       tags:
         - Shipments API
+      x-speakeasy-name-override: create
       operationId: create-shipment
       security:
         - apiKey: []
@@ -18173,6 +18224,7 @@ paths:
           description: The newly created shipment object. For a complete reference of the shipment object, refer to the [Get shipment endpoint](get-shipment) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 get-shipment-200-1:
                   summary: The shipment object
@@ -18401,6 +18453,7 @@ paths:
       summary: List shipments
       tags:
         - Shipments API
+      x-speakeasy-name-override: list
       operationId: list-shipments
       security:
         - apiKey: []
@@ -18568,6 +18621,7 @@ paths:
       summary: Get shipment
       tags:
         - Shipments API
+      x-speakeasy-name-override: get
       operationId: get-shipment
       security:
         - apiKey: []
@@ -18657,6 +18711,7 @@ paths:
       summary: Update shipment
       tags:
         - Shipments API
+      x-speakeasy-name-override: update
       operationId: update-shipment
       security:
         - apiKey: []
@@ -18706,6 +18761,7 @@ paths:
           description: The updated shipment object. For a complete reference of the shipment object, refer to the [Get shipment endpoint](get-shipment) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 update-shipment-200-1:
                   summary: The updated shipment object
@@ -18874,6 +18930,7 @@ paths:
       summary: Create payment
       tags:
         - Payments API
+      x-speakeasy-name-override: create
       operationId: create-payment
       security:
         - apiKey: []
@@ -19627,6 +19684,7 @@ paths:
           description: The newly created payment object. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 create-payment-201-1:
                   summary: The payment object
@@ -20234,6 +20292,7 @@ paths:
       summary: List payments
       tags:
         - Payments API
+      x-speakeasy-name-override: list
       operationId: list-payments
       security:
         - apiKey: []
@@ -22454,6 +22513,7 @@ paths:
       summary: Get payment
       tags:
         - Payments API
+      x-speakeasy-name-override: get
       operationId: get-payment
       security:
         - apiKey: []
@@ -22662,6 +22722,7 @@ paths:
       summary: Update payment
       tags:
         - Payments API
+      x-speakeasy-name-override: update
       operationId: update-payment
       security:
         - apiKey: []
@@ -22731,6 +22792,7 @@ paths:
           description: The updated payment object. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 update-payment-200-1:
                   summary: The updated payment object
@@ -22948,6 +23010,7 @@ paths:
       summary: Cancel payment
       tags:
         - Payments API
+      x-speakeasy-name-override: cancel
       operationId: cancel-payment
       security:
         - apiKey: []
@@ -22978,6 +23041,7 @@ paths:
           description: The canceled payment object. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 cancel-payment-200-1:
                   summary: The canceled payment object
@@ -23082,6 +23146,7 @@ paths:
       summary: Release payment authorization
       tags:
         - Payments API
+      x-speakeasy-name-override: release-authorization
       operationId: release-authorization
       security:
         - apiKey: []
@@ -23188,6 +23253,7 @@ paths:
       summary: List payment methods
       tags:
         - Methods API
+      x-speakeasy-name-override: list
       operationId: list-methods
       security:
         - apiKey: []
@@ -23839,6 +23905,7 @@ paths:
       summary: List all payment methods
       tags:
         - Methods API
+      x-speakeasy-name-override: list-all
       operationId: list-all-methods
       security:
         - apiKey: []
@@ -25158,6 +25225,7 @@ paths:
       summary: Get payment method
       tags:
         - Methods API
+      x-speakeasy-name-override: get
       operationId: get-method
       security:
         - apiKey: []
@@ -25514,6 +25582,7 @@ paths:
       summary: Enable payment method
       tags:
         - Methods API
+      x-speakeasy-name-override: enable-method
       operationId: enable-method
       security:
         - apiKey: []
@@ -25647,6 +25716,7 @@ paths:
       summary: Disable payment method
       tags:
         - Methods API
+      x-speakeasy-name-override: disable-method
       operationId: disable-method
       security:
         - apiKey: []
@@ -25744,6 +25814,7 @@ paths:
       summary: Enable payment method issuer
       tags:
         - Methods API
+      x-speakeasy-name-override: enable-method-issuer
       operationId: enable-method-issuer
       security:
         - apiKey: []
@@ -25916,6 +25987,7 @@ paths:
       summary: Disable payment method issuer
       tags:
         - Methods API
+      x-speakeasy-name-override: disable-method-issuer
       operationId: disable-method-issuer
       security:
         - apiKey: []
@@ -26003,6 +26075,7 @@ paths:
       summary: Create payment refund
       tags:
         - Refunds API
+      x-speakeasy-name-override: create
       operationId: create-refund
       security:
         - apiKey: []
@@ -26167,6 +26240,7 @@ paths:
           description: The newly created refund object. For a complete reference of the refund object, refer to the [Get refund endpoint](get-refund) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 create-refund-201-1:
                   summary: The payment object
@@ -26342,6 +26416,7 @@ paths:
       summary: List payment refunds
       tags:
         - Refunds API
+      x-speakeasy-name-override: list
       operationId: list-refunds
       security:
         - apiKey: []
@@ -26520,6 +26595,7 @@ paths:
       summary: Get payment refund
       tags:
         - Refunds API
+      x-speakeasy-name-override: get
       operationId: get-refund
       security:
         - apiKey: []
@@ -26617,6 +26693,7 @@ paths:
       summary: Cancel payment refund
       tags:
         - Refunds API
+      x-speakeasy-name-override: cancel
       operationId: cancel-refund
       security:
         - apiKey: []
@@ -26708,6 +26785,7 @@ paths:
       summary: Create order refund
       tags:
         - Refunds API
+      x-speakeasy-name-override: create-order
       operationId: create-order-refund
       security:
         - apiKey: []
@@ -27012,6 +27090,7 @@ paths:
       summary: List order refunds
       tags:
         - Refunds API
+      x-speakeasy-name-override: list-order
       operationId: list-order-refunds
       security:
         - apiKey: []
@@ -27200,6 +27279,7 @@ paths:
       summary: List all refunds
       tags:
         - Refunds API
+      x-speakeasy-name-override: list-all
       operationId: list-all-refunds
       security:
         - apiKey: []
@@ -27378,6 +27458,7 @@ paths:
       summary: List payment chargebacks
       tags:
         - Chargebacks API
+      x-speakeasy-name-override: list
       operationId: list-chargebacks
       security:
         - apiKey: []
@@ -27678,6 +27759,7 @@ paths:
       summary: Get payment chargeback
       tags:
         - Chargebacks API
+      x-speakeasy-name-override: get
       operationId: get-chargeback
       security:
         - apiKey: []
@@ -27902,6 +27984,7 @@ paths:
       summary: List all chargebacks
       tags:
         - Chargebacks API
+      x-speakeasy-name-override: list-all
       operationId: list-all-chargebacks
       security:
         - apiKey: []
@@ -28259,6 +28342,7 @@ paths:
       summary: Create capture
       tags:
         - Captures API
+      x-speakeasy-name-override: create
       operationId: create-capture
       security:
         - apiKey: []
@@ -28374,6 +28458,7 @@ paths:
           description: The newly created capture object. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 get-capture-200-1:
                   summary: The capture object
@@ -28509,6 +28594,7 @@ paths:
       summary: List captures
       tags:
         - Captures API
+      x-speakeasy-name-override: list
       operationId: list-captures
       security:
         - apiKey: []
@@ -28723,6 +28809,7 @@ paths:
       summary: Get capture
       tags:
         - Captures API
+      x-speakeasy-name-override: get
       operationId: get-capture
       security:
         - apiKey: []
@@ -28850,6 +28937,7 @@ paths:
       summary: Request Apple Pay payment session
       tags:
         - Wallets API
+      x-speakeasy-name-override: request-apple-pay-payment-session
       operationId: request-apple-pay-payment-session
       security:
         - apiKey: []
@@ -28903,6 +28991,7 @@ paths:
           description: The Apple Pay payment session object generated by Apple.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 request-apple-pay-payment-session-201-1:
                   summary: The Apple Pay payment session object
@@ -28986,6 +29075,7 @@ paths:
       summary: Create payment link
       tags:
         - Payment Links API
+      x-speakeasy-name-override: create
       operationId: create-payment-link
       security:
         - apiKey: []
@@ -29112,6 +29202,7 @@ paths:
           description: The newly created payment link object. For a complete reference of the payment link object, refer to the [Get payment link endpoint](get-payment-link) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 create-payment-link-201-1:
                   summary: The payment link object
@@ -29309,6 +29400,7 @@ paths:
       summary: List payment links
       tags:
         - Payment Links API
+      x-speakeasy-name-override: list
       operationId: list-payment-links
       security:
         - apiKey: []
@@ -29556,6 +29648,7 @@ paths:
       summary: Get payment link
       tags:
         - Payment Links API
+      x-speakeasy-name-override: get
       operationId: get-payment-link
       security:
         - apiKey: []
@@ -29635,6 +29728,7 @@ paths:
       summary: Update payment link
       tags:
         - Payment Links API
+      x-speakeasy-name-override: update
       operationId: update-payment-link
       security:
         - apiKey: []
@@ -29660,6 +29754,7 @@ paths:
         content:
           application/json:
             schema:
+              type: object
               properties:
                 description:
                   type: string
@@ -29792,6 +29887,7 @@ paths:
       summary: Delete payment link
       tags:
         - Payment Links API
+      x-speakeasy-name-override: delete
       operationId: delete-payment-link
       security:
         - apiKey: []
@@ -29901,6 +29997,7 @@ paths:
       summary: Get payment link payments
       tags:
         - Payment Links API
+      x-speakeasy-name-override: get-payments
       operationId: get-payment-link-payments
       security:
         - apiKey: []
@@ -30074,6 +30171,7 @@ paths:
       summary: List terminals
       tags:
         - Terminals API
+      x-speakeasy-name-override: list
       operationId: list-terminals
       security:
         - apiKey: []
@@ -30273,6 +30371,7 @@ paths:
       summary: Get terminal
       tags:
         - Terminals API
+      x-speakeasy-name-override: get
       operationId: get-terminal
       security:
         - apiKey: []
@@ -30457,6 +30556,7 @@ paths:
       summary: Create a delayed route
       tags:
         - Delayed Routing API
+      x-speakeasy-name-override: create
       security:
         - apiKey: []
       description: |-
@@ -30646,6 +30746,7 @@ paths:
       summary: List payment routes
       tags:
         - Delayed Routing API
+      x-speakeasy-name-override: list
       security:
         - apiKey: []
       description: |-
@@ -30796,6 +30897,7 @@ paths:
       summary: Create customer
       tags:
         - Customers API
+      x-speakeasy-name-override: create
       operationId: create-customer
       security:
         - apiKey: []
@@ -30896,6 +30998,7 @@ paths:
           description: The newly created customer object. For a complete reference of the customer object, refer to the [Get customer endpoint](get-customer) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 create-customer-201-1:
                   summary: A customer object
@@ -30981,6 +31084,7 @@ paths:
       summary: List customers
       tags:
         - Customers API
+      x-speakeasy-name-override: list
       operationId: list-customers
       security:
         - apiKey: []
@@ -31133,6 +31237,7 @@ paths:
       summary: Get customer
       tags:
         - Customers API
+      x-speakeasy-name-override: get
       operationId: get-customer
       security:
         - apiKey: []
@@ -31209,6 +31314,7 @@ paths:
       summary: Update customer
       tags:
         - Customers API
+      x-speakeasy-name-override: update
       operationId: update-customer
       security:
         - apiKey: []
@@ -31247,6 +31353,7 @@ paths:
           description: The updated customer object. For a complete reference of the customer object, refer to the [Get customer endpoint](get-customer) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 update-customer-200-1:
                   summary: The updated customer object
@@ -31350,6 +31457,7 @@ paths:
       summary: Delete customer
       tags:
         - Customers API
+      x-speakeasy-name-override: delete
       operationId: delete-customer
       security:
         - apiKey: []
@@ -31430,6 +31538,7 @@ paths:
       summary: Create customer payment
       tags:
         - Customers API
+      x-speakeasy-name-override: create-payment
       operationId: create-customer-payment
       security:
         - apiKey: []
@@ -31751,6 +31860,7 @@ paths:
       summary: List customer payments
       tags:
         - Customers API
+      x-speakeasy-name-override: list-payments
       operationId: list-customer-payments
       security:
         - apiKey: []
@@ -31915,6 +32025,7 @@ paths:
       summary: Create mandate
       tags:
         - Mandates API
+      x-speakeasy-name-override: create
       operationId: create-mandate
       security:
         - apiKey: []
@@ -32102,6 +32213,7 @@ paths:
           description: The newly created mandate object. For a complete reference of the mandate object, refer to the [Get mandate endpoint](get-mandate) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 create-mandate-201-1:
                   summary: The mandate object
@@ -32240,6 +32352,7 @@ paths:
       summary: List mandates
       tags:
         - Mandates API
+      x-speakeasy-name-override: list
       operationId: list-mandates
       security:
         - apiKey: []
@@ -32407,6 +32520,7 @@ paths:
       summary: Get mandate
       tags:
         - Mandates API
+      x-speakeasy-name-override: get
       operationId: get-mandate
       security:
         - apiKey: []
@@ -32491,6 +32605,7 @@ paths:
       summary: Revoke mandate
       tags:
         - Mandates API
+      x-speakeasy-name-override: revoke
       operationId: revoke-mandate
       security:
         - apiKey: []
@@ -32578,6 +32693,7 @@ paths:
       summary: Create subscription
       tags:
         - Subscriptions API
+      x-speakeasy-name-override: create
       operationId: create-subscription
       security:
         - apiKey: []
@@ -32771,6 +32887,7 @@ paths:
           description: The newly created subscription object. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 get-subscription-200-1:
                   summary: The subscription object
@@ -32898,6 +33015,7 @@ paths:
       summary: List customer subscriptions
       tags:
         - Subscriptions API
+      x-speakeasy-name-override: list
       operationId: list-subscriptions
       security:
         - apiKey: []
@@ -33073,6 +33191,7 @@ paths:
       summary: Get subscription
       tags:
         - Subscriptions API
+      x-speakeasy-name-override: get
       operationId: get-subscription
       security:
         - apiKey: []
@@ -33160,6 +33279,7 @@ paths:
       summary: Update subscription
       tags:
         - Subscriptions API
+      x-speakeasy-name-override: update
       operationId: update-subscription
       security:
         - apiKey: []
@@ -33229,6 +33349,7 @@ paths:
           description: The updated subscription object. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 update-subscription-200-1:
                   summary: The updated subscription object
@@ -33383,6 +33504,7 @@ paths:
       summary: Cancel subscription
       tags:
         - Subscriptions API
+      x-speakeasy-name-override: cancel
       operationId: cancel-subscription
       security:
         - apiKey: []
@@ -33409,6 +33531,7 @@ paths:
           description: The updated subscription object with status `canceled`. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
           content:
             application/hal+json:
+              schema: {}
               examples:
                 cancel-subscription-200-1:
                   summary: The updated subscription object with status Canceled
@@ -33495,6 +33618,7 @@ paths:
       summary: List all subscriptions
       tags:
         - Subscriptions API
+      x-speakeasy-name-override: list-all
       operationId: list-all-subscriptions
       security:
         - apiKey: []
@@ -33680,6 +33804,7 @@ paths:
       summary: List subscription payments
       tags:
         - Subscriptions API
+      x-speakeasy-name-override: list-payments
       operationId: list-subscription-payments
       security:
         - apiKey: []
