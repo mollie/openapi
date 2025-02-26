@@ -19056,6 +19056,7 @@ paths:
                     It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
 
                     The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
+                  example: https://example.org/redirect
                 cancelUrl:
                   type:
                     - string
@@ -19064,6 +19065,7 @@ paths:
                     The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
 
                     Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
+                  example: https://example.org/cancel
                 webhookUrl:
                   type:
                     - string
@@ -19074,6 +19076,7 @@ paths:
                     The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
 
                     The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
+                  example: https://example.org/webhooks
                 lines:
                   type:
                     - array
@@ -19209,27 +19212,32 @@ paths:
                     title:
                       type: string
                       description: The title of the person, for example *Mr.* or *Mrs.*.
+                      example: Mr.
                     givenName:
                       type: string
                       description: |-
                         The given name (first name) of the person should be at least two characters and cannot contain only numbers.
 
                         Required for payment method `in3`.
+                      example: Piet
                     familyName:
                       type: string
                       description: |-
                         The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
 
                         Required for payment method `in3`.
+                      example: Mondriaan
                     organizationName:
                       type: string
                       description: The name of the organization, in case the addressee is an organization.
+                      example: Mollie B.V.
                     streetAndNumber:
                       type: string
                       description: |-
                         A street and street number.
 
                         Required for payment method `in3`.
+                      example: Keizersgracht 126
                     streetAdditional:
                       type: string
                       description: Any additional addressing details, for example an apartment number.
@@ -19239,6 +19247,7 @@ paths:
                         A postal code. This field may be required if the provided country has a postal code system.
 
                         Required for payment method `in3`.
+                      example: 1234AB
                     email:
                       type: string
                       description: |-
@@ -19247,20 +19256,29 @@ paths:
                         If you provide the email address for a `banktransfer` payment, we will automatically send the instructions email upon payment creation. The language of the email will follow the locale parameter of the payment.
 
                         Required for payment method `in3`.
+                      example: piet@example.org
                     phone:
                       type: string
                       description: 'If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.'
+                      example: 31208202070
                     city:
                       type: string
-                      description: Required for payment method `in3`.
+                      description: |-
+                        A city name.
+
+                        Required for payment method `in3`.
+                      example: Amsterdam
                     region:
                       type: string
+                      description: 'The top-level administrative subdivision of the country. For example: Noord-Holland.'
+                      example: Noord-Holland
                     country:
                       type: string
                       description: |-
                         A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
 
                         Required for payment method `in3`.
+                      example: NL
                 shippingAddress:
                   type: object
                   description: |-
@@ -19271,37 +19289,50 @@ paths:
                     title:
                       type: string
                       description: The title of the person, for example *Mr.* or *Mrs.*.
+                      example: Mr.
                     givenName:
                       type: string
                       description: The given name (first name) of the person should be at least two characters and cannot contain only numbers.
+                      example: Piet
                     familyName:
                       type: string
                       description: The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
+                      example: Mondriaan
                     organizationName:
                       type: string
                       description: The name of the organization, in case the addressee is an organization.
+                      example: Mollie B.V.
                     streetAndNumber:
                       type: string
                       description: A street and street number.
+                      example: Keizersgracht 126
                     streetAdditional:
                       type: string
                       description: Any additional addressing details, for example an apartment number.
                     postalCode:
                       type: string
                       description: A postal code. This field may be required if the provided country has a postal code system.
+                      example: 1234AB
                     email:
                       type: string
                       description: A valid e-mail address.
+                      example: piet@example.org
                     phone:
                       type: string
                       description: 'If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.'
+                      example: 31208202070
                     city:
                       type: string
+                      description: A city name.
+                      example: Amsterdam
                     region:
                       type: string
+                      description: 'The top-level administrative subdivision of the country. For example: Noord-Holland.'
+                      example: Noord-Holland
                     country:
                       type: string
                       description: A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+                      example: NL
                 locale:
                   type:
                     - string
@@ -19312,6 +19343,7 @@ paths:
                     For bank transfer payments specifically, the locale will determine the target bank account the customer has to transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the customer use a local bank account greatly increases the conversion and speed of payment.
 
                     Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `de_AT` `de_CH` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
+                  example: nl_NL
                 countryCode:
                   type:
                     - string
@@ -19330,7 +19362,8 @@ paths:
 
                     You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
 
-                    Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `mybank` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint` `voucher`
+                    Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint` `voucher`
+                  example: ideal
                 issuer:
                   type:
                     - string
@@ -19347,6 +19380,7 @@ paths:
                     The full list of issuers for a specific method can be retrieved via the Methods API by using the optional `issuers` include.
 
                     A valid issuer for iDEAL is for example `ideal_INGBNL2A` (for ING Bank).
+                  example: ideal_INGBNL2A
                 restrictPaymentMethodsToCountry:
                   type:
                     - string
@@ -19376,6 +19410,7 @@ paths:
                     To enable this way of working, set the capture mode to `manual` and capture the payment manually using the [Create capture endpoint](create-capture).
 
                     Possible values: `automatic` `manual` (default: `automatic`)
+                  example: manual
                 captureDelay:
                   type:
                     - string
@@ -19392,6 +19427,7 @@ paths:
                     The maximum delay is 7 days (168 hours).
 
                     Possible values: `... hours` `... days`
+                  example: 8 hours
                 captureBefore:
                   type:
                     - string
@@ -19486,6 +19522,7 @@ paths:
                     For PayPal payments, recurring is only possible if your connected PayPal account allows it. You can call our [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account are set up correctly for recurring payments.
 
                     Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
+                  example: oneoff
                 subscriptionId:
                   type:
                     - string
