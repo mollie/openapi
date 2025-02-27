@@ -392,6 +392,7 @@ paths:
 
               balances = Mollie::Balance.all
             install: gem install mollie-api-ruby
+      x-speakeasy-group: balances
   /balances/{id}:
     parameters:
       - schema:
@@ -673,6 +674,7 @@ paths:
 
               balance = Mollie::Balance.get('bal_gVMhHKqSSRYJyPsuoPNFH')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: balances
   /balances/primary:
     get:
       summary: Get primary balance
@@ -772,6 +774,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: balances
   /balances/{balanceId}/report:
     parameters:
       - name: balanceId
@@ -1676,6 +1679,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: balances
   /balances/{balanceId}/transactions:
     parameters:
       - name: balanceId
@@ -2554,6 +2558,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: balances
   /settlements:
     get:
       summary: List settlements
@@ -2701,6 +2706,7 @@ paths:
 
               settlements = Mollie::settlement.all
             install: gem install mollie-api-ruby
+      x-speakeasy-group: settlements
   /settlements/{id}:
     parameters:
       - schema:
@@ -2982,6 +2988,7 @@ paths:
 
               settlement = Mollie::settlement.get('stl_jDk30akdN')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: settlements
   /settlements/open:
     get:
       summary: Get open settlement
@@ -3049,6 +3056,7 @@ paths:
 
               settlement = Mollie::Settlement.open
             install: gem install mollie-api-ruby
+      x-speakeasy-group: settlements
   /settlements/next:
     get:
       summary: Get next settlement
@@ -3116,6 +3124,7 @@ paths:
 
               settlement = Mollie::Settlement.next
             install: gem install mollie-api-ruby
+      x-speakeasy-group: settlements
   /settlements/{settlementId}/payments:
     parameters:
       - name: settlementId
@@ -3199,6 +3208,7 @@ paths:
 
               payments = Mollie::Settlement::Payment.all(settlement_id: 'stl_jDk30akdN')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: settlements
   /settlements/{settlementId}/captures:
     parameters:
       - name: settlementId
@@ -3278,6 +3288,7 @@ paths:
 
               captures = Mollie::Settlement::Capture.all(settlement_id: 'stl_jDk30akdN')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: settlements
   /settlements/{settlementId}/refunds:
     parameters:
       - name: settlementId
@@ -3357,6 +3368,7 @@ paths:
 
               refunds = Mollie::Settlement::Refund.all(settlement_id: 'stl_jDk30akdN')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: settlements
   /settlements/{settlementId}/chargebacks:
     parameters:
       - name: settlementId
@@ -3436,6 +3448,7 @@ paths:
 
               chargebacks = Mollie::Settlement::Chargeback.all(settlement_id: 'stl_jDk30akdN')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: settlements
   /invoices:
     get:
       summary: List invoices
@@ -4487,6 +4500,7 @@ paths:
 
               invoices = Mollie::invoice.all
             install: gem install mollie-api-ruby
+      x-speakeasy-group: invoices
   /invoices/{id}:
     parameters:
       - schema:
@@ -4711,6 +4725,7 @@ paths:
 
               invoice = Mollie::invoice.get('inv_xBEbP9rvAq')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: invoices
   /permissions:
     get:
       summary: List permissions
@@ -5048,6 +5063,7 @@ paths:
 
               permissions = Mollie::Permission.all
             install: gem install mollie-api-ruby
+      x-speakeasy-group: permissions
   /permissions/{id}:
     parameters:
       - schema:
@@ -5189,6 +5205,7 @@ paths:
 
               permission = Mollie::Permission.get('payments.read')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: permissions
   /organizations/{id}:
     parameters:
       - schema:
@@ -5379,6 +5396,7 @@ paths:
 
               organization = Mollie::Organization.get('org_12345678')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: organizations
   /organizations/me:
     get:
       summary: Get current organization
@@ -5500,6 +5518,7 @@ paths:
         - name: Get current organization
           code: 200
           response: mol-public-api/v2/organizations-api/examples.yaml#/components/responses/oauth-get-current-organization
+      x-speakeasy-group: organizations
   /organizations/me/partner:
     get:
       summary: Get partner status
@@ -5660,6 +5679,7 @@ paths:
 
               organization = Mollie::Partner.current
             install: gem install mollie-api-ruby
+      x-speakeasy-group: organizations
   /profiles:
     post:
       summary: Create profile
@@ -5999,6 +6019,7 @@ paths:
                 mode: 'live'
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: profiles
     get:
       summary: List profiles
       tags:
@@ -6136,6 +6157,7 @@ paths:
 
               profiles = Mollie::Profile.all
             install: gem install mollie-api-ruby
+      x-speakeasy-group: profiles
   /profiles/{id}:
     parameters:
       - schema:
@@ -6239,6 +6261,7 @@ paths:
 
               profile = Mollie::Profile.get('pfl_QkEhN94Ba')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: profiles
     patch:
       summary: Update profile
       tags:
@@ -6481,6 +6504,7 @@ paths:
                 website: 'https://updated.example.org'
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: profiles
     delete:
       summary: Delete profile
       tags:
@@ -6562,6 +6586,7 @@ paths:
 
               Mollie::Profile.delete('pfl_QkEhN94Ba')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: profiles
   /profiles/me:
     get:
       summary: Get current profile
@@ -6666,6 +6691,7 @@ paths:
 
               profile = Mollie::Profile.current
             install: gem install mollie-api-ruby
+      x-speakeasy-group: profiles
   /onboarding/me:
     get:
       summary: Get onboarding status
@@ -6810,6 +6836,7 @@ paths:
 
               onboarding = Mollie::Onboarding.me
             install: gem install mollie-api-ruby
+      x-speakeasy-group: onboarding
     post:
       summary: Submit onboarding data
       tags:
@@ -7009,6 +7036,7 @@ paths:
                 }
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: onboarding
   /capabilities:
     get:
       summary: List capabilities
@@ -7204,6 +7232,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: capabilities
   /clients:
     get:
       summary: List clients
@@ -7413,6 +7442,7 @@ paths:
 
               clients = Mollie::Client.all
             install: gem install mollie-api-ruby
+      x-speakeasy-group: clients
   /clients/{id}:
     parameters:
       - schema:
@@ -7642,6 +7672,7 @@ paths:
 
               client = Mollie::Client.get('org_12345678')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: clients
   /client-links:
     post:
       summary: Create client link
@@ -7914,6 +7945,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: client-links
   /orders:
     post:
       summary: Create order
@@ -9404,6 +9436,7 @@ paths:
                 webhookUrl: 'https://example.org/webhook',
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: orders
     get:
       summary: List orders
       tags:
@@ -16118,6 +16151,7 @@ paths:
 
               orders = Mollie::Order.all
             install: gem install mollie-api-ruby
+      x-speakeasy-group: orders
   /orders/{id}:
     parameters:
       - example: ord_vsKJpSsabw
@@ -16461,6 +16495,7 @@ paths:
 
               order = Mollie::Order.get('ord_pbjz8x')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: orders
     patch:
       summary: Update order
       tags:
@@ -16853,6 +16888,7 @@ paths:
                 webhookUrl: 'https://example.org/updated-webhook',
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: orders
     delete:
       summary: Cancel order
       tags:
@@ -16981,6 +17017,7 @@ paths:
 
               order = Mollie::Order.cancel('ord_pbjz8x')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: orders
   /orders/{orderId}/lines:
     parameters:
       - name: orderId
@@ -17269,6 +17306,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: orders
     delete:
       summary: Cancel order lines
       tags:
@@ -17436,6 +17474,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: orders
   /orders/{orderId}/lines/{id}:
     parameters:
       - name: orderId
@@ -17876,6 +17915,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: orders
   /orders/{orderId}/payments:
     parameters:
       - name: orderId
@@ -18054,6 +18094,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: orders
   /orders/{orderId}/shipments:
     parameters:
       - name: orderId
@@ -18449,6 +18490,7 @@ paths:
                 }
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: shipments
     get:
       summary: List shipments
       tags:
@@ -18604,6 +18646,7 @@ paths:
 
               shipments = Mollie::Order::Shipment.all(order_id: 'ord_pbjz8x')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: shipments
   /orders/{orderId}/shipments/{id}:
     parameters:
       - name: orderId
@@ -18707,6 +18750,7 @@ paths:
                 order_id: 'ord_pbjz8x'
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: shipments
     patch:
       summary: Update shipment
       tags:
@@ -18925,6 +18969,7 @@ paths:
                 }
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: shipments
   /payments:
     post:
       summary: Create payment
@@ -20325,6 +20370,7 @@ paths:
                 }
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: payments
     get:
       summary: List payments
       tags:
@@ -22534,6 +22580,7 @@ paths:
               # get the next page
               next_payments = payments.next
             install: gem install mollie-api-ruby
+      x-speakeasy-group: payments
   /payments/{paymentId}:
     parameters:
       - name: paymentId
@@ -22755,6 +22802,7 @@ paths:
 
               payment = Mollie::Payment.get('tr_5B8cwPMGnU6qLbRvo7qEZo')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: payments
     patch:
       summary: Update payment
       tags:
@@ -23043,6 +23091,7 @@ paths:
                 }
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: payments
     delete:
       summary: Cancel payment
       tags:
@@ -23172,6 +23221,7 @@ paths:
 
               canceled_payment = Mollie::Payment.cancel('tr_WDqYK6vllg')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: payments
   /payments/{paymentId}/release-authorization:
     parameters:
       - name: paymentId
@@ -23285,6 +23335,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: payments
   /methods:
     get:
       summary: List payment methods
@@ -23937,6 +23988,7 @@ paths:
               # Methods including pricing
               methods = Mollie::Method.all(include: 'pricing')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: methods
   /methods/all:
     get:
       summary: List all payment methods
@@ -25249,6 +25301,7 @@ paths:
 
               methods = Mollie::Method.all_available
             install: gem install mollie-api-ruby
+      x-speakeasy-group: methods
   /methods/{id}:
     parameters:
       - schema:
@@ -25599,6 +25652,7 @@ paths:
               # Methods including pricing
               methods = Mollie::Method.all(include: 'pricing')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: methods
   /profiles/{profileId}/methods/{id}:
     parameters:
       - name: profileId
@@ -25749,6 +25803,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: methods
     delete:
       summary: Disable payment method
       tags:
@@ -25826,6 +25881,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: methods
   /profiles/{profileId}/methods/{methodId}/issuers/{id}:
     parameters:
       - name: profileId
@@ -26020,6 +26076,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: methods
     delete:
       summary: Disable payment method issuer
       tags:
@@ -26101,6 +26158,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: methods
   /payments/{paymentId}/refunds:
     parameters:
       - name: paymentId
@@ -26449,6 +26507,7 @@ paths:
                 }
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: refunds
     get:
       summary: List payment refunds
       tags:
@@ -26614,6 +26673,7 @@ paths:
 
               refunds = Mollie::Payment.get('tr_5B8cwPMGnU6qLbRvo7qEZo').refunds
             install: gem install mollie-api-ruby
+      x-speakeasy-group: refunds
   /payments/{paymentId}/refunds/{id}:
     parameters:
       - name: paymentId
@@ -26726,6 +26786,7 @@ paths:
                 payment_id: 'tr_5B8cwPMGnU6qLbRvo7qEZo'
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: refunds
     delete:
       summary: Cancel payment refund
       tags:
@@ -26811,6 +26872,7 @@ paths:
                 payment_id: 'tr_5B8cwPMGnU6qLbRvo7qEZo'
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: refunds
   /orders/{orderId}/refunds:
     parameters:
       - name: orderId
@@ -27123,6 +27185,7 @@ paths:
           code: 201
           x-request: mol-public-api/v2/refunds-api/requests.yaml#/oauth-refund-order
           response: mol-public-api/v2/refunds-api/examples.yaml#/components/responses/oauth-refund-order
+      x-speakeasy-group: refunds
     get:
       summary: List order refunds
       tags:
@@ -27311,6 +27374,7 @@ paths:
 
               refunds = Order::Refund.all(order_id: 'ord_stTC2WHAuS')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: refunds
   /refunds:
     get:
       summary: List all refunds
@@ -27484,6 +27548,7 @@ paths:
 
               refunds = Mollie::Refund.all
             install: gem install mollie-api-ruby
+      x-speakeasy-group: refunds
   /payments/{paymentId}/chargebacks:
     parameters:
       - name: paymentId
@@ -27778,6 +27843,7 @@ paths:
 
               chargebacks = Mollie::Payment.get('tr_5B8cwPMGnU6qLbRvo7qEZo').chargebacks
             install: gem install mollie-api-ruby
+      x-speakeasy-group: chargebacks
   /payments/{paymentId}/chargebacks/{id}:
     parameters:
       - name: paymentId
@@ -28016,6 +28082,7 @@ paths:
                 payment_id: 'tr_5B8cwPMGnU6qLbRvo7qEZo'
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: chargebacks
   /chargebacks:
     get:
       summary: List all chargebacks
@@ -28368,6 +28435,7 @@ paths:
 
               chargebacks = Mollie::Chargeback.all
             install: gem install mollie-api-ruby
+      x-speakeasy-group: chargebacks
   /payments/{paymentId}/captures:
     parameters:
       - name: paymentId
@@ -28627,6 +28695,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: captures
     get:
       summary: List captures
       tags:
@@ -28828,6 +28897,7 @@ paths:
 
               captures = Mollie::Payment::Capture.all(payment_id: 'tr_5B8cwPMGnU6qLbRvo7qEZo')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: captures
   /payments/{paymentId}/captures/{id}:
     parameters:
       - name: paymentId
@@ -28969,6 +29039,7 @@ paths:
                 payment_id: 'tr_5B8cwPMGnU6qLbRvo7qEZo'
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: captures
   /wallets/applepay/sessions:
     post:
       summary: Request Apple Pay payment session
@@ -29107,6 +29178,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: wallets
   /payment-links:
     post:
       summary: Create payment link
@@ -29433,6 +29505,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: payment-links
     get:
       summary: List payment links
       tags:
@@ -29672,6 +29745,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: payment-links
   /payment-links/{id}:
     parameters:
       - schema:
@@ -29761,6 +29835,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: payment-links
     patch:
       summary: Update payment link
       tags:
@@ -29920,6 +29995,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: payment-links
     delete:
       summary: Delete payment link
       tags:
@@ -30021,6 +30097,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: payment-links
   /payment-links/{id}/payments:
     parameters:
       - schema:
@@ -30203,6 +30280,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: payment-links
   /terminals:
     get:
       summary: List terminals
@@ -30395,6 +30473,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: terminals
   /terminals/{id}:
     parameters:
       - schema:
@@ -30581,6 +30660,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: terminals
   /payments/{paymentId}/routes:
     parameters:
       - name: paymentId
@@ -30778,6 +30858,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: delayed-routing
     get:
       operationId: payment-list-routes
       summary: List payment routes
@@ -30929,6 +31010,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: delayed-routing
   /customers:
     post:
       summary: Create customer
@@ -31117,6 +31199,7 @@ paths:
                 email: 'customer@example.org'
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: customers
     get:
       summary: List customers
       tags:
@@ -31261,6 +31344,7 @@ paths:
 
               customers = Mollie::Customer.all
             install: gem install mollie-api-ruby
+      x-speakeasy-group: customers
   /customers/{id}:
     parameters:
       - schema:
@@ -31347,6 +31431,7 @@ paths:
 
               customer = Mollie::Customer.get('cst_8wmqcHMN4U')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: customers
     patch:
       summary: Update customer
       tags:
@@ -31490,6 +31575,7 @@ paths:
                 email: 'jane@example.org'
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: customers
     delete:
       summary: Delete customer
       tags:
@@ -31562,6 +31648,7 @@ paths:
 
               customer = Mollie::Customer.delete('cst_8wmqcHMN4U')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: customers
   /customers/{customerId}/payments:
     parameters:
       - name: customerId
@@ -31893,6 +31980,7 @@ paths:
                 }
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: customers
     get:
       summary: List customer payments
       tags:
@@ -32051,6 +32139,7 @@ paths:
 
               payments = Mollie::Customer::Payment.all(customer_id: 'cst_8wmqcHMN4U')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: customers
   /customers/{customerId}/mandates:
     parameters:
       - name: customerId
@@ -32385,6 +32474,7 @@ paths:
                 mandate_reference: 'EXAMPLE-CORP-MD13804'
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: mandates
     get:
       summary: List mandates
       tags:
@@ -32539,6 +32629,7 @@ paths:
               customer = Mollie::Customer.get('cst_4qqhO89gsT')
               mandates = customer.mandates
             install: gem install mollie-api-ruby
+      x-speakeasy-group: mandates
   /customers/{customerId}/mandates/{id}:
     parameters:
       - name: customerId
@@ -32638,6 +32729,7 @@ paths:
 
               mandate = Mollie::Customer::Mandate.get('mdt_h3gAaD5zP', customer_id: 'cst_4qqhO89gsT')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: mandates
     delete:
       summary: Revoke mandate
       tags:
@@ -32719,6 +32811,7 @@ paths:
 
               Mollie::Customer::Mandate.delete('mdt_h3gAaD5zP', customer_id: 'cst_4qqhO89gsT')
             install: gem install mollie-api-ruby
+      x-speakeasy-group: mandates
   /customers/{customerId}/subscriptions:
     parameters:
       - name: customerId
@@ -33048,6 +33141,7 @@ paths:
                 webhook_url: 'https://webshop.example.org/subscriptions/webhook/'
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: subscriptions
     get:
       summary: List customer subscriptions
       tags:
@@ -33210,6 +33304,7 @@ paths:
               customer = Mollie::Customer.get('cst_stTC2WHAuS')
               subscriptions = customer.subscriptions
             install: gem install mollie-api-ruby
+      x-speakeasy-group: subscriptions
   /customers/{customerId}/subscriptions/{id}:
     parameters:
       - name: customerId
@@ -33312,6 +33407,7 @@ paths:
                 customer_id: 'cst_stTC2WHAuS'
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: subscriptions
     patch:
       summary: Update subscription
       tags:
@@ -33537,6 +33633,7 @@ paths:
                 times: 10
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: subscriptions
     delete:
       summary: Cancel subscription
       tags:
@@ -33650,6 +33747,7 @@ paths:
                 customer_id: 'cst_stTC2WHAuS'
               )
             install: gem install mollie-api-ruby
+      x-speakeasy-group: subscriptions
   /subscriptions:
     get:
       summary: List all subscriptions
@@ -33823,6 +33921,7 @@ paths:
 
               subscriptions = Mollie::Subscription.all
             install: gem install mollie-api-ruby
+      x-speakeasy-group: subscriptions
   /customers/{customerId}/subscriptions/{subscriptionId}/payments:
     parameters:
       - name: customerId
@@ -33996,6 +34095,7 @@ paths:
               # share suggestions on our Discord:
               # https://discord.gg/VaTVkXB4aQ
             install: gem install mollie-api-ruby
+      x-speakeasy-group: subscriptions
 components:
   securitySchemes:
     apiKey:
