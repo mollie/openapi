@@ -29296,7 +29296,9 @@ paths:
 
                     Possible values: `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `eps` `giftcard` `ideal` `kbc` `mybank` `paybybank` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint`
                 applicationFee:
-                  type: object
+                  type:
+                    - object
+                    - 'null'
                   description: |-
                     With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
 
@@ -29928,7 +29930,9 @@ paths:
 
                     Possible values: `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `eps` `giftcard` `ideal` `kbc` `mybank` `paybybank` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint`
                 applicationFee:
-                  type: object
+                  type:
+                    - object
+                    - 'null'
                   description: |-
                     With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
 
