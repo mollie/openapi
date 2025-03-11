@@ -29295,6 +29295,30 @@ paths:
                     An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
 
                     Possible values: `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `eps` `giftcard` `ideal` `kbc` `mybank` `paybybank` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint`
+                applicationFee:
+                  type: object
+                  description: |-
+                    With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
+
+                    If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent to your own account balance.
+                  properties:
+                    amount:
+                      description: |-
+                        The fee that you wish to charge.
+
+                        Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
+                      type: object
+                      required: *ref_5
+                      properties: *ref_6
+                    description:
+                      type: string
+                      description: The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
+                      maxLength: 255
+                  example:
+                    amount:
+                      currency: EUR
+                      value: '1.50'
+                    description: Platform fee
                 _links:
                   type: object
                   description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -29338,6 +29362,7 @@ paths:
                     reusable: false
                     allowedMethods:
                       - ideal
+                    applicationFee: null
                     _links:
                       self:
                         href: ...
@@ -29369,6 +29394,7 @@ paths:
                     reusable: false
                     allowedMethods:
                       - ideal
+                    applicationFee: null
                     _links:
                       self:
                         href: ...
@@ -29399,6 +29425,11 @@ paths:
                     expiresAt: '2029-12-24T11:00:16+00:00'
                     reusable: false
                     allowedMethods: null
+                    applicationFee:
+                      amount:
+                        value: '1.50'
+                        currency: EUR
+                      description: Platform fee
                     _links:
                       self:
                         href: ...
@@ -29601,6 +29632,7 @@ paths:
                           reusable: false
                           allowedMethods:
                             - ideal
+                          applicationFee: null
                           _links:
                             self:
                               href: ...
@@ -29646,6 +29678,7 @@ paths:
                           reusable: false
                           allowedMethods:
                             - creditcard
+                          applicationFee: null
                           _links:
                             self:
                               href: ...
@@ -29669,6 +29702,7 @@ paths:
                           expiresAt: null
                           reusable: false
                           allowedMethods: null
+                          applicationFee: null
                           _links:
                             self:
                               href: ...
@@ -29692,6 +29726,7 @@ paths:
                           expiresAt: null
                           reusable: false
                           allowedMethods: null
+                          applicationFee: null
                           _links:
                             self:
                               href: ...
@@ -29892,6 +29927,30 @@ paths:
                     An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
 
                     Possible values: `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `eps` `giftcard` `ideal` `kbc` `mybank` `paybybank` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint`
+                applicationFee:
+                  type: object
+                  description: |-
+                    With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
+
+                    If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent to your own account balance.
+                  properties:
+                    amount:
+                      description: |-
+                        The fee that you wish to charge.
+
+                        Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
+                      type: object
+                      required: *ref_5
+                      properties: *ref_6
+                    description:
+                      type: string
+                      description: The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
+                      maxLength: 255
+                  example:
+                    amount:
+                      currency: EUR
+                      value: '1.50'
+                    description: Platform fee
       responses:
         '200':
           description: The payment link object.
@@ -29920,6 +29979,7 @@ paths:
                     reusable: false
                     allowedMethods:
                       - creditcard
+                    applicationFee: null
                     _links:
                       self:
                         href: ...
