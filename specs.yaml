@@ -29208,6 +29208,8 @@ paths:
         content:
           application/json:
             schema:
+              required:
+                - description
               type: object
               properties: &ref_48
                 resource:
@@ -29232,6 +29234,11 @@ paths:
                   maxLength: 255
                 amount:
                   description: The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an amount.
+                  type: *ref_21
+                  required: *ref_22
+                  properties: *ref_23
+                minimumAmount:
+                  description: The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
                   type: *ref_21
                   required: *ref_22
                   properties: *ref_23
@@ -29442,6 +29449,39 @@ paths:
                       documentation:
                         href: ...
                         type: text/html
+                create-payment-link-201-4:
+                  summary: Create payment link with a minimum amount
+                  x-request: ./requests.yaml#/api-create-payment-link
+                  value:
+                    resource: payment-link
+                    id: pl_O5gN36aL3KzQo4GNXJoRl
+                    description: This is the description of the payment
+                    mode: test
+                    profileId: pfl_85dxyKqNHa
+                    amount: null
+                    minimumAmount:
+                      value: '10.00'
+                      currency: EUR
+                    webhookUrl: https://example.com/redirect
+                    redirectUrl: https://example.com/landing_page
+                    createdAt: '2022-01-03T15:04:02+00:00'
+                    paidAt: null
+                    updatedAt: null
+                    expiresAt: '2029-12-24T11:00:16+00:00'
+                    reusable: false
+                    allowedMethods:
+                      - ideal
+                    applicationFee: null
+                    _links:
+                      self:
+                        href: ...
+                        type: application/hal+json
+                      paymentLink:
+                        href: https://payment-links.mollie.com/payment/O5gN36aL3KzQo4GNXJoRl/
+                        type: text/html
+                      documentation:
+                        href: ...
+                        type: text/html
         '404':
           description: No entity with this ID exists.
           content: *ref_7
@@ -29471,6 +29511,8 @@ paths:
                   -d "description=Bicycle tires" \
                   -d "amount[currency]=EUR" \
                   -d "amount[value]=24.95" \
+                  -d "minimumAmount[currency]=null" \
+                  -d "minimumAmount[value]=null" \
                   -d "redirectUrl=https://webshop.example.org/thanks" \
                   -d "webhookUrl=https://webshop.example.org/payment-links/webhook" \
                   -d "expiresAt=2023-06-06T11:00:00+00:00"
@@ -29488,6 +29530,7 @@ paths:
                   "currency" => "EUR",
                   "value" => "24.95",
                 ],
+                "minimumAmount" => null,
                 "redirectUrl" => "https://webshop.example.org/thanks",
                 "webhookUrl" => "https://webshop.example.org/payment-links/webhook/",
                 "expiresAt" => "2023-06-06T11:00:00+00:00",
@@ -29528,6 +29571,7 @@ paths:
                   "currency": "EUR",
                   "value": "24.95"
                 },
+                "minimumAmount": null,
                 "webhookUrl": "https://webshop.example.org/payment-links/webhook/",
                 "redirectUrl": "https://webshop.example.org/thanks",
                 "expiresAt": "2023-06-06T11:00:00+00:00",
@@ -29918,6 +29962,11 @@ paths:
 
                     Updating the description does not affect any previously existing payments created for this payment link.
                   maxLength: 255
+                minimumAmount:
+                  description: The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
+                  type: object
+                  required: *ref_5
+                  properties: *ref_6
                 archived:
                   type: boolean
                   description: Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
@@ -30020,7 +30069,9 @@ paths:
               curl -X PATCH https://api.mollie.com/v2/payment-links/pl_4Y0eZitmBnQ6IDoMqZQKh \
                   -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
                   -d "description=Bicycle tires" \
-                  -d "archived=true"
+                  -d "minimumAmount[currency]=EUR" \
+                  -d "minimumAmount[value]=24.95" \
+                  -d "archived=true" \
                   -d "allowedMethods[]=creditcard"
           - language: php
             code: |-
