@@ -29305,7 +29305,6 @@ paths:
                 applicationFee:
                   type:
                     - object
-                    - 'null'
                   description: |-
                     With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
 
@@ -29371,7 +29370,6 @@ paths:
                     reusable: false
                     allowedMethods:
                       - ideal
-                    applicationFee: null
                     _links:
                       self:
                         href: ...
@@ -29403,7 +29401,6 @@ paths:
                     reusable: false
                     allowedMethods:
                       - ideal
-                    applicationFee: null
                     _links:
                       self:
                         href: ...
@@ -29471,7 +29468,6 @@ paths:
                     reusable: false
                     allowedMethods:
                       - ideal
-                    applicationFee: null
                     _links:
                       self:
                         href: ...
@@ -29678,7 +29674,6 @@ paths:
                           reusable: false
                           allowedMethods:
                             - ideal
-                          applicationFee: null
                           _links:
                             self:
                               href: ...
@@ -29724,7 +29719,6 @@ paths:
                           reusable: false
                           allowedMethods:
                             - creditcard
-                          applicationFee: null
                           _links:
                             self:
                               href: ...
@@ -29748,7 +29742,6 @@ paths:
                           expiresAt: null
                           reusable: false
                           allowedMethods: null
-                          applicationFee: null
                           _links:
                             self:
                               href: ...
@@ -29772,7 +29765,6 @@ paths:
                           expiresAt: null
                           reusable: false
                           allowedMethods: null
-                          applicationFee: null
                           _links:
                             self:
                               href: ...
@@ -30032,7 +30024,6 @@ paths:
                     reusable: false
                     allowedMethods:
                       - creditcard
-                    applicationFee: null
                     _links:
                       self:
                         href: ...
