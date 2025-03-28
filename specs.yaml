@@ -131,6 +131,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -150,9 +151,11 @@ paths:
                           href:
                             type: string
                             description: The actual URL string.
+                            example: https://...
                           type:
                             type: string
                             description: The content type of the page or endpoint the URL points to.
+                            example: application/hal+json
                       previous:
                         description: The previous set of items, if available.
                         type: &ref_0
@@ -162,9 +165,11 @@ paths:
                           href:
                             type: string
                             description: The actual URL string.
+                            example: https://...
                           type:
                             type: string
                             description: The content type of the page or endpoint the URL points to.
+                            example: application/hal+json
                       next:
                         description: The next set of items, if available.
                         type: *ref_0
@@ -298,17 +303,21 @@ paths:
                     description: The status code of the error message. This is always the same code as the status code of the HTTP message itself.
                     minimum: 400
                     maximum: 599
+                    example: 404
                   title:
                     type: string
                     description: The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
+                    example: Not Found
                   detail:
                     type: string
                     description: A detailed human-readable description of the error that occurred.
+                    example: The resource does not exist
                   field:
                     type:
                       - string
                       - 'null'
                     description: If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
+                    example: description
                   _links:
                     type: object
                     properties:
@@ -438,7 +447,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_60
+                properties: &ref_61
                   resource:
                     type: string
                     description: Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
@@ -455,6 +464,7 @@ paths:
 
                       Possible values: `live` `test`
                     readOnly: true
+                    example: live
                   currency:
                     type: string
                     description: The balance's ISO 4217 currency code.
@@ -550,6 +560,7 @@ paths:
                     type: string
                     description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                     readOnly: true
+                    example: '2024-03-20T09:13:37.0Z'
                   _links:
                     type: object
                     description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -844,7 +855,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_61
+                properties: &ref_62
                   resource:
                     type: string
                     description: Indicates the response contains a balance report object. Will always contain the string `balance-report` for this endpoint.
@@ -1741,6 +1752,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -1749,7 +1761,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_62
+                          properties: &ref_63
                             resource:
                               type: string
                               description: Indicates the response contains a balance transaction object. Will always contain the string `balance_transaction` for this endpoint.
@@ -1827,6 +1839,7 @@ paths:
                               type: string
                               description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                               readOnly: true
+                              example: '2024-03-20T09:13:37.0Z'
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -2611,6 +2624,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -2745,7 +2759,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_63
+                properties: &ref_64
                   resource:
                     type: string
                     description: Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
@@ -3531,6 +3545,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -4533,7 +4548,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_64
+                properties: &ref_65
                   resource:
                     type: string
                     description: Indicates that the response contains an invoice object. Will always contain the string `invoice` for this endpoint.
@@ -4758,6 +4773,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -5101,7 +5117,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_65
+                properties: &ref_66
                   resource:
                     type: string
                     description: Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
@@ -5270,6 +5286,7 @@ paths:
                     type: string
                     description: The preferred locale of the merchant, as set in their Mollie dashboard.
                     readOnly: true
+                    example: en_US
                   address:
                     description: The address of the organization.
                     type: object
@@ -6063,6 +6080,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -7109,7 +7127,7 @@ paths:
                               type: array
                               items:
                                 type: object
-                                properties: &ref_66
+                                properties: &ref_67
                                   id:
                                     type: string
                                     description: The name of this requirement, referring to the task to be fulfilled by the organization to enable or re-enable the capability. The name is unique among other requirements of the same capability.
@@ -7290,6 +7308,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -7743,8 +7762,7 @@ paths:
                         Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred language of the logged in merchant will be used and this parameter is ignored.
 
                         When this parameter is omitted, the browser language will be used instead.
-
-                        Possible values: `en_US` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `es_ES` `it_IT`
+                      example: en_US
                   required:
                     - email
                     - givenName
@@ -7863,7 +7881,7 @@ paths:
           content: *ref_7
         '422':
           description: The request contains issues. For example, if the `owner` field is missing.
-          content: &ref_79
+          content: &ref_82
             application/hal+json:
               schema:
                 type: object
@@ -8008,6 +8026,7 @@ paths:
 
                     Possible values: `live` `test`
                   readOnly: true
+                  example: live
                 orderNumber:
                   type: string
                   description: The order number for this order. We recommend each order number to be unique.
@@ -8019,12 +8038,12 @@ paths:
                     All lines must have the same currency as the payment.
                   items:
                     type: object
-                    required: &ref_67
+                    required: &ref_68
                       - name
                       - quantity
                       - unitPrice
                       - totalAmount
-                    properties: &ref_68
+                    properties: &ref_69
                       resource:
                         type: string
                         description: Indicates the response contains an order line object. Will always contain the string `orderline`.
@@ -8115,11 +8134,14 @@ paths:
                         description: Whether the order line can still be canceled.
                         readOnly: true
                       metadata:
-                        type: &ref_26
-                          - string
-                          - object
-                          - array
-                          - 'null'
+                        oneOf: &ref_26
+                          - type: string
+                          - type: object
+                            properties: {}
+                          - type: array
+                            items:
+                              type: string
+                          - type: 'null'
                         description: Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
                       orderId:
                         type: string
@@ -8137,6 +8159,7 @@ paths:
                         type: string
                         description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                         readOnly: true
+                        example: '2024-03-20T09:13:37.0Z'
                       _links:
                         type: object
                         description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -8254,8 +8277,7 @@ paths:
                     Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897 locale, but our hosted payment pages currently only support the specified languages.
 
                     For bank transfer payments specifically, the locale will determine the target bank account the customer has to transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the customer use a local bank account greatly increases the conversion and speed of payment.
-
-                    Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `de_AT` `de_CH` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
+                  example: en_US
                 method:
                   type:
                     - string
@@ -8273,7 +8295,7 @@ paths:
 
                     This field is similar to the `restrictPaymentMethodsToCountry` field in the Payments API.
                 metadata:
-                  type: *ref_26
+                  oneOf: *ref_26
                   description: Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
                 status:
                   type: string
@@ -8306,6 +8328,7 @@ paths:
                   type: string
                   description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                   readOnly: true
+                  example: '2024-03-20T09:13:37.0Z'
                 authorizedAt:
                   type:
                     - string
@@ -8345,7 +8368,7 @@ paths:
                   description: The date and time the order was completed, in ISO 8601 format. This parameter is omitted if the order is not completed (yet).
                   readOnly: true
                 testmode:
-                  type: &ref_35
+                  type: &ref_36
                     - boolean
                     - 'null'
                   description: |-
@@ -9512,6 +9535,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -18147,6 +18171,7 @@ paths:
 
                     Possible values: `live` `test`
                   readOnly: true
+                  example: live
                 lines:
                   type:
                     - array
@@ -18242,6 +18267,7 @@ paths:
                   type: string
                   description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                   readOnly: true
+                  example: '2024-03-20T09:13:37.0Z'
                 _links:
                   type: object
                   description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -18546,6 +18572,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -18995,14 +19022,15 @@ paths:
         >
         > [Access token with **payments.write**](/reference/authentication)
       parameters:
-        - description: |-
-            This endpoint allows you to include additional information via the `include` query string parameter.
-
-            * `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
+        - description: This endpoint allows you to include additional information via the `include` query string parameter.
           schema:
             type:
               - string
               - 'null'
+            enum:
+              - details.qrCode
+            x-enumDescriptions:
+              details.qrCode: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
             example: details.qrCode
           name: include
           in: query
@@ -19015,20 +19043,18 @@ paths:
                 - description
                 - redirectUrl
               type: object
-              properties: &ref_36
+              properties: &ref_37
                 resource:
                   type: string
                   description: Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
                   readOnly: true
                   default: payment
                 id:
-                  type: string
-                  minLength: 13
-                  maxLength: 25
-                  pattern: ^(tr)_([A-Za-z0-9]{10,22})$
-                  example: tr_5B8cwPMGnU6qLbRvo7qEZo
                   description: 'The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.'
                   readOnly: true
+                  type: string
+                  pattern: ^(tr)_([A-Za-z0-9]{10,29})$
+                  example: tr_5B8cwPMGnU6qLbRvo7qEZo
                 mode:
                   type: string
                   description: |-
@@ -19036,8 +19062,11 @@ paths:
 
                     Possible values: `live` `test`
                   readOnly: true
+                  example: live
                 description:
-                  type: string
+                  type:
+                    - string
+                    - 'null'
                   description: |-
                     The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
 
@@ -19045,6 +19074,7 @@ paths:
 
                     The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
                   maxLength: 255
+                  example: Chess Board
                 amount:
                   description: |-
                     The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
@@ -19133,12 +19163,12 @@ paths:
                     Required for payment method `voucher`.
                   items:
                     type: object
-                    required: &ref_71
+                    required: &ref_72
                       - description
                       - quantity
                       - unitPrice
                       - totalAmount
-                    properties: &ref_72
+                    properties: &ref_73
                       type:
                         type: string
                         description: |-
@@ -19150,13 +19180,16 @@ paths:
                       description:
                         type: string
                         description: A description of the line item. For example *LEGO 4440 Forest Police Station*.
+                        example: LEGO 4440 Forest Police Station
                       quantity:
                         type: integer
                         description: The number of items.
                         minimum: 1
+                        example: 1
                       quantityUnit:
                         type: string
                         description: The unit for the quantity. For example *pcs*, *kg*, or *cm*.
+                        example: pcs
                       unitPrice:
                         description: |-
                           The price of a single item including VAT.
@@ -19177,18 +19210,20 @@ paths:
                       recurring:
                         description: The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
                         type: object
-                        required: &ref_69
+                        required: &ref_70
                           - interval
-                        properties: &ref_70
+                        properties: &ref_71
                           description:
                             type: string
                             description: A description of the recurring item. If not present, the main description of the item will be used.
+                            example: Gym subscription
                           interval:
                             type: string
                             description: |-
                               Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
 
                               Possible values: `... months` `... weeks` `... days`
+                            example: 12 months
                           amount:
                             description: Total amount and currency of the recurring item.
                             type: object
@@ -19197,11 +19232,13 @@ paths:
                           times:
                             type: integer
                             description: Total number of charges for the subscription to complete. Leave empty for ongoing subscription.
+                            example: 1
                           startDate:
                             type:
                               - string
                               - 'null'
                             description: The start date of the subscription if it does not start right away (format `YYYY-MM-DD`)
+                            example: '2024-12-12'
                       totalAmount:
                         description: |-
                           The total amount of the line, including VAT and discounts.
@@ -19215,6 +19252,7 @@ paths:
                       vatRate:
                         type: string
                         description: The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
+                        example: '21.00'
                       vatAmount:
                         description: |-
                           The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
@@ -19229,30 +19267,38 @@ paths:
                         type: string
                         description: The SKU, EAN, ISBN or UPC of the product sold.
                         maxLength: 64
+                        example: '9780241661628'
                       categories:
                         type: array
-                        description: |-
-                          An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
-
-                          Possible values: `meal` `eco` `gift` `sport_culture`
+                        description: An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+                        items:
+                          type: string
+                          enum:
+                            - meal
+                            - eco
+                            - gift
+                            - sport_culture
+                          example: meal
                         example:
                           - meal
                           - eco
                       imageUrl:
                         type: string
                         description: A link pointing to an image of the product sold.
+                        example: https://...
                       productUrl:
                         type: string
                         description: A link pointing to the product page in your web shop of the product sold.
+                        example: https://...
                 billingAddress:
-                  type: object
                   description: |-
                     The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
 
                     Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
 
                     Required for payment method `in3`.
-                  properties:
+                  type: object
+                  properties: &ref_35
                     title:
                       type: string
                       description: The title of the person, for example *Mr.* or *Mrs.*.
@@ -19285,6 +19331,7 @@ paths:
                     streetAdditional:
                       type: string
                       description: Any additional addressing details, for example an apartment number.
+                      example: Apt. 1
                     postalCode:
                       type: string
                       description: |-
@@ -19324,59 +19371,12 @@ paths:
                         Required for payment method `in3`.
                       example: NL
                 shippingAddress:
-                  type: object
                   description: |-
                     The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
 
                     Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
-                  properties:
-                    title:
-                      type: string
-                      description: The title of the person, for example *Mr.* or *Mrs.*.
-                      example: Mr.
-                    givenName:
-                      type: string
-                      description: The given name (first name) of the person should be at least two characters and cannot contain only numbers.
-                      example: Piet
-                    familyName:
-                      type: string
-                      description: The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
-                      example: Mondriaan
-                    organizationName:
-                      type: string
-                      description: The name of the organization, in case the addressee is an organization.
-                      example: Mollie B.V.
-                    streetAndNumber:
-                      type: string
-                      description: A street and street number.
-                      example: Keizersgracht 126
-                    streetAdditional:
-                      type: string
-                      description: Any additional addressing details, for example an apartment number.
-                    postalCode:
-                      type: string
-                      description: A postal code. This field may be required if the provided country has a postal code system.
-                      example: 1234AB
-                    email:
-                      type: string
-                      description: A valid e-mail address.
-                      example: piet@example.org
-                    phone:
-                      type: string
-                      description: 'If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.'
-                      example: 31208202070
-                    city:
-                      type: string
-                      description: A city name.
-                      example: Amsterdam
-                    region:
-                      type: string
-                      description: 'The top-level administrative subdivision of the country. For example: Noord-Holland.'
-                      example: Noord-Holland
-                    country:
-                      type: string
-                      description: A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
-                      example: NL
+                  type: object
+                  properties: *ref_35
                 locale:
                   type:
                     - string
@@ -19385,9 +19385,7 @@ paths:
                     Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897 locale, but our hosted payment pages currently only support the specified languages.
 
                     For bank transfer payments specifically, the locale will determine the target bank account the customer has to transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the customer use a local bank account greatly increases the conversion and speed of payment.
-
-                    Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `de_AT` `de_CH` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
-                  example: nl_NL
+                  example: en_US
                 countryCode:
                   type:
                     - string
@@ -19425,6 +19423,7 @@ paths:
 
                     A valid issuer for iDEAL is for example `ideal_INGBNL2A` (for ING Bank).
                   example: ideal_INGBNL2A
+                  writeOnly: true
                 restrictPaymentMethodsToCountry:
                   type:
                     - string
@@ -19437,8 +19436,9 @@ paths:
                     If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
 
                     The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
+                  example: NL
                 metadata:
-                  type: *ref_26
+                  oneOf: *ref_26
                   description: Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
                 captureMode:
                   type:
@@ -19481,8 +19481,11 @@ paths:
 
                     Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
                   readOnly: true
+                  example: '2024-03-20T09:28:37.0Z'
                 applicationFee:
-                  type: object
+                  type:
+                    - object
+                    - 'null'
                   description: |-
                     With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
 
@@ -19502,6 +19505,7 @@ paths:
                       type: string
                       description: The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
                       maxLength: 255
+                      example: 10
                 routing:
                   type:
                     - array
@@ -19520,7 +19524,26 @@ paths:
                     If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee` parameter.
                   items:
                     type: object
-                    properties:
+                    properties: &ref_74
+                      resource:
+                        type: string
+                        description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
+                        readOnly: true
+                        default: route
+                      id:
+                        description: 'The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.'
+                        readOnly: true
+                        type: string
+                        pattern: ^(rt)_([A-Za-z0-9]{10,29})$
+                        example: rt_5B8cwPMGnU6qLbRvo7qEZo
+                      mode:
+                        type: string
+                        description: |-
+                          Whether this entity was created in live mode or in test mode.
+
+                          Possible values: `live` `test`
+                        readOnly: true
+                        example: live
                       amount:
                         description: The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
                         type: object
@@ -19536,6 +19559,7 @@ paths:
                               The type of destination. Currently only the destination type `organization` is supported.
 
                               Possible values: `organization`
+                            example: organization
                           organizationId:
                             type: string
                             description: Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
@@ -19548,6 +19572,21 @@ paths:
                           Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
 
                           If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
+                        example: '2024-12-12'
+                      _links:
+                        type:
+                          - object
+                          - 'null'
+                        description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                        properties:
+                          self:
+                            type: object
+                            description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                            properties: *ref_2
+                          payment:
+                            description: The API resource URL of the [payment](get-payment) that belong to this route.
+                            type: object
+                            properties: *ref_2
                 sequenceType:
                   type:
                     - string
@@ -19572,8 +19611,9 @@ paths:
                     - string
                     - 'null'
                   description: If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will be added to the response.
-                  example: sub_rVKGtNd6s3
                   readOnly: true
+                  pattern: ^(sub)_([A-Za-z0-9]{9,28})$
+                  example: sub_5B8cwPMGnU6qLbRvo7qEZo
                 mandateId:
                   type:
                     - string
@@ -19582,7 +19622,8 @@ paths:
                     **Only relevant for recurring payments.**
 
                     When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of the customer's accounts should be credited.
-                  example: mdt_pWUnw6pkBN
+                  pattern: ^(mdt)_([A-Za-z0-9]{9,28})$
+                  example: mdt_5B8cwPMGnU6qLbRvo7qEZo
                 customerId:
                   type:
                     - string
@@ -19591,29 +19632,34 @@ paths:
                     The ID of the [customer](get-customer) the payment is being created for. This is used primarily for recurring payments, but can also be used on regular payments to enable single-click payments.
 
                     If `sequenceType` is set to `recurring`, this field is required.
-                  example: cst_8wmqcHMN4U
+                  pattern: ^(cst)_([A-Za-z0-9]{9,28})$
+                  example: cst_5B8cwPMGnU6qLbRvo7qEZo
                 profileId:
-                  type:
-                    - string
-                    - 'null'
+                  type: string
                   description: |-
                     The identifier referring to the [profile](get-profile) this entity belongs to.
 
-                    Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
-                  example: pfl_QkEhN94Ba
+                    When using an API Key, the `profileId` can be omitted since it is linked to the key. However, for OAuth and Organization tokens, the `profileId` is required.
+
+                    For more information, see [Authentication](authentication).
+                  pattern: ^(pfl)_([A-Za-z0-9]{9,28})$
+                  example: pfl_5B8cwPMGnU6qLbRvo7qEZo
                 settlementId:
                   type:
                     - string
                     - 'null'
                   description: The identifier referring to the [settlement](get-settlement) this payment was settled with.
-                  example: stl_BkEjN2eBb
                   readOnly: true
+                  pattern: ^(stl)_([A-Za-z0-9]{9,28})$
+                  example: stl_5B8cwPMGnU6qLbRvo7qEZo
                 orderId:
                   type:
                     - string
                     - 'null'
                   description: If the payment was created for an [order](get-order), the ID of that order will be part of the response.
                   readOnly: true
+                  pattern: ^(ord)_([A-Za-z0-9]{9,28})$
+                  example: ord_5B8cwPMGnU6qLbRvo7qEZo
                 status:
                   type: string
                   description: |-
@@ -19621,8 +19667,9 @@ paths:
 
                     Possible values: `open` `pending` `authorized` `paid` `canceled` `expired` `failed`
                   readOnly: true
+                  example: open
                 statusReason:
-                  type: &ref_73
+                  type: &ref_75
                     - object
                     - 'null'
                   description: |-
@@ -19630,10 +19677,10 @@ paths:
 
                     You can find more information about the possible values of this object on [this page](status-reasons).**
                   readOnly: true
-                  required: &ref_74
-                    - statusCode
-                    - statusMessage
-                  properties: &ref_75
+                  required: &ref_76
+                    - code
+                    - message
+                  properties: &ref_77
                     code:
                       type: string
                       description: A machine-readable code that indicates the reason for the payment's status.
@@ -19641,61 +19688,73 @@ paths:
                     message:
                       type: string
                       description: A description of the status reason, localized according to the payment `locale`.
-                      example: The account associated with the card has insufficient funds. The shopper should use another payment method or contact their bank.
+                      example: |-
+                        The account associated with the card has insufficient funds. The shopper should use another payment method or
+                        contact their bank.
                 isCancelable:
                   type:
                     - boolean
                     - 'null'
                   description: Whether the payment can be canceled. This parameter is omitted if the payment reaches a final state.
                   readOnly: true
+                  example: true
                 details:
                   type:
                     - object
                     - 'null'
                   description: An object containing payment details collected during the payment process. For example, details may include the customer's card or bank details and a payment reference. For the full list of details, please refer to the [method-specific parameters](extra-payment-parameters) guide.
                   readOnly: true
+                  properties: {}
+                  additionalProperties: true
                 createdAt:
                   type: string
                   description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                   readOnly: true
+                  example: '2024-03-20T09:13:37.0Z'
                 authorizedAt:
                   type:
                     - string
                     - 'null'
                   description: The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is not authorized (yet).
                   readOnly: true
+                  example: '2024-03-20T09:28:37.0Z'
                 paidAt:
                   type:
                     - string
                     - 'null'
                   description: The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not completed (yet).
                   readOnly: true
+                  example: '2024-03-20T09:28:37.0Z'
                 canceledAt:
                   type:
                     - string
                     - 'null'
                   description: The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not canceled (yet).
                   readOnly: true
+                  example: '2024-03-20T09:28:37.0Z'
                 expiresAt:
                   type:
                     - string
                     - 'null'
                   description: The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no longer expire.
                   readOnly: true
+                  example: '2024-03-20T09:28:37.0Z'
                 expiredAt:
                   type:
                     - string
                     - 'null'
                   description: The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not expire (yet).
                   readOnly: true
+                  example: '2024-03-20T09:28:37.0Z'
                 failedAt:
                   type:
                     - string
                     - 'null'
                   description: The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail (yet).
                   readOnly: true
+                  example: '2024-03-20T09:28:37.0Z'
                 testmode:
-                  type: *ref_35
+                  type: *ref_36
                   description: |-
                     Whether to create the entity in test mode or live mode.
 
@@ -19747,6 +19806,18 @@ paths:
                       description: The API resource URL of the [settlement](get-settlement) this payment has been settled with. Not present if not yet settled.
                       type: *ref_0
                       properties: *ref_1
+                    customer:
+                      description: The API resource URL of the [customer](get-customer).
+                      type: *ref_0
+                      properties: *ref_1
+                    mandate:
+                      description: The API resource URL of the [mandate](get-mandate).
+                      type: *ref_0
+                      properties: *ref_1
+                    subscription:
+                      description: The API resource URL of the [subscription](get-subscription).
+                      type: *ref_0
+                      properties: *ref_1
                     order:
                       description: The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an order.
                       type: *ref_0
@@ -19762,14 +19833,16 @@ paths:
                   readOnly: true
       responses:
         '201':
-          description: The newly created payment object. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
+          description: The newly created payment object.
           content:
             application/hal+json:
-              schema: {}
+              schema:
+                type: object
+                properties: *ref_37
               examples:
                 create-payment-201-1:
                   summary: The payment object
-                  value: &ref_37
+                  value: &ref_38
                     resource: payment
                     id: tr_5B8cwPMGnU6qLbRvo7qEZo
                     mode: live
@@ -20223,7 +20296,7 @@ paths:
                     redirectUrl: https://www.mollie.com/en
                     webhookUrl: https://www.mollie.com/en
                     routing:
-                      - id: rt_p70g7o
+                      - id: rt_p70g7o9kj239d49rj4
                         amount:
                           value: '7.50'
                           currency: EUR
@@ -20391,12 +20464,13 @@ paths:
         >
         > [Access token with **payments.read**](/reference/authentication)
       parameters:
-        - schema:
-            type: string
-            example: tr_5B8cwPMGnU6qLbRvo7qEZo
-          name: from
-          description: Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+        - name: from
           in: query
+          description: Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+          schema:
+            type: string
+            pattern: ^(tr)_([A-Za-z0-9]{10,29})$
+            example: tr_5B8cwPMGnU6qLbRvo7qEZo
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
@@ -20417,7 +20491,7 @@ paths:
           schema: *ref_4
       responses:
         '200':
-          description: A list of payment objects. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
+          description: A list of payment objects.
           content:
             application/hal+json:
               schema:
@@ -20431,14 +20505,16 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
                       payments:
-                        description: An array of payment objects. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
+                        description: An array of payment objects.
                         type: array
                         items:
                           type: object
+                          properties: *ref_37
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -21129,7 +21205,7 @@ paths:
                           locale: en_US
                           profileId: pfl_zcfJRjkf6P
                           customerId: cst_uU9yQjJwHV
-                          orderId: ord_dszozq
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZo
                           sequenceType: first
                           redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=394&payment_token=123&utm_nooverride=1
                           _links:
@@ -21143,7 +21219,7 @@ paths:
                               href: https://api.mollie.com/v2/customers/cst_uU9yQjJwHV
                               type: application/hal+json
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_dszozq
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZo
                               type: application/hal+json
                         - resource: payment
                           id: tr_WSmqbH9dmk
@@ -21168,7 +21244,7 @@ paths:
                           profileId: pfl_zcfJRjkf6P
                           customerId: cst_uU9yQjJwHV
                           mandateId: mdt_Ff284cNKht
-                          orderId: ord_cx3cj6
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ1
                           sequenceType: first
                           redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=393&payment_token=123&utm_nooverride=1
                           settlementAmount:
@@ -21198,7 +21274,7 @@ paths:
                               href: https://api.mollie.com/v2/customers/cst_uU9yQjJwHV/mandates/mdt_Ff284cNKht
                               type: application/hal+json
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_cx3cj6
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ1
                               type: application/hal+json
                         - resource: payment
                           id: tr_QgUjvHbA8Q
@@ -21214,7 +21290,7 @@ paths:
                           expiredAt: '2022-01-14T11:44:05+00:00'
                           locale: en_US
                           profileId: pfl_zcfJRjkf6P
-                          orderId: ord_5yp6su
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ2
                           sequenceType: oneoff
                           redirectUrl: https://example.com/redirect?wixMerchantId=d122df9a-ae27-42e2-94bc-d7ed17f9a447&orderId=a036907f-6221-4611-a7ab-2725e1e80c2b
                           webhookUrl: https://example.com/webhooks?wixMerchantId=d122df9a-ae27-42e2-94bc-d7ed17f9a447
@@ -21226,7 +21302,7 @@ paths:
                               href: https://www.mollie.com/dashboard/org_7049691/payments/tr_QgUjvHbA8Q
                               type: text/html
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_5yp6su
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ2
                               type: application/hal+json
                         - resource: payment
                           id: tr_ErjmfS5B86
@@ -21305,7 +21381,7 @@ paths:
                           locale: en_US
                           countryCode: NL
                           profileId: pfl_zcfJRjkf6P
-                          orderId: ord_3fxiqo
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ3
                           sequenceType: oneoff
                           redirectUrl: https://example.com/redirect?wixMerchantId=d122df9a-ae27-42e2-94bc-d7ed17f9a447&orderId=462a4c86-bcf0-4e47-84c3-fd24fb6d907d
                           webhookUrl: https://example.com/webhooks?wixMerchantId=d122df9a-ae27-42e2-94bc-d7ed17f9a447
@@ -21329,7 +21405,7 @@ paths:
                               href: https://www.mollie.com/dashboard/org_7049691/payments/tr_4jbEGjvw3C
                               type: text/html
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_3fxiqo
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ3
                               type: application/hal+json
                             status:
                               href: https://www.mollie.com/checkout/bank-transfer/status/3.lkmvuw
@@ -21349,7 +21425,7 @@ paths:
                           locale: en_US
                           countryCode: RS
                           profileId: pfl_zcfJRjkf6P
-                          orderId: ord_rrao94
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ4
                           sequenceType: oneoff
                           redirectUrl: https://example.com/redirect?wixMerchantId=d122df9a-ae27-42e2-94bc-d7ed17f9a447&orderId=c4cca02f-5ce2-4936-bbba-dc6ef1f1e3d9
                           webhookUrl: https://example.com/webhooks?wixMerchantId=d122df9a-ae27-42e2-94bc-d7ed17f9a447
@@ -21367,7 +21443,7 @@ paths:
                               href: https://www.mollie.com/dashboard/org_7049691/payments/tr_zTnKhNvPUT
                               type: text/html
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_rrao94
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ4
                               type: application/hal+json
                             status:
                               href: https://www.mollie.com/checkout/bank-transfer/status/3.8bkxfw
@@ -21388,7 +21464,7 @@ paths:
                           countryCode: NL
                           profileId: pfl_zcfJRjkf6P
                           customerId: cst_Fe48Wu9Eva
-                          orderId: ord_cm6v60
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ5
                           sequenceType: oneoff
                           redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=383&payment_token=123&utm_nooverride=1
                           details:
@@ -21404,7 +21480,7 @@ paths:
                               href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
                               type: application/hal+json
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_cm6v60
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ5
                               type: application/hal+json
                         - resource: payment
                           id: tr_csHVQWJm3W
@@ -21421,7 +21497,7 @@ paths:
                           locale: en_US
                           profileId: pfl_zcfJRjkf6P
                           customerId: cst_Fe48Wu9Eva
-                          orderId: ord_ylmwyc
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ6
                           sequenceType: oneoff
                           redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=382&payment_token=123&utm_nooverride=1
                           _links:
@@ -21435,7 +21511,7 @@ paths:
                               href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
                               type: application/hal+json
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_ylmwyc
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ6
                               type: application/hal+json
                         - resource: payment
                           id: tr_9C6FGvRBFN
@@ -21459,7 +21535,7 @@ paths:
                           countryCode: NL
                           profileId: pfl_zcfJRjkf6P
                           customerId: cst_Fe48Wu9Eva
-                          orderId: ord_2zgf8q
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ7
                           sequenceType: oneoff
                           redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=381&payment_token=123&utm_nooverride=1
                           settlementAmount:
@@ -21486,7 +21562,7 @@ paths:
                               href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
                               type: application/hal+json
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_2zgf8q
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ7
                               type: application/hal+json
                         - resource: payment
                           id: tr_UxxzHS8sAW
@@ -21503,7 +21579,7 @@ paths:
                           locale: en_US
                           countryCode: NL
                           profileId: pfl_zcfJRjkf6P
-                          orderId: ord_rxngzw
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ8
                           sequenceType: oneoff
                           redirectUrl: https://example.com/redirect?wixMerchantId=d122df9a-ae27-42e2-94bc-d7ed17f9a447&orderId=53c0b522-d15b-4209-96b7-25cf98bb4631
                           webhookUrl: https://example.com/webhooks?wixMerchantId=d122df9a-ae27-42e2-94bc-d7ed17f9a447
@@ -21521,7 +21597,7 @@ paths:
                               href: https://www.mollie.com/dashboard/org_7049691/payments/tr_UxxzHS8sAW
                               type: text/html
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_rxngzw
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ8
                               type: application/hal+json
                             status:
                               href: https://www.mollie.com/checkout/bank-transfer/status/3.ub14cw
@@ -21599,7 +21675,7 @@ paths:
                           locale: en_US
                           profileId: pfl_zcfJRjkf6P
                           customerId: cst_Fe48Wu9Eva
-                          orderId: ord_rztamw
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ9
                           sequenceType: oneoff
                           redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=380&payment_token=123&utm_nooverride=1
                           _links:
@@ -21613,7 +21689,7 @@ paths:
                               href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
                               type: application/hal+json
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_rztamw
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ9
                               type: application/hal+json
                         - resource: payment
                           id: tr_UMtHEnx6rW
@@ -21637,7 +21713,7 @@ paths:
                           countryCode: NL
                           profileId: pfl_zcfJRjkf6P
                           customerId: cst_Fe48Wu9Eva
-                          orderId: ord_daom2e
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZa
                           sequenceType: oneoff
                           redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=379&payment_token=123&utm_nooverride=1
                           settlementAmount:
@@ -21664,7 +21740,7 @@ paths:
                               href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
                               type: application/hal+json
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_daom2e
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZa
                               type: application/hal+json
                         - resource: payment
                           id: tr_KNdnVCzdfv
@@ -21681,7 +21757,7 @@ paths:
                           locale: en_US
                           profileId: pfl_zcfJRjkf6P
                           customerId: cst_Fe48Wu9Eva
-                          orderId: ord_yhm0ae
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZb
                           sequenceType: oneoff
                           redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=378&payment_token=123&utm_nooverride=1
                           _links:
@@ -21695,7 +21771,7 @@ paths:
                               href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
                               type: application/hal+json
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_yhm0ae
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZb
                               type: application/hal+json
                         - resource: payment
                           id: tr_pWMGnvESfx
@@ -21719,7 +21795,7 @@ paths:
                           countryCode: NL
                           profileId: pfl_zcfJRjkf6P
                           customerId: cst_Fe48Wu9Eva
-                          orderId: ord_f866l8
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZc
                           sequenceType: oneoff
                           redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=377&payment_token=123&utm_nooverride=1
                           settlementAmount:
@@ -21746,7 +21822,7 @@ paths:
                               href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
                               type: application/hal+json
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_f866l8
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZc
                               type: application/hal+json
                         - resource: payment
                           id: tr_DdMxvERTUe
@@ -21763,7 +21839,7 @@ paths:
                           locale: en_US
                           profileId: pfl_zcfJRjkf6P
                           customerId: cst_Fe48Wu9Eva
-                          orderId: ord_i0yo9m
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZd
                           sequenceType: oneoff
                           redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=376&payment_token=123&utm_nooverride=1
                           _links:
@@ -21777,7 +21853,7 @@ paths:
                               href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
                               type: application/hal+json
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_i0yo9m
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZd
                               type: application/hal+json
                         - resource: payment
                           id: tr_2yGeVFFBdW
@@ -21794,7 +21870,7 @@ paths:
                           locale: en_US
                           profileId: pfl_zcfJRjkf6P
                           customerId: cst_Fe48Wu9Eva
-                          orderId: ord_lr99ny
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZe
                           sequenceType: oneoff
                           redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=375&payment_token=123&utm_nooverride=1
                           _links:
@@ -21808,7 +21884,7 @@ paths:
                               href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
                               type: application/hal+json
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_lr99ny
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZe
                               type: application/hal+json
                         - resource: payment
                           id: tr_xb55QTpsVT
@@ -21826,7 +21902,7 @@ paths:
                           countryCode: NL
                           profileId: pfl_zcfJRjkf6P
                           customerId: cst_Fe48Wu9Eva
-                          orderId: ord_ot99v2
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZf
                           sequenceType: oneoff
                           redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=374&payment_token=123&utm_nooverride=1
                           details:
@@ -21842,7 +21918,7 @@ paths:
                               href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
                               type: application/hal+json
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_ot99v2
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZf
                               type: application/hal+json
                         - resource: payment
                           id: tr_5ygWQpgwBE
@@ -21859,7 +21935,7 @@ paths:
                           locale: en_US
                           profileId: pfl_zcfJRjkf6P
                           customerId: cst_Fe48Wu9Eva
-                          orderId: ord_cu4760
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZg
                           sequenceType: oneoff
                           redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=373&payment_token=123&utm_nooverride=1
                           _links:
@@ -21873,7 +21949,7 @@ paths:
                               href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
                               type: application/hal+json
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_cu4760
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZg
                               type: application/hal+json
                         - resource: payment
                           id: tr_e8PGEKcS2h
@@ -21890,7 +21966,7 @@ paths:
                           locale: en_US
                           profileId: pfl_zcfJRjkf6P
                           customerId: cst_Fe48Wu9Eva
-                          orderId: ord_ipx674
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZh
                           sequenceType: oneoff
                           redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=372&payment_token=123&utm_nooverride=1
                           _links:
@@ -21904,7 +21980,7 @@ paths:
                               href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
                               type: application/hal+json
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_ipx674
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZh
                               type: application/hal+json
                         - resource: payment
                           id: tr_pubnh4PCd4
@@ -21928,7 +22004,7 @@ paths:
                           countryCode: NL
                           profileId: pfl_zcfJRjkf6P
                           customerId: cst_Fe48Wu9Eva
-                          orderId: ord_1awq32
+                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZi
                           sequenceType: oneoff
                           redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=371&payment_token=123&utm_nooverride=1
                           settlementAmount:
@@ -21955,7 +22031,7 @@ paths:
                               href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
                               type: application/hal+json
                             order:
-                              href: https://api.mollie.com/v2/orders/ord_1awq32
+                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZi
                               type: application/hal+json
                         - resource: payment
                           id: tr_DPb2GgeB2B
@@ -22587,11 +22663,9 @@ paths:
         description: Provide the ID of the related payment.
         in: path
         required: true
-        schema: &ref_38
+        schema: &ref_39
           type: string
-          minLength: 13
-          maxLength: 25
-          pattern: ^(tr)_([A-Za-z0-9]{10,22})$
+          pattern: ^(tr)_([A-Za-z0-9]{10,29})$
           example: tr_5B8cwPMGnU6qLbRvo7qEZo
     get:
       summary: Get payment
@@ -22611,28 +22685,36 @@ paths:
         >
         > [Access token with **payments.read**](/reference/authentication)
       parameters:
-        - description: |-
-            This endpoint allows you to include additional information via the `include` query string parameter.
-
-            * `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
-            * `details.remainderDetails`: For payments where gift cards or vouchers were applied and the remaining amount was paid with another payment method, this include will add another `details` object specifically for the remainder payment.
+        - description: This endpoint allows you to include additional information via the `include` query string parameter.
           schema:
             type:
               - string
               - 'null'
+            enum:
+              - details.qrCode
+              - details.remainderDetails
+            x-enumDescriptions:
+              details.qrCode: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
+              details.remainderDetails: |-
+                For payments where gift cards or vouchers were applied and the remaining amount
+                was paid with another payment method, this include will add another `details` object specifically for the
+                remainder payment.
             example: details.qrCode
           name: include
           in: query
-        - description: |-
-            This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
-
-            * `captures`: Embed all captures created for this payment.
-            * `refunds`: Embed all refunds created for this payment.
-            * `chargebacks`: Embed all chargebacks created for this payment.
+        - description: This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
           schema:
             type:
               - string
               - 'null'
+            enum:
+              - captures
+              - refunds
+              - chargebacks
+            x-enumDescriptions:
+              captures: Embed all captures created for this payment.
+              refunds: Embed all refunds created for this payment.
+              chargebacks: Embed all chargebacks created for this payment.
             example: captures
           name: embed
           in: query
@@ -22650,11 +22732,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_36
+                properties: *ref_37
               examples:
                 get-payment-200-1:
                   summary: The payment object
-                  value: *ref_37
+                  value: *ref_38
                 get-payment-200-2:
                   summary: Get QR-code image URL for iDeal payment
                   x-request: ./requests.yaml#/api-get-qr-code-image-url-for-ideal-payment
@@ -22832,37 +22914,83 @@ paths:
                   type:
                     - string
                     - 'null'
+                  description: |-
+                    The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
+
+                    We recommend you use a unique identifier so that you can always link the payment to the order in your back office. This is particularly useful for bookkeeping.
+
+                    The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
+                  maxLength: 255
+                  example: Chess Board
                 redirectUrl:
                   type:
                     - string
                     - 'null'
                   description: Can be updated while the payment is in an `open` state.
+                  example: https://example.org/redirect
                 cancelUrl:
                   type:
                     - string
                     - 'null'
                   description: Can be updated while the payment is in an `open` state.
+                  example: https://example.org/cancel
                 webhookUrl:
                   type:
                     - string
                     - 'null'
+                  description: Can be updated while the payment is in an `open` state.
+                  example: https://example.org/webhooks
                 metadata:
-                  type:
-                    - string
-                    - 'null'
+                  oneOf: *ref_26
+                  description: Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
                 method:
                   type:
                     - string
                     - 'null'
                   description: Can be updated while no payment method has been chosen yet.
+                  example: ideal
+                  enum: &ref_78
+                    - alma
+                    - applepay
+                    - bacs
+                    - bancomatpay
+                    - bancontact
+                    - banktransfer
+                    - belfius
+                    - blik
+                    - creditcard
+                    - directdebit
+                    - eps
+                    - giftcard
+                    - ideal
+                    - in3
+                    - kbc
+                    - mbway
+                    - multibanco
+                    - mybank
+                    - payconiq
+                    - paypal
+                    - paysafecard
+                    - pointofsale
+                    - przelewy24
+                    - satispay
+                    - trustly
+                    - twint
+                    - voucher
                 locale:
                   type:
                     - string
                     - 'null'
+                  description: |-
+                    Allows you to preset the language to be used.
+
+                    Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
+                  example: en_US
                 restrictPaymentMethodsToCountry:
                   type:
                     - string
                     - 'null'
+                  example: NL
                 testmode:
                   type: *ref_30
                   description: |-
@@ -22873,10 +23001,12 @@ paths:
                   default: false
       responses:
         '200':
-          description: The updated payment object. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
+          description: The updated payment object.
           content:
             application/hal+json:
-              schema: {}
+              schema:
+                type: object
+                properties: *ref_37
               examples:
                 update-payment-200-1:
                   summary: The updated payment object
@@ -23123,14 +23253,16 @@ paths:
           schema: *ref_4
       responses:
         '200':
-          description: The canceled payment object. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
+          description: The canceled payment object.
           content:
             application/hal+json:
-              schema: {}
+              schema:
+                type: object
+                properties: *ref_37
               examples:
                 cancel-payment-200-1:
                   summary: The canceled payment object
-                  value: &ref_80
+                  value: &ref_83
                     resource: payment
                     id: tr_WDqYK6vllg
                     mode: live
@@ -23228,7 +23360,7 @@ paths:
         description: Provide the ID of the related payment.
         in: path
         required: true
-        schema: *ref_38
+        schema: *ref_39
     post:
       summary: Release payment authorization
       tags:
@@ -25385,7 +25517,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_39
+                properties: &ref_40
                   resource:
                     type: string
                     description: Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
@@ -25510,7 +25642,7 @@ paths:
               examples:
                 get-method-200-1:
                   summary: The payment method object
-                  value: &ref_40
+                  value: &ref_41
                     resource: method
                     id: ideal
                     description: iDEAL
@@ -25659,7 +25791,7 @@ paths:
         description: Provide the ID of the related profile.
         in: path
         required: true
-        schema: &ref_41
+        schema: &ref_42
           type: string
           example: pfl_QkEhN94Ba
       - schema:
@@ -25699,11 +25831,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_39
+                properties: *ref_40
               examples:
                 enable-method-200-1:
                   summary: The payment method object
-                  value: *ref_40
+                  value: *ref_41
                 enable-method-200-2:
                   summary: Enable creditcard payment method
                   value:
@@ -25888,12 +26020,12 @@ paths:
         description: Provide the ID of the related profile.
         in: path
         required: true
-        schema: *ref_41
+        schema: *ref_42
       - name: methodId
         description: Provide the ID of the related payment method.
         in: path
         required: true
-        schema: &ref_58
+        schema: &ref_59
           type: string
           example: voucher
       - schema:
@@ -25945,7 +26077,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_76
+                properties: &ref_79
                   resource:
                     type: string
                     description: Indicates the response contains a payment method issuer object. Will always contain the string `issuer` for this endpoint.
@@ -26165,7 +26297,7 @@ paths:
         description: Provide the ID of the related payment.
         in: path
         required: true
-        schema: *ref_38
+        schema: *ref_39
     post:
       summary: Create payment refund
       tags:
@@ -26190,7 +26322,7 @@ paths:
               required:
                 - amount
               type: object
-              properties: &ref_42
+              properties: &ref_43
                 resource:
                   type: string
                   description: Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
@@ -26207,6 +26339,7 @@ paths:
 
                     Possible values: `live` `test`
                   readOnly: true
+                  example: live
                 description:
                   type: string
                   description: The description of the refund that may be shown to your customer, depending on the payment method used.
@@ -26232,7 +26365,7 @@ paths:
                   required: *ref_22
                   properties: *ref_23
                 metadata:
-                  type: *ref_26
+                  oneOf: *ref_26
                   description: Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
                 status:
                   type: string
@@ -26300,8 +26433,9 @@ paths:
                   type: string
                   description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                   readOnly: true
+                  example: '2024-03-20T09:13:37.0Z'
                 testmode:
-                  type: *ref_35
+                  type: *ref_36
                   description: |-
                     Whether to create the entity in test mode or live mode.
 
@@ -26338,7 +26472,7 @@ paths:
               examples:
                 create-refund-201-1:
                   summary: The payment object
-                  value: &ref_43
+                  value: &ref_44
                     resource: refund
                     id: re_4qqhO89gsT
                     mode: live
@@ -26572,6 +26706,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -26680,7 +26815,7 @@ paths:
         description: Provide the ID of the related payment.
         in: path
         required: true
-        schema: *ref_38
+        schema: *ref_39
       - schema:
           type: string
           example: re_4qqhO89gsT
@@ -26731,11 +26866,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_42
+                properties: *ref_43
               examples:
                 get-refund-200-1:
                   summary: The payment object
-                  value: *ref_43
+                  value: *ref_44
         '404':
           description: No item with this ID exists, or the refund was canceled.
           content: *ref_7
@@ -26908,7 +27043,7 @@ paths:
               required:
                 - lines
               type: object
-              properties: &ref_44
+              properties: &ref_45
                 resource:
                   type: string
                   description: Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
@@ -26925,6 +27060,7 @@ paths:
 
                     Possible values: `live` `test`
                   readOnly: true
+                  example: live
                 description:
                   type: string
                   description: The description of the refund that may be shown to your customer, depending on the payment method used.
@@ -26981,7 +27117,7 @@ paths:
                         required: *ref_5
                         properties: *ref_6
                 metadata:
-                  type: *ref_26
+                  oneOf: *ref_26
                   description: Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
                 orderId:
                   type: string
@@ -27001,8 +27137,9 @@ paths:
                   type: string
                   description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                   readOnly: true
+                  example: '2024-03-20T09:13:37.0Z'
                 testmode:
-                  type: *ref_35
+                  type: *ref_36
                   description: |-
                     Whether to create the entity in test mode or live mode.
 
@@ -27037,7 +27174,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_44
+                properties: *ref_45
               examples:
                 create-order-refund-201-1:
                   summary: The newly created refund object
@@ -27250,6 +27387,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -27458,6 +27596,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -27562,7 +27701,7 @@ paths:
         description: Provide the ID of the related payment.
         in: path
         required: true
-        schema: *ref_38
+        schema: *ref_39
     get:
       summary: List payment chargebacks
       tags:
@@ -27627,6 +27766,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -27642,7 +27782,7 @@ paths:
               examples:
                 list-chargeback-200-1:
                   summary: List of chargeback objects
-                  value: &ref_45
+                  value: &ref_46
                     count: 5
                     _embedded:
                       chargebacks:
@@ -27857,7 +27997,7 @@ paths:
         description: Provide the ID of the related payment.
         in: path
         required: true
-        schema: *ref_38
+        schema: *ref_39
       - schema:
           type: string
           example: chb_n9z0tp
@@ -27908,7 +28048,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_77
+                properties: &ref_80
                   resource:
                     type: string
                     description: Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this endpoint.
@@ -27961,6 +28101,7 @@ paths:
                     type: string
                     description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                     readOnly: true
+                    example: '2024-03-20T09:13:37.0Z'
                   reversedAt:
                     type:
                       - string
@@ -28168,6 +28309,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -28183,7 +28325,7 @@ paths:
               examples:
                 list-all-chargebacks-200-1:
                   summary: List of chargeback objects
-                  value: *ref_45
+                  value: *ref_46
                 list-all-chargebacks-200-2:
                   summary: List all chargebacks
                   value:
@@ -28449,7 +28591,7 @@ paths:
         description: Provide the ID of the related payment.
         in: path
         required: true
-        schema: *ref_38
+        schema: *ref_39
     post:
       summary: Create capture
       tags:
@@ -28478,7 +28620,7 @@ paths:
           application/json:
             schema:
               type: object
-              properties: &ref_46
+              properties: &ref_47
                 resource:
                   type: string
                   description: Indicates the response contains a capture object. Will always contain the string `capture` for this endpoint.
@@ -28495,6 +28637,7 @@ paths:
 
                     Possible values: `live` `test`
                   readOnly: true
+                  example: live
                 description:
                   type: string
                   description: The description of the capture.
@@ -28521,7 +28664,7 @@ paths:
                     Possible values: `pending` `succeeded` `failed`
                   readOnly: true
                 metadata:
-                  type: *ref_26
+                  oneOf: *ref_26
                   description: Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
                 paymentId:
                   type: string
@@ -28543,6 +28686,7 @@ paths:
                   type: string
                   description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                   readOnly: true
+                  example: '2024-03-20T09:13:37.0Z'
                 _links:
                   type: object
                   description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -28573,7 +28717,7 @@ paths:
               examples:
                 get-capture-200-1:
                   summary: The capture object
-                  value: &ref_47
+                  value: &ref_48
                     resource: capture
                     id: cpt_mNepDkEtco6ah3QNPUGYH
                     mode: live
@@ -28767,6 +28911,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -28911,7 +29056,7 @@ paths:
         description: Provide the ID of the related payment.
         in: path
         required: true
-        schema: *ref_38
+        schema: *ref_39
       - schema:
           type: string
           example: cpt_mNepDkEtco6ah3QNPUGYH
@@ -28962,11 +29107,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_46
+                properties: *ref_47
               examples:
                 get-capture-200-1:
                   summary: The capture object
-                  value: *ref_47
+                  value: *ref_48
                 get-capture-200-2:
                   summary: Get capture
                   value:
@@ -29211,7 +29356,7 @@ paths:
               required:
                 - description
               type: object
-              properties: &ref_48
+              properties: &ref_49
                 resource:
                   type: string
                   description: Indicates the response contains a payment link object. Will always contain the string `payment-link` for this endpoint.
@@ -29228,6 +29373,7 @@ paths:
 
                     Possible values: `live` `test`
                   readOnly: true
+                  example: live
                 description:
                   type: string
                   description: A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
@@ -29283,6 +29429,7 @@ paths:
                   type: string
                   description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                   readOnly: true
+                  example: '2024-03-20T09:13:37.0Z'
                 paidAt:
                   type:
                     - string
@@ -29353,7 +29500,7 @@ paths:
               examples:
                 create-payment-link-201-1:
                   summary: The payment link object
-                  value: &ref_49
+                  value: &ref_50
                     resource: payment-link
                     id: pl_4Y0eZitmBnQ6IDoMqZQKh
                     mode: live
@@ -29639,6 +29786,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -29867,11 +30015,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_48
+                properties: *ref_49
               examples:
                 get-payment-link-200-1:
                   summary: The payment link object
-                  value: *ref_49
+                  value: *ref_50
         '404':
           description: No entity with this ID exists.
           content: *ref_7
@@ -30003,7 +30151,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_48
+                properties: *ref_49
               examples:
                 update-payment-link-200-1:
                   summary: The payment link object
@@ -30280,6 +30428,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -30448,6 +30597,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -30628,7 +30778,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_78
+                properties: &ref_81
                   resource:
                     type: string
                     description: Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
@@ -30645,6 +30795,7 @@ paths:
 
                       Possible values: `live` `test`
                     readOnly: true
+                    example: live
                   description:
                     type: string
                     description: A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
@@ -30691,6 +30842,7 @@ paths:
                     type: string
                     description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                     readOnly: true
+                    example: '2024-03-20T09:13:37.0Z'
                   _links:
                     type: object
                     description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -30780,7 +30932,7 @@ paths:
         description: Provide the ID of the related payment.
         in: path
         required: true
-        schema: *ref_38
+        schema: *ref_39
     post:
       operationId: payment-create-route
       summary: Create a delayed route
@@ -30830,7 +30982,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_50
+                properties: &ref_51
                   resource:
                     type: string
                     description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -31001,6 +31153,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -31009,7 +31162,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: *ref_50
+                          properties: *ref_51
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -31149,7 +31302,7 @@ paths:
           application/json:
             schema:
               type: object
-              properties: &ref_51
+              properties: &ref_52
                 resource:
                   type: string
                   description: Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
@@ -31166,6 +31319,7 @@ paths:
 
                     Possible values: `live` `test`
                   readOnly: true
+                  example: live
                 name:
                   type:
                     - string
@@ -31180,19 +31334,18 @@ paths:
                   type:
                     - string
                     - 'null'
-                  description: |-
-                    Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
-
-                    Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `de_AT` `de_CH` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
+                  description: Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+                  example: en_US
                 metadata:
-                  type: *ref_26
+                  oneOf: *ref_26
                   description: Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
                 createdAt:
                   type: string
                   description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                   readOnly: true
+                  example: '2024-03-20T09:13:37.0Z'
                 testmode:
-                  type: *ref_35
+                  type: *ref_36
                   description: |-
                     Whether to create the entity in test mode or live mode.
 
@@ -31233,7 +31386,7 @@ paths:
               examples:
                 create-customer-201-1:
                   summary: A customer object
-                  value: &ref_52
+                  value: &ref_53
                     resource: customer
                     id: cst_tKt44u85MM
                     mode: test
@@ -31366,6 +31519,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -31495,11 +31649,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_51
+                properties: *ref_52
               examples:
                 get-customer-200-1:
                   summary: A customer object
-                  value: *ref_52
+                  value: *ref_53
         '404':
           description: No entity with this ID exists.
           content: *ref_7
@@ -31578,6 +31732,11 @@ paths:
                   type:
                     - string
                     - 'null'
+                  description: |-
+                    Allows you to preset the language to be used.
+
+                    Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
+                  example: en_US
                 metadata:
                   type:
                     - string
@@ -31768,7 +31927,7 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: &ref_53
+        schema: &ref_54
           type: string
           example: cst_8wmqcHMN4U
     post:
@@ -32146,6 +32305,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -32259,7 +32419,7 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: *ref_53
+        schema: *ref_54
     post:
       summary: Create mandate
       tags:
@@ -32287,7 +32447,7 @@ paths:
                 - method
                 - consumerName
               type: object
-              properties: &ref_54
+              properties: &ref_55
                 resource:
                   type: string
                   description: Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
@@ -32304,6 +32464,7 @@ paths:
 
                     Possible values: `live` `test`
                   readOnly: true
+                  example: live
                 method:
                   type: string
                   description: |-
@@ -32421,8 +32582,9 @@ paths:
                   type: string
                   description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                   readOnly: true
+                  example: '2024-03-20T09:13:37.0Z'
                 testmode:
-                  type: *ref_35
+                  type: *ref_36
                   description: |-
                     Whether to create the entity in test mode or live mode.
 
@@ -32455,7 +32617,7 @@ paths:
               examples:
                 create-mandate-201-1:
                   summary: The mandate object
-                  value: &ref_55
+                  value: &ref_56
                     resource: mandate
                     id: mdt_h3gAaD5zP
                     mode: live
@@ -32641,6 +32803,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -32749,7 +32912,7 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: *ref_53
+        schema: *ref_54
       - schema:
           type: string
           example: mdt_pWUnw6pkBN
@@ -32789,11 +32952,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_54
+                properties: *ref_55
               examples:
                 get-mandate-200-1:
                   summary: The mandate object
-                  value: *ref_55
+                  value: *ref_56
         '404':
           description: No entity with this ID exists.
           content: *ref_7
@@ -32931,7 +33094,7 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: *ref_53
+        schema: *ref_54
     post:
       summary: Create subscription
       tags:
@@ -32970,7 +33133,7 @@ paths:
                 - interval
                 - description
               type: object
-              properties: &ref_56
+              properties: &ref_57
                 resource:
                   type: string
                   description: Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
@@ -32987,6 +33150,7 @@ paths:
 
                     Possible values: `live` `test`
                   readOnly: true
+                  example: live
                 status:
                   type: string
                   description: |-
@@ -33060,7 +33224,7 @@ paths:
                     Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
 
                     Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
-                  type: *ref_26
+                  oneOf: *ref_26
                 webhookUrl:
                   type: string
                   description: |-
@@ -33089,6 +33253,7 @@ paths:
                   type: string
                   description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
                   readOnly: true
+                  example: '2024-03-20T09:13:37.0Z'
                 canceledAt:
                   type:
                     - string
@@ -33096,7 +33261,7 @@ paths:
                   description: The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the subscription is not canceled (yet).
                   readOnly: true
                 testmode:
-                  type: *ref_35
+                  type: *ref_36
                   description: |-
                     Whether to create the entity in test mode or live mode.
 
@@ -33133,7 +33298,7 @@ paths:
               examples:
                 get-subscription-200-1:
                   summary: The subscription object
-                  value: &ref_57
+                  value: &ref_58
                     resource: subscription
                     id: sub_rVKGtNd6s3
                     mode: live
@@ -33308,6 +33473,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -33424,7 +33590,7 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: *ref_53
+        schema: *ref_54
       - schema:
           type: string
           example: sub_rVKGtNd6s3
@@ -33464,11 +33630,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_56
+                properties: *ref_57
               examples:
                 get-subscription-200-1:
                   summary: The subscription object
-                  value: *ref_57
+                  value: *ref_58
         '404':
           description: No entity with this ID exists.
           content: *ref_7
@@ -33928,6 +34094,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -34041,12 +34208,12 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: *ref_53
+        schema: *ref_54
       - name: subscriptionId
         description: Provide the ID of the related subscription.
         in: path
         required: true
-        schema: &ref_59
+        schema: &ref_60
           type: string
           example: sub_rVKGtNd6s3
     get:
@@ -34103,6 +34270,7 @@ paths:
                       The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
                     minimum: 1
                     maximum: 250
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -34297,31 +34465,31 @@ components:
       description: Provide the ID of the related payment.
       in: path
       required: true
-      schema: *ref_38
+      schema: *ref_39
     parent-profile-id:
       name: profileId
       description: Provide the ID of the related profile.
       in: path
       required: true
-      schema: *ref_41
+      schema: *ref_42
     parent-method-id:
       name: methodId
       description: Provide the ID of the related payment method.
       in: path
       required: true
-      schema: *ref_58
+      schema: *ref_59
     parent-customer-id:
       name: customerId
       description: Provide the ID of the related customer.
       in: path
       required: true
-      schema: *ref_53
+      schema: *ref_54
     parent-subscription-id:
       name: subscriptionId
       description: Provide the ID of the related subscription.
       in: path
       required: true
-      schema: *ref_59
+      schema: *ref_60
   schemas:
     list-count:
       type: integer
@@ -34331,6 +34499,7 @@ components:
         The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
       minimum: 1
       maximum: 250
+      example: 5
     url:
       type: object
       description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -34354,6 +34523,7 @@ components:
 
         Possible values: `live` `test`
       readOnly: true
+      example: live
     amount:
       type: object
       description: In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -34363,12 +34533,13 @@ components:
       type: string
       description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
       readOnly: true
+      example: '2024-03-20T09:13:37.0Z'
     entity-balance:
       type: object
-      properties: *ref_60
+      properties: *ref_61
     entity-balance-report:
       type: object
-      properties: *ref_61
+      properties: *ref_62
     amount-nullable:
       type: *ref_21
       description: In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -34376,16 +34547,23 @@ components:
       properties: *ref_23
     entity-balance-transaction:
       type: object
-      properties: *ref_62
+      properties: *ref_63
     entity-settlement:
       type: object
-      properties: *ref_63
+      properties: *ref_64
     entity-invoice:
       type: object
-      properties: *ref_64
+      properties: *ref_65
     entity-permission:
       type: object
-      properties: *ref_65
+      properties: *ref_66
+    locale:
+      type: string
+      description: |-
+        Allows you to preset the language to be used.
+
+        Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
+      example: en_US
     address:
       type: object
       properties: *ref_15
@@ -34400,7 +34578,7 @@ components:
       properties: *ref_17
     entity-capability-requirement:
       type: object
-      properties: *ref_66
+      properties: *ref_67
     entity-capability:
       type: object
       properties: *ref_18
@@ -34411,18 +34589,18 @@ components:
       type: object
       properties: *ref_20
     metadata:
-      type: *ref_26
+      oneOf: *ref_26
       description: Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
     order-line-item:
       type: object
-      required: *ref_67
-      properties: *ref_68
+      required: *ref_68
+      properties: *ref_69
     order-address:
       type: object
       required: *ref_24
       properties: *ref_25
     testmode-create:
-      type: *ref_35
+      type: *ref_36
       description: |-
         Whether to create the entity in test mode or live mode.
 
@@ -34443,62 +34621,104 @@ components:
     entity-shipment:
       type: object
       properties: *ref_33
+    paymentToken:
+      type: string
+      pattern: ^(tr)_([A-Za-z0-9]{10,29})$
+      example: tr_5B8cwPMGnU6qLbRvo7qEZo
     recurring-line-item:
       type: object
-      required: *ref_69
-      properties: *ref_70
+      required: *ref_70
+      properties: *ref_71
     payment-line-item:
       type: object
-      required: *ref_71
-      properties: *ref_72
+      required: *ref_72
+      properties: *ref_73
+    entity-shopper-address:
+      type: object
+      properties: *ref_35
+    routeToken:
+      type: string
+      pattern: ^(rt)_([A-Za-z0-9]{10,29})$
+      example: rt_5B8cwPMGnU6qLbRvo7qEZo
+    entity-payment-route:
+      type: object
+      properties: *ref_74
+    subscriptionToken:
+      type: string
+      pattern: ^(sub)_([A-Za-z0-9]{9,28})$
+      example: sub_5B8cwPMGnU6qLbRvo7qEZo
+    mandateToken:
+      type: string
+      pattern: ^(mdt)_([A-Za-z0-9]{9,28})$
+      example: mdt_5B8cwPMGnU6qLbRvo7qEZo
+    customerToken:
+      type: string
+      pattern: ^(cst)_([A-Za-z0-9]{9,28})$
+      example: cst_5B8cwPMGnU6qLbRvo7qEZo
+    profileToken:
+      type: string
+      pattern: ^(pfl)_([A-Za-z0-9]{9,28})$
+      example: pfl_5B8cwPMGnU6qLbRvo7qEZo
+    settlementToken:
+      type: string
+      pattern: ^(stl)_([A-Za-z0-9]{9,28})$
+      example: stl_5B8cwPMGnU6qLbRvo7qEZo
+    orderToken:
+      type: string
+      pattern: ^(ord)_([A-Za-z0-9]{9,28})$
+      example: ord_5B8cwPMGnU6qLbRvo7qEZo
     status-reason:
-      type: *ref_73
+      type: *ref_75
       description: |-
         This object offers details about the status of a payment. Currently it is only available for point-of-sale payments.
 
         You can find more information about the possible values of this object on [this page](status-reasons).**
       readOnly: true
-      required: *ref_74
-      properties: *ref_75
+      required: *ref_76
+      properties: *ref_77
     entity-payment:
       type: object
-      properties: *ref_36
+      properties: *ref_37
+    payment-methods:
+      type: string
+      example: ideal
+      enum: *ref_78
     entity-method:
       type: object
-      properties: *ref_39
+      properties: *ref_40
     entity-method-issuer:
       type: object
-      properties: *ref_76
+      properties: *ref_79
     entity-refund:
       type: object
-      properties: *ref_42
+      properties: *ref_43
     entity-order-refund:
       type: object
-      properties: *ref_44
+      properties: *ref_45
     entity-chargeback:
       type: object
-      properties: *ref_77
+      properties: *ref_80
     entity-capture:
       type: object
-      properties: *ref_46
+      properties: *ref_47
     entity-payment-link:
       type: object
-      properties: *ref_48
+      properties: *ref_49
     entity-terminal:
       type: object
-      properties: *ref_78
+      properties: *ref_81
     entity-route:
       type: object
-      properties: *ref_50
+      properties: *ref_51
     entity-customer:
       type: object
-      properties: *ref_51
+      properties: *ref_52
     entity-mandate:
       type: object
-      properties: *ref_54
+      properties: *ref_55
     entity-subscription:
       type: object
-      properties: *ref_56
+      properties: *ref_57
   responses:
     400-invalid-list-request:
       description: The request contains issues. For example, if the specified `from` value is not a valid ID.
@@ -34508,7 +34728,7 @@ components:
       content: *ref_7
     422-mandatory-owner:
       description: The request contains issues. For example, if the `owner` field is missing.
-      content: *ref_79
+      content: *ref_82
   examples:
     get-profile:
       summary: The profile object
@@ -34521,34 +34741,34 @@ components:
       value: *ref_34
     get-payment:
       summary: The payment object
-      value: *ref_37
+      value: *ref_38
     cancel-payment:
       summary: The canceled payment object
-      value: *ref_80
+      value: *ref_83
     get-method:
       summary: The payment method object
-      value: *ref_40
+      value: *ref_41
     get-refund:
       summary: The payment object
-      value: *ref_43
+      value: *ref_44
     list-chargebacks:
       summary: List of chargeback objects
-      value: *ref_45
+      value: *ref_46
     get-capture:
       summary: The capture object
-      value: *ref_47
+      value: *ref_48
     get-payment-link:
       summary: The payment link object
-      value: *ref_49
+      value: *ref_50
     get-customer:
       summary: A customer object
-      value: *ref_52
+      value: *ref_53
     get-mandate:
       summary: The mandate object
-      value: *ref_55
+      value: *ref_56
     get-subscription:
       summary: The subscription object
-      value: *ref_57
+      value: *ref_58
 x-speakeasy-retries:
   strategy: backoff
   backoff:
