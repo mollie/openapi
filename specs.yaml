@@ -7881,7 +7881,7 @@ paths:
           content: *ref_7
         '422':
           description: The request contains issues. For example, if the `owner` field is missing.
-          content: &ref_82
+          content: &ref_85
             application/hal+json:
               schema:
                 type: object
@@ -23262,7 +23262,7 @@ paths:
               examples:
                 cancel-payment-200-1:
                   summary: The canceled payment object
-                  value: &ref_83
+                  value: &ref_86
                     resource: payment
                     id: tr_WDqYK6vllg
                     mode: live
@@ -23505,14 +23505,10 @@ paths:
           in: query
           schema:
             type: string
-            example: oneoff
-        - name: locale
-          description: |-
-            Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
-
-            Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
+        - description: Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
+          name: locale
           in: query
-          schema:
+          schema: &ref_40
             type: string
             example: en_US
         - name: amount
@@ -23536,7 +23532,6 @@ paths:
           in: query
           schema:
             type: string
-            example: payments
         - name: billingCountry
           description: |-
             The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used to check whether your customer is eligible for certain payment methods, for example for Klarna.
@@ -23560,6 +23555,8 @@ paths:
             A comma-separated list of the order line categories you support in your checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
 
             Example: `/v2/methods?resource=orders&orderLineCategories=eco,meal`
+
+            Possible values: `eco` `gift` `meal` `sport_culture` `additional` `consume`
           in: query
           schema:
             type: string
@@ -23572,16 +23569,22 @@ paths:
           in: query
           schema:
             type: string
-            example: pfl_QkEhN94Ba
-        - description: |-
-            This endpoint allows you to include additional information via the `include` query string parameter.
-
-            * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
-            * `pricing`: **⚠️ Deprecated: for up-to-date pricing data, use [List all methods](list-all-methods).⚠️** <br /> Include pricing information for each payment method, based on a snapshot of data last updated in November 2023.
+            pattern: ^(pfl)_([A-Za-z0-9]{9,28})$
+            example: pfl_5B8cwPMGnU6qLbRvo7qEZo
+        - description: This endpoint allows you to include additional information via the `include` query string parameter.
           schema:
             type:
               - string
               - 'null'
+            enum:
+              - issuers
+              - pricing
+            x-enumDescriptions:
+              issuers: Include issuer details such as which iDEAL or gift card issuers are available.
+              pricing: |-
+                **⚠️ Deprecated: for up-to-date pricing data, use [List all methods](list-all-methods).⚠️**
+                <br /> Include pricing information for each payment method, based on a snapshot of data last updated in
+                November 2023.
             example: issuers
           name: include
           in: query
@@ -23603,6 +23606,7 @@ paths:
                   count:
                     type: integer
                     description: The number of payment method objects in this result set. Results are **not** paginated.
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -23611,6 +23615,144 @@ paths:
                         type: array
                         items:
                           type: object
+                          properties: &ref_41
+                            resource:
+                              type: string
+                              description: Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
+                              readOnly: true
+                              default: method
+                            id:
+                              type: string
+                              description: |-
+                                The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
+
+                                Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+                              example: ideal
+                              readOnly: true
+                            description:
+                              type: string
+                              description: |-
+                                The full name of the payment method.
+
+                                If a `locale` parameter is provided, the name is translated to the given locale if possible.
+                              example: iDeal
+                              readOnly: true
+                            minimumAmount:
+                              description: The minimum payment amount required to use this payment method.
+                              readOnly: true
+                              type: object
+                              required: *ref_5
+                              properties: *ref_6
+                            maximumAmount:
+                              description: The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
+                              readOnly: true
+                              type: *ref_21
+                              required: *ref_22
+                              properties: *ref_23
+                            image:
+                              type: object
+                              description: URLs of images representing the payment method.
+                              properties:
+                                size1x:
+                                  type: string
+                                  description: The URL pointing to an icon of 32 by 24 pixels.
+                                  example: https://...
+                                size2x:
+                                  type: string
+                                  description: The URL pointing to an icon of 64 by 48 pixels.
+                                  example: https://...
+                                svg:
+                                  type: string
+                                  description: The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
+                                  example: https://...
+                              readOnly: true
+                            status:
+                              type:
+                                - string
+                                - 'null'
+                              description: |-
+                                The payment method's activation status for this profile.
+
+                                Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
+                              x-enumDescriptions:
+                                activated: The payment method is activated and ready for use.
+                                pending-onboarding: Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment method can be activated.
+                                pending-review: Mollie needs to review your request for this payment method before it can be activated.
+                                pending-external: Activation of this payment method relies on you taking action with an external party, for example signing up with PayPal or a giftcard issuer.
+                                rejected: Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will always be informed via email.
+                              example: activated
+                            pricing:
+                              type: array
+                              description: '**Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.'
+                              items:
+                                type: object
+                                properties:
+                                  description:
+                                    type: string
+                                    description: A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
+                                    example: The Netherlands
+                                  fixed:
+                                    description: The fixed price charged per payment.
+                                    type: object
+                                    required: *ref_5
+                                    properties: *ref_6
+                                  variable:
+                                    type: string
+                                    description: The variable price charged per payment, as a percentage string.
+                                    example: 0
+                                  feeRegion:
+                                    type:
+                                      - string
+                                      - 'null'
+                                    description: Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as returned in the [Payments API](get-payment).
+                                    example: other
+                              readOnly: true
+                            issuers:
+                              type: array
+                              description: '**Optional include.** Array of objects for each ''issuer'' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.'
+                              items:
+                                type: object
+                                properties:
+                                  resource:
+                                    type: string
+                                    default: issuer
+                                  id:
+                                    type: string
+                                    example: ideal_ABNANL2A
+                                  name:
+                                    type: string
+                                    description: The full name of the issuer.
+                                    example: ING Bank
+                                  image:
+                                    type: object
+                                    description: URLs of images representing the issuer.
+                                    properties:
+                                      size1x:
+                                        type: string
+                                        description: The URL pointing to an icon of 32 by 24 pixels.
+                                        example: https://...
+                                      size2x:
+                                        type: string
+                                        description: The URL pointing to an icon of 64 by 48 pixels.
+                                        example: https://...
+                                      svg:
+                                        type: string
+                                        description: The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
+                                        example: https://...
+                                readOnly: true
+                            _links:
+                              type: object
+                              description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                              properties:
+                                self:
+                                  type: object
+                                  description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                                  properties: *ref_2
+                                documentation:
+                                  type: object
+                                  description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                                  properties: *ref_2
+                              readOnly: true
                   _links:
                     type: object
                     properties:
@@ -24142,15 +24284,10 @@ paths:
         >
         > [Access token with **payments.read**](/reference/authentication)
       parameters:
-        - name: locale
-          description: |-
-            Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
-
-            Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
+        - description: Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
+          name: locale
           in: query
-          schema:
-            type: string
-            example: en_US
+          schema: *ref_40
         - name: amount
           description: |-
             If supplied, only payment methods that support the amount and currency are returned.
@@ -24162,18 +24299,30 @@ paths:
             description: In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
             required: *ref_5
             properties: *ref_6
-        - description: |-
-            This endpoint allows you to include additional information via the `include` query string parameter.
-
-            * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
-            * `pricing`: Include pricing for each payment method.
+        - description: This endpoint allows you to include additional information via the `include` query string parameter.
           schema:
             type:
               - string
               - 'null'
+            enum:
+              - issuers
+              - pricing
+            x-enumDescriptions:
+              issuers: Include issuer details such as which iDEAL or gift card issuers are available.
+              pricing: Include pricing for each payment method.
             example: issuers
           name: include
           in: query
+        - name: sequenceType
+          description: |-
+            Set this parameter to `first` to only return the methods that can be used for the first payment of a recurring sequence.
+
+            Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
+
+            Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: A list of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
@@ -24185,6 +24334,7 @@ paths:
                   count:
                     type: integer
                     description: The number of payment method objects in this result set. Results are **not** paginated.
+                    example: 5
                   _embedded:
                     type: object
                     properties:
@@ -24193,6 +24343,7 @@ paths:
                         type: array
                         items:
                           type: object
+                          properties: *ref_41
                   _links:
                     type: object
                     properties:
@@ -25467,15 +25618,10 @@ paths:
         >
         > [Access token with **payments.read**](/reference/authentication)
       parameters:
-        - name: locale
-          description: |-
-            Passing a locale will translate the payment method name in the corresponding language.
-
-            Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
+        - description: Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
+          name: locale
           in: query
-          schema:
-            type: string
-            example: en_US
+          schema: *ref_40
         - name: currency
           description: If provided, the `minimumAmount` and `maximumAmount` will be converted to the given currency. An error is returned if the currency is not supported by the payment method.
           in: query
@@ -25490,19 +25636,32 @@ paths:
           in: query
           schema:
             type: string
-            example: pfl_QkEhN94Ba
-        - description: |-
-            This endpoint allows you to include additional information via the `include` query string parameter.
-
-            * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
-            * `pricing`: Include pricing for the payment method.
+            pattern: ^(pfl)_([A-Za-z0-9]{9,28})$
+            example: pfl_5B8cwPMGnU6qLbRvo7qEZo
+        - description: This endpoint allows you to include additional information via the `include` query string parameter.
           schema:
             type:
               - string
               - 'null'
+            enum:
+              - issuers
+              - pricing
+            x-enumDescriptions:
+              issuers: Include issuer details such as which iDEAL or gift card issuers are available.
+              pricing: Include pricing for the payment method.
             example: issuers
           name: include
           in: query
+        - name: sequenceType
+          description: |-
+            Set this parameter to `first` to only return the methods that can be used for the first payment of a recurring sequence.
+
+            Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
+
+            Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
+          in: query
+          schema:
+            type: string
         - name: testmode
           description: |-
             Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -25517,132 +25676,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_40
-                  resource:
-                    type: string
-                    description: Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
-                    readOnly: true
-                    default: method
-                  id:
-                    type: string
-                    description: |-
-                      The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
-
-                      Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
-                    readOnly: true
-                  description:
-                    type: string
-                    description: |-
-                      The full name of the payment method.
-
-                      If a `locale` parameter is provided, the name is translated to the given locale if possible.
-                    readOnly: true
-                  minimumAmount:
-                    description: The minimum payment amount required to use this payment method.
-                    readOnly: true
-                    type: object
-                    required: *ref_5
-                    properties: *ref_6
-                  maximumAmount:
-                    description: The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
-                    readOnly: true
-                    type: *ref_21
-                    required: *ref_22
-                    properties: *ref_23
-                  image:
-                    type: object
-                    description: URLs of images representing the payment method.
-                    properties:
-                      size1x:
-                        type: string
-                        description: The URL pointing to an icon of 32 by 24 pixels.
-                      size2x:
-                        type: string
-                        description: The URL pointing to an icon of 64 by 48 pixels.
-                      svg:
-                        type: string
-                        description: The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
-                    readOnly: true
-                  status:
-                    type: string
-                    description: |-
-                      The payment method's activation status for this profile.
-
-                      Possible values:
-                      * `activated`: The payment method is activated and ready for use.
-                      * `pending-boarding`: Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment method can be activated.
-                      * `pending-review`: Mollie needs to review your request for this payment method before it can be activated.
-                      * `pending-external`: Activation of this payment method relies on you taking action with an external party, for example signing up with PayPal or a giftcard issuer.
-                      * `rejected`: Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will always be informed via email.
-                      * `null`: This payment method was not requested.
-                  pricing:
-                    type: array
-                    description: '**Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.'
-                    items:
-                      type: object
-                      properties:
-                        description:
-                          type: string
-                          description: A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
-                        fixed:
-                          description: The fixed price charged per payment.
-                          type: object
-                          required: *ref_5
-                          properties: *ref_6
-                        variable:
-                          type: string
-                          description: The variable price charged per payment, as a percentage string.
-                        feeRegion:
-                          type: string
-                          description: Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as returned in the [Payments API](get-payment).
-                    readOnly: true
-                  issuers:
-                    type: array
-                    description: '**Optional include.** Array of objects for each ''issuer'' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.'
-                    items:
-                      type: object
-                      properties:
-                        resource:
-                          type: string
-                          default: issuer
-                        id:
-                          type: string
-                          example: ideal_ABNANL2A
-                        name:
-                          type: string
-                          description: The full name of the issuer.
-                          example: ING Bank
-                        image:
-                          type: object
-                          description: URLs of images representing the issuer.
-                          properties:
-                            size1x:
-                              type: string
-                              description: The URL pointing to an icon of 32 by 24 pixels.
-                            size2x:
-                              type: string
-                              description: The URL pointing to an icon of 64 by 48 pixels.
-                            svg:
-                              type: string
-                              description: The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
-                      readOnly: true
-                  _links:
-                    type: object
-                    description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-                    properties:
-                      self:
-                        type: object
-                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-                        properties: *ref_2
-                      documentation:
-                        type: object
-                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-                        properties: *ref_2
-                    readOnly: true
+                properties: *ref_41
               examples:
                 get-method-200-1:
                   summary: The payment method object
-                  value: &ref_41
+                  value: &ref_42
                     resource: method
                     id: ideal
                     description: iDEAL
@@ -25791,9 +25829,15 @@ paths:
         description: Provide the ID of the related profile.
         in: path
         required: true
-        schema: &ref_42
-          type: string
-          example: pfl_QkEhN94Ba
+        schema: &ref_43
+          oneOf:
+            - type: string
+              pattern: ^(pfl)_([A-Za-z0-9]{9,28})$
+              example: pfl_5B8cwPMGnU6qLbRvo7qEZo
+            - type: string
+              enum:
+                - me
+              default: me
       - schema:
           type: string
           example: ideal
@@ -25831,11 +25875,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_40
+                properties: *ref_41
               examples:
                 enable-method-200-1:
                   summary: The payment method object
-                  value: *ref_41
+                  value: *ref_42
                 enable-method-200-2:
                   summary: Enable creditcard payment method
                   value:
@@ -26020,14 +26064,17 @@ paths:
         description: Provide the ID of the related profile.
         in: path
         required: true
-        schema: *ref_42
-      - name: methodId
+        schema: *ref_43
+      - schema:
+          type: string
+          enum:
+            - voucher
+            - giftcard
+          example: voucher
+        name: methodId
         description: Provide the ID of the related payment method.
         in: path
         required: true
-        schema: &ref_59
-          type: string
-          example: voucher
       - schema:
           type: string
           example: edenred-france-sports
@@ -26070,78 +26117,137 @@ paths:
                     When enabling a voucher issuer, an inbetween party may be involved which you have a contract with. Provide the contract ID for the first time you enable an issuer via this contractor.
 
                     You can update the contract ID as long as it is not approved yet, by repeating the API call with a different contract ID.
+                  example: ideal
       responses:
         '200':
           description: The payment method issuer object.
           content:
             application/hal+json:
               schema:
-                type: object
-                properties: &ref_79
-                  resource:
-                    type: string
-                    description: Indicates the response contains a payment method issuer object. Will always contain the string `issuer` for this endpoint.
-                    readOnly: true
-                    default: issuer
-                  id:
-                    type: string
-                    description: The unique identifier of the payment method issuer.
-                    readOnly: true
-                  description:
-                    type: string
-                    description: The full name of the payment method issuer.
-                    readOnly: true
-                  contractor:
-                    type: object
-                    description: Information regarding the *contractor*. Only relevant for `voucher` issuers.
-                    properties:
+                oneOf:
+                  - type: object
+                    required: &ref_79
+                      - resource
+                      - id
+                      - description
+                      - status
+                      - _links
+                    properties: &ref_80
+                      resource:
+                        type: string
+                        description: Indicates the response contains a payment method issuer object. Will always contain the string `issuer` for this endpoint.
+                        readOnly: true
+                        default: issuer
                       id:
                         type: string
+                        description: The unique identifier of the payment method issuer.
+                        readOnly: true
+                        example: festivalcadeau
+                      description:
+                        type: string
+                        description: The full name of the payment method issuer.
+                        readOnly: true
+                        example: FestivalCadeau Giftcard
+                      status:
+                        type: string
+                        description: |-
+                          The status of the issuer. If the status is `pending-issuer`, an additional action from your side may be required with the issuer.
+
+                          Possible values: `activated` `pending-issuer`
+                        example: activated
+                        readOnly: true
+                      _links:
+                        type: object
+                        description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                        properties:
+                          self:
+                            type: object
+                            description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                            properties: *ref_2
+                          documentation:
+                            type: object
+                            description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                            properties: *ref_2
+                        readOnly: true
+                  - type: object
+                    required: &ref_81
+                      - resource
+                      - id
+                      - name
+                      - image
+                      - status
+                      - contractor
+                      - _links
+                    properties: &ref_82
+                      resource:
+                        type: string
+                        description: Indicates the response contains a payment method issuer object. Will always contain the string `issuer` for this endpoint.
+                        readOnly: true
+                        default: issuer
+                      id:
+                        type: string
+                        description: The unique identifier of the payment method issuer.
+                        readOnly: true
+                        example: edenred-belgium-eco
                       name:
                         type: string
-                      contractId:
-                        type: string
-                    readOnly: true
-                  status:
-                    type:
-                      - string
-                      - 'null'
-                    description: |-
-                      The status of the issuer. Only relevant for `voucher` issuers.
-
-                      If the status is `pending-issuer`, an additional action from your side may be required with the issuer.
-
-                      Possible values: `activated` `pending-issuer`
-                    readOnly: true
-                  image:
-                    type: object
-                    description: URLs of images representing the payment method issuer.
-                    properties:
-                      size1x:
-                        type: string
-                        description: The URL pointing to an icon of 32 by 24 pixels.
-                      size2x:
-                        type: string
-                        description: The URL pointing to an icon of 64 by 48 pixels.
-                      svg:
-                        type: string
-                        description: The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
-                    readOnly: true
-                  _links:
-                    type: object
-                    description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-                    properties:
-                      self:
+                        description: The full name of the payment method issuer.
+                        readOnly: true
+                        example: Edenred Eco
+                      image:
                         type: object
-                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-                        properties: *ref_2
-                      documentation:
+                        description: URLs of images representing the payment method issuer.
+                        properties:
+                          size1x:
+                            type: string
+                            description: The URL pointing to an icon of 32 by 24 pixels.
+                            example: https://...
+                          size2x:
+                            type: string
+                            description: The URL pointing to an icon of 64 by 48 pixels.
+                            example: https://...
+                          svg:
+                            type: string
+                            description: The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
+                            example: https://...
+                        readOnly: true
+                      status:
+                        type: string
+                        description: |-
+                          The status of the issuer. If the status is `pending-issuer`, an additional action from your side may be required with the issuer.
+
+                          Possible values: `activated` `pending-issuer`
+                        example: activated
+                        readOnly: true
+                      contractor:
                         type: object
-                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-                        properties: *ref_2
-                    readOnly: true
+                        description: Information regarding the *contractor*. Only relevant for `voucher` issuers.
+                        properties:
+                          id:
+                            type: string
+                            example: Apetiz
+                          name:
+                            type: string
+                            example: Apetiz
+                          contractId:
+                            type: string
+                            example: someContractId
+                        readOnly: true
+                      _links:
+                        type: object
+                        description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                        properties:
+                          self:
+                            type: object
+                            description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                            properties: *ref_2
+                          documentation:
+                            type: object
+                            description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                            properties: *ref_2
+                        readOnly: true
               examples:
-                enable-method-200-1:
+                enable-method-issuer-200-1:
                   summary: The payment method issuer object
                   value:
                     resource: issuer
@@ -26322,7 +26428,7 @@ paths:
               required:
                 - amount
               type: object
-              properties: &ref_43
+              properties: &ref_44
                 resource:
                   type: string
                   description: Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
@@ -26472,7 +26578,7 @@ paths:
               examples:
                 create-refund-201-1:
                   summary: The payment object
-                  value: &ref_44
+                  value: &ref_45
                     resource: refund
                     id: re_4qqhO89gsT
                     mode: live
@@ -26866,11 +26972,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_43
+                properties: *ref_44
               examples:
                 get-refund-200-1:
                   summary: The payment object
-                  value: *ref_44
+                  value: *ref_45
         '404':
           description: No item with this ID exists, or the refund was canceled.
           content: *ref_7
@@ -27043,7 +27149,7 @@ paths:
               required:
                 - lines
               type: object
-              properties: &ref_45
+              properties: &ref_46
                 resource:
                   type: string
                   description: Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
@@ -27174,7 +27280,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_45
+                properties: *ref_46
               examples:
                 create-order-refund-201-1:
                   summary: The newly created refund object
@@ -27782,7 +27888,7 @@ paths:
               examples:
                 list-chargeback-200-1:
                   summary: List of chargeback objects
-                  value: &ref_46
+                  value: &ref_47
                     count: 5
                     _embedded:
                       chargebacks:
@@ -28048,7 +28154,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_80
+                properties: &ref_83
                   resource:
                     type: string
                     description: Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this endpoint.
@@ -28325,7 +28431,7 @@ paths:
               examples:
                 list-all-chargebacks-200-1:
                   summary: List of chargeback objects
-                  value: *ref_46
+                  value: *ref_47
                 list-all-chargebacks-200-2:
                   summary: List all chargebacks
                   value:
@@ -28620,7 +28726,7 @@ paths:
           application/json:
             schema:
               type: object
-              properties: &ref_47
+              properties: &ref_48
                 resource:
                   type: string
                   description: Indicates the response contains a capture object. Will always contain the string `capture` for this endpoint.
@@ -28717,7 +28823,7 @@ paths:
               examples:
                 get-capture-200-1:
                   summary: The capture object
-                  value: &ref_48
+                  value: &ref_49
                     resource: capture
                     id: cpt_mNepDkEtco6ah3QNPUGYH
                     mode: live
@@ -29107,11 +29213,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_47
+                properties: *ref_48
               examples:
                 get-capture-200-1:
                   summary: The capture object
-                  value: *ref_48
+                  value: *ref_49
                 get-capture-200-2:
                   summary: Get capture
                   value:
@@ -29356,7 +29462,7 @@ paths:
               required:
                 - description
               type: object
-              properties: &ref_49
+              properties: &ref_50
                 resource:
                   type: string
                   description: Indicates the response contains a payment link object. Will always contain the string `payment-link` for this endpoint.
@@ -29500,7 +29606,7 @@ paths:
               examples:
                 create-payment-link-201-1:
                   summary: The payment link object
-                  value: &ref_50
+                  value: &ref_51
                     resource: payment-link
                     id: pl_4Y0eZitmBnQ6IDoMqZQKh
                     mode: live
@@ -30015,11 +30121,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_49
+                properties: *ref_50
               examples:
                 get-payment-link-200-1:
                   summary: The payment link object
-                  value: *ref_50
+                  value: *ref_51
         '404':
           description: No entity with this ID exists.
           content: *ref_7
@@ -30151,7 +30257,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_49
+                properties: *ref_50
               examples:
                 update-payment-link-200-1:
                   summary: The payment link object
@@ -30778,7 +30884,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_81
+                properties: &ref_84
                   resource:
                     type: string
                     description: Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
@@ -30982,7 +31088,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_51
+                properties: &ref_52
                   resource:
                     type: string
                     description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -31162,7 +31268,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: *ref_51
+                          properties: *ref_52
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -31302,7 +31408,7 @@ paths:
           application/json:
             schema:
               type: object
-              properties: &ref_52
+              properties: &ref_53
                 resource:
                   type: string
                   description: Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
@@ -31386,7 +31492,7 @@ paths:
               examples:
                 create-customer-201-1:
                   summary: A customer object
-                  value: &ref_53
+                  value: &ref_54
                     resource: customer
                     id: cst_tKt44u85MM
                     mode: test
@@ -31649,11 +31755,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_52
+                properties: *ref_53
               examples:
                 get-customer-200-1:
                   summary: A customer object
-                  value: *ref_53
+                  value: *ref_54
         '404':
           description: No entity with this ID exists.
           content: *ref_7
@@ -31927,7 +32033,7 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: &ref_54
+        schema: &ref_55
           type: string
           example: cst_8wmqcHMN4U
     post:
@@ -32419,7 +32525,7 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: *ref_54
+        schema: *ref_55
     post:
       summary: Create mandate
       tags:
@@ -32447,7 +32553,7 @@ paths:
                 - method
                 - consumerName
               type: object
-              properties: &ref_55
+              properties: &ref_56
                 resource:
                   type: string
                   description: Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
@@ -32617,7 +32723,7 @@ paths:
               examples:
                 create-mandate-201-1:
                   summary: The mandate object
-                  value: &ref_56
+                  value: &ref_57
                     resource: mandate
                     id: mdt_h3gAaD5zP
                     mode: live
@@ -32912,7 +33018,7 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: *ref_54
+        schema: *ref_55
       - schema:
           type: string
           example: mdt_pWUnw6pkBN
@@ -32952,11 +33058,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_55
+                properties: *ref_56
               examples:
                 get-mandate-200-1:
                   summary: The mandate object
-                  value: *ref_56
+                  value: *ref_57
         '404':
           description: No entity with this ID exists.
           content: *ref_7
@@ -33094,7 +33200,7 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: *ref_54
+        schema: *ref_55
     post:
       summary: Create subscription
       tags:
@@ -33133,7 +33239,7 @@ paths:
                 - interval
                 - description
               type: object
-              properties: &ref_57
+              properties: &ref_58
                 resource:
                   type: string
                   description: Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
@@ -33298,7 +33404,7 @@ paths:
               examples:
                 get-subscription-200-1:
                   summary: The subscription object
-                  value: &ref_58
+                  value: &ref_59
                     resource: subscription
                     id: sub_rVKGtNd6s3
                     mode: live
@@ -33590,7 +33696,7 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: *ref_54
+        schema: *ref_55
       - schema:
           type: string
           example: sub_rVKGtNd6s3
@@ -33630,11 +33736,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_57
+                properties: *ref_58
               examples:
                 get-subscription-200-1:
                   summary: The subscription object
-                  value: *ref_58
+                  value: *ref_59
         '404':
           description: No entity with this ID exists.
           content: *ref_7
@@ -34208,7 +34314,7 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: *ref_54
+        schema: *ref_55
       - name: subscriptionId
         description: Provide the ID of the related subscription.
         in: path
@@ -34466,24 +34572,34 @@ components:
       in: path
       required: true
       schema: *ref_39
+    locale:
+      name: locale
+      description: |-
+        Response language
+
+        Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
+      in: query
+      schema: *ref_40
     parent-profile-id:
       name: profileId
       description: Provide the ID of the related profile.
       in: path
       required: true
-      schema: *ref_42
+      schema: *ref_43
     parent-method-id:
       name: methodId
       description: Provide the ID of the related payment method.
       in: path
       required: true
-      schema: *ref_59
+      schema:
+        type: string
+        example: voucher
     parent-customer-id:
       name: customerId
       description: Provide the ID of the related customer.
       in: path
       required: true
-      schema: *ref_54
+      schema: *ref_55
     parent-subscription-id:
       name: subscriptionId
       description: Provide the ID of the related subscription.
@@ -34683,42 +34799,64 @@ components:
       type: string
       example: ideal
       enum: *ref_78
+    sequence-type:
+      type: string
+      enum:
+        - oneoff
+        - first
+        - recurring
+      default: oneoff
+    order-line-categories:
+      type: string
+      enum:
+        - eco
+        - gift
+        - meal
+        - sport_culture
+        - additional
+        - consume
+      example: eco
     entity-method:
       type: object
-      properties: *ref_40
-    entity-method-issuer:
+      properties: *ref_41
+    giftcard:
       type: object
-      properties: *ref_79
+      required: *ref_79
+      properties: *ref_80
+    voucher:
+      type: object
+      required: *ref_81
+      properties: *ref_82
     entity-refund:
       type: object
-      properties: *ref_43
+      properties: *ref_44
     entity-order-refund:
       type: object
-      properties: *ref_45
+      properties: *ref_46
     entity-chargeback:
       type: object
-      properties: *ref_80
+      properties: *ref_83
     entity-capture:
       type: object
-      properties: *ref_47
+      properties: *ref_48
     entity-payment-link:
       type: object
-      properties: *ref_49
+      properties: *ref_50
     entity-terminal:
       type: object
-      properties: *ref_81
+      properties: *ref_84
     entity-route:
       type: object
-      properties: *ref_51
+      properties: *ref_52
     entity-customer:
       type: object
-      properties: *ref_52
+      properties: *ref_53
     entity-mandate:
       type: object
-      properties: *ref_55
+      properties: *ref_56
     entity-subscription:
       type: object
-      properties: *ref_57
+      properties: *ref_58
   responses:
     400-invalid-list-request:
       description: The request contains issues. For example, if the specified `from` value is not a valid ID.
@@ -34728,7 +34866,7 @@ components:
       content: *ref_7
     422-mandatory-owner:
       description: The request contains issues. For example, if the `owner` field is missing.
-      content: *ref_82
+      content: *ref_85
   examples:
     get-profile:
       summary: The profile object
@@ -34744,31 +34882,31 @@ components:
       value: *ref_38
     cancel-payment:
       summary: The canceled payment object
-      value: *ref_83
+      value: *ref_86
     get-method:
       summary: The payment method object
-      value: *ref_41
+      value: *ref_42
     get-refund:
       summary: The payment object
-      value: *ref_44
+      value: *ref_45
     list-chargebacks:
       summary: List of chargeback objects
-      value: *ref_46
+      value: *ref_47
     get-capture:
       summary: The capture object
-      value: *ref_48
+      value: *ref_49
     get-payment-link:
       summary: The payment link object
-      value: *ref_50
+      value: *ref_51
     get-customer:
       summary: A customer object
-      value: *ref_53
+      value: *ref_54
     get-mandate:
       summary: The mandate object
-      value: *ref_56
+      value: *ref_57
     get-subscription:
       summary: The subscription object
-      value: *ref_58
+      value: *ref_59
 x-speakeasy-retries:
   strategy: backoff
   backoff:
