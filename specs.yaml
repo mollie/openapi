@@ -447,7 +447,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_62
+                properties: &ref_64
                   resource:
                     type: string
                     description: Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
@@ -855,7 +855,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_63
+                properties: &ref_65
                   resource:
                     type: string
                     description: Indicates the response contains a balance report object. Will always contain the string `balance-report` for this endpoint.
@@ -1761,7 +1761,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_64
+                          properties: &ref_66
                             resource:
                               type: string
                               description: Indicates the response contains a balance transaction object. Will always contain the string `balance_transaction` for this endpoint.
@@ -2759,7 +2759,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_65
+                properties: &ref_67
                   resource:
                     type: string
                     description: Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
@@ -4548,7 +4548,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_66
+                properties: &ref_68
                   resource:
                     type: string
                     description: Indicates that the response contains an invoice object. Will always contain the string `invoice` for this endpoint.
@@ -5117,7 +5117,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_67
+                properties: &ref_69
                   resource:
                     type: string
                     description: Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
@@ -7127,7 +7127,7 @@ paths:
                               type: array
                               items:
                                 type: object
-                                properties: &ref_68
+                                properties: &ref_70
                                   id:
                                     type: string
                                     description: The name of this requirement, referring to the task to be fulfilled by the organization to enable or re-enable the capability. The name is unique among other requirements of the same capability.
@@ -7881,7 +7881,7 @@ paths:
           content: *ref_7
         '422':
           description: The request contains issues. For example, if the `owner` field is missing.
-          content: &ref_86
+          content: &ref_87
             application/hal+json:
               schema:
                 type: object
@@ -8038,12 +8038,12 @@ paths:
                     All lines must have the same currency as the payment.
                   items:
                     type: object
-                    required: &ref_69
+                    required: &ref_71
                       - name
                       - quantity
                       - unitPrice
                       - totalAmount
-                    properties: &ref_70
+                    properties: &ref_72
                       resource:
                         type: string
                         description: Indicates the response contains an order line object. Will always contain the string `orderline`.
@@ -19162,12 +19162,12 @@ paths:
                     Required for payment method `voucher`.
                   items:
                     type: object
-                    required: &ref_73
+                    required: &ref_75
                       - description
                       - quantity
                       - unitPrice
                       - totalAmount
-                    properties: &ref_74
+                    properties: &ref_76
                       type:
                         type: string
                         description: |-
@@ -19209,9 +19209,9 @@ paths:
                       recurring:
                         description: The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
                         type: object
-                        required: &ref_71
+                        required: &ref_73
                           - interval
-                        properties: &ref_72
+                        properties: &ref_74
                           description:
                             type: string
                             description: A description of the recurring item. If not present, the main description of the item will be used.
@@ -19523,7 +19523,7 @@ paths:
                     If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee` parameter.
                   items:
                     type: object
-                    properties: &ref_75
+                    properties: &ref_77
                       resource:
                         type: string
                         description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -19661,7 +19661,7 @@ paths:
                   readOnly: true
                   example: open
                 statusReason:
-                  type: &ref_76
+                  type: &ref_78
                     - object
                     - 'null'
                   description: |-
@@ -19669,10 +19669,10 @@ paths:
 
                     You can find more information about the possible values of this object on [this page](status-reasons).**
                   readOnly: true
-                  required: &ref_77
+                  required: &ref_79
                     - code
                     - message
-                  properties: &ref_78
+                  properties: &ref_80
                     code:
                       type: string
                       description: A machine-readable code that indicates the reason for the payment's status.
@@ -22939,7 +22939,7 @@ paths:
                     - 'null'
                   description: Can be updated while no payment method has been chosen yet.
                   example: ideal
-                  enum: &ref_79
+                  enum: &ref_81
                     - alma
                     - applepay
                     - bacs
@@ -23252,7 +23252,7 @@ paths:
               examples:
                 cancel-payment-200-1:
                   summary: The canceled payment object
-                  value: &ref_87
+                  value: &ref_88
                     resource: payment
                     id: tr_WDqYK6vllg
                     mode: live
@@ -26113,13 +26113,13 @@ paths:
               schema:
                 oneOf:
                   - type: object
-                    required: &ref_80
+                    required: &ref_82
                       - resource
                       - id
                       - description
                       - status
                       - _links
-                    properties: &ref_81
+                    properties: &ref_83
                       resource:
                         type: string
                         description: Indicates the response contains a payment method issuer object. Will always contain the string `issuer` for this endpoint.
@@ -26157,7 +26157,7 @@ paths:
                             properties: *ref_2
                         readOnly: true
                   - type: object
-                    required: &ref_82
+                    required: &ref_84
                       - resource
                       - id
                       - name
@@ -26165,7 +26165,7 @@ paths:
                       - status
                       - contractor
                       - _links
-                    properties: &ref_83
+                    properties: &ref_85
                       resource:
                         type: string
                         description: Indicates the response contains a payment method issuer object. Will always contain the string `issuer` for this endpoint.
@@ -26943,7 +26943,7 @@ paths:
         description: Provide the ID of the related refund.
         in: path
         required: true
-        schema: &ref_60
+        schema: &ref_61
           type: string
           example: re_5B8cwPMGnU
     get:
@@ -27974,26 +27974,25 @@ paths:
         >
         > [Access token with **payments.read**](/reference/authentication)
       parameters:
-        - schema:
-            type: string
-            example: chb_n9z0tp
-          name: from
-          description: Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+        - name: from
           in: query
+          description: Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+          schema:
+            type: string
+            example: chb_xFzwUN4ci8HAmSGUACS4J
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
           schema: *ref_9
-        - description: |-
-            This endpoint allows you to include additional information via the `include` query string parameter.
-
-            * `payment`: Include the payment these chargebacks were issued for.
+        - description: This endpoint allows you to embed additional information via the `embed` query string parameter.
           schema:
-            type:
-              - string
-              - 'null'
+            type: string
+            enum:
+              - payment
+            x-enumDescriptions:
+              payment: Include the payment these chargebacks were issued for.
             example: payment
-          name: include
+          name: embed
           in: query
         - name: testmode
           description: |-
@@ -28004,7 +28003,7 @@ paths:
           schema: *ref_4
       responses:
         '200':
-          description: A list of chargeback objects. For a complete reference of the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
+          description: A list of chargeback objects.
           content:
             application/hal+json:
               schema:
@@ -28023,10 +28022,97 @@ paths:
                     type: object
                     properties:
                       chargebacks:
-                        description: A list of chargeback objects. For a complete reference of the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
+                        description: A list of chargeback objects.
                         type: array
                         items:
                           type: object
+                          properties: &ref_47
+                            resource:
+                              type: string
+                              description: Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this endpoint.
+                              readOnly: true
+                              default: chargeback
+                            id:
+                              description: 'The identifier uniquely referring to this chargeback. Example: `chb_n9z0tp`.'
+                              readOnly: true
+                              type: string
+                              example: chb_xFzwUN4ci8HAmSGUACS4J
+                            amount:
+                              description: The amount charged back by the customer.
+                              type: object
+                              required: *ref_5
+                              properties: *ref_6
+                            settlementAmount:
+                              description: |-
+                                This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
+
+                                The amount is a **negative** amount.
+
+                                Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+                              readOnly: true
+                              type: *ref_21
+                              required: *ref_22
+                              properties: *ref_23
+                            reason:
+                              type:
+                                - object
+                                - 'null'
+                              description: Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
+                              properties:
+                                code:
+                                  type: string
+                                  description: Technical code provided by the bank.
+                                  example: AC01
+                                description:
+                                  type: string
+                                  description: A more detailed human-friendly description.
+                                  example: Account identifier incorrect (i.e. invalid IBAN)
+                              readOnly: true
+                            paymentId:
+                              description: 'The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.'
+                              readOnly: true
+                              type: string
+                              example: tr_5B8cwPMGnU
+                            settlementId:
+                              type:
+                                - string
+                                - 'null'
+                              description: The identifier referring to the settlement this payment was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
+                              readOnly: true
+                              example: stl_5B8cwPMGnU
+                            createdAt:
+                              type: string
+                              description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+                              readOnly: true
+                              example: '2024-03-20T09:13:37.0Z'
+                            reversedAt:
+                              type:
+                                - string
+                                - 'null'
+                              description: The date and time the chargeback was reversed if applicable, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+                              example: '2024-03-21T09:13:37.0Z'
+                              readOnly: true
+                            _links:
+                              type: object
+                              description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                              properties:
+                                self:
+                                  type: object
+                                  description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                                  properties: *ref_2
+                                payment:
+                                  description: The API resource URL of the [payment](get-payment) that this chargeback belongs to.
+                                  type: object
+                                  properties: *ref_2
+                                settlement:
+                                  description: The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if not yet settled.
+                                  type: *ref_0
+                                  properties: *ref_1
+                                documentation:
+                                  type: object
+                                  description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                                  properties: *ref_2
+                              readOnly: true
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -28034,12 +28120,12 @@ paths:
               examples:
                 list-chargeback-200-1:
                   summary: List of chargeback objects
-                  value: &ref_47
+                  value: &ref_48
                     count: 5
                     _embedded:
                       chargebacks:
                         - resource: chargeback
-                          id: chb_n9z0tp
+                          id: chb_xFzwUN4ci8HAmSGUACS4J
                           amount:
                             currency: USD
                             value: '43.38'
@@ -28069,7 +28155,7 @@ paths:
                         type: application/hal+json
                       previous: null
                       next:
-                        href: https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo/chargebacks?from=chb_8gj14x&limit=5
+                        href: https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo/chargebacks?from=chb_xFzwUN4ci8HAmSGUACS4J&limit=5
                         type: application/hal+json
                       documentation:
                         href: ...
@@ -28080,7 +28166,7 @@ paths:
                     _embedded:
                       chargebacks:
                         - resource: chargeback
-                          id: chb_ls7ahg
+                          id: chb_xFzwUN4ci8HAmSGUACS4J
                           amount:
                             value: '10.00'
                             currency: EUR
@@ -28112,7 +28198,7 @@ paths:
                     _embedded:
                       chargebacks:
                         - resource: chargeback
-                          id: chb_ls7ahg
+                          id: chb_xFzwUN4ci8HAmSGUACS4J
                           amount:
                             value: '10.00'
                             currency: EUR
@@ -28243,20 +28329,20 @@ paths:
             install: gem install mollie-api-ruby
       x-speakeasy-name-override: list
       x-speakeasy-group: chargebacks
-  /payments/{paymentId}/chargebacks/{id}:
+  /payments/{paymentId}/chargebacks/{chargebackId}:
     parameters:
       - name: paymentId
         description: Provide the ID of the related payment.
         in: path
         required: true
         schema: *ref_39
-      - schema:
-          type: string
-          example: chb_n9z0tp
-        name: id
-        description: Provide the ID of the item you want to perform this operation on.
+      - name: chargebackId
+        description: Provide the ID of the related chargeback.
         in: path
         required: true
+        schema: &ref_62
+          type: string
+          example: chb_xFzwUN4ci8HAmSGUACS4J
     get:
       summary: Get payment chargeback
       tags:
@@ -28275,16 +28361,17 @@ paths:
         >
         > [Access token with **payments.read**](/reference/authentication)
       parameters:
-        - description: |-
-            This endpoint allows you to include additional information via the `include` query string parameter.
-
-            * `payment`: Include the payment this chargeback was issued for.
+        - description: This endpoint allows you to embed additional information via the `embed` query string parameter.
           schema:
             type:
               - string
               - 'null'
+            enum:
+              - payment
+            x-enumDescriptions:
+              payment: Include the payment this chargeback was issued for.
             example: payment
-          name: include
+          name: embed
           in: query
         - name: testmode
           description: |-
@@ -28300,93 +28387,13 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_84
-                  resource:
-                    type: string
-                    description: Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this endpoint.
-                    readOnly: true
-                    default: chargeback
-                  id:
-                    type: string
-                    description: 'The identifier uniquely referring to this chargeback. Example: `chb_n9z0tp`.'
-                    readOnly: true
-                  amount:
-                    description: The amount charged back by the customer.
-                    type: object
-                    required: *ref_5
-                    properties: *ref_6
-                  settlementAmount:
-                    description: |-
-                      This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
-
-                      The amount is a **negative** amount.
-
-                      Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
-                    readOnly: true
-                    type: *ref_21
-                    required: *ref_22
-                    properties: *ref_23
-                  reason:
-                    type:
-                      - object
-                      - 'null'
-                    description: Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
-                    properties:
-                      code:
-                        type: string
-                        description: Technical code provided by the bank.
-                      description:
-                        type: string
-                        description: A more detailed human-friendly description.
-                    readOnly: true
-                  paymentId:
-                    type: string
-                    description: 'The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.'
-                    readOnly: true
-                  settlementId:
-                    type:
-                      - string
-                      - 'null'
-                    description: The identifier referring to the settlement this payment was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
-                    readOnly: true
-                  createdAt:
-                    type: string
-                    description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-                    readOnly: true
-                    example: '2024-03-20T09:13:37.0Z'
-                  reversedAt:
-                    type:
-                      - string
-                      - 'null'
-                    description: The date and time the chargeback was reversed if applicable, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-                    readOnly: true
-                  _links:
-                    type: object
-                    description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-                    properties:
-                      self:
-                        type: object
-                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-                        properties: *ref_2
-                      payment:
-                        description: The API resource URL of the [payment](get-payment) that this chargeback belongs to.
-                        type: object
-                        properties: *ref_2
-                      settlement:
-                        description: The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if not yet settled.
-                        type: *ref_0
-                        properties: *ref_1
-                      documentation:
-                        type: object
-                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-                        properties: *ref_2
-                    readOnly: true
+                properties: *ref_47
               examples:
                 get-chargeback-200-1:
                   summary: A single payment chargeback
                   value:
                     resource: chargeback
-                    id: chb_n9z0tp
+                    id: chb_xFzwUN4ci8HAmSGUACS4J
                     amount:
                       currency: USD
                       value: '43.38'
@@ -28413,7 +28420,7 @@ paths:
                   summary: Get payment chargeback
                   value:
                     resource: chargeback
-                    id: chb_ls7ahg
+                    id: chb_xFzwUN4ci8HAmSGUACS4J
                     amount:
                       value: '10.00'
                       currency: EUR
@@ -28439,7 +28446,7 @@ paths:
         code-samples:
           - language: shell
             code: |-
-              curl -X GET https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo/refunds/chb_n9z0tp \
+              curl -X GET https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo/refunds/chb_xFzwUN4ci8HAmSGUACS4J \
                   -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
           - language: php
             code: |-
@@ -28447,14 +28454,14 @@ paths:
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $chargeback = $mollie->payments->get("tr_5B8cwPMGnU6qLbRvo7qEZo")->getChargeback("chb_n9z0tp");
+              $chargeback = $mollie->payments->get("tr_5B8cwPMGnU6qLbRvo7qEZo")->getChargeback("chb_xFzwUN4ci8HAmSGUACS4J");
             install: composer require mollie/mollie-api-php
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
               const mollieClient = createMollieClient({ apiKey: 'live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-              const chargeback = await mollieClient.paymentChargebacks.get('chb_n9z0tp', {
+              const chargeback = await mollieClient.paymentChargebacks.get('chb_xFzwUN4ci8HAmSGUACS4J', {
                 paymentId: 'tr_5B8cwPMGnU6qLbRvo7qEZo'
               });
             install: npm install @mollie/api-client
@@ -28466,7 +28473,7 @@ paths:
               mollie_client.set_api_key("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
               payment = mollie_client.payments.get("tr_5B8cwPMGnU6qLbRvo7qEZo")
-              chargeback = payment.chargebacks.get("chb_n9z0tp")
+              chargeback = payment.chargebacks.get("chb_xFzwUN4ci8HAmSGUACS4J")
             install: pip install mollie-api-python
           - language: ruby
             code: |-
@@ -28477,7 +28484,7 @@ paths:
               end
 
               chargeback = Mollie::Payment::Chargeback.get(
-                'chb_n9z0tp',
+                'chb_xFzwUN4ci8HAmSGUACS4J',
                 payment_id: 'tr_5B8cwPMGnU6qLbRvo7qEZo'
               )
             install: gem install mollie-api-ruby
@@ -28504,27 +28511,33 @@ paths:
         >
         > [Access token with **payments.read**](/reference/authentication)
       parameters:
-        - schema:
-            type: string
-            example: chb_n9z0tp
-          name: from
-          description: Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+        - name: from
           in: query
+          description: Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+          schema:
+            type: string
+            example: chb_xFzwUN4ci8HAmSGUACS4J
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
           schema: *ref_9
-        - description: |-
-            This endpoint allows you to include additional information via the `include` query string parameter.
-
-            * `payment`: Include the payment these chargebacks were issued for.
+        - description: This endpoint allows you to embed additional information via the `embed` query string parameter.
           schema:
-            type:
-              - string
-              - 'null'
+            type: string
+            enum:
+              - payment
+            x-enumDescriptions:
+              payment: Include the payment these chargebacks were issued for.
             example: payment
-          name: include
+          name: embed
           in: query
+        - name: sort
+          description: |-
+            Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
+
+            Possible values: `asc` `desc` (default: `desc`)
+          in: query
+          schema: *ref_27
         - name: profileId
           description: |-
             The identifier referring to the [profile](get-profile) you wish to retrieve chargebacks for.
@@ -28537,7 +28550,7 @@ paths:
             type:
               - string
               - 'null'
-            example: pfl_QkEhN94Ba
+            example: pfl_5B8cwPMGnU
         - name: testmode
           description: |-
             Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -28547,7 +28560,7 @@ paths:
           schema: *ref_4
       responses:
         '200':
-          description: A list of chargeback objects. For a complete reference of the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
+          description: A list of chargeback objects.
           content:
             application/hal+json:
               schema:
@@ -28566,10 +28579,11 @@ paths:
                     type: object
                     properties:
                       chargebacks:
-                        description: A list of chargeback objects. For a complete reference of the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
+                        description: A list of chargeback objects.
                         type: array
                         items:
                           type: object
+                          properties: *ref_47
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -28577,7 +28591,7 @@ paths:
               examples:
                 list-all-chargebacks-200-1:
                   summary: List of chargeback objects
-                  value: *ref_47
+                  value: *ref_48
                 list-all-chargebacks-200-2:
                   summary: List all chargebacks
                   value:
@@ -28585,7 +28599,7 @@ paths:
                     _embedded:
                       chargebacks:
                         - resource: chargeback
-                          id: chb_xg7414
+                          id: chb_xFzwUN4ci8HAmSGUACS4J
                           amount:
                             value: '10.00'
                             currency: EUR
@@ -28602,7 +28616,7 @@ paths:
                               href: https://api.mollie.com/v2/payments/tr_HdQrGb6N3r
                               type: application/hal+json
                         - resource: chargeback
-                          id: chb_ls7ahg
+                          id: chb_xFzwUN4ci8HAmSGUACS41
                           amount:
                             value: '10.00'
                             currency: EUR
@@ -28635,7 +28649,7 @@ paths:
                     _embedded:
                       chargebacks:
                         - resource: chargeback
-                          id: chb_xg7414
+                          id: chb_xFzwUN4ci8HAmSGUACS4J
                           amount:
                             value: '10.00'
                             currency: EUR
@@ -28708,7 +28722,7 @@ paths:
                               href: https://api.mollie.com/v2/payments/tr_HdQrGb6N3r
                               type: application/hal+json
                         - resource: chargeback
-                          id: chb_ls7ahg
+                          id: chb_xFzwUN4ci8HAmSGUACS41
                           amount:
                             value: '10.00'
                             currency: EUR
@@ -28872,7 +28886,7 @@ paths:
           application/json:
             schema:
               type: object
-              properties: &ref_48
+              properties: &ref_49
                 resource:
                   type: string
                   description: Indicates the response contains a capture object. Will always contain the string `capture` for this endpoint.
@@ -28969,7 +28983,7 @@ paths:
               examples:
                 get-capture-200-1:
                   summary: The capture object
-                  value: &ref_49
+                  value: &ref_50
                     resource: capture
                     id: cpt_mNepDkEtco6ah3QNPUGYH
                     mode: live
@@ -29359,11 +29373,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_48
+                properties: *ref_49
               examples:
                 get-capture-200-1:
                   summary: The capture object
-                  value: *ref_49
+                  value: *ref_50
                 get-capture-200-2:
                   summary: Get capture
                   value:
@@ -29608,7 +29622,7 @@ paths:
               required:
                 - description
               type: object
-              properties: &ref_50
+              properties: &ref_51
                 resource:
                   type: string
                   description: Indicates the response contains a payment link object. Will always contain the string `payment-link` for this endpoint.
@@ -29752,7 +29766,7 @@ paths:
               examples:
                 create-payment-link-201-1:
                   summary: The payment link object
-                  value: &ref_51
+                  value: &ref_52
                     resource: payment-link
                     id: pl_4Y0eZitmBnQ6IDoMqZQKh
                     mode: live
@@ -30267,11 +30281,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_50
+                properties: *ref_51
               examples:
                 get-payment-link-200-1:
                   summary: The payment link object
-                  value: *ref_51
+                  value: *ref_52
         '404':
           description: No entity with this ID exists.
           content: *ref_7
@@ -30403,7 +30417,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_50
+                properties: *ref_51
               examples:
                 update-payment-link-200-1:
                   summary: The payment link object
@@ -31030,7 +31044,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_85
+                properties: &ref_86
                   resource:
                     type: string
                     description: Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
@@ -31234,7 +31248,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_52
+                properties: &ref_53
                   resource:
                     type: string
                     description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -31414,7 +31428,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: *ref_52
+                          properties: *ref_53
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -31554,7 +31568,7 @@ paths:
           application/json:
             schema:
               type: object
-              properties: &ref_53
+              properties: &ref_54
                 resource:
                   type: string
                   description: Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
@@ -31638,7 +31652,7 @@ paths:
               examples:
                 create-customer-201-1:
                   summary: A customer object
-                  value: &ref_54
+                  value: &ref_55
                     resource: customer
                     id: cst_tKt44u85MM
                     mode: test
@@ -31901,11 +31915,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_53
+                properties: *ref_54
               examples:
                 get-customer-200-1:
                   summary: A customer object
-                  value: *ref_54
+                  value: *ref_55
         '404':
           description: No entity with this ID exists.
           content: *ref_7
@@ -32179,7 +32193,7 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: &ref_55
+        schema: &ref_56
           type: string
           example: cst_8wmqcHMN4U
     post:
@@ -32671,7 +32685,7 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: *ref_55
+        schema: *ref_56
     post:
       summary: Create mandate
       tags:
@@ -32699,7 +32713,7 @@ paths:
                 - method
                 - consumerName
               type: object
-              properties: &ref_56
+              properties: &ref_57
                 resource:
                   type: string
                   description: Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
@@ -32869,7 +32883,7 @@ paths:
               examples:
                 create-mandate-201-1:
                   summary: The mandate object
-                  value: &ref_57
+                  value: &ref_58
                     resource: mandate
                     id: mdt_h3gAaD5zP
                     mode: live
@@ -33164,7 +33178,7 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: *ref_55
+        schema: *ref_56
       - schema:
           type: string
           example: mdt_pWUnw6pkBN
@@ -33204,11 +33218,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_56
+                properties: *ref_57
               examples:
                 get-mandate-200-1:
                   summary: The mandate object
-                  value: *ref_57
+                  value: *ref_58
         '404':
           description: No entity with this ID exists.
           content: *ref_7
@@ -33346,7 +33360,7 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: *ref_55
+        schema: *ref_56
     post:
       summary: Create subscription
       tags:
@@ -33385,7 +33399,7 @@ paths:
                 - interval
                 - description
               type: object
-              properties: &ref_58
+              properties: &ref_59
                 resource:
                   type: string
                   description: Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
@@ -33550,7 +33564,7 @@ paths:
               examples:
                 get-subscription-200-1:
                   summary: The subscription object
-                  value: &ref_59
+                  value: &ref_60
                     resource: subscription
                     id: sub_rVKGtNd6s3
                     mode: live
@@ -33842,7 +33856,7 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: *ref_55
+        schema: *ref_56
       - schema:
           type: string
           example: sub_rVKGtNd6s3
@@ -33882,11 +33896,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_58
+                properties: *ref_59
               examples:
                 get-subscription-200-1:
                   summary: The subscription object
-                  value: *ref_59
+                  value: *ref_60
         '404':
           description: No entity with this ID exists.
           content: *ref_7
@@ -34460,12 +34474,12 @@ paths:
         description: Provide the ID of the related customer.
         in: path
         required: true
-        schema: *ref_55
+        schema: *ref_56
       - name: subscriptionId
         description: Provide the ID of the related subscription.
         in: path
         required: true
-        schema: &ref_61
+        schema: &ref_63
           type: string
           example: sub_rVKGtNd6s3
     get:
@@ -34745,19 +34759,25 @@ components:
       description: Provide the ID of the related refund.
       in: path
       required: true
-      schema: *ref_60
+      schema: *ref_61
+    parent-chargeback-id:
+      name: chargebackId
+      description: Provide the ID of the related chargeback.
+      in: path
+      required: true
+      schema: *ref_62
     parent-customer-id:
       name: customerId
       description: Provide the ID of the related customer.
       in: path
       required: true
-      schema: *ref_55
+      schema: *ref_56
     parent-subscription-id:
       name: subscriptionId
       description: Provide the ID of the related subscription.
       in: path
       required: true
-      schema: *ref_61
+      schema: *ref_63
   schemas:
     list-count:
       type: integer
@@ -34804,10 +34824,10 @@ components:
       example: '2024-03-20T09:13:37.0Z'
     entity-balance:
       type: object
-      properties: *ref_62
+      properties: *ref_64
     entity-balance-report:
       type: object
-      properties: *ref_63
+      properties: *ref_65
     amount-nullable:
       type: *ref_21
       description: In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -34815,16 +34835,16 @@ components:
       properties: *ref_23
     entity-balance-transaction:
       type: object
-      properties: *ref_64
+      properties: *ref_66
     entity-settlement:
       type: object
-      properties: *ref_65
+      properties: *ref_67
     entity-invoice:
       type: object
-      properties: *ref_66
+      properties: *ref_68
     entity-permission:
       type: object
-      properties: *ref_67
+      properties: *ref_69
     locale:
       type: string
       description: |-
@@ -34846,7 +34866,7 @@ components:
       properties: *ref_17
     entity-capability-requirement:
       type: object
-      properties: *ref_68
+      properties: *ref_70
     entity-capability:
       type: object
       properties: *ref_18
@@ -34861,8 +34881,8 @@ components:
       description: Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
     order-line-item:
       type: object
-      required: *ref_69
-      properties: *ref_70
+      required: *ref_71
+      properties: *ref_72
     order-address:
       type: object
       required: *ref_24
@@ -34897,12 +34917,12 @@ components:
       example: tr_5B8cwPMGnU
     recurring-line-item:
       type: object
-      required: *ref_71
-      properties: *ref_72
-    payment-line-item:
-      type: object
       required: *ref_73
       properties: *ref_74
+    payment-line-item:
+      type: object
+      required: *ref_75
+      properties: *ref_76
     entity-shopper-address:
       type: object
       properties: *ref_35
@@ -34911,7 +34931,7 @@ components:
       example: rt_5B8cwPMGnU
     entity-payment-route:
       type: object
-      properties: *ref_75
+      properties: *ref_77
     subscriptionToken:
       type: string
       example: sub_5B8cwPMGnU
@@ -34928,21 +34948,21 @@ components:
       type: string
       example: stl_5B8cwPMGnU
     status-reason:
-      type: *ref_76
+      type: *ref_78
       description: |-
         This object offers details about the status of a payment. Currently it is only available for point-of-sale payments.
 
         You can find more information about the possible values of this object on [this page](status-reasons).**
       readOnly: true
-      required: *ref_77
-      properties: *ref_78
+      required: *ref_79
+      properties: *ref_80
     entity-payment:
       type: object
       properties: *ref_37
     payment-methods:
       type: string
       example: ideal
-      enum: *ref_79
+      enum: *ref_81
     sequence-type:
       type: string
       enum:
@@ -34965,12 +34985,12 @@ components:
       properties: *ref_41
     giftcard:
       type: object
-      required: *ref_80
-      properties: *ref_81
-    voucher:
-      type: object
       required: *ref_82
       properties: *ref_83
+    voucher:
+      type: object
+      required: *ref_84
+      properties: *ref_85
     refundToken:
       type: string
       example: re_5B8cwPMGnU
@@ -34986,30 +35006,33 @@ components:
     entity-order-refund:
       type: object
       properties: *ref_46
+    chargebackToken:
+      type: string
+      example: chb_xFzwUN4ci8HAmSGUACS4J
     entity-chargeback:
       type: object
-      properties: *ref_84
+      properties: *ref_47
     entity-capture:
       type: object
-      properties: *ref_48
+      properties: *ref_49
     entity-payment-link:
       type: object
-      properties: *ref_50
+      properties: *ref_51
     entity-terminal:
       type: object
-      properties: *ref_85
+      properties: *ref_86
     entity-route:
       type: object
-      properties: *ref_52
+      properties: *ref_53
     entity-customer:
       type: object
-      properties: *ref_53
+      properties: *ref_54
     entity-mandate:
       type: object
-      properties: *ref_56
+      properties: *ref_57
     entity-subscription:
       type: object
-      properties: *ref_58
+      properties: *ref_59
   responses:
     400-invalid-list-request:
       description: The request contains issues. For example, if the specified `from` value is not a valid ID.
@@ -35019,7 +35042,7 @@ components:
       content: *ref_7
     422-mandatory-owner:
       description: The request contains issues. For example, if the `owner` field is missing.
-      content: *ref_86
+      content: *ref_87
   examples:
     get-profile:
       summary: The profile object
@@ -35035,7 +35058,7 @@ components:
       value: *ref_38
     cancel-payment:
       summary: The canceled payment object
-      value: *ref_87
+      value: *ref_88
     get-method:
       summary: The payment method object
       value: *ref_42
@@ -35044,22 +35067,22 @@ components:
       value: *ref_45
     list-chargebacks:
       summary: List of chargeback objects
-      value: *ref_47
+      value: *ref_48
     get-capture:
       summary: The capture object
-      value: *ref_49
+      value: *ref_50
     get-payment-link:
       summary: The payment link object
-      value: *ref_51
+      value: *ref_52
     get-customer:
       summary: A customer object
-      value: *ref_54
+      value: *ref_55
     get-mandate:
       summary: The mandate object
-      value: *ref_57
+      value: *ref_58
     get-subscription:
       summary: The subscription object
-      value: *ref_59
+      value: *ref_60
 x-speakeasy-retries:
   strategy: backoff
   backoff:
