@@ -447,7 +447,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_61
+                properties: &ref_62
                   resource:
                     type: string
                     description: Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
@@ -855,7 +855,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_62
+                properties: &ref_63
                   resource:
                     type: string
                     description: Indicates the response contains a balance report object. Will always contain the string `balance-report` for this endpoint.
@@ -1761,7 +1761,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_63
+                          properties: &ref_64
                             resource:
                               type: string
                               description: Indicates the response contains a balance transaction object. Will always contain the string `balance_transaction` for this endpoint.
@@ -2759,7 +2759,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_64
+                properties: &ref_65
                   resource:
                     type: string
                     description: Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
@@ -4548,7 +4548,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_65
+                properties: &ref_66
                   resource:
                     type: string
                     description: Indicates that the response contains an invoice object. Will always contain the string `invoice` for this endpoint.
@@ -5117,7 +5117,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_66
+                properties: &ref_67
                   resource:
                     type: string
                     description: Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
@@ -7127,7 +7127,7 @@ paths:
                               type: array
                               items:
                                 type: object
-                                properties: &ref_67
+                                properties: &ref_68
                                   id:
                                     type: string
                                     description: The name of this requirement, referring to the task to be fulfilled by the organization to enable or re-enable the capability. The name is unique among other requirements of the same capability.
@@ -7881,7 +7881,7 @@ paths:
           content: *ref_7
         '422':
           description: The request contains issues. For example, if the `owner` field is missing.
-          content: &ref_85
+          content: &ref_86
             application/hal+json:
               schema:
                 type: object
@@ -8038,12 +8038,12 @@ paths:
                     All lines must have the same currency as the payment.
                   items:
                     type: object
-                    required: &ref_68
+                    required: &ref_69
                       - name
                       - quantity
                       - unitPrice
                       - totalAmount
-                    properties: &ref_69
+                    properties: &ref_70
                       resource:
                         type: string
                         description: Indicates the response contains an order line object. Will always contain the string `orderline`.
@@ -17050,7 +17050,7 @@ paths:
         required: true
         schema: &ref_31
           type: string
-          example: ord_pbjz8x
+          example: ord_5B8cwPMGnU
     patch:
       summary: Manage order lines
       tags:
@@ -19053,8 +19053,7 @@ paths:
                   description: 'The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.'
                   readOnly: true
                   type: string
-                  pattern: ^(tr)_([A-Za-z0-9]{10,29})$
-                  example: tr_5B8cwPMGnU6qLbRvo7qEZo
+                  example: tr_5B8cwPMGnU
                 mode:
                   type: string
                   description: |-
@@ -19163,12 +19162,12 @@ paths:
                     Required for payment method `voucher`.
                   items:
                     type: object
-                    required: &ref_72
+                    required: &ref_73
                       - description
                       - quantity
                       - unitPrice
                       - totalAmount
-                    properties: &ref_73
+                    properties: &ref_74
                       type:
                         type: string
                         description: |-
@@ -19210,9 +19209,9 @@ paths:
                       recurring:
                         description: The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
                         type: object
-                        required: &ref_70
+                        required: &ref_71
                           - interval
-                        properties: &ref_71
+                        properties: &ref_72
                           description:
                             type: string
                             description: A description of the recurring item. If not present, the main description of the item will be used.
@@ -19524,7 +19523,7 @@ paths:
                     If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee` parameter.
                   items:
                     type: object
-                    properties: &ref_74
+                    properties: &ref_75
                       resource:
                         type: string
                         description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -19534,8 +19533,7 @@ paths:
                         description: 'The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.'
                         readOnly: true
                         type: string
-                        pattern: ^(rt)_([A-Za-z0-9]{10,29})$
-                        example: rt_5B8cwPMGnU6qLbRvo7qEZo
+                        example: rt_5B8cwPMGnU
                       mode:
                         type: string
                         description: |-
@@ -19612,8 +19610,7 @@ paths:
                     - 'null'
                   description: If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will be added to the response.
                   readOnly: true
-                  pattern: ^(sub)_([A-Za-z0-9]{9,28})$
-                  example: sub_5B8cwPMGnU6qLbRvo7qEZo
+                  example: sub_5B8cwPMGnU
                 mandateId:
                   type:
                     - string
@@ -19622,8 +19619,7 @@ paths:
                     **Only relevant for recurring payments.**
 
                     When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of the customer's accounts should be credited.
-                  pattern: ^(mdt)_([A-Za-z0-9]{9,28})$
-                  example: mdt_5B8cwPMGnU6qLbRvo7qEZo
+                  example: mdt_5B8cwPMGnU
                 customerId:
                   type:
                     - string
@@ -19632,8 +19628,7 @@ paths:
                     The ID of the [customer](get-customer) the payment is being created for. This is used primarily for recurring payments, but can also be used on regular payments to enable single-click payments.
 
                     If `sequenceType` is set to `recurring`, this field is required.
-                  pattern: ^(cst)_([A-Za-z0-9]{9,28})$
-                  example: cst_5B8cwPMGnU6qLbRvo7qEZo
+                  example: cst_5B8cwPMGnU
                 profileId:
                   type: string
                   description: |-
@@ -19642,24 +19637,21 @@ paths:
                     When using an API Key, the `profileId` can be omitted since it is linked to the key. However, for OAuth and Organization tokens, the `profileId` is required.
 
                     For more information, see [Authentication](authentication).
-                  pattern: ^(pfl)_([A-Za-z0-9]{9,28})$
-                  example: pfl_5B8cwPMGnU6qLbRvo7qEZo
+                  example: pfl_5B8cwPMGnU
                 settlementId:
                   type:
                     - string
                     - 'null'
                   description: The identifier referring to the [settlement](get-settlement) this payment was settled with.
                   readOnly: true
-                  pattern: ^(stl)_([A-Za-z0-9]{9,28})$
-                  example: stl_5B8cwPMGnU6qLbRvo7qEZo
+                  example: stl_5B8cwPMGnU
                 orderId:
                   type:
                     - string
                     - 'null'
                   description: If the payment was created for an [order](get-order), the ID of that order will be part of the response.
                   readOnly: true
-                  pattern: ^(ord)_([A-Za-z0-9]{9,28})$
-                  example: ord_5B8cwPMGnU6qLbRvo7qEZo
+                  example: ord_5B8cwPMGnU
                 status:
                   type: string
                   description: |-
@@ -19669,7 +19661,7 @@ paths:
                   readOnly: true
                   example: open
                 statusReason:
-                  type: &ref_75
+                  type: &ref_76
                     - object
                     - 'null'
                   description: |-
@@ -19677,10 +19669,10 @@ paths:
 
                     You can find more information about the possible values of this object on [this page](status-reasons).**
                   readOnly: true
-                  required: &ref_76
+                  required: &ref_77
                     - code
                     - message
-                  properties: &ref_77
+                  properties: &ref_78
                     code:
                       type: string
                       description: A machine-readable code that indicates the reason for the payment's status.
@@ -20469,8 +20461,7 @@ paths:
           description: Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
           schema:
             type: string
-            pattern: ^(tr)_([A-Za-z0-9]{10,29})$
-            example: tr_5B8cwPMGnU6qLbRvo7qEZo
+            example: tr_5B8cwPMGnU
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
@@ -22665,8 +22656,7 @@ paths:
         required: true
         schema: &ref_39
           type: string
-          pattern: ^(tr)_([A-Za-z0-9]{10,29})$
-          example: tr_5B8cwPMGnU6qLbRvo7qEZo
+          example: tr_5B8cwPMGnU
     get:
       summary: Get payment
       tags:
@@ -22949,7 +22939,7 @@ paths:
                     - 'null'
                   description: Can be updated while no payment method has been chosen yet.
                   example: ideal
-                  enum: &ref_78
+                  enum: &ref_79
                     - alma
                     - applepay
                     - bacs
@@ -23262,7 +23252,7 @@ paths:
               examples:
                 cancel-payment-200-1:
                   summary: The canceled payment object
-                  value: &ref_86
+                  value: &ref_87
                     resource: payment
                     id: tr_WDqYK6vllg
                     mode: live
@@ -23569,8 +23559,7 @@ paths:
           in: query
           schema:
             type: string
-            pattern: ^(pfl)_([A-Za-z0-9]{9,28})$
-            example: pfl_5B8cwPMGnU6qLbRvo7qEZo
+            example: pfl_5B8cwPMGnU
         - description: This endpoint allows you to include additional information via the `include` query string parameter.
           schema:
             type:
@@ -25636,8 +25625,7 @@ paths:
           in: query
           schema:
             type: string
-            pattern: ^(pfl)_([A-Za-z0-9]{9,28})$
-            example: pfl_5B8cwPMGnU6qLbRvo7qEZo
+            example: pfl_5B8cwPMGnU
         - description: This endpoint allows you to include additional information via the `include` query string parameter.
           schema:
             type:
@@ -25832,8 +25820,7 @@ paths:
         schema: &ref_43
           oneOf:
             - type: string
-              pattern: ^(pfl)_([A-Za-z0-9]{9,28})$
-              example: pfl_5B8cwPMGnU6qLbRvo7qEZo
+              example: pfl_5B8cwPMGnU
             - type: string
               enum:
                 - me
@@ -26126,13 +26113,13 @@ paths:
               schema:
                 oneOf:
                   - type: object
-                    required: &ref_79
+                    required: &ref_80
                       - resource
                       - id
                       - description
                       - status
                       - _links
-                    properties: &ref_80
+                    properties: &ref_81
                       resource:
                         type: string
                         description: Indicates the response contains a payment method issuer object. Will always contain the string `issuer` for this endpoint.
@@ -26170,7 +26157,7 @@ paths:
                             properties: *ref_2
                         readOnly: true
                   - type: object
-                    required: &ref_81
+                    required: &ref_82
                       - resource
                       - id
                       - name
@@ -26178,7 +26165,7 @@ paths:
                       - status
                       - contractor
                       - _links
-                    properties: &ref_82
+                    properties: &ref_83
                       resource:
                         type: string
                         description: Indicates the response contains a payment method issuer object. Will always contain the string `issuer` for this endpoint.
@@ -26435,9 +26422,10 @@ paths:
                   readOnly: true
                   default: refund
                 id:
-                  type: string
                   description: 'The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.'
                   readOnly: true
+                  type: string
+                  example: re_5B8cwPMGnU
                 mode:
                   type: string
                   description: |-
@@ -26450,6 +26438,7 @@ paths:
                   type: string
                   description: The description of the refund that may be shown to your customer, depending on the payment method used.
                   maxLength: 255
+                  example: Refunding a Chess Board
                 amount:
                   description: The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
                   type: object
@@ -26473,10 +26462,45 @@ paths:
                 metadata:
                   oneOf: *ref_26
                   description: Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+                paymentId:
+                  description: The unique identifier of the payment this refund was created for. The full payment object can be retrieved via the payment URL in the `_links` object.
+                  readOnly: true
+                  type: string
+                  example: tr_5B8cwPMGnU
+                settlementId:
+                  type:
+                    - string
+                    - 'null'
+                  description: The identifier referring to the settlement this refund was settled with. This field is omitted if the refund is not settled (yet).
+                  readOnly: true
+                  example: stl_5B8cwPMGnU
                 status:
                   type: string
-                  description: Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund statuses.
+                  description: |-
+                    Refunds may take some time to get confirmed.
+
+                    Possible values: `queued` `pending` `processing` `refunded` `failed` `canceled`
+                  example: queued
                   readOnly: true
+                createdAt:
+                  type: string
+                  description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+                  readOnly: true
+                  example: '2024-03-20T09:13:37.0Z'
+                externalReference:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      description: |-
+                        Specifies the reference type
+
+                        Possible values: `acquirer-reference`
+                      example: acquirer-reference
+                    id:
+                      type: string
+                      description: Unique reference from the payment provider
+                      example: 123456789012345
                 reverseRouting:
                   type:
                     - boolean
@@ -26491,6 +26515,8 @@ paths:
                     If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to `true` when issuing a full refund.
 
                     For more fine-grained control and for partial refunds, use the `routingReversals` parameter instead.
+                  writeOnly: true
+                  example: false
                 routingReversals:
                   type:
                     - array
@@ -26521,25 +26547,12 @@ paths:
                               The type of source. Currently only the source type `organization` is supported.
 
                               Possible values: `organization`
+                            example: organization
+                            writeOnly: true
                           organizationId:
-                            type: string
                             description: Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
-                            example: org_12345678
-                paymentId:
-                  type: string
-                  description: 'The unique identifier of the payment this refund was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.'
-                  readOnly: true
-                settlementId:
-                  type:
-                    - string
-                    - 'null'
-                  description: The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
-                  readOnly: true
-                createdAt:
-                  type: string
-                  description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-                  readOnly: true
-                  example: '2024-03-20T09:13:37.0Z'
+                            type: string
+                            example: org_1234567
                 testmode:
                   type: *ref_36
                   description: |-
@@ -26571,10 +26584,12 @@ paths:
                   readOnly: true
       responses:
         '201':
-          description: The newly created refund object. For a complete reference of the refund object, refer to the [Get refund endpoint](get-refund) documentation.
+          description: The newly created refund object.
           content:
             application/hal+json:
-              schema: {}
+              schema:
+                type: object
+                properties: *ref_44
               examples:
                 create-refund-201-1:
                   summary: The payment object
@@ -26768,24 +26783,25 @@ paths:
         >
         > [Access token with **refunds.read**](/reference/authentication)
       parameters:
-        - schema:
-            type: string
-            example: re_4qqhO89gsT
-          name: from
-          description: Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+        - name: from
           in: query
+          description: Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+          schema:
+            type: string
+            example: re_5B8cwPMGnU
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
           schema: *ref_9
-        - description: |-
-            This endpoint allows you to include additional information via the `include` query string parameter.
-
-            * `payment`: Include the payments that the refunds were created for.
+        - description: This endpoint allows you to include additional information via the `include` query string parameter.
           schema:
             type:
               - string
               - 'null'
+            enum:
+              - payment
+            x-enumDescriptions:
+              payment: Include the payments that the refunds were created for.
             example: payment
           name: include
           in: query
@@ -26817,10 +26833,11 @@ paths:
                     type: object
                     properties:
                       refunds:
-                        description: An array of refund objects. For a complete reference of the refund object, refer to the [Get refund endpoint](get-refund) documentation.
+                        description: An array of refund objects.
                         type: array
                         items:
                           type: object
+                          properties: *ref_44
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -26915,20 +26932,20 @@ paths:
             install: gem install mollie-api-ruby
       x-speakeasy-name-override: list
       x-speakeasy-group: refunds
-  /payments/{paymentId}/refunds/{id}:
+  /payments/{paymentId}/refunds/{refundId}:
     parameters:
       - name: paymentId
         description: Provide the ID of the related payment.
         in: path
         required: true
         schema: *ref_39
-      - schema:
-          type: string
-          example: re_4qqhO89gsT
-        name: id
-        description: Provide the ID of the item you want to perform this operation on.
+      - name: refundId
+        description: Provide the ID of the related refund.
         in: path
         required: true
+        schema: &ref_60
+          type: string
+          example: re_5B8cwPMGnU
     get:
       summary: Get payment refund
       tags:
@@ -26947,14 +26964,15 @@ paths:
         >
         > [Access token with **refunds.read**](/reference/authentication)
       parameters:
-        - description: |-
-            This endpoint allows you to include additional information via the `include` query string parameter.
-
-            * `payment`: Include the payment this refund was created for.
+        - description: This endpoint allows you to include additional information via the `include` query string parameter.
           schema:
             type:
               - string
               - 'null'
+            enum:
+              - payment
+            x-enumDescriptions:
+              payment: Include the payment this refund was created for.
             example: payment
           name: include
           in: query
@@ -27156,9 +27174,10 @@ paths:
                   readOnly: true
                   default: refund
                 id:
-                  type: string
                   description: 'The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.'
                   readOnly: true
+                  type: string
+                  example: re_5B8cwPMGnU
                 mode:
                   type: string
                   description: |-
@@ -27171,6 +27190,77 @@ paths:
                   type: string
                   description: The description of the refund that may be shown to your customer, depending on the payment method used.
                   maxLength: 255
+                  example: Refunding a Chess Board
+                amount:
+                  description: The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
+                  type: object
+                  required: *ref_5
+                  properties: *ref_6
+                settlementAmount:
+                  description: |-
+                    This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
+
+                    The amount is a **negative** amount.
+
+                    If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be zero.
+
+                    Since the field contains an estimated amount during refund processing, it may change over time. For example, while the refund is queued the settlement amount is likely not yet available.
+
+                    To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+                  readOnly: true
+                  type: *ref_21
+                  required: *ref_22
+                  properties: *ref_23
+                metadata:
+                  oneOf: *ref_26
+                  description: Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+                orderId:
+                  description: 'The unique identifier of the order this refund was created for. For example: `ord_8wmqcHMN4U`. Not present if the refund was not created for an order.'
+                  readOnly: true
+                  type: string
+                  example: ord_5B8cwPMGnU
+                settlementId:
+                  type:
+                    - string
+                    - 'null'
+                  description: The identifier referring to the settlement this refund was settled with. This field is omitted if the refund is not settled (yet).
+                  readOnly: true
+                  example: stl_5B8cwPMGnU
+                status:
+                  type: string
+                  description: |-
+                    Refunds may take some time to get confirmed.
+
+                    Possible values: `queued` `pending` `processing` `refunded` `failed` `canceled`
+                  example: queued
+                  readOnly: true
+                createdAt:
+                  type: string
+                  description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+                  readOnly: true
+                  example: '2024-03-20T09:13:37.0Z'
+                externalReference:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      description: |-
+                        Specifies the reference type
+
+                        Possible values: `acquirer-reference`
+                      example: acquirer-reference
+                    id:
+                      type: string
+                      description: Unique reference from the payment provider
+                      example: 123456789012345
+                testmode:
+                  type: *ref_36
+                  description: |-
+                    Whether to create the entity in test mode or live mode.
+
+                    Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+                  writeOnly: true
+                  default: false
                 lines:
                   type: array
                   description: |-
@@ -27183,18 +27273,81 @@ paths:
                       resource:
                         type: string
                         readOnly: true
+                        default: orderline
                       id:
+                        description: 'The ID of the order line you wish to refund. For example: `odl_jp31y97yjz`.'
                         type: string
-                        description: 'The ID of the order line you wish to refund. For example: `odl_jp31jz`.'
+                        example: odl_5B8cwPMGnU
                       orderId:
-                        type: string
                         readOnly: true
+                        type: string
+                        example: ord_5B8cwPMGnU
+                      name:
+                        type: string
+                        example: Chess Board
+                      sku:
+                        type:
+                          - string
+                          - 'null'
+                        example: 5702016116977
+                      type:
+                        type: string
+                        enum:
+                          - physical
+                          - digital
+                          - discount
+                          - shipping_fee
+                          - store_credit
+                          - gift_card
+                          - surcharge
+                        example: physical
+                      status:
+                        type: string
+                        enum:
+                          - created
+                          - authorized
+                          - paid
+                          - canceled
+                          - shipping
+                          - completed
+                        example: created
+                      metadata:
+                        oneOf: *ref_26
+                        description: Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+                      isCancelable:
+                        type: boolean
+                        example: false
                       quantity:
                         type: integer
                         description: |-
                           The number of items that should be refunded for this order line. When this parameter is omitted, the whole order line will be refunded.
 
                           Must be less than the number of items already refunded for this order line.
+                        example: 1
+                      quantityShipped:
+                        type: integer
+                        example: 0
+                      amountShipped:
+                        type: object
+                        description: In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+                        required: *ref_5
+                        properties: *ref_6
+                      quantityRefunded:
+                        type: integer
+                        example: 0
+                      amountRefunded:
+                        type: object
+                        description: In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+                        required: *ref_5
+                        properties: *ref_6
+                      quantityCanceled:
+                        type: integer
+                        example: 0
+                      amountCanceled:
+                        type: object
+                        description: In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+                        required: *ref_5
+                        properties: *ref_6
                       amount:
                         description: |-
                           The amount that you want to refund. In almost all cases, Mollie can determine the amount automatically.
@@ -27210,6 +27363,15 @@ paths:
                         type: object
                         required: *ref_5
                         properties: *ref_6
+                      shippableQuantity:
+                        type: integer
+                        example: 0
+                      refundableQuantity:
+                        type: integer
+                        example: 0
+                      cancelableQuantity:
+                        type: integer
+                        example: 0
                       unitPrice:
                         readOnly: true
                         type: object
@@ -27222,36 +27384,24 @@ paths:
                         description: In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
                         required: *ref_5
                         properties: *ref_6
-                metadata:
-                  oneOf: *ref_26
-                  description: Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
-                orderId:
-                  type: string
-                  description: 'The unique identifier of the order this refund was created for. For example: `ord_8wmqcHMN4U`. Not present if the refund was not created for an order.'
-                  readOnly: true
-                settlementId:
-                  type:
-                    - string
-                    - 'null'
-                  description: The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
-                  readOnly: true
-                status:
-                  type: string
-                  description: Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund statuses.
-                  readOnly: true
-                createdAt:
-                  type: string
-                  description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-                  readOnly: true
-                  example: '2024-03-20T09:13:37.0Z'
-                testmode:
-                  type: *ref_36
-                  description: |-
-                    Whether to create the entity in test mode or live mode.
-
-                    Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
-                  writeOnly: true
-                  default: false
+                      vatRate:
+                        type: string
+                        example: '21.00'
+                      vatAmount:
+                        readOnly: true
+                        type: object
+                        description: In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+                        required: *ref_5
+                        properties: *ref_6
+                      createdAt:
+                        type: string
+                        example: '2025-03-28T16:42:12+00:00'
+                      discountedAmount:
+                        readOnly: true
+                        type: object
+                        description: In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+                        required: *ref_5
+                        properties: *ref_6
                 _links:
                   type: object
                   description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -27498,10 +27648,11 @@ paths:
                     type: object
                     properties:
                       refunds:
-                        description: An array of refund objects. For a complete reference of the refund object, refer to the [Create order refund endpoint](create-order-refund) documentation.
+                        description: An array of refund objects.
                         type: array
                         items:
                           type: object
+                          properties: *ref_46
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -27530,7 +27681,7 @@ paths:
                             - resource: orderline
                               id: odl_dgtxyl
                               orderId: ord_stTC2WHAuS
-                              sku: 5702016116977
+                              sku: '5702016116977'
                               type: physical
                               status: paid
                               metadata: null
@@ -27640,12 +27791,12 @@ paths:
         >
         > [Access token with **refunds.read**](/reference/authentication)
       parameters:
-        - schema:
-            type: string
-            example: re_4qqhO89gsT
-          name: from
-          description: Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+        - name: from
           in: query
+          description: Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+          schema:
+            type: string
+            example: re_5B8cwPMGnU
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
@@ -27657,28 +27808,22 @@ paths:
             Possible values: `asc` `desc` (default: `desc`)
           in: query
           schema: *ref_27
-        - description: |-
-            This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
-
-            * `payment`: Embed the payment related to this refund.
+        - description: This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
           schema:
-            type:
-              - string
-              - 'null'
+            type: string
+            enum:
+              - payment
+            x-enumDescriptions:
+              payment: Embed the payment related to this refund.
             example: payment
           name: embed
           in: query
         - name: profileId
-          description: |-
-            The identifier referring to the [profile](get-profile) you wish to retrieve refunds for.
-
-            Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
-
-            To retrieve all refunds across the organization, use an organization-level API credential and omit the `profileId` parameter.
+          description: The identifier referring to the [profile](get-profile) you wish to retrieve refunds for. Most API credentials are linked to a single profile. In these cases the `profileId` is already implied. To retrieve all refunds across the organization, use an organization-level API credential and omit the `profileId` parameter.
           in: query
           schema:
             type: string
-            example: pfl_QkEhN94Ba
+            example: pfl_5B8cwPMGnU
         - name: testmode
           description: |-
             Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -27711,6 +27856,7 @@ paths:
                         type: array
                         items:
                           type: object
+                          properties: *ref_44
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -28154,7 +28300,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_83
+                properties: &ref_84
                   resource:
                     type: string
                     description: Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this endpoint.
@@ -30884,7 +31030,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_84
+                properties: &ref_85
                   resource:
                     type: string
                     description: Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
@@ -34319,7 +34465,7 @@ paths:
         description: Provide the ID of the related subscription.
         in: path
         required: true
-        schema: &ref_60
+        schema: &ref_61
           type: string
           example: sub_rVKGtNd6s3
     get:
@@ -34594,6 +34740,12 @@ components:
       schema:
         type: string
         example: voucher
+    parent-refund-id:
+      name: refundId
+      description: Provide the ID of the related refund.
+      in: path
+      required: true
+      schema: *ref_60
     parent-customer-id:
       name: customerId
       description: Provide the ID of the related customer.
@@ -34605,7 +34757,7 @@ components:
       description: Provide the ID of the related subscription.
       in: path
       required: true
-      schema: *ref_60
+      schema: *ref_61
   schemas:
     list-count:
       type: integer
@@ -34652,10 +34804,10 @@ components:
       example: '2024-03-20T09:13:37.0Z'
     entity-balance:
       type: object
-      properties: *ref_61
+      properties: *ref_62
     entity-balance-report:
       type: object
-      properties: *ref_62
+      properties: *ref_63
     amount-nullable:
       type: *ref_21
       description: In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -34663,16 +34815,16 @@ components:
       properties: *ref_23
     entity-balance-transaction:
       type: object
-      properties: *ref_63
+      properties: *ref_64
     entity-settlement:
       type: object
-      properties: *ref_64
+      properties: *ref_65
     entity-invoice:
       type: object
-      properties: *ref_65
+      properties: *ref_66
     entity-permission:
       type: object
-      properties: *ref_66
+      properties: *ref_67
     locale:
       type: string
       description: |-
@@ -34694,7 +34846,7 @@ components:
       properties: *ref_17
     entity-capability-requirement:
       type: object
-      properties: *ref_67
+      properties: *ref_68
     entity-capability:
       type: object
       properties: *ref_18
@@ -34709,8 +34861,8 @@ components:
       description: Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
     order-line-item:
       type: object
-      required: *ref_68
-      properties: *ref_69
+      required: *ref_69
+      properties: *ref_70
     order-address:
       type: object
       required: *ref_24
@@ -34734,71 +34886,63 @@ components:
         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
       writeOnly: true
       default: false
+    orderToken:
+      type: string
+      example: ord_5B8cwPMGnU
     entity-shipment:
       type: object
       properties: *ref_33
     paymentToken:
       type: string
-      pattern: ^(tr)_([A-Za-z0-9]{10,29})$
-      example: tr_5B8cwPMGnU6qLbRvo7qEZo
+      example: tr_5B8cwPMGnU
     recurring-line-item:
       type: object
-      required: *ref_70
-      properties: *ref_71
+      required: *ref_71
+      properties: *ref_72
     payment-line-item:
       type: object
-      required: *ref_72
-      properties: *ref_73
+      required: *ref_73
+      properties: *ref_74
     entity-shopper-address:
       type: object
       properties: *ref_35
     routeToken:
       type: string
-      pattern: ^(rt)_([A-Za-z0-9]{10,29})$
-      example: rt_5B8cwPMGnU6qLbRvo7qEZo
+      example: rt_5B8cwPMGnU
     entity-payment-route:
       type: object
-      properties: *ref_74
+      properties: *ref_75
     subscriptionToken:
       type: string
-      pattern: ^(sub)_([A-Za-z0-9]{9,28})$
-      example: sub_5B8cwPMGnU6qLbRvo7qEZo
+      example: sub_5B8cwPMGnU
     mandateToken:
       type: string
-      pattern: ^(mdt)_([A-Za-z0-9]{9,28})$
-      example: mdt_5B8cwPMGnU6qLbRvo7qEZo
+      example: mdt_5B8cwPMGnU
     customerToken:
       type: string
-      pattern: ^(cst)_([A-Za-z0-9]{9,28})$
-      example: cst_5B8cwPMGnU6qLbRvo7qEZo
+      example: cst_5B8cwPMGnU
     profileToken:
       type: string
-      pattern: ^(pfl)_([A-Za-z0-9]{9,28})$
-      example: pfl_5B8cwPMGnU6qLbRvo7qEZo
+      example: pfl_5B8cwPMGnU
     settlementToken:
       type: string
-      pattern: ^(stl)_([A-Za-z0-9]{9,28})$
-      example: stl_5B8cwPMGnU6qLbRvo7qEZo
-    orderToken:
-      type: string
-      pattern: ^(ord)_([A-Za-z0-9]{9,28})$
-      example: ord_5B8cwPMGnU6qLbRvo7qEZo
+      example: stl_5B8cwPMGnU
     status-reason:
-      type: *ref_75
+      type: *ref_76
       description: |-
         This object offers details about the status of a payment. Currently it is only available for point-of-sale payments.
 
         You can find more information about the possible values of this object on [this page](status-reasons).**
       readOnly: true
-      required: *ref_76
-      properties: *ref_77
+      required: *ref_77
+      properties: *ref_78
     entity-payment:
       type: object
       properties: *ref_37
     payment-methods:
       type: string
       example: ideal
-      enum: *ref_78
+      enum: *ref_79
     sequence-type:
       type: string
       enum:
@@ -34821,21 +34965,30 @@ components:
       properties: *ref_41
     giftcard:
       type: object
-      required: *ref_79
-      properties: *ref_80
+      required: *ref_80
+      properties: *ref_81
     voucher:
       type: object
-      required: *ref_81
-      properties: *ref_82
+      required: *ref_82
+      properties: *ref_83
+    refundToken:
+      type: string
+      example: re_5B8cwPMGnU
+    organizationToken:
+      type: string
+      example: org_1234567
     entity-refund:
       type: object
       properties: *ref_44
+    orderlineToken:
+      type: string
+      example: odl_5B8cwPMGnU
     entity-order-refund:
       type: object
       properties: *ref_46
     entity-chargeback:
       type: object
-      properties: *ref_83
+      properties: *ref_84
     entity-capture:
       type: object
       properties: *ref_48
@@ -34844,7 +34997,7 @@ components:
       properties: *ref_50
     entity-terminal:
       type: object
-      properties: *ref_84
+      properties: *ref_85
     entity-route:
       type: object
       properties: *ref_52
@@ -34866,7 +35019,7 @@ components:
       content: *ref_7
     422-mandatory-owner:
       description: The request contains issues. For example, if the `owner` field is missing.
-      content: *ref_85
+      content: *ref_86
   examples:
     get-profile:
       summary: The profile object
@@ -34882,7 +35035,7 @@ components:
       value: *ref_38
     cancel-payment:
       summary: The canceled payment object
-      value: *ref_86
+      value: *ref_87
     get-method:
       summary: The payment method object
       value: *ref_42
