@@ -447,7 +447,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_64
+                properties: &ref_65
                   resource:
                     type: string
                     description: Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
@@ -855,7 +855,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_65
+                properties: &ref_66
                   resource:
                     type: string
                     description: Indicates the response contains a balance report object. Will always contain the string `balance-report` for this endpoint.
@@ -1761,7 +1761,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_66
+                          properties: &ref_67
                             resource:
                               type: string
                               description: Indicates the response contains a balance transaction object. Will always contain the string `balance_transaction` for this endpoint.
@@ -2759,7 +2759,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_67
+                properties: &ref_68
                   resource:
                     type: string
                     description: Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
@@ -4548,7 +4548,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_68
+                properties: &ref_69
                   resource:
                     type: string
                     description: Indicates that the response contains an invoice object. Will always contain the string `invoice` for this endpoint.
@@ -5117,7 +5117,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_69
+                properties: &ref_70
                   resource:
                     type: string
                     description: Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
@@ -7127,7 +7127,7 @@ paths:
                               type: array
                               items:
                                 type: object
-                                properties: &ref_70
+                                properties: &ref_71
                                   id:
                                     type: string
                                     description: The name of this requirement, referring to the task to be fulfilled by the organization to enable or re-enable the capability. The name is unique among other requirements of the same capability.
@@ -7881,7 +7881,7 @@ paths:
           content: *ref_7
         '422':
           description: The request contains issues. For example, if the `owner` field is missing.
-          content: &ref_87
+          content: &ref_88
             application/hal+json:
               schema:
                 type: object
@@ -8038,12 +8038,12 @@ paths:
                     All lines must have the same currency as the payment.
                   items:
                     type: object
-                    required: &ref_71
+                    required: &ref_72
                       - name
                       - quantity
                       - unitPrice
                       - totalAmount
-                    properties: &ref_72
+                    properties: &ref_73
                       resource:
                         type: string
                         description: Indicates the response contains an order line object. Will always contain the string `orderline`.
@@ -19162,12 +19162,12 @@ paths:
                     Required for payment method `voucher`.
                   items:
                     type: object
-                    required: &ref_75
+                    required: &ref_76
                       - description
                       - quantity
                       - unitPrice
                       - totalAmount
-                    properties: &ref_76
+                    properties: &ref_77
                       type:
                         type: string
                         description: |-
@@ -19209,9 +19209,9 @@ paths:
                       recurring:
                         description: The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
                         type: object
-                        required: &ref_73
+                        required: &ref_74
                           - interval
-                        properties: &ref_74
+                        properties: &ref_75
                           description:
                             type: string
                             description: A description of the recurring item. If not present, the main description of the item will be used.
@@ -19523,7 +19523,7 @@ paths:
                     If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee` parameter.
                   items:
                     type: object
-                    properties: &ref_77
+                    properties: &ref_78
                       resource:
                         type: string
                         description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -19661,7 +19661,7 @@ paths:
                   readOnly: true
                   example: open
                 statusReason:
-                  type: &ref_78
+                  type: &ref_79
                     - object
                     - 'null'
                   description: |-
@@ -19669,10 +19669,10 @@ paths:
 
                     You can find more information about the possible values of this object on [this page](status-reasons).**
                   readOnly: true
-                  required: &ref_79
+                  required: &ref_80
                     - code
                     - message
-                  properties: &ref_80
+                  properties: &ref_81
                     code:
                       type: string
                       description: A machine-readable code that indicates the reason for the payment's status.
@@ -22939,7 +22939,7 @@ paths:
                     - 'null'
                   description: Can be updated while no payment method has been chosen yet.
                   example: ideal
-                  enum: &ref_81
+                  enum: &ref_82
                     - alma
                     - applepay
                     - bacs
@@ -23252,7 +23252,7 @@ paths:
               examples:
                 cancel-payment-200-1:
                   summary: The canceled payment object
-                  value: &ref_88
+                  value: &ref_89
                     resource: payment
                     id: tr_WDqYK6vllg
                     mode: live
@@ -26113,13 +26113,13 @@ paths:
               schema:
                 oneOf:
                   - type: object
-                    required: &ref_82
+                    required: &ref_83
                       - resource
                       - id
                       - description
                       - status
                       - _links
-                    properties: &ref_83
+                    properties: &ref_84
                       resource:
                         type: string
                         description: Indicates the response contains a payment method issuer object. Will always contain the string `issuer` for this endpoint.
@@ -26157,7 +26157,7 @@ paths:
                             properties: *ref_2
                         readOnly: true
                   - type: object
-                    required: &ref_84
+                    required: &ref_85
                       - resource
                       - id
                       - name
@@ -26165,7 +26165,7 @@ paths:
                       - status
                       - contractor
                       - _links
-                    properties: &ref_85
+                    properties: &ref_86
                       resource:
                         type: string
                         description: Indicates the response contains a payment method issuer object. Will always contain the string `issuer` for this endpoint.
@@ -28893,9 +28893,10 @@ paths:
                   readOnly: true
                   default: capture
                 id:
-                  type: string
                   description: 'The identifier uniquely referring to this capture. Example: `cpt_mNepDkEtco6ah3QNPUGYH`.'
                   readOnly: true
+                  type: string
+                  example: cpt_vytxeTZskVKR7C7WgdSP3d
                 mode:
                   type: string
                   description: |-
@@ -28908,6 +28909,7 @@ paths:
                   type: string
                   description: The description of the capture.
                   maxLength: 255
+                  example: 'Capture for cart #12345'
                 amount:
                   description: The amount captured. If no amount is provided, the full authorized amount is captured.
                   type: *ref_21
@@ -28928,26 +28930,30 @@ paths:
                     The capture's status.
 
                     Possible values: `pending` `succeeded` `failed`
+                  example: succeeded
                   readOnly: true
                 metadata:
                   oneOf: *ref_26
                   description: Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
                 paymentId:
-                  type: string
                   description: 'The unique identifier of the payment this capture was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.'
                   readOnly: true
+                  type: string
+                  example: tr_5B8cwPMGnU
                 shipmentId:
                   type:
                     - string
                     - 'null'
                   description: 'The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example: `shp_3wmsgCJN4U`.'
                   readOnly: true
+                  example: shp_5x4xQJDWGNcY3tKGL7X5J
                 settlementId:
                   type:
                     - string
                     - 'null'
                   description: The identifier referring to the settlement this capture was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the capture is not settled (yet).
                   readOnly: true
+                  example: stl_5B8cwPMGnU
                 createdAt:
                   type: string
                   description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -28969,6 +28975,10 @@ paths:
                       description: The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if not yet settled.
                       type: *ref_0
                       properties: *ref_1
+                    shipment:
+                      description: The API resource URL of the [shipment](get-shipment) this capture is associated with. Not present if it isn't associated with a shipment.
+                      type: *ref_0
+                      properties: *ref_1
                     documentation:
                       type: object
                       description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -28979,13 +28989,15 @@ paths:
           description: The newly created capture object. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
           content:
             application/hal+json:
-              schema: {}
+              schema:
+                type: object
+                properties: *ref_49
               examples:
                 get-capture-200-1:
                   summary: The capture object
                   value: &ref_50
                     resource: capture
-                    id: cpt_mNepDkEtco6ah3QNPUGYH
+                    id: cpt_vytxeTZskVKR7C7WgdSP3d
                     mode: live
                     description: 'Capture for cart #12345'
                     amount:
@@ -29008,7 +29020,7 @@ paths:
                   summary: Get capture
                   value:
                     resource: capture
-                    id: cpt_kv6nas
+                    id: cpt_vytxeTZskVKR7C7WgdSP3d
                     mode: test
                     amount:
                       value: '467.92'
@@ -29018,7 +29030,7 @@ paths:
                       currency: EUR
                     createdAt: '2021-06-03T11:50:58+00:00'
                     paymentId: tr_V9kqkGtyUH
-                    shipmentId: shp_gbgol1
+                    shipmentId: shp_5x4xQJDWGNcY3tKGL7X5J
                     _links:
                       self:
                         href: ...
@@ -29027,7 +29039,7 @@ paths:
                         href: https://api.mollie.com/v2/payments/tr_V9kqkGtyUH
                         type: application/hal+json
                       shipment:
-                        href: https://api.mollie.com/v2/orders/ord_uvpptr/shipments/shp_gbgol1
+                        href: https://api.mollie.com/v2/orders/ord_uvpptr/shipments/shp_5x4xQJDWGNcY3tKGL7X5J
                         type: application/hal+json
                       documentation:
                         href: ...
@@ -29133,24 +29145,23 @@ paths:
         >
         > [Access token with **payments.read**](/reference/authentication)
       parameters:
-        - schema:
-            type: string
-            example: cpt_mNepDkEtco6ah3QNPUGYH
-          name: from
-          description: Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+        - name: from
           in: query
+          description: Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+          schema:
+            type: string
+            example: cpt_vytxeTZskVKR7C7WgdSP3d
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
           schema: *ref_9
-        - description: |-
-            This endpoint allows you to include additional information via the `include` query string parameter.
-
-            * `payment`: Include the payments that the captures were created for.
+        - description: This endpoint allows you to include additional information via the `include` query string parameter.
           schema:
-            type:
-              - string
-              - 'null'
+            type: string
+            enum:
+              - payment
+            x-enumDescriptions:
+              payment: Include the payments that the captures were created for.
             example: payment
           name: include
           in: query
@@ -29163,7 +29174,7 @@ paths:
           schema: *ref_4
       responses:
         '200':
-          description: A list of capture objects. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
+          description: A list of capture objects.
           content:
             application/hal+json:
               schema:
@@ -29182,10 +29193,11 @@ paths:
                     type: object
                     properties:
                       captures:
-                        description: An array of capture objects. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
+                        description: An array of capture objects.
                         type: array
                         items:
                           type: object
+                          properties: *ref_49
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -29198,7 +29210,7 @@ paths:
                     _embedded:
                       captures:
                         - resource: capture
-                          id: cpt_mNepDkEtco6ah3QNPUGYH
+                          id: cpt_vytxeTZskVKR7C7WgdSP3d
                           mode: live
                           description: 'Capture for cart #12345'
                           amount:
@@ -29224,7 +29236,7 @@ paths:
                         type: application/hal+json
                       previous: null
                       next:
-                        href: https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo/captures?from=cpt_Sy3NzD2TYuQtUaxNyu8aH&limit=5
+                        href: https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo/captures?from=cpt_vytxeTZskVKR7C7WgdSP3d&limit=5
                         type: application/hal+json
                       documentation:
                         href: ...
@@ -29235,7 +29247,7 @@ paths:
                     _embedded:
                       captures:
                         - resource: capture
-                          id: cpt_kv6nas
+                          id: cpt_vytxeTZskVKR7C7WgdSP3d
                           mode: test
                           amount:
                             value: '467.92'
@@ -29245,7 +29257,7 @@ paths:
                             currency: EUR
                           createdAt: '2021-06-03T11:50:58+00:00'
                           paymentId: tr_V9kqkGtyUH
-                          shipmentId: shp_gbgol1
+                          shipmentId: shp_5x4xQJDWGNcY3tKGL7X5J
                           _links:
                             self:
                               href: ...
@@ -29254,7 +29266,7 @@ paths:
                               href: https://api.mollie.com/v2/payments/tr_V9kqkGtyUH
                               type: application/hal+json
                             shipment:
-                              href: https://api.mollie.com/v2/orders/ord_uvpptr/shipments/shp_gbgol1
+                              href: https://api.mollie.com/v2/orders/ord_uvpptr/shipments/shp_5x4xQJDWGNcY3tKGL7X5J
                               type: application/hal+json
                     count: 1
                     _links:
@@ -29316,20 +29328,20 @@ paths:
             install: gem install mollie-api-ruby
       x-speakeasy-name-override: list
       x-speakeasy-group: captures
-  /payments/{paymentId}/captures/{id}:
+  /payments/{paymentId}/captures/{captureId}:
     parameters:
       - name: paymentId
         description: Provide the ID of the related payment.
         in: path
         required: true
         schema: *ref_39
-      - schema:
-          type: string
-          example: cpt_mNepDkEtco6ah3QNPUGYH
-        name: id
-        description: Provide the ID of the item you want to perform this operation on.
+      - name: captureId
+        description: Provide the ID of the related capture.
         in: path
         required: true
+        schema: &ref_63
+          type: string
+          example: cpt_gVMhHKqSSRYJyPsuoPNFH
     get:
       summary: Get capture
       tags:
@@ -29348,14 +29360,13 @@ paths:
         >
         > [Access token with **payments.read**](/reference/authentication)
       parameters:
-        - description: |-
-            This endpoint allows you to include additional information via the `include` query string parameter.
-
-            * `payment`: Include the payment this capture was created for.
+        - description: This endpoint allows you to include additional information via the `include` query string parameter.
           schema:
-            type:
-              - string
-              - 'null'
+            type: string
+            enum:
+              - payment
+            x-enumDescriptions:
+              payment: Include the payment this capture was created for.
             example: payment
           name: include
           in: query
@@ -29382,7 +29393,7 @@ paths:
                   summary: Get capture
                   value:
                     resource: capture
-                    id: cpt_kv6nas
+                    id: cpt_vytxeTZskVKR7C7WgdSP3d
                     mode: test
                     amount:
                       value: '467.92'
@@ -29392,7 +29403,7 @@ paths:
                       currency: EUR
                     createdAt: '2021-06-03T11:50:58+00:00'
                     paymentId: tr_V9kqkGtyUH
-                    shipmentId: shp_gbgol1
+                    shipmentId: shp_5x4xQJDWGNcY3tKGL7X5J
                     _links:
                       self:
                         href: ...
@@ -29401,7 +29412,7 @@ paths:
                         href: https://api.mollie.com/v2/payments/tr_V9kqkGtyUH
                         type: application/hal+json
                       shipment:
-                        href: https://api.mollie.com/v2/orders/ord_uvpptr/shipments/shp_gbgol1
+                        href: https://api.mollie.com/v2/orders/ord_uvpptr/shipments/shp_5x4xQJDWGNcY3tKGL7X5J
                         type: application/hal+json
                       documentation:
                         href: ...
@@ -29413,7 +29424,7 @@ paths:
         code-samples:
           - language: shell
             code: |-
-              curl -X GET https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo/captures/cpt_mNepDkEtco6ah3QNPUGYH \
+              curl -X GET https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo/captures/cpt_vytxeTZskVKR7C7WgdSP3d \
                   -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
           - language: php
             code: |-
@@ -29422,14 +29433,14 @@ paths:
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
               $payment = $mollie->payments->get("tr_5B8cwPMGnU6qLbRvo7qEZo");
-              $capture = $payment->getCapture("cpt_mNepDkEtco6ah3QNPUGYH");
+              $capture = $payment->getCapture("cpt_vytxeTZskVKR7C7WgdSP3d");
             install: composer require mollie/mollie-api-php
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
               const mollieClient = createMollieClient({ apiKey: 'live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
 
-              const capture = await mollieClient.paymentCaptures.get('cpt_mNepDkEtco6ah3QNPUGYH', {
+              const capture = await mollieClient.paymentCaptures.get('cpt_vytxeTZskVKR7C7WgdSP3d', {
                 paymentId: 'tr_5B8cwPMGnU6qLbRvo7qEZo'
               });
             install: npm install @mollie/api-client
@@ -29441,7 +29452,7 @@ paths:
               mollie_client.set_api_key("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
 
               payment = mollie_client.payments.get("tr_5B8cwPMGnU6qLbRvo7qEZo")
-              capture = payment.captures.get("cpt_mNepDkEtco6ah3QNPUGYH")
+              capture = payment.captures.get("cpt_vytxeTZskVKR7C7WgdSP3d")
             install: pip install mollie-api-python
           - language: ruby
             code: |-
@@ -29452,7 +29463,7 @@ paths:
               end
 
               capture = Mollie::Payment::Capture.get(
-                'cpt_mNepDkEtco6ah3QNPUGYH',
+                'cpt_vytxeTZskVKR7C7WgdSP3d',
                 payment_id: 'tr_5B8cwPMGnU6qLbRvo7qEZo'
               )
             install: gem install mollie-api-ruby
@@ -31044,7 +31055,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_86
+                properties: &ref_87
                   resource:
                     type: string
                     description: Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
@@ -34479,7 +34490,7 @@ paths:
         description: Provide the ID of the related subscription.
         in: path
         required: true
-        schema: &ref_63
+        schema: &ref_64
           type: string
           example: sub_rVKGtNd6s3
     get:
@@ -34766,6 +34777,12 @@ components:
       in: path
       required: true
       schema: *ref_62
+    parent-capture-id:
+      name: captureId
+      description: Provide the ID of the related capture.
+      in: path
+      required: true
+      schema: *ref_63
     parent-customer-id:
       name: customerId
       description: Provide the ID of the related customer.
@@ -34777,7 +34794,7 @@ components:
       description: Provide the ID of the related subscription.
       in: path
       required: true
-      schema: *ref_63
+      schema: *ref_64
   schemas:
     list-count:
       type: integer
@@ -34824,10 +34841,10 @@ components:
       example: '2024-03-20T09:13:37.0Z'
     entity-balance:
       type: object
-      properties: *ref_64
+      properties: *ref_65
     entity-balance-report:
       type: object
-      properties: *ref_65
+      properties: *ref_66
     amount-nullable:
       type: *ref_21
       description: In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -34835,16 +34852,16 @@ components:
       properties: *ref_23
     entity-balance-transaction:
       type: object
-      properties: *ref_66
+      properties: *ref_67
     entity-settlement:
       type: object
-      properties: *ref_67
+      properties: *ref_68
     entity-invoice:
       type: object
-      properties: *ref_68
+      properties: *ref_69
     entity-permission:
       type: object
-      properties: *ref_69
+      properties: *ref_70
     locale:
       type: string
       description: |-
@@ -34866,7 +34883,7 @@ components:
       properties: *ref_17
     entity-capability-requirement:
       type: object
-      properties: *ref_70
+      properties: *ref_71
     entity-capability:
       type: object
       properties: *ref_18
@@ -34881,8 +34898,8 @@ components:
       description: Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
     order-line-item:
       type: object
-      required: *ref_71
-      properties: *ref_72
+      required: *ref_72
+      properties: *ref_73
     order-address:
       type: object
       required: *ref_24
@@ -34917,12 +34934,12 @@ components:
       example: tr_5B8cwPMGnU
     recurring-line-item:
       type: object
-      required: *ref_73
-      properties: *ref_74
+      required: *ref_74
+      properties: *ref_75
     payment-line-item:
       type: object
-      required: *ref_75
-      properties: *ref_76
+      required: *ref_76
+      properties: *ref_77
     entity-shopper-address:
       type: object
       properties: *ref_35
@@ -34931,7 +34948,7 @@ components:
       example: rt_5B8cwPMGnU
     entity-payment-route:
       type: object
-      properties: *ref_77
+      properties: *ref_78
     subscriptionToken:
       type: string
       example: sub_5B8cwPMGnU
@@ -34948,21 +34965,21 @@ components:
       type: string
       example: stl_5B8cwPMGnU
     status-reason:
-      type: *ref_78
+      type: *ref_79
       description: |-
         This object offers details about the status of a payment. Currently it is only available for point-of-sale payments.
 
         You can find more information about the possible values of this object on [this page](status-reasons).**
       readOnly: true
-      required: *ref_79
-      properties: *ref_80
+      required: *ref_80
+      properties: *ref_81
     entity-payment:
       type: object
       properties: *ref_37
     payment-methods:
       type: string
       example: ideal
-      enum: *ref_81
+      enum: *ref_82
     sequence-type:
       type: string
       enum:
@@ -34985,12 +35002,12 @@ components:
       properties: *ref_41
     giftcard:
       type: object
-      required: *ref_82
-      properties: *ref_83
+      required: *ref_83
+      properties: *ref_84
     voucher:
       type: object
-      required: *ref_84
-      properties: *ref_85
+      required: *ref_85
+      properties: *ref_86
     refundToken:
       type: string
       example: re_5B8cwPMGnU
@@ -35012,6 +35029,12 @@ components:
     entity-chargeback:
       type: object
       properties: *ref_47
+    captureToken:
+      type: string
+      example: cpt_vytxeTZskVKR7C7WgdSP3d
+    shipmentToken:
+      type: string
+      example: shp_5x4xQJDWGNcY3tKGL7X5J
     entity-capture:
       type: object
       properties: *ref_49
@@ -35020,7 +35043,7 @@ components:
       properties: *ref_51
     entity-terminal:
       type: object
-      properties: *ref_86
+      properties: *ref_87
     entity-route:
       type: object
       properties: *ref_53
@@ -35042,7 +35065,7 @@ components:
       content: *ref_7
     422-mandatory-owner:
       description: The request contains issues. For example, if the `owner` field is missing.
-      content: *ref_87
+      content: *ref_88
   examples:
     get-profile:
       summary: The profile object
@@ -35058,7 +35081,7 @@ components:
       value: *ref_38
     cancel-payment:
       summary: The canceled payment object
-      value: *ref_88
+      value: *ref_89
     get-method:
       summary: The payment method object
       value: *ref_42
