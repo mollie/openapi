@@ -16901,6 +16901,7 @@ paths:
                     - 'null'
                   description: The products or services offered by the profile's website or application.
                   example: My website description
+                  maxLength: 500
                 countriesOfActivity:
                   type: array
                   description: A list of countries where you expect that the majority of the profile's customers reside, in ISO 3166-1 alpha-2 format.
@@ -17467,6 +17468,7 @@ paths:
                     - 'null'
                   description: The products or services offered by the profile's website or application.
                   example: My website description
+                  maxLength: 500
                 countriesOfActivity:
                   type:
                     - array
