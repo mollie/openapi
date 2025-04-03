@@ -243,12 +243,12 @@ paths:
                     Required for payment method `voucher`.
                   items:
                     type: object
-                    required: &ref_57
+                    required: &ref_62
                       - description
                       - quantity
                       - unitPrice
                       - totalAmount
-                    properties: &ref_58
+                    properties: &ref_63
                       type:
                         type: string
                         description: |-
@@ -290,9 +290,9 @@ paths:
                       recurring:
                         description: The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
                         type: object
-                        required: &ref_55
+                        required: &ref_60
                           - interval
-                        properties: &ref_56
+                        properties: &ref_61
                           description:
                             type: string
                             description: A description of the recurring item. If not present, the main description of the item will be used.
@@ -611,7 +611,7 @@ paths:
                     If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee` parameter.
                   items:
                     type: object
-                    properties: &ref_59
+                    properties: &ref_64
                       resource:
                         type: string
                         description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -757,7 +757,7 @@ paths:
                   readOnly: true
                   example: open
                 statusReason:
-                  type: &ref_60
+                  type: &ref_65
                     - object
                     - 'null'
                   description: |-
@@ -765,10 +765,10 @@ paths:
 
                     You can find more information about the possible values of this object on [this page](status-reasons).**
                   readOnly: true
-                  required: &ref_61
+                  required: &ref_66
                     - code
                     - message
-                  properties: &ref_62
+                  properties: &ref_67
                     code:
                       type: string
                       description: A machine-readable code that indicates the reason for the payment's status.
@@ -1456,9 +1456,11 @@ paths:
                           href:
                             type: string
                             default: https://docs.mollie.com/errors
+                            example: https://docs.mollie.com/errors
                           type:
                             type: string
                             default: text/html
+                            example: text/html
                         type: object
               example:
                 status: 422
@@ -4139,7 +4141,7 @@ paths:
                     - 'null'
                   description: Can be updated while no payment method has been chosen yet.
                   example: ideal
-                  enum: &ref_63
+                  enum: &ref_68
                     - alma
                     - applepay
                     - bacs
@@ -4454,7 +4456,7 @@ paths:
               examples:
                 cancel-payment-200-1:
                   summary: The canceled payment object
-                  value: &ref_84
+                  value: &ref_90
                     resource: payment
                     id: tr_WDqYK6vllg
                     mode: live
@@ -7315,13 +7317,13 @@ paths:
               schema:
                 oneOf:
                   - type: object
-                    required: &ref_65
+                    required: &ref_70
                       - resource
                       - id
                       - description
                       - status
                       - _links
-                    properties: &ref_66
+                    properties: &ref_71
                       resource:
                         type: string
                         description: Indicates the response contains a payment method issuer object. Will always contain the string `issuer` for this endpoint.
@@ -7359,7 +7361,7 @@ paths:
                             properties: *ref_6
                         readOnly: true
                   - type: object
-                    required: &ref_67
+                    required: &ref_72
                       - resource
                       - id
                       - name
@@ -7367,7 +7369,7 @@ paths:
                       - status
                       - contractor
                       - _links
-                    properties: &ref_68
+                    properties: &ref_73
                       resource:
                         type: string
                         description: Indicates the response contains a payment method issuer object. Will always contain the string `issuer` for this endpoint.
@@ -8145,7 +8147,7 @@ paths:
         description: Provide the ID of the related refund.
         in: path
         required: true
-        schema: &ref_78
+        schema: &ref_84
           type: string
           example: re_5B8cwPMGnU
     get:
@@ -8340,7 +8342,7 @@ paths:
         description: Provide the ID of the related order.
         in: path
         required: true
-        schema: &ref_79
+        schema: &ref_85
           type: string
           example: ord_5B8cwPMGnU
     post:
@@ -9544,7 +9546,7 @@ paths:
         description: Provide the ID of the related chargeback.
         in: path
         required: true
-        schema: &ref_80
+        schema: &ref_86
           type: string
           example: chb_xFzwUN4ci8HAmSGUACS4J
     get:
@@ -10543,7 +10545,7 @@ paths:
         description: Provide the ID of the related capture.
         in: path
         required: true
-        schema: &ref_81
+        schema: &ref_87
           type: string
           example: cpt_gVMhHKqSSRYJyPsuoPNFH
     get:
@@ -10736,7 +10738,7 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
-                properties: &ref_69 {}
+                properties: &ref_74 {}
               examples:
                 request-apple-pay-payment-session-201-1:
                   summary: The Apple Pay payment session object
@@ -10965,7 +10967,7 @@ paths:
                       - twint
                 sequenceType:
                   type: string
-                  enum: &ref_64
+                  enum: &ref_69
                     - oneoff
                     - first
                     - recurring
@@ -12276,7 +12278,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_70
+                properties: &ref_75
                   resource:
                     type: string
                     description: Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
@@ -15711,7 +15713,7 @@ paths:
         description: Provide the ID of the related subscription.
         in: path
         required: true
-        schema: &ref_82
+        schema: &ref_88
           type: string
           example: sub_rVKGtNd6s3
     get:
@@ -16251,7 +16253,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_71
+                properties: &ref_76
                   resource:
                     type: string
                     description: Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
@@ -18263,7 +18265,7 @@ paths:
                               type: array
                               items:
                                 type: object
-                                properties: &ref_72
+                                properties: &ref_77
                                   id:
                                     type: string
                                     description: The name of this requirement, referring to the task to be fulfilled by the organization to enable or re-enable the capability. The name is unique among other requirements of the same capability.
@@ -19017,7 +19019,7 @@ paths:
           content: *ref_14
         '422':
           description: The request contains issues. For example, if the `owner` field is missing.
-          content: &ref_83
+          content: &ref_89
             application/hal+json:
               schema:
                 type: object
@@ -19168,6 +19170,159 @@ paths:
                         type: array
                         items:
                           type: object
+                          properties: &ref_53
+                            resource:
+                              type: string
+                              description: Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
+                              readOnly: true
+                              default: balance
+                              example: balance
+                            id:
+                              description: The identifier uniquely referring to this balance.
+                              readOnly: true
+                              type: string
+                              example: bal_gVMhHKqSSRYJyPsuoPNFH
+                            mode:
+                              type: string
+                              description: |-
+                                Whether this entity was created in live mode or in test mode.
+
+                                Possible values: `live` `test`
+                              readOnly: true
+                              example: live
+                            createdAt:
+                              type: string
+                              description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+                              readOnly: true
+                              example: '2024-03-20T09:13:37.0Z'
+                            currency:
+                              description: The balance's ISO 4217 currency code.
+                              readOnly: true
+                              type: string
+                              enum: &ref_78
+                                - EUR
+                                - GBP
+                                - CHF
+                                - DKK
+                                - NOK
+                                - PLN
+                                - SEK
+                                - USD
+                                - CZK
+                                - HUF
+                                - AUD
+                                - CAD
+                              x-enumDescriptions: &ref_57
+                                EUR: Euro
+                                GBP: British Pound
+                                CHF: Swiss Franc
+                                DKK: Danish Krone
+                                NOK: Norwegian Krone
+                                PLN: Polish złoty
+                                SEK: Swedish Krona
+                                USD: United States Dollar
+                                CZK: Czech Koruna
+                                HUF: Hungarian Forint
+                                AUD: Australian Dollar
+                                CAD: Canadian Dollar
+                              example: EUR
+                            description:
+                              type: string
+                              description: The description or name of the balance. Can be used to denote the purpose of the balance.
+                              readOnly: true
+                              example: Balance description
+                            status:
+                              type: string
+                              description: |-
+                                The status of the balance.
+
+                                Possible values: `active` `inactive`
+                              x-enumDescriptions:
+                                active: The balance is operational and ready to be used.
+                                inactive: The account is being validated by our team, or the balance has been blocked. Contact us for more information.
+                              readOnly: true
+                              example: active
+                            transferFrequency:
+                              type: string
+                              description: |-
+                                The frequency with which the available amount on the balance will be settled to the configured transfer destination.
+
+                                Settlements created during weekends or on bank holidays will take place on the next business day.
+
+                                Possible values: `daily` `every-monday` `every-tuesday` `every-wednesday` `every-thursday` `every-friday` `monthly` `never`
+                              x-enumDescriptions:
+                                daily: Every business day
+                                every-monday: Every Monday
+                                every-tuesday: Every Tuesday
+                                every-wednesday: Every Wednesday
+                                every-thursday: Every Thursday
+                                every-friday: Every Friday
+                                monthly: On the first of the month
+                                never: Automatic settlements are paused for this balance
+                              readOnly: true
+                              example: daily
+                            transferThreshold:
+                              description: The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds this threshold, the complete balance will be paid out to the transfer destination according to the configured frequency.
+                              readOnly: true
+                              type: object
+                              required: *ref_3
+                              properties: *ref_4
+                            transferReference:
+                              type:
+                                - string
+                                - 'null'
+                              description: The transfer reference set to be included in all the transfers for this balance.
+                              example: RF12-3456-7890-1234
+                              readOnly: true
+                            transferDestination:
+                              type:
+                                - object
+                                - 'null'
+                              description: The destination where the available amount will be automatically transferred to according to the configured transfer frequency.
+                              properties:
+                                type:
+                                  type: string
+                                  description: |-
+                                    The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
+
+                                    * `bank-account` — Transfer the balance amount to an external bank account
+
+                                    Possible values: `bank-account`
+                                  example: bank-account
+                                bankAccount:
+                                  type: string
+                                  description: The configured bank account number of the beneficiary the balance amount is to be transferred to.
+                                  example: 123456
+                                beneficiaryName:
+                                  type: string
+                                  description: The full name of the beneficiary the balance amount is to be transferred to.
+                                  example: John Doe
+                              readOnly: true
+                            availableAmount:
+                              description: The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
+                              readOnly: true
+                              type: object
+                              required: *ref_3
+                              properties: *ref_4
+                            pendingAmount:
+                              description: The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a few days to clear.
+                              readOnly: true
+                              type: object
+                              required: *ref_3
+                              properties: *ref_4
+                            _links:
+                              type: object
+                              description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                              properties:
+                                self:
+                                  type: object
+                                  description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                                  properties: *ref_6
+                                documentation:
+                                  type: object
+                                  description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                                  properties: *ref_6
+                              readOnly: true
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -19182,6 +19337,7 @@ paths:
                         - resource: balance
                           id: bal_gVMhHKqSSRYJyPsuoPNFH
                           mode: live
+                          createdAt: '2022-07-12T09:50:21+00:00'
                           currency: EUR
                           description: Primary balance
                           availableAmount:
@@ -19190,11 +19346,11 @@ paths:
                           pendingAmount:
                             currency: EUR
                             value: '0.00'
-                          transferFrequency: twice-a-month
+                          transferFrequency: daily
                           transferThreshold:
                             currency: EUR
                             value: '5.00'
-                          transferReference: Mollie settlement
+                          transferReference: RF12-3456-7890-1234
                           transferDestination:
                             type: bank-account
                             beneficiaryName: John Doe
@@ -19236,15 +19392,15 @@ paths:
                             value: '0.00'
                             currency: CHF
                           status: active
-                          transferFrequency: twice-a-week
+                          transferFrequency: monthly
                           transferThreshold:
                             value: '50.00'
                             currency: CHF
                           transferReference: null
                           transferDestination:
                             type: bank-account
-                            beneficiaryName: '***'
-                            bankAccount: '***'
+                            beneficiaryName: John Doe
+                            bankAccount: NL55INGB0000000000
                           _links:
                             self:
                               href: ...
@@ -19268,7 +19424,7 @@ paths:
                           transferReference: null
                           transferDestination:
                             type: bank-account
-                            beneficiaryName: '***'
+                            beneficiaryName: John Doe
                             bankAccount: '***'
                           _links:
                             self:
@@ -19381,123 +19537,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_73
-                  resource:
-                    type: string
-                    description: Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
-                    readOnly: true
-                    default: balance
-                  id:
-                    type: string
-                    description: 'The identifier uniquely referring to this balance. Example: `bal_gVMhHKqSSRYJyPsuoPNFH`.'
-                    readOnly: true
-                  mode:
-                    type: string
-                    description: |-
-                      Whether this entity was created in live mode or in test mode.
-
-                      Possible values: `live` `test`
-                    readOnly: true
-                    example: live
-                  currency:
-                    type: string
-                    description: The balance's ISO 4217 currency code.
-                    readOnly: true
-                  description:
-                    type: string
-                    description: The description or name of the balance. Can be used to denote the purpose of the balance.
-                    readOnly: true
-                  status:
-                    type: string
-                    description: |-
-                      The status of the balance.
-
-                      * `active` — The balance is operational and ready to be used.
-                      * `inactive` — The account is being validated by our team, or the balance has been blocked. Contact us for more information.
-
-                      Possible values: `active` `inactive`
-                    readOnly: true
-                  transferFrequency:
-                    type: string
-                    description: |-
-                      The frequency with which the available amount on the balance will be settled to the configured transfer destination.
-
-                      * `daily` — Every business day
-                      * `twice-a-week` — Every Tuesday and Friday
-                      * `every-monday` — Every Monday
-                      * `every-tuesday` — Every Tuesday
-                      * `every-wednesday` — Every Wednesday
-                      * `every-thursday` — Every Thursday
-                      * `every-friday` — Every Friday
-                      * `twice-a-month` — On the first and the fifteenth of the month
-                      * `monthly` — On the first of the month
-                      * `never` — Automatic settlements are paused for this balance
-
-                      Settlements created during weekends or on bank holidays will take place on the next business day.
-
-                      Possible values: `daily` `twice-a-week` `every-monday` `every-tuesday` `every-wednesday` `every-thursday` `every-friday` `twice-a-month` `monthly` `never`
-                    readOnly: true
-                  transferThreshold:
-                    description: The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds this threshold, the complete balance will be paid out to the transfer destination according to the configured frequency.
-                    readOnly: true
-                    type: object
-                    required: *ref_3
-                    properties: *ref_4
-                  transferReference:
-                    type:
-                      - string
-                      - 'null'
-                    description: The transfer reference set to be included in all the transfers for this balance.
-                    readOnly: true
-                  transferDestination:
-                    type: object
-                    description: The destination where the available amount will be automatically transferred to according to the configured transfer frequency.
-                    properties:
-                      type:
-                        type: string
-                        description: |-
-                          The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
-
-                          * `bank-account` — Transfer the balance amount to an external bank account
-
-                          Possible values: `bank-account`
-                      bankAccount:
-                        type: string
-                        description: The configured bank account number of the beneficiary the balance amount is to be transferred to.
-                      beneficiaryName:
-                        type: string
-                        description: The full name of the beneficiary the balance amount is to be transferred to.
-                    readOnly: true
-                  availableAmount:
-                    description: The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
-                    readOnly: true
-                    type: object
-                    required: *ref_3
-                    properties: *ref_4
-                  pendingAmount:
-                    description: The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a few days to clear.
-                    readOnly: true
-                    type: object
-                    required: *ref_3
-                    properties: *ref_4
-                  createdAt:
-                    type: string
-                    description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-                    readOnly: true
-                    example: '2024-03-20T09:13:37.0Z'
-                  _links:
-                    type: object
-                    description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-                    properties:
-                      self:
-                        type: object
-                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-                        properties: *ref_6
-                      documentation:
-                        type: object
-                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-                        properties: *ref_6
-                    readOnly: true
+                properties: *ref_53
               examples:
                 get-balance-200-1:
                   summary: The balance object
@@ -19505,6 +19545,7 @@ paths:
                     resource: balance
                     id: bal_gVMhHKqSSRYJyPsuoPNFH
                     mode: live
+                    createdAt: '2019-12-06T10:09:32+00:00'
                     currency: EUR
                     description: Primary balance
                     availableAmount:
@@ -19513,11 +19554,11 @@ paths:
                     pendingAmount:
                       currency: EUR
                       value: '0.00'
-                    transferFrequency: twice-a-month
+                    transferFrequency: daily
                     transferThreshold:
                       currency: EUR
                       value: '5.00'
-                    transferReference: Mollie settlement
+                    transferReference: RF12-3456-7890-1234
                     transferDestination:
                       type: bank-account
                       beneficiaryName: John Doe
@@ -19552,8 +19593,8 @@ paths:
                     transferReference: null
                     transferDestination:
                       type: bank-account
-                      beneficiaryName: '***'
-                      bankAccount: '***'
+                      beneficiaryName: John Doe
+                      bankAccount: NL55INGB0000000000
                     _links:
                       self:
                         href: ...
@@ -19656,8 +19697,8 @@ paths:
                     transferReference: null
                     transferDestination:
                       type: bank-account
-                      beneficiaryName: '***'
-                      bankAccount: '***'
+                      beneficiaryName: John Doe
+                      bankAccount: NL55INGB0000000000
                     _links:
                       self:
                         href: ...
@@ -19716,7 +19757,7 @@ paths:
         description: Provide the ID of the related balance.
         in: path
         required: true
-        schema: &ref_53
+        schema: &ref_56
           type: string
           example: bal_gVMhHKqSSRYJyPsuoPNFH
     get:
@@ -19779,24 +19820,29 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_74
+                properties: &ref_81
                   resource:
                     type: string
                     description: Indicates the response contains a balance report object. Will always contain the string `balance-report` for this endpoint.
                     readOnly: true
                     default: balance-report
+                    example: balance-report
                   balanceId:
-                    type: string
                     description: The ID of the balance this report is generated for.
+                    type: string
+                    example: bal_gVMhHKqSSRYJyPsuoPNFH
                   timeZone:
                     type: string
                     description: The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is supported.
+                    example: Europe/Amsterdam
                   from:
                     type: string
-                    description: The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 0:00:00 CET and onwards.
+                    description: The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00 CET and onwards.
+                    example: '2025-03-31'
                   until:
                     type: string
                     description: The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time. This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
+                    example: '2025-03-31'
                   grouping:
                     type: string
                     description: |-
@@ -19807,6 +19853,7 @@ paths:
                       Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates of the report.
 
                       Possible values: `status-balances` `transaction-categories` (default: `status-balances`)
+                    example: status-balances
                   totals:
                     type: object
                     description: |-
@@ -19820,13 +19867,319 @@ paths:
                       If grouping `transaction-categories` is chosen, the main grouping is as follows:
 
                       * `open` and `close` groups, each containing a `pending` and `available` sub-group
-                      * Transaction type groups such as `payments` or `refunds`, each containing a `pending`, `movedToAvailable`, and `immediatelyAvailable` sub-group
+                      * Transaction type groups such as `payments`, `refunds`, `chargebacks`, `capital`, `transfers`, `fee-prepayments`, `corrections`, `topups` each containing a `pending`, `movedToAvailable`, and `immediatelyAvailable` sub-group
 
                       Each sub-group typically has:
 
                       * An `amount` object containing the group's total amount
                       * A `count` integer if relevant (for example, counting the number of refunds)
                       * A `subtotals` array containing more sub-group objects if applicable
+                    properties:
+                      pendingBalance:
+                        type:
+                          - object
+                          - 'null'
+                        description: The pending balance. Only available if grouping is `status-balances`.
+                        properties:
+                          open:
+                            type: object
+                            properties: &ref_55
+                              amount:
+                                type: object
+                                description: In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+                                required: *ref_3
+                                properties: *ref_4
+                              subtotals:
+                                type:
+                                  - array
+                                  - 'null'
+                                items:
+                                  type: object
+                                  properties: &ref_80
+                                    sub-totals:
+                                      type:
+                                        - array
+                                        - 'null'
+                                      items:
+                                        type: object
+                                        properties: &ref_79
+                                          count:
+                                            type: integer
+                                            description: Number of transactions of this type
+                                            example: 50
+                                          method:
+                                            description: Payment type of the transactions
+                                            type: &ref_54
+                                              - string
+                                              - 'null'
+                                            example: creditcard
+                                          cardIssuer:
+                                            type:
+                                              - string
+                                              - 'null'
+                                            description: |-
+                                              In case of payments transactions with card, the card issuer will be available
+
+                                              Possible values: `amex` `maestro` `carte-bancaire` `other`
+                                            example: amex
+                                          cardAudience:
+                                            type:
+                                              - string
+                                              - 'null'
+                                            description: |-
+                                              In case of payments trnsactions with card, the card audience will be available.
+
+                                              Possible values: `corporate` `other`
+                                            example: other
+                                          cardRegion:
+                                            type:
+                                              - string
+                                              - 'null'
+                                            description: |-
+                                              In case of payments transactions with card, the card region will be available.
+
+                                              Possible values: `intra-eea` `intra-eu` `domestic` `other`
+                                            example: domestic
+                                          feeType:
+                                            type:
+                                              - string
+                                              - 'null'
+                                            description: |-
+                                              Present when the transaction represents a fee.
+
+                                              Possible values: `payment-fee` `direct-debit-failure-fee` `unauthorized-direct-debit-fee` `bank-charged-direct-debit-failure-fee` `partner-commission` `application-fee` `capture-fee` `refund-fee` `chargeback-fee` `payment-notification-fee` `transfer-notification-fee` `payout-fee` `fee-discount` `fee-reimbursement` `platform-volume-fee` `platform-connected-organizations-fee` `balance-charge-fee` `3ds-authentication-attempt-fee` `terminal-monthly-fee` `acceptance-risk-fee` `top-up-fee` `payment-gateway-fee` `mastercard-specialty-merchant-program-processing-fee` `mastercard-specialty-merchant-program-registration-fee` `visa-integrity-risk-program-processing-fee` `visa-integrity-risk-program-registration-fee` `minimum-invoice-amount-fee`
+                                            example: payment-fee
+                                          prepaymentPartType:
+                                            type:
+                                              - string
+                                              - 'null'
+                                            description: |-
+                                              Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
+
+                                              Possible values: `fee` `fee-reimbursement` `fee-discount` `fee-vat` `fee-rounding-compensation`
+                                            example: fee
+                                          transactionType:
+                                            type:
+                                              - string
+                                              - 'null'
+                                            description: |-
+                                              Represents the transaction type
+
+                                              Possible values: `payment` `split-payment` `failed-payment` `failed-platform-split-payment` `failed-split-payment-compensation` `capture` `split-transaction` `refund` `platform-payment-refund` `returned-platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-refund` `chargeback` `chargeback-reversal` `chargeback-compensation` `reversed-chargeback-compensation` `platform-payment-chargeback` `reversed-platform-payment-chargeback` `fee-prepayment` `outgoing-transfer` `incoming-transfer` `canceled-transfer` `returned-transfer` `balance-reserve` `balance-reserve-return` `invoice-rounding-compensation` `rolling-reserve-hold` `rolling-reserve-release` `balance-correction` `repayment` `loan` `balance-topup` `cash-collateral-issuance';` `cash-collateral-release` `pending-rolling-reserve` `to-be-released-rolling-reserve` `held-rolling-reserve` `released-rolling-reserve`
+                                            example: payment
+                                    count:
+                                      type: integer
+                                      description: Number of transactions of this type
+                                      example: 50
+                                    method:
+                                      description: Payment type of the transactions
+                                      type: *ref_54
+                                      example: creditcard
+                                    cardIssuer:
+                                      type:
+                                        - string
+                                        - 'null'
+                                      description: |-
+                                        In case of payments transactions with card, the card issuer will be available
+
+                                        Possible values: `amex` `maestro` `carte-bancaire` `other`
+                                      example: amex
+                                    cardAudience:
+                                      type:
+                                        - string
+                                        - 'null'
+                                      description: |-
+                                        In case of payments trnsactions with card, the card audience will be available.
+
+                                        Possible values: `corporate` `other`
+                                      example: other
+                                    cardRegion:
+                                      type:
+                                        - string
+                                        - 'null'
+                                      description: |-
+                                        In case of payments transactions with card, the card region will be available.
+
+                                        Possible values: `intra-eea` `intra-eu` `domestic` `other`
+                                      example: domestic
+                                    feeType:
+                                      type:
+                                        - string
+                                        - 'null'
+                                      description: |-
+                                        Present when the transaction represents a fee.
+
+                                        Possible values: `payment-fee` `direct-debit-failure-fee` `unauthorized-direct-debit-fee` `bank-charged-direct-debit-failure-fee` `partner-commission` `application-fee` `capture-fee` `refund-fee` `chargeback-fee` `payment-notification-fee` `transfer-notification-fee` `payout-fee` `fee-discount` `fee-reimbursement` `platform-volume-fee` `platform-connected-organizations-fee` `balance-charge-fee` `3ds-authentication-attempt-fee` `terminal-monthly-fee` `acceptance-risk-fee` `top-up-fee` `payment-gateway-fee` `mastercard-specialty-merchant-program-processing-fee` `mastercard-specialty-merchant-program-registration-fee` `visa-integrity-risk-program-processing-fee` `visa-integrity-risk-program-registration-fee` `minimum-invoice-amount-fee`
+                                      example: payment-fee
+                                    prepaymentPartType:
+                                      type:
+                                        - string
+                                        - 'null'
+                                      description: |-
+                                        Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
+
+                                        Possible values: `fee` `fee-reimbursement` `fee-discount` `fee-vat` `fee-rounding-compensation`
+                                      example: fee
+                                    transactionType:
+                                      type:
+                                        - string
+                                        - 'null'
+                                      description: |-
+                                        Represents the transaction type
+
+                                        Possible values: `payment` `split-payment` `failed-payment` `failed-platform-split-payment` `failed-split-payment-compensation` `capture` `split-transaction` `refund` `platform-payment-refund` `returned-platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-refund` `chargeback` `chargeback-reversal` `chargeback-compensation` `reversed-chargeback-compensation` `platform-payment-chargeback` `reversed-platform-payment-chargeback` `fee-prepayment` `outgoing-transfer` `incoming-transfer` `canceled-transfer` `returned-transfer` `balance-reserve` `balance-reserve-return` `invoice-rounding-compensation` `rolling-reserve-hold` `rolling-reserve-release` `balance-correction` `repayment` `loan` `balance-topup` `cash-collateral-issuance';` `cash-collateral-release` `pending-rolling-reserve` `to-be-released-rolling-reserve` `held-rolling-reserve` `released-rolling-reserve`
+                                      example: payment
+                          close:
+                            type: object
+                            properties: *ref_55
+                          pending:
+                            type: object
+                            properties: *ref_55
+                          movedToAvailable:
+                            type: object
+                            properties: *ref_55
+                      availableBalance:
+                        type:
+                          - object
+                          - 'null'
+                        description: The available balance. Only available if grouping is `status-balances`.
+                        properties:
+                          open:
+                            type: object
+                            properties: *ref_55
+                          movedFromPending:
+                            type: object
+                            properties: *ref_55
+                          immediatelyAvailable:
+                            type: object
+                            properties: *ref_55
+                          close:
+                            type: object
+                            properties: *ref_55
+                      open:
+                        type: object
+                        description: Only available on `transaction-categories` grouping.
+                        properties:
+                          pending:
+                            type: object
+                            properties: *ref_55
+                          available:
+                            type: object
+                            properties: *ref_55
+                      close:
+                        type: object
+                        description: Only available on `transaction-categories` grouping.
+                        properties:
+                          pending:
+                            type: object
+                            properties: *ref_55
+                          available:
+                            type: object
+                            properties: *ref_55
+                      payments:
+                        type: object
+                        description: Only available on `transaction-categories` grouping.
+                        properties:
+                          pending:
+                            type: object
+                            properties: *ref_55
+                          movedToAvailable:
+                            type: object
+                            properties: *ref_55
+                          immediatelyAvailable:
+                            type: object
+                            properties: *ref_55
+                      refunds:
+                        type: object
+                        description: Only available on `transaction-categories` grouping.
+                        properties:
+                          pending:
+                            type: object
+                            properties: *ref_55
+                          movedToAvailable:
+                            type: object
+                            properties: *ref_55
+                          immediatelyAvailable:
+                            type: object
+                            properties: *ref_55
+                      chargebacks:
+                        type: object
+                        description: Only available on `transaction-categories` grouping.
+                        properties:
+                          pending:
+                            type: object
+                            properties: *ref_55
+                          movedToAvailable:
+                            type: object
+                            properties: *ref_55
+                          immediatelyAvailable:
+                            type: object
+                            properties: *ref_55
+                      capital:
+                        type: object
+                        description: Only available on `transaction-categories` grouping.
+                        properties:
+                          pending:
+                            type: object
+                            properties: *ref_55
+                          movedToAvailable:
+                            type: object
+                            properties: *ref_55
+                          immediatelyAvailable:
+                            type: object
+                            properties: *ref_55
+                      transfers:
+                        type: object
+                        description: Only available on `transaction-categories` grouping.
+                        properties:
+                          pending:
+                            type: object
+                            properties: *ref_55
+                          movedToAvailable:
+                            type: object
+                            properties: *ref_55
+                          immediatelyAvailable:
+                            type: object
+                            properties: *ref_55
+                      fee-prepayments:
+                        type: object
+                        description: Only available on `transaction-categories` grouping.
+                        properties:
+                          pending:
+                            type: object
+                            properties: *ref_55
+                          movedToAvailable:
+                            type: object
+                            properties: *ref_55
+                          immediatelyAvailable:
+                            type: object
+                            properties: *ref_55
+                      corrections:
+                        type: object
+                        description: Only available on `transaction-categories` grouping.
+                        properties:
+                          pending:
+                            type: object
+                            properties: *ref_55
+                          movedToAvailable:
+                            type: object
+                            properties: *ref_55
+                          immediatelyAvailable:
+                            type: object
+                            properties: *ref_55
+                      topups:
+                        type: object
+                        description: Only available on `transaction-categories` grouping.
+                        properties:
+                          pending:
+                            type: object
+                            properties: *ref_55
+                          movedToAvailable:
+                            type: object
+                            properties: *ref_55
+                          immediatelyAvailable:
+                            type: object
+                            properties: *ref_55
                   _links:
                     type: object
                     description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -20561,6 +20914,23 @@ paths:
         '404':
           description: No entity with this ID exists.
           content: *ref_14
+        '422':
+          description: The request is invalid. For example, the `from` date is after `until` date.
+          content:
+            application/hal+json:
+              schema:
+                type: object
+                description: An error response object.
+                properties: *ref_10
+              example:
+                status: 422
+                title: Unprocessable Entity
+                detail: The 'from' field is after 'until' field
+                field: from
+                _links:
+                  documentation:
+                    href: ...
+                    type: text/html
       x-readme:
         code-samples:
           - language: shell
@@ -20621,7 +20991,7 @@ paths:
         description: Provide the ID of the related balance.
         in: path
         required: true
-        schema: *ref_53
+        schema: *ref_56
     get:
       summary: List balance transactions
       tags:
@@ -20685,16 +21055,18 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_75
+                          properties: &ref_82
                             resource:
                               type: string
                               description: Indicates the response contains a balance transaction object. Will always contain the string `balance_transaction` for this endpoint.
                               readOnly: true
                               default: balance_transaction
+                              example: balance_transaction
                             id:
-                              type: string
-                              description: 'The identifier uniquely referring to this balance transaction. Example: `baltr_QM24QwzUWR4ev4Xfgyt29d`.'
+                              description: The identifier uniquely referring to this balance transaction.
                               readOnly: true
+                              type: string
+                              example: baltr_QM24QwzUWR4ev4Xfgyt29d
                             type:
                               type: string
                               description: |-
@@ -20705,6 +21077,9 @@ paths:
                                 * Settlements: `outgoing-transfer` `canceled-outgoing-transfer` `returned-transfer`
                                 * Invoicing: `invoice-compensation` `balance-correction`
                                 * Mollie Connect: `application-fee` `split-payment` `platform-payment-refund` `platform-payment-chargeback`
+
+                                Possible values: `application-fee` `capture` `chargeback` `chargeback-reversal` `failed-payment-fee` `failed-payment` `invoice-compensation` `payment` `payment-fee` `payment-commission` `refund` `returned-refund` `returned-transfer` `split-payment` `outgoing-transfer` `capture-commission` `canceled-outgoing-transfer` `incoming-transfer` `api-payment-rolling-reserve-release` `capture-rolling-reserve-release` `reimbursement-fee` `balance-correction` `unauthorized-direct-debit` `bank-charged-failure-fee` `platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-platform-payment-refund` `platform-payment-chargeback` `chargeback-compensation` `reversed-platform-payment-chargeback` `reversed-chargeback-compensation` `failed-split-payment-platform` `failed-split-payment-compensation` `cash-advance-repayment` `cash-advance-loan` `platform-connected-organizations-fee` `split-transaction` `managed-fee` `returned-managed-fee` `topup` `balance-reserve` `balance-reserve-return` `movement` `post-payment-split-payment` `cash-collateral-issuance` `cash-collateral-release`
+                              example: payment
                             resultAmount:
                               description: The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
                               type: object
@@ -20747,6 +21122,135 @@ paths:
                                 * Type `split-payment`: `paymentId`
                                 * Type `platform-payment-refund`: `paymentId` `refundId`
                                 * Type `platform-payment-chargeback`: `paymentId` `chargebackId`
+                              properties:
+                                payment:
+                                  type:
+                                    - string
+                                    - 'null'
+                                  example: tr_aHbjjdrUdm
+                                capture:
+                                  type:
+                                    - object
+                                    - 'null'
+                                  properties:
+                                    paymentId:
+                                      type: string
+                                      example: tr_5B8cwPMGnU
+                                    captureId:
+                                      type: string
+                                      example: cpt_vytxeTZskVKR7C7WgdSP3d
+                                unauthorized-direct-debit:
+                                  type:
+                                    - string
+                                    - 'null'
+                                  example: tr_5B8cwPMGnU
+                                failed-payment:
+                                  type:
+                                    - string
+                                    - 'null'
+                                  example: tr_5B8cwPMGnU
+                                refund:
+                                  type:
+                                    - string
+                                    - 'null'
+                                  example: tr_5B8cwPMGnU
+                                returned-refund:
+                                  type:
+                                    - object
+                                    - 'null'
+                                  properties:
+                                    paymentId:
+                                      type: string
+                                      example: tr_5B8cwPMGnU
+                                    refundId:
+                                      type: string
+                                      example: re_5B8cwPMGnU
+                                chargeback:
+                                  type:
+                                    - object
+                                    - 'null'
+                                  properties:
+                                    paymentId:
+                                      type: string
+                                      example: tr_5B8cwPMGnU
+                                    chargebackId:
+                                      type: string
+                                      example: chb_xFzwUN4ci8HAmSGUACS4J
+                                chargeback-reversal:
+                                  type:
+                                    - string
+                                    - 'null'
+                                  example: tr_5B8cwPMGnU
+                                outgoing-transfer:
+                                  type:
+                                    - object
+                                    - 'null'
+                                  properties:
+                                    transferId:
+                                      type: string
+                                      example: trf_nyjwa2
+                                    settlementId:
+                                      type: string
+                                      example: stl_5B8cwPMGnU
+                                canceled-outgoing-transfer:
+                                  type:
+                                    - object
+                                    - 'null'
+                                  properties:
+                                    transferId:
+                                      type: string
+                                      example: trf_nyjwa2
+                                    settlementId:
+                                      type: string
+                                      example: stl_5B8cwPMGnU
+                                returned-transfer:
+                                  type:
+                                    - object
+                                    - 'null'
+                                  properties:
+                                    transferId:
+                                      type: string
+                                      example: trf_nyjwa2
+                                    settlementId:
+                                      type: string
+                                      example: stl_s3hcSM2hKP
+                                invoice-compensation:
+                                  type:
+                                    - string
+                                    - 'null'
+                                  example: inv_aHbjjdrUdm
+                                application-fee:
+                                  type:
+                                    - string
+                                    - 'null'
+                                  example: tr_5B8cwPMGnU
+                                split-payment:
+                                  type:
+                                    - string
+                                    - 'null'
+                                  example: tr_5B8cwPMGnU
+                                platform-payment-refund:
+                                  type:
+                                    - object
+                                    - 'null'
+                                  properties:
+                                    paymentId:
+                                      type: string
+                                      example: tr_5B8cwPMGnU
+                                    refundId:
+                                      type: string
+                                      example: re_5B8cwPMGnU
+                                platform-payment-chargeback:
+                                  type:
+                                    - object
+                                    - 'null'
+                                  properties:
+                                    paymentId:
+                                      type: string
+                                      example: tr_5B8cwPMGnU
+                                    chargebackId:
+                                      type: string
+                                      example: chb_xFzwUN4ci8HAmSGUACS4J
                             createdAt:
                               type: string
                               description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -20775,10 +21279,11 @@ paths:
                           deductions:
                             currency: EUR
                             value: '-0.25'
+                          createdAt: '2022-12-16T11:23:25+00:00'
                           context:
                             paymentId: tr_5B8cwPMGnU6qLbRvo7qEZo
                             refundId: re_4qqhO89gsT
-                        - resource: balance_transaction
+                        - resource: balance_transactions
                           id: baltr_WhmDwNYR87FPDbiwBhUXCh
                           type: payment
                           resultAmount:
@@ -20790,6 +21295,7 @@ paths:
                           deductions:
                             currency: EUR
                             value: '-0.29'
+                          createdAt: '2022-12-16T11:23:25+00:00'
                           context:
                             paymentId: tr_5B8cwPMGnU6qLbRvo7qEZo
                         - {}
@@ -21437,6 +21943,14 @@ paths:
         '404':
           description: No entity with this ID exists.
           content: *ref_14
+        '429':
+          description: Rate Limit has been reached.
+          content:
+            application/hal+json:
+              schema:
+                type: object
+                description: An error response object.
+                properties: *ref_10
       x-readme:
         code-samples:
           - language: shell
@@ -21519,7 +22033,38 @@ paths:
             type:
               - string
               - 'null'
-            example: bal_3kUf4yU2nT
+            example: bal_gVMhHKqSSRYJyPsuoPNFH
+        - name: year
+          in: query
+          description: Provide the year to query the settlements. Must be used combined with `month` parameter
+          schema:
+            type:
+              - string
+              - 'null'
+            example: '2025'
+        - name: month
+          in: query
+          description: Provide the month to query the settlements. Must be used combined with `year` parameter
+          schema:
+            type:
+              - string
+              - 'null'
+            example: '1'
+        - name: currencies
+          in: query
+          description: |-
+            Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
+
+            Possible values: `EUR` `GBP` `CHF` `DKK` `NOK` `PLN` `SEK` `USD` `CZK` `HUF` `AUD` `CAD`
+          schema:
+            type:
+              - string
+              - 'null'
+            examples:
+              - EUR
+              - EUR,GBP
+            x-enumDescriptions: *ref_57
+            example: EUR
       responses:
         '200':
           description: A list of settlement objects. For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
@@ -21545,6 +22090,220 @@ paths:
                         type: array
                         items:
                           type: object
+                          properties: &ref_58
+                            resource:
+                              type: string
+                              description: Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
+                              readOnly: true
+                              default: settlement
+                              example: settlement
+                            id:
+                              description: The identifier uniquely referring to this settlement.
+                              readOnly: true
+                              type: string
+                              example: stl_5B8cwPMGnU
+                            createdAt:
+                              type: string
+                              description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+                              readOnly: true
+                              example: '2024-03-20T09:13:37.0Z'
+                            reference:
+                              type:
+                                - string
+                                - 'null'
+                              description: The settlement's bank reference, as found in your Mollie account and on your bank statement.
+                              readOnly: true
+                              example: 07049691.2406.01
+                            settledAt:
+                              type:
+                                - string
+                                - 'null'
+                              description: |-
+                                The date on which the settlement was settled, in ISO 8601 format.
+
+                                For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement date is available.
+                              readOnly: true
+                              example: '2025-03-31T12:54:39Z'
+                            status:
+                              type: string
+                              description: |-
+                                The status of the settlement.
+
+                                Possible values: `open` `pending` `paidout` `failed`
+                              x-enumDescriptions:
+                                open: The settlement has not been closed yet
+                                pending: The settlement has been closed and is being processed
+                                paidout: The settlement has been paid out
+                                failed: The settlement could not be paid out
+                              readOnly: true
+                              example: paidout
+                            amount:
+                              description: The total amount of the settlement.
+                              readOnly: true
+                              type: object
+                              required: *ref_3
+                              properties: *ref_4
+                            balanceId:
+                              description: The balance token that the settlement was settled to.
+                              readOnly: true
+                              type: string
+                              example: bal_gVMhHKqSSRYJyPsuoPNFH
+                            invoiceId:
+                              type:
+                                - string
+                                - 'null'
+                              description: The ID of the oldest invoice created for all the periods, if the invoice has been created yet.
+                              readOnly: true
+                              example: inv_aHbjjdrUdm
+                            periods:
+                              type: object
+                              description: |-
+                                For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These transactions are grouped into 'period' objects — one for each calendar month.
+
+                                For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
+
+                                Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will look as follows: `{"2024": {"04": {...}, "05": {...}}}`. The year and month in this documentation are referred as `<year>` and `<month>`.
+
+                                The example response should give a good idea of what this looks like in practise.
+                              readOnly: true
+                              properties:
+                                <year>:
+                                  type: object
+                                  properties:
+                                    <month>:
+                                      type: object
+                                      properties:
+                                        costs:
+                                          type: array
+                                          description: An array of cost objects, describing the fees withheld for each payment method during this period.
+                                          items:
+                                            type: object
+                                            properties:
+                                              description:
+                                                type: string
+                                                description: A description of the cost subtotal
+                                                example: Credit card - Visa debit consumer domestic
+                                              method:
+                                                type: *ref_54
+                                                description: |-
+                                                  The payment method, if applicable
+
+                                                  Possible values: `alma` `bacs` `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `bizum` `bitcoin` `blik` `creditcard` `directdebit` `eps` `giftcard` `giropay` `googlepay` `ideal` `in3` `inghomepay` `kbc` `klarnapaylater` `klarnapaynow` `klarnasliceit` `klarna` `mbway` `multibanco` `mybank` `paybybank` `payconiq` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `podiumcadeaukaart` `pointofsale` `sofort` `swish` `trustly` `twint` `voucher`
+                                                example: creditcard
+                                              count:
+                                                type: integer
+                                                description: The number of fees
+                                                example: 10
+                                              rate:
+                                                type: object
+                                                description: The service rates, further divided into `fixed` and `percentage` costs.
+                                                properties:
+                                                  fixed:
+                                                    type: object
+                                                    description: In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+                                                    required: *ref_3
+                                                    properties: *ref_4
+                                                  percentage:
+                                                    type: object
+                                                    description: In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+                                                    required: *ref_3
+                                                    properties: *ref_4
+                                              amountNet:
+                                                description: The net total cost, i.e. excluding VAT
+                                                type: object
+                                                required: *ref_3
+                                                properties: *ref_4
+                                              amountVat:
+                                                description: The applicable VAT
+                                                type: object
+                                                required: *ref_3
+                                                properties: *ref_4
+                                              amountGross:
+                                                description: The gross total cost, i.e. including VAT
+                                                type: object
+                                                required: *ref_3
+                                                properties: *ref_4
+                                        revenue:
+                                          type: array
+                                          description: An array of revenue objects containing the total revenue for each payment method during this period.
+                                          items:
+                                            type: object
+                                            properties:
+                                              description:
+                                                type: string
+                                                description: A description of the revenue subtotal
+                                                example: Credit card
+                                              method:
+                                                type: *ref_54
+                                                description: |-
+                                                  The payment method, if applicable
+
+                                                  Possible values: `alma` `bacs` `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `bizum` `bitcoin` `blik` `creditcard` `directdebit` `eps` `giftcard` `giropay` `googlepay` `ideal` `in3` `inghomepay` `kbc` `klarnapaylater` `klarnapaynow` `klarnasliceit` `klarna` `mbway` `multibanco` `mybank` `paybybank` `payconiq` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `podiumcadeaukaart` `pointofsale` `sofort` `swish` `trustly` `twint` `voucher`
+                                                example: creditcard
+                                              count:
+                                                type: integer
+                                                description: The number of payments
+                                                example: 10
+                                              amountNet:
+                                                description: The net total of received funds, i.e. excluding VAT
+                                                type: object
+                                                required: *ref_3
+                                                properties: *ref_4
+                                              amountVat:
+                                                description: The applicable VAT
+                                                type: object
+                                                required: *ref_3
+                                                properties: *ref_4
+                                              amountGross:
+                                                description: The gross total of received funds, i.e. including VAT
+                                                type: object
+                                                required: *ref_3
+                                                properties: *ref_4
+                                        invoiceId:
+                                          type:
+                                            - string
+                                            - 'null'
+                                          description: The ID of the invoice created for this period, if the invoice has been created already.
+                                          example: inv_aHbjjdrUdm
+                                        invoiceReference:
+                                          type:
+                                            - string
+                                            - 'null'
+                                          description: The invoice reference, if the invoice has been created already.
+                                          example: MOLR2021.0001399669
+                            _links:
+                              type: object
+                              description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                              properties:
+                                self:
+                                  type: object
+                                  description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                                  properties: *ref_6
+                                payments:
+                                  description: The API resource URL of the [payments](list-payments) included in this settlement.
+                                  type: object
+                                  properties: *ref_6
+                                captures:
+                                  description: The API resource URL of the [captures](list-captures) included in this settlement.
+                                  type: object
+                                  properties: *ref_6
+                                refunds:
+                                  description: The API resource URL of the [refunds](list-refunds) deducted from this settlement.
+                                  type: object
+                                  properties: *ref_6
+                                chargebacks:
+                                  description: The API resource URL of the [chargebacks](list-chargebacks) deducted from this settlement.
+                                  type: object
+                                  properties: *ref_6
+                                invoice:
+                                  description: The API resource URL of the [invoice](list-invoices).
+                                  type: *ref_7
+                                  properties: *ref_8
+                                documentation:
+                                  type: object
+                                  description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                                  properties: *ref_6
+                              readOnly: true
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -21560,15 +22319,32 @@ paths:
                           id: stl_jDk30akdN
                           reference: 1234567.2404.03
                           status: paidout
+                          createdAt: '2024-04-31T12:50:14+00:00'
                           amount:
                             currency: EUR
                             value: '39.75'
                           balanceId: bal_3kUf4yU2nT
                           periods: {}
                           settledAt: '2024-04-06T09:41:44.0Z'
+                          invoiceId: inv_FrvewDA3Pr
                           _links:
                             self:
                               href: ...
+                              type: application/hal+json
+                            payments:
+                              href: https://api.mollie.com/v2/settlements/stl_jDk30akdN/payments
+                              type: application/hal+json
+                            refunds:
+                              href: https://api.mollie.com/v2/settlements/stl_jDk30akdN/refunds
+                              type: application/hal+json
+                            chargebacks:
+                              href: https://api.mollie.com/v2/settlements/stl_jDk30akdN/chargebacks
+                              type: application/hal+json
+                            captures:
+                              href: https://api.mollie.com/v2/settlements/stl_jDk30akdN/captures
+                              type: application/hal+json
+                            invoice:
+                              href: https://api.mollie.com/v2/invoices/inv_UQgMnkkTFz
                               type: application/hal+json
                         - {}
                         - {}
@@ -21671,113 +22447,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_76
-                  resource:
-                    type: string
-                    description: Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
-                    readOnly: true
-                    default: settlement
-                  id:
-                    type: string
-                    description: 'The identifier uniquely referring to this settlement. Example: `stl_jDk30akdN`.'
-                    readOnly: true
-                  reference:
-                    type: string
-                    description: The settlement's bank reference, as found in your Mollie account and on your bank statement.
-                    readOnly: true
-                  settledAt:
-                    type:
-                      - string
-                      - 'null'
-                    description: |-
-                      The date on which the settlement was settled, in ISO 8601 format.
-
-                      For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement date is available.
-                    readOnly: true
-                  status:
-                    type: string
-                    description: |-
-                      The status of the settlement.
-
-                      * `open` — The settlement has not been closed yet
-                      * `pending` — The settlement has been closed and is being processed
-                      * `paidout` — The settlement has been paid out
-                      * `failed` — The settlement could not be paid out
-
-                      Possible values: `open` `pending` `paidout` `failed`
-                    readOnly: true
-                  amount:
-                    description: The total amount of the settlement.
-                    readOnly: true
-                    type: object
-                    required: *ref_3
-                    properties: *ref_4
-                  balanceId:
-                    type: string
-                    description: The balance token that the settlement was settled to.
-                    readOnly: true
-                  periods:
-                    type: object
-                    description: |-
-                      For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These transactions are grouped into 'period' objects — one for each calendar month.
-
-                      For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
-
-                      Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will look as follows: `{"2024": {"04": {...}, "05": {...}}}`.
-
-                      Each period object will contain the following fields:
-                      * `revenue` — An array of revenue objects containing the total revenue for each payment method during this period
-                      * `costs` — An array of cost objects, describing the fees withheld for each payment method during this period
-                      * `invoiceId` — The ID of the invoice created for this period, if the invoice has been created yet
-
-                      Each `revenue` object has the following fields:
-                      * `description` — A description of the revenue subtotal
-                      * `method` — The payment method, if applicable
-                      * `count` — The number of payments
-                      * `amountNet` — The net total of received funds, i.e. excluding VAT
-                      * `amountVat` — The applicable VAT
-                      * `amountGross` — The gross total of received funds, i.e. including VAT
-
-                      Each `cost` object has the following fields:
-                      * `description` — A description of the cost subtotal
-                      * `method` — The payment method, if applicable
-                      * `count` — The number of fees
-                      * `rate` — The service rates, further divided into `fixed` and `percentage` costs
-                      * `amountNet` — The net total cost, i.e. excluding VAT
-                      * `amountVat` — The applicable VAT
-                      * `amountGross` — The gross total cost, i.e. including VAT
-
-                      The example response should give a good idea of what this looks like in practise.
-                    readOnly: true
-                  _links:
-                    type: object
-                    description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-                    properties:
-                      self:
-                        type: object
-                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-                        properties: *ref_6
-                      payments:
-                        description: The API resource URL of the [payments](list-payments) included in this settlement.
-                        type: object
-                        properties: *ref_6
-                      captures:
-                        description: The API resource URL of the [captures](list-captures) included in this settlement.
-                        type: object
-                        properties: *ref_6
-                      refunds:
-                        description: The API resource URL of the [refunds](list-refunds) deducted from this settlement.
-                        type: object
-                        properties: *ref_6
-                      chargebacks:
-                        description: The API resource URL of the [chargebacks](list-chargebacks) deducted from this settlement.
-                        type: object
-                        properties: *ref_6
-                      documentation:
-                        type: object
-                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-                        properties: *ref_6
-                    readOnly: true
+                properties: *ref_58
               examples:
                 get-settlement-200-1:
                   summary: The settlement object
@@ -21785,11 +22455,13 @@ paths:
                     resource: settlement
                     id: stl_jDk30akdN
                     reference: 1234567.2404.03
+                    createdAt: '2024-04-06T09:41:44+00:00'
                     status: paidout
                     amount:
                       currency: EUR
                       value: '39.75'
                     balanceId: bal_3kUf4yU2nT
+                    invoiceId: inv_FrvewDA3Pr
                     periods:
                       '2024':
                         '04':
@@ -21866,6 +22538,9 @@ paths:
                         type: application/hal+json
                       captures:
                         href: https://api.mollie.com/v2/settlements/stl_jDk30akdN/captures
+                        type: application/hal+json
+                      invoice:
+                        href: https://api.mollie.com/v2/invoices/inv_FrvewDA3Pr
                         type: application/hal+json
                       documentation:
                         href: ...
@@ -22057,7 +22732,7 @@ paths:
         description: Provide the ID of the related settlement.
         in: path
         required: true
-        schema: &ref_54
+        schema: &ref_59
           type: string
           example: stl_jDk30akdN
     get:
@@ -22141,7 +22816,7 @@ paths:
         description: Provide the ID of the related settlement.
         in: path
         required: true
-        schema: *ref_54
+        schema: *ref_59
     get:
       summary: Get settlement captures
       tags:
@@ -22221,7 +22896,7 @@ paths:
         description: Provide the ID of the related settlement.
         in: path
         required: true
-        schema: *ref_54
+        schema: *ref_59
     get:
       summary: Get settlement refunds
       tags:
@@ -22301,7 +22976,7 @@ paths:
         description: Provide the ID of the related settlement.
         in: path
         required: true
-        schema: *ref_54
+        schema: *ref_59
     get:
       summary: Get settlement chargebacks
       tags:
@@ -23456,7 +24131,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_77
+                properties: &ref_83
                   resource:
                     type: string
                     description: Indicates that the response contains an invoice object. Will always contain the string `invoice` for this endpoint.
@@ -23695,12 +24370,12 @@ components:
       properties: *ref_2
     recurring-line-item:
       type: object
-      required: *ref_55
-      properties: *ref_56
+      required: *ref_60
+      properties: *ref_61
     payment-line-item:
       type: object
-      required: *ref_57
-      properties: *ref_58
+      required: *ref_62
+      properties: *ref_63
     entity-shopper-address:
       type: object
       properties: *ref_5
@@ -23723,7 +24398,7 @@ components:
       properties: *ref_6
     entity-payment-route:
       type: object
-      properties: *ref_59
+      properties: *ref_64
     subscriptionToken:
       type: string
       example: sub_5B8cwPMGnU
@@ -23743,14 +24418,14 @@ components:
       type: string
       example: ord_5B8cwPMGnU
     status-reason:
-      type: *ref_60
+      type: *ref_65
       description: |-
         This object offers details about the status of a payment. Currently it is only available for point-of-sale payments.
 
         You can find more information about the possible values of this object on [this page](status-reasons).**
       readOnly: true
-      required: *ref_61
-      properties: *ref_62
+      required: *ref_66
+      properties: *ref_67
     created-at:
       type: string
       description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -23782,7 +24457,7 @@ components:
     payment-methods:
       type: string
       example: ideal
-      enum: *ref_63
+      enum: *ref_68
     testmode:
       type: *ref_39
       description: |-
@@ -23793,7 +24468,7 @@ components:
       default: false
     sequence-type:
       type: string
-      enum: *ref_64
+      enum: *ref_69
       default: oneoff
     order-line-categories:
       type: string
@@ -23810,12 +24485,12 @@ components:
       properties: *ref_17
     giftcard:
       type: object
-      required: *ref_65
-      properties: *ref_66
+      required: *ref_70
+      properties: *ref_71
     voucher:
       type: object
-      required: *ref_67
-      properties: *ref_68
+      required: *ref_72
+      properties: *ref_73
     refundToken:
       type: string
       example: re_5B8cwPMGnU
@@ -23849,7 +24524,7 @@ components:
     entity-session:
       type: object
       additionalProperties: true
-      properties: *ref_69
+      properties: *ref_74
     paymentLinkToken:
       type: string
       example: pl_d9fQur83kFdhH8hIhaZfq
@@ -23862,7 +24537,7 @@ components:
       properties: *ref_32
     entity-terminal:
       type: object
-      properties: *ref_70
+      properties: *ref_75
     entity-route:
       type: object
       properties: *ref_36
@@ -23877,7 +24552,7 @@ components:
       properties: *ref_43
     entity-permission:
       type: object
-      properties: *ref_71
+      properties: *ref_76
     address:
       type: object
       properties: *ref_47
@@ -23892,7 +24567,7 @@ components:
       properties: *ref_49
     entity-capability-requirement:
       type: object
-      properties: *ref_72
+      properties: *ref_77
     entity-capability:
       type: object
       properties: *ref_50
@@ -23902,21 +24577,54 @@ components:
     entity-client-link:
       type: object
       properties: *ref_52
+    balanceToken:
+      type: string
+      example: bal_gVMhHKqSSRYJyPsuoPNFH
+    currencies:
+      type: string
+      enum: *ref_78
+      x-enumDescriptions: *ref_57
+      example: EUR
     entity-balance:
       type: object
-      properties: *ref_73
+      properties: *ref_53
+    payment-method:
+      type: *ref_54
+      description: |-
+        The payment method, if applicable
+
+        Possible values: `alma` `bacs` `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `bizum` `bitcoin` `blik` `creditcard` `directdebit` `eps` `giftcard` `giropay` `googlepay` `ideal` `in3` `inghomepay` `kbc` `klarnapaylater` `klarnapaynow` `klarnasliceit` `klarna` `mbway` `multibanco` `mybank` `paybybank` `payconiq` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `podiumcadeaukaart` `pointofsale` `sofort` `swish` `trustly` `twint` `voucher`
+      example: creditcard
+    sub-totals:
+      type: object
+      properties: *ref_79
+    components-sub-totals:
+      type: object
+      properties: *ref_80
+    sub-group:
+      type: object
+      properties: *ref_55
     entity-balance-report:
       type: object
-      properties: *ref_74
+      properties: *ref_81
+    balanceTransactionToken:
+      type: string
+      example: baltr_QM24QwzUWR4ev4Xfgyt29d
+    transferToken:
+      type: string
+      example: trf_nyjwa2
+    invoiceToken:
+      type: string
+      example: inv_aHbjjdrUdm
     entity-balance-transaction:
       type: object
-      properties: *ref_75
+      properties: *ref_82
     entity-settlement:
       type: object
-      properties: *ref_76
+      properties: *ref_58
     entity-invoice:
       type: object
-      properties: *ref_77
+      properties: *ref_83
   parameters:
     list-limit:
       name: limit
@@ -23995,13 +24703,13 @@ components:
       description: Provide the ID of the related refund.
       in: path
       required: true
-      schema: *ref_78
+      schema: *ref_84
     parent-order-id:
       name: orderId
       description: Provide the ID of the related order.
       in: path
       required: true
-      schema: *ref_79
+      schema: *ref_85
     list-from:
       name: from
       description: Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -24015,13 +24723,13 @@ components:
       description: Provide the ID of the related chargeback.
       in: path
       required: true
-      schema: *ref_80
+      schema: *ref_86
     parent-capture-id:
       name: captureId
       description: Provide the ID of the related capture.
       in: path
       required: true
-      schema: *ref_81
+      schema: *ref_87
     parent-payment-link-id:
       name: paymentLinkId
       description: Provide the ID of the related payment link.
@@ -24039,19 +24747,19 @@ components:
       description: Provide the ID of the related subscription.
       in: path
       required: true
-      schema: *ref_82
+      schema: *ref_88
     parent-balance-id:
       name: balanceId
       description: Provide the ID of the related balance.
       in: path
       required: true
-      schema: *ref_53
+      schema: *ref_56
     parent-settlement-id:
       name: settlementId
       description: Provide the ID of the related settlement.
       in: path
       required: true
-      schema: *ref_54
+      schema: *ref_59
   responses:
     400-invalid-list-request:
       description: The request contains issues. For example, if the specified `from` value is not a valid ID.
@@ -24061,14 +24769,14 @@ components:
       content: *ref_14
     422-mandatory-owner:
       description: The request contains issues. For example, if the `owner` field is missing.
-      content: *ref_83
+      content: *ref_89
   examples:
     get-payment:
       summary: The payment object
       value: *ref_12
     cancel-payment:
       summary: The canceled payment object
-      value: *ref_84
+      value: *ref_90
     get-method:
       summary: The payment method object
       value: *ref_18
