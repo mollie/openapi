@@ -4456,7 +4456,7 @@ paths:
               examples:
                 cancel-payment-200-1:
                   summary: The canceled payment object
-                  value: &ref_90
+                  value: &ref_91
                     resource: payment
                     id: tr_WDqYK6vllg
                     mode: live
@@ -8147,7 +8147,7 @@ paths:
         description: Provide the ID of the related refund.
         in: path
         required: true
-        schema: &ref_84
+        schema: &ref_85
           type: string
           example: re_5B8cwPMGnU
     get:
@@ -8342,7 +8342,7 @@ paths:
         description: Provide the ID of the related order.
         in: path
         required: true
-        schema: &ref_85
+        schema: &ref_86
           type: string
           example: ord_5B8cwPMGnU
     post:
@@ -9546,7 +9546,7 @@ paths:
         description: Provide the ID of the related chargeback.
         in: path
         required: true
-        schema: &ref_86
+        schema: &ref_87
           type: string
           example: chb_xFzwUN4ci8HAmSGUACS4J
     get:
@@ -10545,7 +10545,7 @@ paths:
         description: Provide the ID of the related capture.
         in: path
         required: true
-        schema: &ref_87
+        schema: &ref_88
           type: string
           example: cpt_gVMhHKqSSRYJyPsuoPNFH
     get:
@@ -12451,19 +12451,35 @@ paths:
           application/json:
             schema:
               type: object
-              properties:
+              properties: &ref_36
+                resource:
+                  type: string
+                  description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
+                  readOnly: true
+                  default: route
+                id:
+                  description: 'The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.'
+                  readOnly: true
+                  type: string
+                  example: crt_dyARQ3JzCgtPDhU2Pbq3J
+                paymentId:
+                  description: 'The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.'
+                  readOnly: true
+                  type: string
+                  example: tr_5B8cwPMGnU
                 amount:
-                  description: The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
+                  description: The amount of the route. That amount that will be routed to the specified destination.
                   type: object
                   required: *ref_3
                   properties: *ref_4
                 description:
                   type: string
                   description: The description of the route. This description is shown in the reports.
+                  maxLength: 255
                   example: 'Payment for Order #12345'
                 destination:
                   type: object
-                  description: The destination of this portion of the payment.
+                  description: The destination of the route.
                   properties:
                     type:
                       type: string
@@ -12471,10 +12487,24 @@ paths:
                         The type of destination. Currently only the destination type `organization` is supported.
 
                         Possible values: `organization`
+                      example: organization
                     organizationId:
-                      type: string
                       description: Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
-                      example: org_123
+                      type: string
+                      example: org_1234567
+                _links:
+                  type: object
+                  description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                  properties:
+                    self:
+                      type: object
+                      description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                      properties: *ref_6
+                    documentation:
+                      type: object
+                      description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                      properties: *ref_6
+                  readOnly: true
       responses:
         '201':
           description: The route object.
@@ -12482,56 +12512,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_36
-                  resource:
-                    type: string
-                    description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
-                    readOnly: true
-                    default: route
-                  id:
-                    type: string
-                    description: 'The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.'
-                    readOnly: true
-                  paymentId:
-                    type: string
-                    description: 'The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.'
-                    readOnly: true
-                  amount:
-                    description: The amount of the route. That amount that will be routed to the specified destination.
-                    type: object
-                    required: *ref_3
-                    properties: *ref_4
-                  description:
-                    type: string
-                    description: The description of the route. This description is shown in the reports.
-                    maxLength: 255
-                  destination:
-                    type: object
-                    description: The destination of the route.
-                    properties:
-                      type:
-                        type: string
-                        description: |-
-                          The type of destination. Currently only the destination type `organization` is supported.
-
-                          Possible values: `organization`
-                      organizationId:
-                        type: string
-                        description: Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
-                        example: org_12345678
-                  _links:
-                    type: object
-                    description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-                    properties:
-                      self:
-                        type: object
-                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-                        properties: *ref_6
-                      documentation:
-                        type: object
-                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-                        properties: *ref_6
-                    readOnly: true
+                properties: *ref_36
               examples:
                 create-route-201-1:
                   summary: The newly created route object
@@ -12554,21 +12535,8 @@ paths:
                         href: ...
                         type: text/html
         '404':
-          description: Payment with such ID does not exist.
-          content:
-            application/hal+json:
-              schema:
-                type: object
-                description: An error response object.
-                properties: *ref_10
-              example:
-                status: 404
-                title: Not Found
-                detail: Payment not found
-                _links:
-                  documentation:
-                    href: ...
-                    type: text/html
+          description: No entity with this ID exists.
+          content: *ref_14
       x-readme:
         code-samples:
           - language: shell
@@ -12662,7 +12630,65 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: *ref_36
+                          properties: &ref_76
+                            resource:
+                              type: string
+                              description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
+                              readOnly: true
+                              default: route
+                            id:
+                              description: 'The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.'
+                              readOnly: true
+                              type: string
+                              example: crt_dyARQ3JzCgtPDhU2Pbq3J
+                            paymentId:
+                              description: 'The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.'
+                              readOnly: true
+                              type: string
+                              example: tr_5B8cwPMGnU
+                            createdAt:
+                              type: string
+                              description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+                              readOnly: true
+                              example: '2024-03-20T09:13:37.0Z'
+                            amount:
+                              description: The amount of the route. That amount that will be routed to the specified destination.
+                              type: object
+                              required: *ref_3
+                              properties: *ref_4
+                            description:
+                              type: string
+                              description: The description of the route. This description is shown in the reports.
+                              maxLength: 255
+                              example: 'Payment for Order #12345'
+                            destination:
+                              type: object
+                              description: The destination of the route.
+                              properties:
+                                type:
+                                  type: string
+                                  description: |-
+                                    The type of destination. Currently only the destination type `organization` is supported.
+
+                                    Possible values: `organization`
+                                  example: organization
+                                organizationId:
+                                  description: Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
+                                  type: string
+                                  example: org_1234567
+                            _links:
+                              type: object
+                              description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                              properties:
+                                self:
+                                  type: object
+                                  description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                                  properties: *ref_6
+                                documentation:
+                                  type: object
+                                  description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                                  properties: *ref_6
+                              readOnly: true
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -12712,21 +12738,8 @@ paths:
                         href: ...
                         type: text/html
         '404':
-          description: Payment with such ID does not exist.
-          content:
-            application/hal+json:
-              schema:
-                type: object
-                description: An error response object.
-                properties: *ref_10
-              example:
-                status: 404
-                title: Not Found
-                detail: Payment not found
-                _links:
-                  documentation:
-                    href: ...
-                    type: text/html
+          description: No entity with this ID exists.
+          content: *ref_14
       x-readme:
         code-samples:
           - language: shell
@@ -15713,7 +15726,7 @@ paths:
         description: Provide the ID of the related subscription.
         in: path
         required: true
-        schema: &ref_88
+        schema: &ref_89
           type: string
           example: sub_rVKGtNd6s3
     get:
@@ -16253,7 +16266,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_76
+                properties: &ref_77
                   resource:
                     type: string
                     description: Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
@@ -18265,7 +18278,7 @@ paths:
                               type: array
                               items:
                                 type: object
-                                properties: &ref_77
+                                properties: &ref_78
                                   id:
                                     type: string
                                     description: The name of this requirement, referring to the task to be fulfilled by the organization to enable or re-enable the capability. The name is unique among other requirements of the same capability.
@@ -19019,7 +19032,7 @@ paths:
           content: *ref_14
         '422':
           description: The request contains issues. For example, if the `owner` field is missing.
-          content: &ref_89
+          content: &ref_90
             application/hal+json:
               schema:
                 type: object
@@ -19199,7 +19212,7 @@ paths:
                               description: The balance's ISO 4217 currency code.
                               readOnly: true
                               type: string
-                              enum: &ref_78
+                              enum: &ref_79
                                 - EUR
                                 - GBP
                                 - CHF
@@ -19820,7 +19833,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_81
+                properties: &ref_82
                   resource:
                     type: string
                     description: Indicates the response contains a balance report object. Will always contain the string `balance-report` for this endpoint.
@@ -19895,14 +19908,14 @@ paths:
                                   - 'null'
                                 items:
                                   type: object
-                                  properties: &ref_80
+                                  properties: &ref_81
                                     sub-totals:
                                       type:
                                         - array
                                         - 'null'
                                       items:
                                         type: object
-                                        properties: &ref_79
+                                        properties: &ref_80
                                           count:
                                             type: integer
                                             description: Number of transactions of this type
@@ -21055,7 +21068,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_82
+                          properties: &ref_83
                             resource:
                               type: string
                               description: Indicates the response contains a balance transaction object. Will always contain the string `balance_transaction` for this endpoint.
@@ -24131,7 +24144,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_83
+                properties: &ref_84
                   resource:
                     type: string
                     description: Indicates that the response contains an invoice object. Will always contain the string `invoice` for this endpoint.
@@ -24538,7 +24551,13 @@ components:
     entity-terminal:
       type: object
       properties: *ref_75
-    entity-route:
+    connectRouteToken:
+      type: string
+      example: crt_dyARQ3JzCgtPDhU2Pbq3J
+    entity-route-get:
+      type: object
+      properties: *ref_76
+    entity-route-create:
       type: object
       properties: *ref_36
     entity-customer:
@@ -24552,7 +24571,7 @@ components:
       properties: *ref_43
     entity-permission:
       type: object
-      properties: *ref_76
+      properties: *ref_77
     address:
       type: object
       properties: *ref_47
@@ -24567,7 +24586,7 @@ components:
       properties: *ref_49
     entity-capability-requirement:
       type: object
-      properties: *ref_77
+      properties: *ref_78
     entity-capability:
       type: object
       properties: *ref_50
@@ -24582,7 +24601,7 @@ components:
       example: bal_gVMhHKqSSRYJyPsuoPNFH
     currencies:
       type: string
-      enum: *ref_78
+      enum: *ref_79
       x-enumDescriptions: *ref_57
       example: EUR
     entity-balance:
@@ -24597,16 +24616,16 @@ components:
       example: creditcard
     sub-totals:
       type: object
-      properties: *ref_79
+      properties: *ref_80
     components-sub-totals:
       type: object
-      properties: *ref_80
+      properties: *ref_81
     sub-group:
       type: object
       properties: *ref_55
     entity-balance-report:
       type: object
-      properties: *ref_81
+      properties: *ref_82
     balanceTransactionToken:
       type: string
       example: baltr_QM24QwzUWR4ev4Xfgyt29d
@@ -24618,13 +24637,13 @@ components:
       example: inv_aHbjjdrUdm
     entity-balance-transaction:
       type: object
-      properties: *ref_82
+      properties: *ref_83
     entity-settlement:
       type: object
       properties: *ref_58
     entity-invoice:
       type: object
-      properties: *ref_83
+      properties: *ref_84
   parameters:
     list-limit:
       name: limit
@@ -24703,13 +24722,13 @@ components:
       description: Provide the ID of the related refund.
       in: path
       required: true
-      schema: *ref_84
+      schema: *ref_85
     parent-order-id:
       name: orderId
       description: Provide the ID of the related order.
       in: path
       required: true
-      schema: *ref_85
+      schema: *ref_86
     list-from:
       name: from
       description: Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -24723,13 +24742,13 @@ components:
       description: Provide the ID of the related chargeback.
       in: path
       required: true
-      schema: *ref_86
+      schema: *ref_87
     parent-capture-id:
       name: captureId
       description: Provide the ID of the related capture.
       in: path
       required: true
-      schema: *ref_87
+      schema: *ref_88
     parent-payment-link-id:
       name: paymentLinkId
       description: Provide the ID of the related payment link.
@@ -24747,7 +24766,7 @@ components:
       description: Provide the ID of the related subscription.
       in: path
       required: true
-      schema: *ref_88
+      schema: *ref_89
     parent-balance-id:
       name: balanceId
       description: Provide the ID of the related balance.
@@ -24769,14 +24788,14 @@ components:
       content: *ref_14
     422-mandatory-owner:
       description: The request contains issues. For example, if the `owner` field is missing.
-      content: *ref_89
+      content: *ref_90
   examples:
     get-payment:
       summary: The payment object
       value: *ref_12
     cancel-payment:
       summary: The canceled payment object
-      value: *ref_90
+      value: *ref_91
     get-method:
       summary: The payment method object
       value: *ref_18
