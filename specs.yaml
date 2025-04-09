@@ -16947,15 +16947,15 @@ paths:
                   description: The phone number associated with the profile's trade name or brand.
                   example: '+31208202070'
                 description:
-                  type:
-                    - string
-                    - 'null'
+                  type: string
                   description: The products or services offered by the profile's website or application.
                   example: My website description
                   maxLength: 500
                 countriesOfActivity:
                   type: array
-                  description: A list of countries where you expect that the majority of the profile's customers reside, in ISO 3166-1 alpha-2 format.
+                  items:
+                    type: string
+                  description: A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
                   example:
                     - NL
                     - GB
@@ -16976,9 +16976,7 @@ paths:
                   readOnly: true
                   example: unverified
                 review:
-                  type:
-                    - object
-                    - 'null'
+                  type: object
                   description: Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
                   properties:
                     status:
@@ -16987,6 +16985,7 @@ paths:
                         The status of the requested changes.
 
                         Possible values: `pending` `rejected`
+                      example: pending
                   readOnly: true
                   example:
                     status: pending
@@ -17275,6 +17274,7 @@ paths:
                         type: array
                         items:
                           type: object
+                          properties: *ref_47
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -17526,7 +17526,7 @@ paths:
                     - 'null'
                   items:
                     type: string
-                  description: A list of countries where you expect that the majority of the profile's customers reside, in ISO 3166-1 alpha-2 format.
+                  description: A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
                   example:
                     - NL
                     - GB
