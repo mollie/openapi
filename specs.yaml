@@ -4874,7 +4874,7 @@ paths:
                                 Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
                               x-enumDescriptions:
                                 activated: The payment method is activated and ready for use.
-                                pending-onboarding: Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment method can be activated.
+                                pending-boarding: Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment method can be activated.
                                 pending-review: Mollie needs to review your request for this payment method before it can be activated.
                                 pending-external: Activation of this payment method relies on you taking action with an external party, for example signing up with PayPal or a giftcard issuer.
                                 rejected: Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will always be informed via email.
