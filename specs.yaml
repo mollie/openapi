@@ -10155,7 +10155,7 @@ paths:
                   type:
                     - string
                     - 'null'
-                  description: 'The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example: `shp_3wmsgCJN4U`.'
+                  description: 'The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example: `shp_gNapNy9qQTUFZYnCrCF7J`.'
                   readOnly: true
                   example: shp_5x4xQJDWGNcY3tKGL7X5J
                 settlementId:
