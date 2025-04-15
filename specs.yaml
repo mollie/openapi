@@ -647,9 +647,9 @@ paths:
                               Possible values: `organization`
                             example: organization
                           organizationId:
-                            type: string
                             description: Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
-                            example: org_12345678
+                            type: string
+                            example: org_1234567
                       releaseDate:
                         type:
                           - string
@@ -4466,7 +4466,7 @@ paths:
               examples:
                 cancel-payment-200-1:
                   summary: The canceled payment object
-                  value: &ref_95
+                  value: &ref_96
                     resource: payment
                     id: tr_WDqYK6vllg
                     mode: live
@@ -4774,6 +4774,10 @@ paths:
           schema:
             type: string
             example: pfl_5B8cwPMGnU
+            description: |-
+              The identifier referring to the [profile](get-profile) this entity belongs to.
+
+              Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
         - description: This endpoint allows you to include additional information via the `include` query string parameter.
           schema:
             type:
@@ -6840,6 +6844,10 @@ paths:
           schema:
             type: string
             example: pfl_5B8cwPMGnU
+            description: |-
+              The identifier referring to the [profile](get-profile) this entity belongs to.
+
+              Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
         - description: This endpoint allows you to include additional information via the `include` query string parameter.
           schema:
             type:
@@ -7035,6 +7043,10 @@ paths:
           oneOf:
             - type: string
               example: pfl_5B8cwPMGnU
+              description: |-
+                The identifier referring to the [profile](get-profile) this entity belongs to.
+
+                Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
             - type: string
               enum:
                 - me
@@ -8157,7 +8169,7 @@ paths:
         description: Provide the ID of the related refund.
         in: path
         required: true
-        schema: &ref_87
+        schema: &ref_88
           type: string
           example: re_5B8cwPMGnU
     get:
@@ -8352,7 +8364,7 @@ paths:
         description: Provide the ID of the related order.
         in: path
         required: true
-        schema: &ref_88
+        schema: &ref_89
           type: string
           example: ord_5B8cwPMGnU
     post:
@@ -8485,7 +8497,7 @@ paths:
                     The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was partially refunded, these values will be different from the values in response from the [Get payment](get-payment) endpoint.
                   items:
                     type: object
-                    properties:
+                    properties: &ref_77
                       resource:
                         type: string
                         readOnly: true
@@ -9040,6 +9052,10 @@ paths:
           schema:
             type: string
             example: pfl_5B8cwPMGnU
+            description: |-
+              The identifier referring to the [profile](get-profile) this entity belongs to.
+
+              Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
         - name: testmode
           description: |-
             Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -9556,7 +9572,7 @@ paths:
         description: Provide the ID of the related chargeback.
         in: path
         required: true
-        schema: &ref_89
+        schema: &ref_90
           type: string
           example: chb_xFzwUN4ci8HAmSGUACS4J
     get:
@@ -9767,6 +9783,10 @@ paths:
               - string
               - 'null'
             example: pfl_5B8cwPMGnU
+            description: |-
+              The identifier referring to the [profile](get-profile) this entity belongs to.
+
+              Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
         - name: testmode
           description: |-
             Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -10555,7 +10575,7 @@ paths:
         description: Provide the ID of the related capture.
         in: path
         required: true
-        schema: &ref_90
+        schema: &ref_91
           type: string
           example: cpt_gVMhHKqSSRYJyPsuoPNFH
     get:
@@ -10748,7 +10768,7 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
-                properties: &ref_77 {}
+                properties: &ref_78 {}
               examples:
                 request-apple-pay-payment-session-201-1:
                   summary: The Apple Pay payment session object
@@ -12357,7 +12377,7 @@ paths:
         description: Provide the ID of the related terminal.
         in: path
         required: true
-        schema: &ref_91
+        schema: &ref_92
           type: string
           example: term_vytxeTZskVKR7C7WgdSP3d
     get:
@@ -12667,7 +12687,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_78
+                          properties: &ref_79
                             resource:
                               type: string
                               description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -13235,7 +13255,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_79
+                          properties: &ref_80
                             resource:
                               type: string
                               default: event
@@ -13545,7 +13565,7 @@ paths:
         >
         > [Access token with **payments.write**](/reference/authentication)
       requestBody:
-        content: &ref_96
+        content: &ref_97
           application/json:
             schema:
               required:
@@ -16873,7 +16893,7 @@ paths:
         description: Provide the ID of the related mandate.
         in: path
         required: true
-        schema: &ref_92
+        schema: &ref_93
           type: string
           example: mdt_5B8cwPMGnU
     get:
@@ -22835,7 +22855,7 @@ paths:
         description: Provide the ID of the related permission.
         in: path
         required: true
-        schema: &ref_93
+        schema: &ref_94
           type: string
           example: payments.read
     get:
@@ -24848,7 +24868,7 @@ paths:
                               type: array
                               items:
                                 type: object
-                                properties: &ref_80
+                                properties: &ref_81
                                   id:
                                     type: string
                                     description: The name of this requirement, referring to the task to be fulfilled by the organization to enable or re-enable the capability. The name is unique among other requirements of the same capability.
@@ -25602,7 +25622,7 @@ paths:
           content: *ref_14
         '422':
           description: The request contains issues. For example, if the `owner` field is missing.
-          content: &ref_94
+          content: &ref_95
             application/hal+json:
               schema:
                 type: object
@@ -25782,7 +25802,7 @@ paths:
                               description: The balance's ISO 4217 currency code.
                               readOnly: true
                               type: string
-                              enum: &ref_81
+                              enum: &ref_82
                                 - EUR
                                 - GBP
                                 - CHF
@@ -26403,7 +26423,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_84
+                properties: &ref_85
                   resource:
                     type: string
                     description: Indicates the response contains a balance report object. Will always contain the string `balance-report` for this endpoint.
@@ -26478,14 +26498,14 @@ paths:
                                   - 'null'
                                 items:
                                   type: object
-                                  properties: &ref_83
+                                  properties: &ref_84
                                     sub-totals:
                                       type:
                                         - array
                                         - 'null'
                                       items:
                                         type: object
-                                        properties: &ref_82
+                                        properties: &ref_83
                                           count:
                                             type: integer
                                             description: Number of transactions of this type
@@ -27638,7 +27658,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_85
+                          properties: &ref_86
                             resource:
                               type: string
                               description: Indicates the response contains a balance transaction object. Will always contain the string `balance_transaction` for this endpoint.
@@ -30714,7 +30734,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_86
+                properties: &ref_87
                   resource:
                     type: string
                     description: Indicates that the response contains an invoice object. Will always contain the string `invoice` for this endpoint.
@@ -30975,6 +30995,9 @@ components:
     routeToken:
       type: string
       example: rt_5B8cwPMGnU
+    organizationToken:
+      type: string
+      example: org_1234567
     url:
       type: object
       description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -30994,6 +31017,10 @@ components:
     profileToken:
       type: string
       example: pfl_5B8cwPMGnU
+      description: |-
+        The identifier referring to the [profile](get-profile) this entity belongs to.
+
+        Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
     settlementToken:
       type: string
       example: stl_5B8cwPMGnU
@@ -31082,15 +31109,15 @@ components:
     refundToken:
       type: string
       example: re_5B8cwPMGnU
-    organizationToken:
-      type: string
-      example: org_1234567
     entity-refund:
       type: object
       properties: *ref_21
     orderlineToken:
       type: string
       example: odl_5B8cwPMGnU
+    entity-partial-orderline:
+      type: object
+      properties: *ref_77
     entity-order-refund:
       type: object
       properties: *ref_26
@@ -31112,7 +31139,7 @@ components:
     entity-session:
       type: object
       additionalProperties: true
-      properties: *ref_77
+      properties: *ref_78
     paymentLinkToken:
       type: string
       example: pl_d9fQur83kFdhH8hIhaZfq
@@ -31134,7 +31161,7 @@ components:
       example: crt_dyARQ3JzCgtPDhU2Pbq3J
     entity-route-get:
       type: object
-      properties: *ref_78
+      properties: *ref_79
     entity-route-create:
       type: object
       properties: *ref_37
@@ -31143,7 +31170,7 @@ components:
       properties: *ref_38
     entity-event:
       type: object
-      properties: *ref_79
+      properties: *ref_80
     entity-mandate:
       type: object
       properties: *ref_41
@@ -31170,7 +31197,7 @@ components:
       properties: *ref_51
     entity-capability-requirement:
       type: object
-      properties: *ref_80
+      properties: *ref_81
     entity-capability:
       type: object
       properties: *ref_52
@@ -31185,7 +31212,7 @@ components:
       example: bal_gVMhHKqSSRYJyPsuoPNFH
     currencies:
       type: string
-      enum: *ref_81
+      enum: *ref_82
       x-enumDescriptions: *ref_59
       example: EUR
     entity-balance:
@@ -31200,16 +31227,16 @@ components:
       example: creditcard
     sub-totals:
       type: object
-      properties: *ref_82
+      properties: *ref_83
     components-sub-totals:
       type: object
-      properties: *ref_83
+      properties: *ref_84
     sub-group:
       type: object
       properties: *ref_57
     entity-balance-report:
       type: object
-      properties: *ref_84
+      properties: *ref_85
     balanceTransactionToken:
       type: string
       example: baltr_QM24QwzUWR4ev4Xfgyt29d
@@ -31221,13 +31248,13 @@ components:
       example: inv_aHbjjdrUdm
     entity-balance-transaction:
       type: object
-      properties: *ref_85
+      properties: *ref_86
     entity-settlement:
       type: object
       properties: *ref_60
     entity-invoice:
       type: object
-      properties: *ref_86
+      properties: *ref_87
   parameters:
     list-limit:
       name: limit
@@ -31306,13 +31333,13 @@ components:
       description: Provide the ID of the related refund.
       in: path
       required: true
-      schema: *ref_87
+      schema: *ref_88
     parent-order-id:
       name: orderId
       description: Provide the ID of the related order.
       in: path
       required: true
-      schema: *ref_88
+      schema: *ref_89
     list-from:
       name: from
       description: Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -31326,13 +31353,13 @@ components:
       description: Provide the ID of the related chargeback.
       in: path
       required: true
-      schema: *ref_89
+      schema: *ref_90
     parent-capture-id:
       name: captureId
       description: Provide the ID of the related capture.
       in: path
       required: true
-      schema: *ref_90
+      schema: *ref_91
     parent-payment-link-id:
       name: paymentLinkId
       description: Provide the ID of the related payment link.
@@ -31344,7 +31371,7 @@ components:
       description: Provide the ID of the related terminal.
       in: path
       required: true
-      schema: *ref_91
+      schema: *ref_92
     parent-customer-id:
       name: customerId
       description: Provide the ID of the related customer.
@@ -31356,7 +31383,7 @@ components:
       description: Provide the ID of the related mandate.
       in: path
       required: true
-      schema: *ref_92
+      schema: *ref_93
     parent-subscription-id:
       name: subscriptionId
       description: Provide the ID of the related subscription.
@@ -31368,7 +31395,7 @@ components:
       description: Provide the ID of the related permission.
       in: path
       required: true
-      schema: *ref_93
+      schema: *ref_94
     parent-balance-id:
       name: balanceId
       description: Provide the ID of the related balance.
@@ -31390,14 +31417,14 @@ components:
       content: *ref_14
     422-mandatory-owner:
       description: The request contains issues. For example, if the `owner` field is missing.
-      content: *ref_94
+      content: *ref_95
   examples:
     get-payment:
       summary: The payment object
       value: *ref_12
     cancel-payment:
       summary: The canceled payment object
-      value: *ref_95
+      value: *ref_96
     get-method:
       summary: The payment method object
       value: *ref_18
@@ -31427,7 +31454,7 @@ components:
       value: *ref_48
   requestBodies:
     requestBody:
-      content: *ref_96
+      content: *ref_97
 x-speakeasy-retries:
   strategy: backoff
   backoff:
