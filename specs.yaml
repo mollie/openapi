@@ -4183,6 +4183,11 @@ paths:
 
                     Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
                   example: en_US
+                dueDate:
+                  type: string
+                  description: The date by which the payment should be completed in `YYYY-MM-DD` format
+                  example: '2025-01-01'
+                  writeOnly: true
                 restrictPaymentMethodsToCountry:
                   type:
                     - string
@@ -31036,6 +31041,11 @@ components:
       type: string
       example: ideal
       enum: *ref_70
+    dueDate:
+      type: string
+      description: The date by which the payment should be completed in `YYYY-MM-DD` format
+      example: '2025-01-01'
+      writeOnly: true
     testmode:
       type: *ref_71
       description: |-
