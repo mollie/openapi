@@ -240,7 +240,7 @@ paths:
 
                     All lines must have the same currency as the payment.
 
-                    Required for payment method `voucher`.
+                    Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
                   items:
                     type: object
                     required: &ref_64
@@ -376,7 +376,7 @@ paths:
 
                     Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
 
-                    Required for payment method `in3`.
+                    Required for payment method `in3`, `klarna`, `billie` and `riverty`.
                   type: object
                   properties: &ref_5
                     title:
@@ -388,14 +388,14 @@ paths:
                       description: |-
                         The given name (first name) of the person should be at least two characters and cannot contain only numbers.
 
-                        Required for payment method `in3`.
+                        Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
                       example: Piet
                     familyName:
                       type: string
                       description: |-
                         The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
 
-                        Required for payment method `in3`.
+                        Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
                       example: Mondriaan
                     organizationName:
                       type: string
@@ -406,7 +406,7 @@ paths:
                       description: |-
                         A street and street number.
 
-                        Required for payment method `in3`.
+                        Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
                       example: Keizersgracht 126
                     streetAdditional:
                       type: string
@@ -417,7 +417,7 @@ paths:
                       description: |-
                         A postal code. This field may be required if the provided country has a postal code system.
 
-                        Required for payment method `in3`.
+                        Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
                       example: 1234AB
                     email:
                       type: string
@@ -426,7 +426,7 @@ paths:
 
                         If you provide the email address for a `banktransfer` payment, we will automatically send the instructions email upon payment creation. The language of the email will follow the locale parameter of the payment.
 
-                        Required for payment method `in3`.
+                        Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
                       example: piet@example.org
                     phone:
                       type: string
@@ -437,7 +437,7 @@ paths:
                       description: |-
                         A city name.
 
-                        Required for payment method `in3`.
+                        Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
                       example: Amsterdam
                     region:
                       type: string
@@ -448,7 +448,7 @@ paths:
                       description: |-
                         A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
 
-                        Required for payment method `in3`.
+                        Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
                       example: NL
                 shippingAddress:
                   description: |-
@@ -484,7 +484,7 @@ paths:
 
                     You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
 
-                    Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint` `voucher`
+                    Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
                   example: ideal
                 issuer:
                   type:
@@ -532,13 +532,9 @@ paths:
                     - string
                     - 'null'
                   description: |-
-                    **Only relevant if you wish to manage authorization and capturing separately.**
+                    Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
 
-                    By default, the customer's card or bank account is immediately charged when they complete the payment.
-
-                    Some payment methods also allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
-
-                    To enable this way of working, set the capture mode to `manual` and capture the payment manually using the [Create capture endpoint](create-capture).
+                    This field needs to be set to `manual` for method `riverty`.
 
                     Possible values: `automatic` `manual` (default: `automatic`)
                   example: manual
@@ -563,10 +559,7 @@ paths:
                   type:
                     - string
                     - 'null'
-                  description: |-
-                    **Only relevant if you wish to manage authorization and capturing separately.**
-
-                    Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+                  description: Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
                   readOnly: true
                   example: '2024-03-20T09:28:37.0Z'
                 applicationFee:
@@ -4727,7 +4720,10 @@ paths:
             required: *ref_3
             properties: *ref_4
         - name: resource
+          deprecated: true
           description: |-
+            **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
+
             Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
 
             When passing the value `orders`, the result will include payment methods that are only available for payments created via the Orders API.
@@ -4756,9 +4752,9 @@ paths:
             example: applepay
         - name: orderLineCategories
           description: |-
-            A comma-separated list of the order line categories you support in your checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
+            A comma-separated list of the line categories you support in your checkout.
 
-            Example: `/v2/methods?resource=orders&orderLineCategories=eco,meal`
+            Example: `/v2/methods?orderLineCategories=eco,meal`
 
             Possible values: `eco` `gift` `meal` `sport_culture` `additional` `consume`
           in: query
