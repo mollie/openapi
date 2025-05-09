@@ -24545,9 +24545,7 @@ paths:
       description: |-
         **⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the onboarding process for your merchants.**
 
-        Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be
-
-        overwritten.
+        Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be overwritten.
 
         > 🔑 Access with
         >
@@ -24564,6 +24562,7 @@ paths:
                     name:
                       type: string
                       description: The name of the organization.
+                      example: Mollie B.V.
                     address:
                       description: The address of the organization.
                       type: object
@@ -24571,6 +24570,7 @@ paths:
                     registrationNumber:
                       type: string
                       description: The registration number of the organization at their local chamber of commerce.
+                      example: '30204462'
                     vatNumber:
                       type:
                         - string
@@ -24579,6 +24579,7 @@ paths:
                         The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are verified against the international registry *VIES*.
 
                         The field can be omitted for merchants residing in other countries.
+                      example: NL815839091B01
                     vatRegulation:
                       type:
                         - string
@@ -24589,29 +24590,36 @@ paths:
                         The field can be omitted for merchants residing in other countries.
 
                         Possible values: `dutch` `british` `shifted`
+                      example: dutch
                 profile:
                   type: object
                   properties:
                     name:
                       type: string
                       description: The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
-                    website:
+                      example: Mollie
+                    url:
                       type: string
                       description: The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+                      example: https://www.mollie.com
                     email:
                       type: string
                       description: The email address associated with the profile's trade name or brand.
+                      example: info@mollie.com
                     phone:
                       type: string
                       description: The phone number associated with the profile's trade name or brand.
+                      example: '+31208202070'
                     description:
                       type:
                         - string
                         - 'null'
                       description: The products or services offered by the profile's website or application.
+                      example: Payment service provider
                     businessCategory:
                       type: string
                       description: The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
+                      example: MONEY_SERVICES
       responses:
         '204':
           description: An empty response.
