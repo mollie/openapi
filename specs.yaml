@@ -22931,7 +22931,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_50
+                properties: &ref_47
                   resource:
                     type: string
                     description: Indicates the response contains an organization object. Will always contain the string `organization` for this resource type.
@@ -22957,7 +22957,7 @@ paths:
                   address:
                     description: The address of the organization.
                     type: object
-                    properties: &ref_49
+                    properties: &ref_50
                       streetAndNumber:
                         type: string
                         description: A street and street number.
@@ -23100,10 +23100,12 @@ paths:
         > [Access token with **organizations.read**](/reference/authentication)
       responses:
         '200':
-          description: The current organization object. For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
+          description: The current organization object.
           content:
             application/hal+json:
-              schema: {}
+              schema:
+                type: object
+                properties: *ref_47
               examples:
                 get-current-organization-200-1:
                   summary: The current organization object
@@ -23392,7 +23394,7 @@ paths:
                 - email
                 - phone
               type: object
-              properties: &ref_47
+              properties: &ref_48
                 resource:
                   type: string
                   description: Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
@@ -23540,14 +23542,16 @@ paths:
                       type: text/html
       responses:
         '201':
-          description: The newly created profile object. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
+          description: The newly created profile object.
           content:
             application/hal+json:
-              schema: {}
+              schema:
+                type: object
+                properties: *ref_48
               examples:
                 create-profile-201-1:
                   summary: The profile object
-                  value: &ref_48
+                  value: &ref_49
                     resource: profile
                     id: pfl_QkEhN94Ba
                     mode: live
@@ -23733,7 +23737,7 @@ paths:
           schema: *ref_22
       responses:
         '200':
-          description: A list of profile objects. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
+          description: A list of profile objects.
           content:
             application/hal+json:
               schema:
@@ -23752,11 +23756,11 @@ paths:
                     type: object
                     properties:
                       profiles:
-                        description: An array of profile objects. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
+                        description: An array of profile objects.
                         type: array
                         items:
                           type: object
-                          properties: *ref_47
+                          properties: *ref_48
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -23882,11 +23886,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_47
+                properties: *ref_48
               examples:
                 get-profile-200-1:
                   summary: The profile object
-                  value: *ref_48
+                  value: *ref_49
         '404':
           description: No entity with this ID exists.
           content: *ref_14
@@ -24029,10 +24033,12 @@ paths:
                   example: live
       responses:
         '200':
-          description: The updated profile object. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
+          description: The updated profile object.
           content:
             application/hal+json:
-              schema: {}
+              schema:
+                type: object
+                properties: *ref_48
               examples:
                 update-profile-200-1:
                   summary: The updated profile object
@@ -24297,7 +24303,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_47
+                properties: *ref_48
               examples:
                 get-current-profile-200-1:
                   summary: The current profile object
@@ -24556,7 +24562,7 @@ paths:
                     address:
                       description: The address of the organization.
                       type: object
-                      properties: *ref_49
+                      properties: *ref_50
                     registrationNumber:
                       type: string
                       description: The registration number of the organization at their local chamber of commerce.
@@ -25045,7 +25051,7 @@ paths:
                                   properties:
                                     organization:
                                       type: object
-                                      properties: *ref_50
+                                      properties: *ref_47
                                     onboarding:
                                       type: object
                                       properties: *ref_51
@@ -25192,7 +25198,7 @@ paths:
                         properties:
                           organization:
                             type: object
-                            properties: *ref_50
+                            properties: *ref_47
                           onboarding:
                             type: object
                             properties: *ref_51
@@ -26202,17 +26208,19 @@ paths:
       description: |-
         Retrieve the primary balance. This is the balance of your account's primary currency, where all payments are settled to by default.
 
-        This endpoint is a convenient alias of the [Get balance](get-balance) endpoint. For a complete reference of the balance object, refer to that endpoint's documentation.
+        This endpoint is a convenient alias of the [Get balance](get-balance) endpoint.
 
         > 🔑 Access with
         >
         > [Access token with **balances.read**](/reference/authentication)
       responses:
         '200':
-          description: The primary balance object. For a complete reference of the balance object, refer to the [Get balance](get-balance) endpoint documentation.
+          description: The primary balance object.
           content:
             application/hal+json:
-              schema: {}
+              schema:
+                type: object
+                properties: *ref_55
               examples:
                 get-primary-balance-200-1:
                   summary: Get primary balance
@@ -33663,13 +33671,13 @@ components:
       properties: *ref_46
     address:
       type: object
-      properties: *ref_49
+      properties: *ref_50
     entity-organization:
       type: object
-      properties: *ref_50
+      properties: *ref_47
     entity-profile:
       type: object
-      properties: *ref_47
+      properties: *ref_48
     entity-onboarding-status:
       type: object
       properties: *ref_51
@@ -33929,7 +33937,7 @@ components:
       value: *ref_44
     get-profile:
       summary: The profile object
-      value: *ref_48
+      value: *ref_49
   requestBodies:
     requestBody:
       content: *ref_97
