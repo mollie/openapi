@@ -1635,7 +1635,6 @@ paths:
             type:
               - boolean
               - 'null'
-            default: false
             example: false
       responses:
         '200':
@@ -4196,7 +4195,7 @@ paths:
 
                     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
                   writeOnly: true
-                  default: false
+                  example: false
       responses:
         '200':
           description: The updated payment object.
@@ -33561,7 +33560,7 @@ components:
 
         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
       writeOnly: true
-      default: false
+      example: false
     sequence-type:
       type: string
       enum:
