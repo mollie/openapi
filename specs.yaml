@@ -848,7 +848,7 @@ paths:
 
                     Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
                   writeOnly: true
-                  default: false
+                  example: false
                 _links:
                   type: object
                   description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -7724,7 +7724,7 @@ paths:
 
                     Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
                   writeOnly: true
-                  default: false
+                  example: false
                 _links:
                   type: object
                   description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -8426,7 +8426,7 @@ paths:
 
                     Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
                   writeOnly: true
-                  default: false
+                  example: false
                 lines:
                   type: array
                   description: |-
@@ -12852,7 +12852,7 @@ paths:
 
                     Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
                   writeOnly: true
-                  default: false
+                  example: false
                 _links:
                   type: object
                   description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -16484,7 +16484,7 @@ paths:
 
                     Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
                   writeOnly: true
-                  default: false
+                  example: false
                 _links:
                   type: object
                   description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -17179,7 +17179,7 @@ paths:
 
                     Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
                   writeOnly: true
-                  default: false
+                  example: false
                 _links:
                   type: object
                   description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -33529,7 +33529,7 @@ components:
 
         Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
       writeOnly: true
-      default: false
+      example: false
     url-nullable:
       type: *ref_7
       description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
