@@ -10384,15 +10384,15 @@ paths:
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
           schema: *ref_25
-        - description: This endpoint allows you to include additional information via the `include` query string parameter.
+        - description: This endpoint allows you to embed additional resources via the `embed` query string parameter.
           schema:
             type: string
             enum:
               - payment
             x-enumDescriptions:
-              payment: Include the payments that the captures were created for.
+              payment: Embed the payments that the captures were created for.
             example: payment
-          name: include
+          name: embed
           in: query
         - name: testmode
           description: |-
@@ -10589,15 +10589,15 @@ paths:
         >
         > [Access token with **payments.read**](/reference/authentication)
       parameters:
-        - description: This endpoint allows you to include additional information via the `include` query string parameter.
+        - description: This endpoint allows you to embed additional resources via the `embed` query string parameter.
           schema:
             type: string
             enum:
               - payment
             x-enumDescriptions:
-              payment: Include the payment this capture was created for.
+              payment: Embed the payment this capture was created for.
             example: payment
-          name: include
+          name: embed
           in: query
         - name: testmode
           description: |-
@@ -31593,15 +31593,15 @@ paths:
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
           schema: *ref_25
-        - description: This endpoint allows you to include additional information via the `include` query string parameter.
+        - description: This endpoint allows you to embed additional resources via the `embed` query string parameter.
           schema:
             type: string
             enum:
               - payment
             x-enumDescriptions:
-              payment: Include the payments that the captures were created for.
+              payment: Embed the payments that the captures were created for.
             example: payment
-          name: include
+          name: embed
           in: query
         - name: testmode
           description: |-
