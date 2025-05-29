@@ -23,7 +23,7 @@ x-enumDescriptions:
 ```
 
 #### `x-readme`
-It allows us to choose which code snippets are initially shown to the users in the documentation page.
+It allows us to choose which code snippets are initially shown to users on the documentation page.
 
 ```yaml
 x-readme:
