@@ -10,7 +10,7 @@ Check out the [API Reference](https://docs.mollie.com/reference/overview) for th
 The specification contains a few fields that help us present the information in ways that are difficult in OpenAPI by default.
 
 #### `x-enumDescriptions`
-It helps us display a table in the documention page where the descriptions will be added for each of the `enum` options.
+It helps us display a table on the documentation page, where descriptions can be added for each of the `enum` options.
 
 ```yaml
 type: string
