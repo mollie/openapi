@@ -7,7 +7,7 @@ Check out the [API Reference](https://docs.mollie.com/reference/overview) for th
 - `specs.yaml`: OpenAPI 3.1 spec matching Mollie's Public API.
 
 ## Extensions
-The specification contains a few fields that helps us present the information in ways that are difficult in OpenAPI by default.
+The specification contains a few fields that help us present the information in ways that are difficult in OpenAPI by default.
 
 #### `x-enumDescriptions`
 It helps us display a table in the documention page where the descriptions will be added for each of the `enum` options.
