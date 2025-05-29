@@ -42,7 +42,7 @@ x-readme:
 
 ## Custom Extensions
 #### `x-request`
-This field allows us to specify a particular request and tie it to a response. It can be helpful when creating a new example for the Postman Collections.
+This field allows us to specify a particular request and link it to a response. It's helpful when creating a new example for the Postman Collections.
 
 ```yaml
 responses:
