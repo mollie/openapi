@@ -751,7 +751,7 @@ paths:
                 status:
                   type: string
                   description: |-
-                    The payment's status. Refer to the [documentation regarding statuses](status-change) for more info about which statuses occur at what point.
+                    The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which statuses occur at what point.
 
                     Possible values: `open` `pending` `authorized` `paid` `canceled` `expired` `failed`
                   readOnly: true
@@ -1309,7 +1309,7 @@ paths:
                   status:
                     type: string
                     description: |-
-                      The payment's status. Refer to the [documentation regarding statuses](status-change) for more info about which statuses occur at what point.
+                      The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which statuses occur at what point.
 
                       Possible values: `open` `pending` `authorized` `paid` `canceled` `expired` `failed`
                     readOnly: true
