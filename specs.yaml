@@ -12518,6 +12518,36 @@ paths:
                     type: string
                     example: ideal
                     enum: *ref_49
+                lines:
+                  type:
+                    - array
+                    - 'null'
+                  description: |-
+                    Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+
+                    All lines must have the same currency as the payment.
+
+                    Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+                  items:
+                    type: object
+                    required: *ref_5
+                    properties: *ref_6
+                billingAddress:
+                  description: |-
+                    The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+
+                    Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+
+                    Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+                  type: object
+                  properties: *ref_2
+                shippingAddress:
+                  description: |-
+                    The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+
+                    Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+                  type: object
+                  properties: *ref_2
                 testmode:
                   type: &ref_50
                     - boolean
