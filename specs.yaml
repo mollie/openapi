@@ -26691,15 +26691,12 @@ paths:
         - Webhooks API
       operationId: create-webhook
       security:
-        - apiKey: []
         - oAuth:
             - webhooks.write
       description: |-
         A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
 
         > 🔑 Access with
-        >
-        > [API key](/reference/authentication)
         >
         > [Access token with **webhooks.write**](/reference/authentication)
       requestBody:
@@ -26890,15 +26887,12 @@ paths:
         - Webhooks API
       operationId: list-webhooks
       security:
-        - apiKey: []
         - oAuth:
             - webhooks.read
       description: |-
         Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting array will be empty. This request should never throw an error.
 
         > 🔑 Access with
-        >
-        > [API key](/reference/authentication)
         >
         > [Access token with **webhooks.read**](/reference/authentication)
       parameters:
@@ -27110,15 +27104,12 @@ paths:
         - Webhooks API
       operationId: update-webhook
       security:
-        - apiKey: []
         - oAuth:
             - webhooks.write
       description: |-
         Updates the webhook. You may edit the name, url and the list of subscribed event types.
 
         > 🔑 Access with
-        >
-        > [API key](/reference/authentication)
         >
         > [Access token with **webhooks.write**](/reference/authentication)
       requestBody:
@@ -27253,15 +27244,12 @@ paths:
         - Webhooks API
       operationId: get-webhook
       security:
-        - apiKey: []
         - oAuth:
             - webhooks.read
       description: |-
         Retrieve a single webhook object by its ID.
 
         > 🔑 Access with
-        >
-        > [API key](/reference/authentication)
         >
         > [Access token with **webhooks.read**](/reference/authentication)
       parameters:
@@ -27387,15 +27375,12 @@ paths:
         - Webhooks API
       operationId: delete-webhook
       security:
-        - apiKey: []
         - oAuth:
             - webhooks.write
       description: |-
         Delete a single webhook object by its webhook ID.
 
         > 🔑 Access with
-        >
-        > [API key](/reference/authentication)
         >
         > [Access token with **webhooks.write**](/reference/authentication)
       parameters:
@@ -27498,15 +27483,12 @@ paths:
         - Webhooks API
       operationId: test-webhook
       security:
-        - apiKey: []
         - oAuth:
             - webhooks.write
       description: |-
         Sends a test event to the webhook to verify the endpoint is working as expected.
 
         > 🔑 Access with
-        >
-        > [API key](/reference/authentication)
         >
         > [Access token with **webhooks.write**](/reference/authentication)
       requestBody:
@@ -27615,15 +27597,12 @@ paths:
         - Webhook Events API
       operationId: get-webhook-event
       security:
-        - apiKey: []
         - oAuth:
             - events.read
       description: |-
         Retrieve a single webhook event object by its event ID.
 
         > 🔑 Access with
-        >
-        > [API key](/reference/authentication)
         >
         > [Access token with **events.read**](/reference/authentication)
       responses:
