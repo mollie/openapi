@@ -36363,9 +36363,9 @@ paths:
         - oAuth:
             - sales-invoices.read
       description: |-
-        > 🚧 Closed beta
+        > 🚧 Beta feature
         >
-        > The Sales Invoices API is currently only available in closed beta. The final specification may still change.
+        > This feature is currently in beta testing, and the final specification may still change.
 
         Retrieve a list of all sales invoices created through the API.
 
@@ -36696,9 +36696,9 @@ paths:
         - oAuth:
             - sales-invoices.write
       description: |-
-        > 🚧 Closed beta
+        > 🚧 Beta feature
         >
-        > The Sales Invoices API is currently only available in closed beta. The final specification may still change.
+        > This feature is currently in beta testing, and the final specification may still change.
 
         Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`, respectively).
 
@@ -36937,9 +36937,9 @@ paths:
         - oAuth:
             - sales-invoices.write
       description: |-
-        > 🚧 Closed beta
+        > 🚧 Beta feature
         >
-        > The Sales Invoices API is currently only available in closed beta. The final specification may still change.
+        > This feature is currently in beta testing, and the final specification may still change.
 
         Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the [Update sales invoice](update-sales-invoice) endpoint instead.
 
