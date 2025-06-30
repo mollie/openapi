@@ -26434,10 +26434,6 @@ paths:
         - oAuth:
             - clients.write
       description: |-
-        > 🚧 Open beta
-        >
-        > This feature is currently in open beta, and the final specification may still change.
-
         Link a new or existing organization to your OAuth application, in effect creating a new client. The response contains a `clientLink` where you should redirect your customer to.
 
         The `clientLink` URL behaves similar to the regular OAuth authorization URL. It supports the following parameters from the [Authorize](authorize) endpoint:
@@ -26473,6 +26469,7 @@ paths:
                   type: string
                   description: 'The identifier uniquely referring to this client link. Example: `cl_vZCnNQsV2UtfXxYifWKWH`.'
                   readOnly: true
+                  example: cl_vZCnNQsV2UtfXxYifWKWH
                 owner:
                   type: object
                   description: Personal data of your customer.
@@ -26480,12 +26477,15 @@ paths:
                     email:
                       type: string
                       description: The email address of your customer.
+                      example: john@example.org
                     givenName:
                       type: string
                       description: The given name (first name) of your customer.
+                      example: John
                     familyName:
                       type: string
                       description: The family name (surname) of your customer.
+                      example: Doe
                     locale:
                       type:
                         - string
@@ -26503,6 +26503,7 @@ paths:
                 name:
                   type: string
                   description: Name of the organization.
+                  example: Acme Corporation
                   writeOnly: true
                 address:
                   type: object
@@ -26513,19 +26514,23 @@ paths:
                         - string
                         - 'null'
                       description: The street name and house number of the organization.
+                      example: Main Street 123
                     postalCode:
                       type:
                         - string
                         - 'null'
                       description: The postal code of the organization. Required if a street address is provided and if the country has a postal code system.
+                      example: 1234AB
                     city:
                       type:
                         - string
                         - 'null'
                       description: The city of the organization. Required if a street address is provided.
+                      example: Amsterdam
                     country:
                       type: string
                       description: The country of the address in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+                      example: NL
                   required:
                     - country
                   writeOnly: true
@@ -26534,12 +26539,14 @@ paths:
                     - string
                     - 'null'
                   description: The registration number of the organization at their local chamber of commerce.
+                  example: 12345678
                   writeOnly: true
                 vatNumber:
                   type:
                     - string
                     - 'null'
                   description: The VAT number of the organization, if based in the European Union. VAT numbers are verified against the international registry *VIES*.
+                  example: 123456789B01
                   writeOnly: true
                 _links:
                   type: object
