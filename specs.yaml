@@ -2507,7 +2507,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: &ref_40
+          schema: &ref_39
             type:
               - integer
               - 'null'
@@ -5413,7 +5413,7 @@ paths:
               examples:
                 cancel-payment-200-1:
                   summary: The canceled payment object
-                  value: &ref_145
+                  value: &ref_147
                     resource: payment
                     id: tr_WDqYK6vllg
                     mode: live
@@ -8632,15 +8632,15 @@ paths:
         content:
           application/json:
             schema:
-              required:
-                - amount
               type: object
-              properties: &ref_39
+              required: &ref_118
+                - amount
+              properties: &ref_119
                 resource:
                   type: string
                   description: Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
                   readOnly: true
-                  default: refund
+                  example: refund
                 id:
                   description: |-
                     The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
@@ -8803,6 +8803,10 @@ paths:
                 _links:
                   type: object
                   description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                  required:
+                    - self
+                    - payment
+                    - documentation
                   properties:
                     self:
                       type: object
@@ -8833,7 +8837,201 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_39
+                properties: &ref_40
+                  resource:
+                    type: string
+                    description: Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
+                    readOnly: true
+                    example: refund
+                  id:
+                    description: |-
+                      The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
+                      will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+                    readOnly: true
+                    type: string
+                    example: re_5B8cwPMGnU
+                  mode:
+                    type: string
+                    description: Whether this entity was created in live mode or in test mode.
+                    enum: *ref_3
+                    readOnly: true
+                    example: live
+                  description:
+                    type: string
+                    description: The description of the refund that may be shown to your customer, depending on the payment method used.
+                    maxLength: 255
+                    example: Refunding a Chess Board
+                  amount:
+                    description: |-
+                      The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
+                      amount.
+                    type: object
+                    required: *ref_0
+                    properties: *ref_1
+                  settlementAmount:
+                    description: |-
+                      This optional field will contain the approximate amount that will be deducted from your account balance, converted
+                      to the currency your account is settled in.
+
+                      The amount is a **negative** amount.
+
+                      If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
+                      zero.
+
+                      Since the field contains an estimated amount during refund processing, it may change over time. For example, while
+                      the refund is queued the settlement amount is likely not yet available.
+
+                      To retrieve accurate settlement amounts we recommend using the
+                      [List balance transactions endpoint](list-balance-transactions) instead.
+                    readOnly: true
+                    type: *ref_36
+                    required: *ref_37
+                    properties: *ref_38
+                  metadata:
+                    oneOf: *ref_13
+                    description: |-
+                      Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+                      you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+                  paymentId:
+                    description: |-
+                      The unique identifier of the payment this refund was created for.
+                      The full payment object can be retrieved via the payment URL in the `_links` object.
+                    readOnly: true
+                    type: string
+                    example: tr_5B8cwPMGnU
+                  settlementId:
+                    type:
+                      - string
+                      - 'null'
+                    description: The identifier referring to the settlement this refund was settled with. This field is omitted if the refund is not settled (yet).
+                    readOnly: true
+                    example: stl_5B8cwPMGnU
+                  status:
+                    type: string
+                    description: Refunds may take some time to get confirmed.
+                    enum:
+                      - queued
+                      - pending
+                      - processing
+                      - refunded
+                      - failed
+                      - canceled
+                    example: queued
+                    readOnly: true
+                  createdAt:
+                    type: string
+                    description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+                    readOnly: true
+                    example: '2024-03-20T09:13:37.0Z'
+                  externalReference:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        description: Specifies the reference type
+                        enum:
+                          - acquirer-reference
+                        example: acquirer-reference
+                      id:
+                        type: string
+                        description: Unique reference from the payment provider
+                        example: 123456789012345
+                  reverseRouting:
+                    type:
+                      - boolean
+                      - 'null'
+                    description: |-
+                      *This feature is only available to marketplace operators.*
+
+                      With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+                      merchants, by providing the `routing` object during [payment creation](create-payment).
+
+                      When creating refunds for these *routed* payments, by default the full amount is deducted from your balance.
+
+                      If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to
+                      `true` when issuing a full refund.
+
+                      For more fine-grained control and for partial refunds, use the `routingReversals` parameter instead.
+                    writeOnly: true
+                    example: false
+                  routingReversals:
+                    type:
+                      - array
+                      - 'null'
+                    description: |-
+                      *This feature is only available to marketplace operators.*
+
+                      When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
+
+                      If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+                      needs to be reversed from which merchant(s).
+
+                      If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
+                    items:
+                      type: object
+                      properties:
+                        amount:
+                          description: The amount that will be pulled back.
+                          type: object
+                          required: *ref_0
+                          properties: *ref_1
+                        source:
+                          type: object
+                          description: Where the funds will be pulled back from.
+                          properties:
+                            type:
+                              type: string
+                              description: The type of source. Currently only the source type `organization` is supported.
+                              enum:
+                                - organization
+                              example: organization
+                              writeOnly: true
+                            organizationId:
+                              description: |-
+                                Required for source type `organization`. The ID of the connected organization the funds should be pulled
+                                back from.
+                              type: string
+                              example: org_1234567
+                  testmode:
+                    type: *ref_19
+                    description: |-
+                      Whether to create the entity in test mode or live mode.
+
+                      Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+                      omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+                      `testmode` to `true`.
+                    writeOnly: true
+                    example: false
+                  _links:
+                    type: object
+                    description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                    required:
+                      - self
+                      - payment
+                      - documentation
+                    properties:
+                      self:
+                        type: object
+                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                        required: *ref_4
+                        properties: *ref_5
+                      payment:
+                        description: The API resource URL of the [payment](get-payment) that this refund belongs to.
+                        type: object
+                        required: *ref_4
+                        properties: *ref_5
+                      settlement:
+                        description: |-
+                          The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
+                          yet settled.
+                        type: *ref_23
+                        properties: *ref_24
+                      documentation:
+                        type: object
+                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                        required: *ref_4
+                        properties: *ref_5
+                    readOnly: true
               examples:
                 create-refund-201-1:
                   summary: The payment object
@@ -9030,7 +9228,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - description: This endpoint allows you to include additional information via the `include` query string parameter.
           schema:
             type:
@@ -9081,7 +9279,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: *ref_39
+                          properties: *ref_40
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -9090,7 +9288,7 @@ paths:
                 list-refunds-200-1:
                   summary: A list of refund objects
                   value:
-                    count: 5
+                    count: 1
                     _embedded:
                       refunds:
                         - resource: refund
@@ -9112,10 +9310,9 @@ paths:
                             payment:
                               href: https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo
                               type: application/hal+json
-                        - {}
-                        - {}
-                        - {}
-                        - {}
+                            documentation:
+                              href: ...
+                              type: text/html
                     _links:
                       self:
                         href: ...
@@ -9182,7 +9379,7 @@ paths:
         description: Provide the ID of the related refund.
         in: path
         required: true
-        schema: &ref_138
+        schema: &ref_140
           type: string
           example: re_5B8cwPMGnU
     get:
@@ -9225,7 +9422,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_39
+                properties: *ref_40
               examples:
                 get-refund-200-1:
                   summary: The payment object
@@ -9383,7 +9580,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - name: sort
           description: |-
             Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
@@ -9422,9 +9619,7 @@ paths:
           schema: *ref_25
       responses:
         '200':
-          description: |-
-            A list of refund objects. For a complete reference of the refund object, refer to the
-            [Get refund endpoint](get-refund) documentation.
+          description: A list of refund objects
           content:
             application/hal+json:
               schema:
@@ -9445,13 +9640,11 @@ paths:
                     type: object
                     properties:
                       refunds:
-                        description: |-
-                          An array of refund objects. For a complete reference of the refund object, refer to the
-                          [Get refund endpoint](get-refund) documentation.
+                        description: An array of refund objects.
                         type: array
                         items:
                           type: object
-                          properties: *ref_39
+                          properties: *ref_40
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -9460,7 +9653,7 @@ paths:
                 list-refunds-200-1:
                   summary: A list of refund objects
                   value:
-                    count: 5
+                    count: 1
                     _embedded:
                       refunds:
                         - resource: refund
@@ -9482,10 +9675,9 @@ paths:
                             payment:
                               href: https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo
                               type: application/hal+json
-                        - {}
-                        - {}
-                        - {}
-                        - {}
+                            documentation:
+                              href: ...
+                              type: text/html
                     _links:
                       self:
                         href: ...
@@ -9570,7 +9762,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - description: This endpoint allows you to embed additional information via the `embed` query string parameter.
           schema:
             type: string
@@ -9961,7 +10153,7 @@ paths:
         description: Provide the ID of the related chargeback.
         in: path
         required: true
-        schema: &ref_139
+        schema: &ref_141
           type: string
           example: chb_xFzwUN4ci8HAmSGUACS4J
     get:
@@ -10130,7 +10322,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - description: |-
             This endpoint allows you to embed additional information via the
             `embed` query string parameter.
@@ -10514,7 +10706,7 @@ paths:
           application/json:
             schema:
               type: object
-              properties: &ref_118
+              properties: &ref_120
                 resource:
                   type: string
                   description: Indicates the response contains a capture object. Will always contain the string `capture` for this endpoint.
@@ -10905,7 +11097,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - description: |-
             This endpoint allows you to embed additional resources via the
             `embed` query string parameter.
@@ -11096,7 +11288,7 @@ paths:
         description: Provide the ID of the related capture.
         in: path
         required: true
-        schema: &ref_140
+        schema: &ref_142
           type: string
           example: cpt_gVMhHKqSSRYJyPsuoPNFH
     get:
@@ -11301,7 +11493,7 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
-                properties: &ref_119 {}
+                properties: &ref_121 {}
               examples:
                 request-apple-pay-payment-session-201-1:
                   summary: The Apple Pay payment session object
@@ -11378,7 +11570,7 @@ paths:
               required:
                 - description
               type: object
-              properties: &ref_120
+              properties: &ref_122
                 resource:
                   type: string
                   description: |-
@@ -12125,7 +12317,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - name: testmode
           description: |-
             Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -12715,7 +12907,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - name: sort
           description: |-
             Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
@@ -12854,7 +13046,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - name: sort
           description: |-
             Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
@@ -13168,7 +13360,7 @@ paths:
         description: Provide the ID of the related terminal.
         in: path
         required: true
-        schema: &ref_141
+        schema: &ref_143
           type: string
           example: term_vytxeTZskVKR7C7WgdSP3d
     get:
@@ -13278,7 +13470,7 @@ paths:
           application/json:
             schema:
               type: object
-              properties: &ref_124
+              properties: &ref_126
                 resource:
                   type: string
                   description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -13364,7 +13556,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                required: &ref_125
+                required: &ref_127
                   - resource
                   - id
                   - paymentId
@@ -13372,7 +13564,7 @@ paths:
                   - description
                   - destination
                   - _links
-                properties: &ref_126
+                properties: &ref_128
                   resource:
                     type: string
                     description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -13543,7 +13735,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          required: &ref_122
+                          required: &ref_124
                             - resource
                             - id
                             - paymentId
@@ -13552,9 +13744,9 @@ paths:
                             - destination
                             - createdAt
                             - _links
-                          allOf: &ref_123
+                          allOf: &ref_125
                             - type: object
-                              properties: &ref_121
+                              properties: &ref_123
                                 resource:
                                   type: string
                                   description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -13969,7 +14161,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - name: sort
           description: |-
             Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
@@ -14146,7 +14338,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_127
+                          properties: &ref_129
                             resource:
                               type: string
                               default: event
@@ -14438,7 +14630,7 @@ paths:
         This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
         parameter predefined.
       requestBody:
-        content: &ref_146
+        content: &ref_148
           application/json:
             schema:
               type: object
@@ -15064,7 +15256,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - name: sort
           description: |-
             Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
@@ -17641,7 +17833,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - name: sort
           description: |-
             Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
@@ -17785,7 +17977,7 @@ paths:
         description: Provide the ID of the related mandate.
         in: path
         required: true
-        schema: &ref_142
+        schema: &ref_144
           type: string
           example: mdt_5B8cwPMGnU
     get:
@@ -18346,7 +18538,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - name: sort
           description: |-
             Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
@@ -18964,7 +19156,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - name: sort
           description: |-
             Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
@@ -21180,7 +21372,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - name: sort
           description: |-
             Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
@@ -23737,7 +23929,7 @@ paths:
         description: Provide the ID of the related permission.
         in: path
         required: true
-        schema: &ref_143
+        schema: &ref_145
           type: string
           example: payments.read
     get:
@@ -24663,7 +24855,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
       responses:
         '200':
           description: A list of profile objects.
@@ -25720,7 +25912,7 @@ paths:
                               type: array
                               items:
                                 type: object
-                                properties: &ref_128
+                                properties: &ref_130
                                   id:
                                     type: string
                                     description: |-
@@ -25860,7 +26052,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
       responses:
         '200':
           description: |-
@@ -26496,7 +26688,7 @@ paths:
           content: *ref_27
         '422':
           description: The request contains issues. For example, if the `owner` field is missing.
-          content: &ref_144
+          content: &ref_146
             application/hal+json:
               schema:
                 type: object
@@ -26614,7 +26806,7 @@ paths:
           content:
             application/hal+json:
               schema:
-                properties: &ref_129
+                properties: &ref_131
                   resource:
                     type: string
                     description: Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
@@ -26757,7 +26949,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - name: sort
           description: |-
             Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
@@ -27305,7 +27497,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_130
+                properties: &ref_132
                   resource:
                     type: string
                     description: Indicates the response contains a webhook event object. Will always contain the string `event` for this endpoint.
@@ -27468,7 +27660,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - name: testmode
           description: |-
             Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -28148,7 +28340,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_133
+                properties: &ref_135
                   resource:
                     type: string
                     description: |-
@@ -28239,14 +28431,14 @@ paths:
                                   - 'null'
                                 items:
                                   type: object
-                                  properties: &ref_132
+                                  properties: &ref_134
                                     sub-totals:
                                       type:
                                         - array
                                         - 'null'
                                       items:
                                         type: object
-                                        properties: &ref_131
+                                        properties: &ref_133
                                           count:
                                             type: integer
                                             description: Number of transactions of this type
@@ -29526,7 +29718,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - name: testmode
           description: |-
             Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -29563,7 +29755,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_134
+                          properties: &ref_136
                             resource:
                               type: string
                               description: |-
@@ -30899,7 +31091,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - name: balanceId
           in: query
           description: |-
@@ -31833,7 +32025,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - name: sort
           description: |-
             Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
@@ -34047,7 +34239,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - description: |-
             This endpoint allows you to embed additional resources via the
             `embed` query string parameter.
@@ -34262,7 +34454,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - description: This endpoint allows you to include additional information via the `include` query string parameter.
           schema:
             type:
@@ -34313,7 +34505,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: *ref_39
+                          properties: *ref_40
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -34322,7 +34514,7 @@ paths:
                 list-refunds-200-1:
                   summary: A list of refund objects
                   value:
-                    count: 5
+                    count: 1
                     _embedded:
                       refunds:
                         - resource: refund
@@ -34344,10 +34536,9 @@ paths:
                             payment:
                               href: https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo
                               type: application/hal+json
-                        - {}
-                        - {}
-                        - {}
-                        - {}
+                            documentation:
+                              href: ...
+                              type: text/html
                     _links:
                       self:
                         href: ...
@@ -34439,7 +34630,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - description: This endpoint allows you to embed additional information via the `embed` query string parameter.
           schema:
             type: string
@@ -34725,7 +34916,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - name: sort
           description: |-
             Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
@@ -35742,7 +35933,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_135
+                properties: &ref_137
                   resource:
                     type: string
                     description: |-
@@ -36585,7 +36776,7 @@ paths:
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
-          schema: *ref_40
+          schema: *ref_39
         - name: testmode
           description: |-
             Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -36891,7 +37082,7 @@ paths:
           application/json:
             schema:
               type: object
-              properties: &ref_137
+              properties: &ref_139
                 testmode:
                   type: *ref_56
                   description: |-
@@ -37135,7 +37326,7 @@ paths:
           application/json:
             schema:
               type: object
-              properties: &ref_136
+              properties: &ref_138
                 testmode:
                   type: *ref_56
                   description: |-
@@ -37493,9 +37684,13 @@ components:
     refundToken:
       type: string
       example: re_5B8cwPMGnU
-    entity-refund:
+    refund-response:
       type: object
-      properties: *ref_39
+      properties: *ref_40
+    refund-request:
+      type: object
+      required: *ref_118
+      properties: *ref_119
     chargebackToken:
       type: string
       example: chb_xFzwUN4ci8HAmSGUACS4J
@@ -37515,11 +37710,11 @@ components:
       properties: *ref_49
     capture-request:
       type: object
-      properties: *ref_118
+      properties: *ref_120
     entity-session:
       type: object
       additionalProperties: true
-      properties: *ref_119
+      properties: *ref_121
     paymentLinkToken:
       type: string
       example: pl_d9fQur83kFdhH8hIhaZfq
@@ -37539,7 +37734,7 @@ components:
       properties: *ref_54
     payment-link-request:
       type: object
-      properties: *ref_120
+      properties: *ref_122
     testmode:
       type: *ref_56
       description: |-
@@ -37561,24 +37756,24 @@ components:
       example: crt_dyARQ3JzCgtPDhU2Pbq3J
     entity-route:
       type: object
-      properties: *ref_121
+      properties: *ref_123
     route-get-response:
       type: object
-      required: *ref_122
-      allOf: *ref_123
+      required: *ref_124
+      allOf: *ref_125
     route-create-request:
       type: object
-      properties: *ref_124
+      properties: *ref_126
     route-create-response:
       type: object
-      required: *ref_125
-      properties: *ref_126
+      required: *ref_127
+      properties: *ref_128
     entity-customer:
       type: object
       properties: *ref_60
     entity-event:
       type: object
-      properties: *ref_127
+      properties: *ref_129
     entity-mandate:
       type: object
       properties: *ref_65
@@ -37605,7 +37800,7 @@ components:
       properties: *ref_75
     entity-capability-requirement:
       type: object
-      properties: *ref_128
+      properties: *ref_130
     entity-capability:
       type: object
       properties: *ref_76
@@ -37624,10 +37819,10 @@ components:
       type: object
       properties: *ref_81
     create-webhook:
-      properties: *ref_129
+      properties: *ref_131
     entity-webhook-event:
       type: object
-      properties: *ref_130
+      properties: *ref_132
     balanceToken:
       type: string
       example: bal_gVMhHKqSSRYJyPsuoPNFH
@@ -37646,16 +37841,16 @@ components:
       example: creditcard
     sub-totals:
       type: object
-      properties: *ref_131
+      properties: *ref_133
     components-sub-totals:
       type: object
-      properties: *ref_132
+      properties: *ref_134
     sub-group:
       type: object
       properties: *ref_85
     entity-balance-report:
       type: object
-      properties: *ref_133
+      properties: *ref_135
     balanceTransactionToken:
       type: string
       example: baltr_QM24QwzUWR4ev4Xfgyt29d
@@ -37667,13 +37862,13 @@ components:
       example: inv_aHbjjdrUdm
     entity-balance-transaction:
       type: object
-      properties: *ref_134
+      properties: *ref_136
     entity-settlement:
       type: object
       properties: *ref_89
     entity-invoice:
       type: object
-      properties: *ref_135
+      properties: *ref_137
     salesInvoiceToken:
       type: string
       example: invoice_4Y0eZitmBnQ6IDoMqZQKh
@@ -37702,16 +37897,16 @@ components:
       properties: *ref_94
     delete-values-sales-invoice:
       type: object
-      properties: *ref_136
+      properties: *ref_138
     update-values-sales-invoice:
       type: object
-      properties: *ref_137
+      properties: *ref_139
   parameters:
     list-limit:
       name: limit
       description: The maximum number of items to return. Defaults to 50 items.
       in: query
-      schema: *ref_40
+      schema: *ref_39
     list-sort:
       name: sort
       description: |-
@@ -37794,19 +37989,19 @@ components:
       description: Provide the ID of the related refund.
       in: path
       required: true
-      schema: *ref_138
+      schema: *ref_140
     parent-chargeback-id:
       name: chargebackId
       description: Provide the ID of the related chargeback.
       in: path
       required: true
-      schema: *ref_139
+      schema: *ref_141
     parent-capture-id:
       name: captureId
       description: Provide the ID of the related capture.
       in: path
       required: true
-      schema: *ref_140
+      schema: *ref_142
     parent-payment-link-id:
       name: paymentLinkId
       description: Provide the ID of the related payment link.
@@ -37818,7 +38013,7 @@ components:
       description: Provide the ID of the related terminal.
       in: path
       required: true
-      schema: *ref_141
+      schema: *ref_143
     parent-customer-id:
       name: customerId
       description: Provide the ID of the related customer.
@@ -37830,7 +38025,7 @@ components:
       description: Provide the ID of the related mandate.
       in: path
       required: true
-      schema: *ref_142
+      schema: *ref_144
     parent-subscription-id:
       name: subscriptionId
       description: Provide the ID of the related subscription.
@@ -37842,7 +38037,7 @@ components:
       description: Provide the ID of the related permission.
       in: path
       required: true
-      schema: *ref_143
+      schema: *ref_145
     list-from:
       name: from
       description: |-
@@ -37874,14 +38069,14 @@ components:
       content: *ref_27
     422-mandatory-owner:
       description: The request contains issues. For example, if the `owner` field is missing.
-      content: *ref_144
+      content: *ref_146
   examples:
     get-payment:
       summary: The payment object
       value: *ref_26
     cancel-payment:
       summary: The canceled payment object
-      value: *ref_145
+      value: *ref_147
     get-method:
       summary: The payment method object
       value: *ref_34
@@ -37911,7 +38106,7 @@ components:
       value: *ref_73
   requestBodies:
     requestBody:
-      content: *ref_146
+      content: *ref_148
 x-speakeasy-retries:
   strategy: backoff
   backoff:
