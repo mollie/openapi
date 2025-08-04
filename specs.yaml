@@ -13268,6 +13268,8 @@ paths:
         - Delayed Routing API
       security:
         - apiKey: []
+        - oAuth:
+            - payments.write
       description: |-
         Create a route for a specific payment.
         The routed amount is credited to the account of your customer.
@@ -13327,6 +13329,16 @@ paths:
                         routed to.
                       type: string
                       example: org_1234567
+                testmode:
+                  type: *ref_19
+                  description: |-
+                    Whether to create the entity in test mode or live mode.
+
+                    Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+                    omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+                    `testmode` to `true`.
+                  writeOnly: true
+                  example: false
                 _links:
                   type: object
                   description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -13411,6 +13423,16 @@ paths:
                           routed to.
                         type: string
                         example: org_1234567
+                  testmode:
+                    type: *ref_19
+                    description: |-
+                      Whether to create the entity in test mode or live mode.
+
+                      Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+                      omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+                      `testmode` to `true`.
+                    writeOnly: true
+                    example: false
                   _links:
                     type: object
                     description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -13481,7 +13503,19 @@ paths:
         - Delayed Routing API
       security:
         - apiKey: []
+        - oAuth:
+            - payments.read
       description: Retrieve a list of all routes created for a specific payment.
+      parameters:
+        - name: testmode
+          description: |-
+            Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+            parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+            setting the `testmode` query parameter to `true`.
+
+            Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+          in: query
+          schema: *ref_25
       responses:
         '200':
           description: A list of route objects.
@@ -13571,6 +13605,16 @@ paths:
                                         routed to.
                                       type: string
                                       example: org_1234567
+                                testmode:
+                                  type: *ref_19
+                                  description: |-
+                                    Whether to create the entity in test mode or live mode.
+
+                                    Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+                                    omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+                                    `testmode` to `true`.
+                                  writeOnly: true
+                                  example: false
                                 _links:
                                   type: object
                                   description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
