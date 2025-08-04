@@ -1169,7 +1169,7 @@ paths:
                       - sequenceType
                       - _links
                     type: object
-                    properties: &ref_106
+                    properties: &ref_107
                       resource:
                         type: string
                         description: Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
@@ -5031,7 +5031,7 @@ paths:
                   maxLength: 255
                   example: Chess Board
                 redirectUrl:
-                  type: &ref_107
+                  type: &ref_108
                     - string
                     - 'null'
                   description: |-
@@ -5044,7 +5044,7 @@ paths:
                     Apple Pay payments with an `applePayPaymentToken`.
                   example: https://example.org/redirect
                 cancelUrl:
-                  type: &ref_108
+                  type: &ref_109
                     - string
                     - 'null'
                   description: |-
@@ -5056,7 +5056,7 @@ paths:
                     payment cancellations.
                   example: https://example.org/cancel
                 webhookUrl:
-                  type: &ref_109
+                  type: &ref_110
                     - string
                     - 'null'
                   description: |-
@@ -5096,7 +5096,7 @@ paths:
                   example: '2025-01-01'
                   writeOnly: true
                 restrictPaymentMethodsToCountry:
-                  type: &ref_110
+                  type: &ref_111
                     - string
                     - 'null'
                   description: |-
@@ -5120,7 +5120,7 @@ paths:
                   writeOnly: true
                   example: false
                 issuer:
-                  type: &ref_111
+                  type: &ref_112
                     - string
                     - 'null'
                   description: |-
@@ -5413,7 +5413,7 @@ paths:
               examples:
                 cancel-payment-200-1:
                   summary: The canceled payment object
-                  value: &ref_147
+                  value: &ref_149
                     resource: payment
                     id: tr_WDqYK6vllg
                     mode: live
@@ -5731,7 +5731,7 @@ paths:
           in: query
           schema:
             type: string
-            enum: &ref_112
+            enum: &ref_113
               - eco
               - gift
               - meal
@@ -6586,7 +6586,7 @@ paths:
                           documentation.
                         type: array
                         items:
-                          allOf: &ref_113
+                          allOf: &ref_114
                             - type: object
                               required: *ref_32
                               properties: *ref_33
@@ -8349,13 +8349,13 @@ paths:
               schema:
                 oneOf:
                   - type: object
-                    required: &ref_114
+                    required: &ref_115
                       - resource
                       - id
                       - description
                       - status
                       - _links
-                    properties: &ref_115
+                    properties: &ref_116
                       resource:
                         type: string
                         description: |-
@@ -8399,7 +8399,7 @@ paths:
                             properties: *ref_5
                         readOnly: true
                   - type: object
-                    required: &ref_116
+                    required: &ref_117
                       - resource
                       - id
                       - name
@@ -8407,7 +8407,7 @@ paths:
                       - status
                       - contractor
                       - _links
-                    properties: &ref_117
+                    properties: &ref_118
                       resource:
                         type: string
                         description: |-
@@ -8633,9 +8633,9 @@ paths:
           application/json:
             schema:
               type: object
-              required: &ref_118
+              required: &ref_119
                 - amount
-              properties: &ref_119
+              properties: &ref_120
                 resource:
                   type: string
                   description: Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
@@ -9379,7 +9379,7 @@ paths:
         description: Provide the ID of the related refund.
         in: path
         required: true
-        schema: &ref_140
+        schema: &ref_142
           type: string
           example: re_5B8cwPMGnU
     get:
@@ -10153,7 +10153,7 @@ paths:
         description: Provide the ID of the related chargeback.
         in: path
         required: true
-        schema: &ref_141
+        schema: &ref_143
           type: string
           example: chb_xFzwUN4ci8HAmSGUACS4J
     get:
@@ -10706,7 +10706,7 @@ paths:
           application/json:
             schema:
               type: object
-              properties: &ref_120
+              properties: &ref_121
                 resource:
                   type: string
                   description: Indicates the response contains a capture object. Will always contain the string `capture` for this endpoint.
@@ -11288,7 +11288,7 @@ paths:
         description: Provide the ID of the related capture.
         in: path
         required: true
-        schema: &ref_142
+        schema: &ref_144
           type: string
           example: cpt_gVMhHKqSSRYJyPsuoPNFH
     get:
@@ -11493,7 +11493,7 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
-                properties: &ref_121 {}
+                properties: &ref_122 {}
               examples:
                 request-apple-pay-payment-session-201-1:
                   summary: The Apple Pay payment session object
@@ -11570,7 +11570,7 @@ paths:
               required:
                 - description
               type: object
-              properties: &ref_122
+              properties: &ref_123
                 resource:
                   type: string
                   description: |-
@@ -13360,7 +13360,7 @@ paths:
         description: Provide the ID of the related terminal.
         in: path
         required: true
-        schema: &ref_143
+        schema: &ref_145
           type: string
           example: term_vytxeTZskVKR7C7WgdSP3d
     get:
@@ -13470,7 +13470,7 @@ paths:
           application/json:
             schema:
               type: object
-              properties: &ref_126
+              properties: &ref_127
                 resource:
                   type: string
                   description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -13556,7 +13556,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                required: &ref_127
+                required: &ref_128
                   - resource
                   - id
                   - paymentId
@@ -13564,7 +13564,7 @@ paths:
                   - description
                   - destination
                   - _links
-                properties: &ref_128
+                properties: &ref_129
                   resource:
                     type: string
                     description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -13735,7 +13735,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          required: &ref_124
+                          required: &ref_125
                             - resource
                             - id
                             - paymentId
@@ -13744,9 +13744,9 @@ paths:
                             - destination
                             - createdAt
                             - _links
-                          allOf: &ref_125
+                          allOf: &ref_126
                             - type: object
-                              properties: &ref_123
+                              properties: &ref_124
                                 resource:
                                   type: string
                                   description: Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -14338,7 +14338,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_129
+                          properties: &ref_130
                             resource:
                               type: string
                               default: event
@@ -14630,7 +14630,7 @@ paths:
         This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
         parameter predefined.
       requestBody:
-        content: &ref_148
+        content: &ref_150
           application/json:
             schema:
               type: object
@@ -17977,7 +17977,7 @@ paths:
         description: Provide the ID of the related mandate.
         in: path
         required: true
-        schema: &ref_144
+        schema: &ref_146
           type: string
           example: mdt_5B8cwPMGnU
     get:
@@ -18185,7 +18185,7 @@ paths:
                 - interval
                 - description
               type: object
-              properties: &ref_67
+              properties: &ref_131
                 resource:
                   type: string
                   description: |-
@@ -18291,6 +18291,9 @@ paths:
 
                     Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
                     information.
+                  required:
+                    - amount
+                    - description
                   properties:
                     amount:
                       type: object
@@ -18354,6 +18357,11 @@ paths:
                 _links:
                   type: object
                   description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                  required:
+                    - self
+                    - profile
+                    - customer
+                    - documentation
                   properties:
                     self:
                       type: object
@@ -18391,11 +18399,233 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_67
+                required: &ref_67
+                  - resource
+                  - id
+                  - mode
+                  - customerId
+                  - createdAt
+                  - status
+                  - amount
+                  - description
+                  - method
+                  - times
+                  - timesRemaining
+                  - interval
+                  - startDate
+                  - webhookUrl
+                  - metadata
+                properties: &ref_68
+                  resource:
+                    type: string
+                    description: |-
+                      Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+                      endpoint.
+                    readOnly: true
+                    default: subscription
+                  id:
+                    description: 'The identifier uniquely referring to this subscription. Example: `sub_rVKGtNd6s3`.'
+                    readOnly: true
+                    type: string
+                    example: sub_5B8cwPMGnU
+                  mode:
+                    type: string
+                    description: Whether this entity was created in live mode or in test mode.
+                    enum: *ref_3
+                    readOnly: true
+                    example: live
+                  status:
+                    type: string
+                    description: |-
+                      The subscription's current status is directly related to the status of the underlying customer or mandate that is
+                      enabling the subscription.
+                    enum:
+                      - pending
+                      - active
+                      - canceled
+                      - suspended
+                      - completed
+                    example: active
+                    readOnly: true
+                  amount:
+                    description: |-
+                      The amount for each individual payment that is charged with this subscription. For example, for a monthly
+                      subscription of €10, the subscription amount should be set to €10.
+                    type: object
+                    required: *ref_0
+                    properties: *ref_1
+                  times:
+                    type:
+                      - integer
+                      - 'null'
+                    description: |-
+                      Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+                      considered completed.
+
+                      Test mode subscriptions will get canceled automatically after 10 payments.
+                    example: 6
+                  timesRemaining:
+                    type: integer
+                    description: Number of payments left for the subscription.
+                    example: 5
+                    readOnly: true
+                  interval:
+                    type: string
+                    description: |-
+                      Interval to wait between payments, for example `1 month` or `14 days`.
+
+                      The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+                    enum:
+                      - ... days
+                      - ... weeks
+                      - ... months
+                    example: 1 month
+                  startDate:
+                    type: string
+                    description: The start date of the subscription in `YYYY-MM-DD` format.
+                    example: '2025-01-01'
+                  nextPaymentDate:
+                    type:
+                      - string
+                      - 'null'
+                    description: |-
+                      The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+                      this parameter will not be returned.
+                    example: '2025-01-01'
+                    readOnly: true
+                  description:
+                    type: string
+                    description: |-
+                      The subscription's description will be used as the description of the resulting individual payments and so showing
+                      up on the bank statement of the consumer.
+
+                      **Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+                    example: Subscription of streaming channel
+                  method:
+                    type:
+                      - string
+                      - 'null'
+                    description: The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
+                    enum:
+                      - creditcard
+                      - directdebit
+                      - paypal
+                    example: paypal
+                  applicationFee:
+                    type: object
+                    description: |-
+                      With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+                      merchants.
+
+                      Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
+
+                      Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+                      information.
+                    required:
+                      - amount
+                      - description
+                    properties:
+                      amount:
+                        type: object
+                        description: In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+                        required: *ref_0
+                        properties: *ref_1
+                      description:
+                        type: string
+                        example: Platform fee
+                  metadata:
+                    description: |-
+                      Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity.
+                      Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately
+                      1kB.
+
+                      Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
+                    oneOf: *ref_13
+                  webhookUrl:
+                    type: string
+                    description: |-
+                      We will call this URL for any payment status changes of payments resulting from this subscription.
+
+                      This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+                      well. Be sure to verify the payment's subscription ID and its status.
+                    example: https://example.com/webhook
+                  customerId:
+                    description: The customer this subscription belongs to.
+                    readOnly: true
+                    type: string
+                    example: cst_5B8cwPMGnU
+                  mandateId:
+                    type:
+                      - string
+                      - 'null'
+                    description: The mandate used for this subscription, if any.
+                    example: mdt_5B8cwPMGnU
+                  createdAt:
+                    type: string
+                    description: The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+                    readOnly: true
+                    example: '2024-03-20T09:13:37.0Z'
+                  canceledAt:
+                    type:
+                      - string
+                      - 'null'
+                    description: |-
+                      The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+                      subscription is not canceled (yet).
+                    example: '2025-01-01T13:10:19.0Z'
+                    readOnly: true
+                  testmode:
+                    type: *ref_19
+                    description: |-
+                      Whether to create the entity in test mode or live mode.
+
+                      Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+                      omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+                      `testmode` to `true`.
+                    writeOnly: true
+                    example: false
+                  _links:
+                    type: object
+                    description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                    required:
+                      - self
+                      - profile
+                      - customer
+                      - documentation
+                    properties:
+                      self:
+                        type: object
+                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                        required: *ref_4
+                        properties: *ref_5
+                      customer:
+                        description: The API resource URL of the [customer](get-customer) this subscription was created for.
+                        type: *ref_23
+                        properties: *ref_24
+                      mandate:
+                        description: The API resource URL of the [mandate](get-mandate) this subscription was created for.
+                        type: *ref_23
+                        properties: *ref_24
+                      profile:
+                        description: The API resource URL of the [profile](get-profile) this subscription was created for.
+                        type: *ref_23
+                        properties: *ref_24
+                      payments:
+                        description: |-
+                          The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such
+                          payments exist (yet).
+                        type: *ref_23
+                        properties: *ref_24
+                      documentation:
+                        type: object
+                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                        required: *ref_4
+                        properties: *ref_5
+                    readOnly: true
               examples:
                 get-subscription-200-1:
                   summary: The subscription object
-                  value: &ref_68
+                  value: &ref_69
                     resource: subscription
                     id: sub_rVKGtNd6s3
                     mode: live
@@ -18408,6 +18638,7 @@ paths:
                     startDate: '2023-06-01'
                     nextPaymentDate: '2023-09-01'
                     description: Quarterly payment
+                    metadata: null
                     method: null
                     status: active
                     webhookUrl: https://webshop.example.org/payments/webhook
@@ -18421,6 +18652,9 @@ paths:
                       customer:
                         href: https://api.mollie.com/v2/customers/cst_stTC2WHAuS
                         type: application/hal+json
+                      profile:
+                        href: ...
+                        type: text/html
                       documentation:
                         href: ...
                         type: text/html
@@ -18581,7 +18815,8 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: *ref_67
+                          required: *ref_67
+                          properties: *ref_68
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -18590,7 +18825,7 @@ paths:
                 list-subscriptions-200-1:
                   summary: A list of subscription objects
                   value:
-                    count: 5
+                    count: 1
                     _embedded:
                       subscriptions:
                         - resource: subscription
@@ -18605,6 +18840,7 @@ paths:
                           startDate: '2023-06-01'
                           nextPaymentDate: '2023-09-01'
                           description: Quarterly payment
+                          metadata: null
                           method: null
                           status: active
                           webhookUrl: https://webshop.example.org/payments/webhook
@@ -18618,10 +18854,12 @@ paths:
                             customer:
                               href: https://api.mollie.com/v2/customers/cst_stTC2WHAuS
                               type: application/hal+json
-                        - {}
-                        - {}
-                        - {}
-                        - {}
+                            profile:
+                              href: ...
+                              type: text/html
+                            documentation:
+                              href: ...
+                              type: text/html
                     _links:
                       self:
                         href: ...
@@ -18690,7 +18928,7 @@ paths:
         description: Provide the ID of the related subscription.
         in: path
         required: true
-        schema: &ref_69
+        schema: &ref_70
           type: string
           example: sub_5B8cwPMGnU
     get:
@@ -18721,11 +18959,12 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_67
+                required: *ref_67
+                properties: *ref_68
               examples:
                 get-subscription-200-1:
                   summary: The subscription object
-                  value: *ref_68
+                  value: *ref_69
         '404':
           description: No entity with this ID exists.
           content: *ref_27
@@ -18867,7 +19106,8 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_67
+                required: *ref_67
+                properties: *ref_68
               examples:
                 update-subscription-200-1:
                   summary: The updated subscription object
@@ -18884,6 +19124,7 @@ paths:
                     startDate: '2023-06-01'
                     nextPaymentDate: '2023-09-01'
                     description: Quarterly payment
+                    metadata: null
                     method: null
                     status: active
                     webhookUrl: https://webshop.example.org/payments/webhook
@@ -18897,6 +19138,9 @@ paths:
                       customer:
                         href: https://api.mollie.com/v2/customers/cst_stTC2WHAuS
                         type: application/hal+json
+                      profile:
+                        href: ...
+                        type: text/html
                       documentation:
                         href: ...
                         type: text/html
@@ -19050,7 +19294,8 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_67
+                required: *ref_67
+                properties: *ref_68
               examples:
                 cancel-subscription-200-1:
                   summary: The updated subscription object with status Canceled
@@ -19067,6 +19312,7 @@ paths:
                     startDate: '2023-06-01'
                     nextPaymentDate: null
                     description: Quarterly payment
+                    metadata: null
                     method: null
                     status: canceled
                     webhookUrl: https://webshop.example.org/payments/webhook
@@ -19080,6 +19326,9 @@ paths:
                       customer:
                         href: https://api.mollie.com/v2/customers/cst_stTC2WHAuS
                         type: application/hal+json
+                      profile:
+                        href: ...
+                        type: text/html
                       documentation:
                         href: ...
                         type: text/html
@@ -19145,33 +19394,32 @@ paths:
 
         The results are paginated.
       parameters:
-        - name: from
-          in: query
-          description: |-
-            Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
-            the result set.
-          schema:
+        - schema:
             type: string
-            example: tr_5B8cwPMGnU
+            example: sub_rVKGtNd6s3
+          name: from
+          description: |-
+            Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+            result set.
+          in: query
         - name: limit
           description: The maximum number of items to return. Defaults to 50 items.
           in: query
           schema: *ref_39
-        - name: sort
-          description: |-
-            Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-            newest to oldest.
-          in: query
-          schema: *ref_44
         - name: profileId
           description: |-
-            The identifier referring to the [profile](get-profile) you wish to
-            retrieve the resources for.
+            The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.
 
-            Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-            organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+            Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+
+            To retrieve all subscriptions across the organization, use an organization-level API credential and omit the
+            `profileId` parameter.
           in: query
-          schema: *ref_29
+          schema:
+            type:
+              - string
+              - 'null'
+            example: pfl_QkEhN94Ba
         - name: testmode
           description: |-
             Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -19183,7 +19431,7 @@ paths:
           schema: *ref_25
       responses:
         '200':
-          description: A list of payment objects.
+          description: A list of subscription objects.
           content:
             application/hal+json:
               schema:
@@ -19203,48 +19451,55 @@ paths:
                   _embedded:
                     type: object
                     properties:
-                      payments:
-                        description: An array of payment objects.
+                      subscriptions:
+                        description: A list of subscription objects.
                         type: array
                         items:
-                          allOf: *ref_22
+                          type: object
+                          required: *ref_67
+                          properties: *ref_68
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
                     properties: *ref_41
               examples:
-                list-payments-200-1:
-                  summary: A list of payment objects
+                list-subscriptions-200-1:
+                  summary: A list of subscription objects
                   value:
                     count: 1
                     _embedded:
-                      payments:
-                        - resource: payment
-                          id: tr_5B8cwPMGnU6qLbRvo7qEZo
+                      subscriptions:
+                        - resource: subscription
+                          id: sub_rVKGtNd6s3
                           mode: live
-                          status: open
-                          isCancelable: false
-                          sequenceType: oneoff
                           amount:
-                            value: '75.00'
-                            currency: GBP
-                          description: 'Order #12345'
-                          method: ideal
+                            currency: EUR
+                            value: '25.00'
+                          times: 4
+                          timesRemaining: 4
+                          interval: 3 months
+                          startDate: '2023-06-01'
+                          nextPaymentDate: '2023-09-01'
+                          description: Quarterly payment
                           metadata: null
-                          details: null
-                          profileId: pfl_QkEhN94Ba
-                          redirectUrl: https://webshop.example.org/order/12345/
-                          createdAt: '2024-02-12T11:58:35.0Z'
-                          expiresAt: '2024-02-12T12:13:35.0Z'
+                          method: null
+                          status: active
+                          webhookUrl: https://webshop.example.org/payments/webhook
+                          customerId: cst_stTC2WHAuS
+                          mandateId: mdt_38HS4fsS
+                          createdAt: '2023-04-06T13:10:19.0Z'
                           _links:
                             self:
                               href: ...
                               type: application/hal+json
-                            checkout:
-                              href: https://www.mollie.com/checkout/issuer/select/ideal/7UhSN1zuXS
+                            customer:
+                              href: https://api.mollie.com/v2/customers/cst_stTC2WHAuS
+                              type: application/hal+json
+                            profile:
+                              href: ...
                               type: text/html
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_12345678/payments/tr_5B8cwPMGnU6qLbRvo7qEZo
+                            documentation:
+                              href: ...
                               type: text/html
                     _links:
                       self:
@@ -19252,2050 +19507,17 @@ paths:
                         type: application/hal+json
                       previous: null
                       next:
-                        href: https://api.mollie.com/v2/payments?from=tr_SDkzMggpvx&limit=5
+                        href: https://api.mollie.com/v2/subscriptions?from=sub_mnXbwhMfvo&limit=5
                         type: application/hal+json
                       documentation:
                         href: ...
                         type: text/html
-                list-payments-200-2:
-                  summary: Get 3 latest payments
-                  x-request: ./../_components/requests/common-payment-requests.yaml#/api-get-3-latest-payments
-                  value:
-                    _embedded:
-                      payments:
-                        - resource: payment
-                          id: tr_92M7kM99Rg
-                          mode: test
-                          createdAt: '2021-12-29T13:39:35+00:00'
-                          amount:
-                            value: '10.00'
-                            currency: EUR
-                          description: This is the description
-                          method: creditcard
-                          metadata: null
-                          status: open
-                          isCancelable: false
-                          expiresAt: '2021-12-29T13:56:35+00:00'
-                          locale: nl_NL
-                          profileId: pfl_85dxyKqNHa
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/redirect
-                          webhookUrl: https://example.com/webhook
-                          settlementAmount:
-                            value: '10.00'
-                            currency: EUR
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            checkout:
-                              href: https://www.mollie.com/checkout/test-mode?method=creditcard&token=3.onk00c
-                              type: text/html
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_13514547/payments/tr_92M7kM99Rg
-                              type: text/html
-                        - resource: payment
-                          id: tr_TNFzqz7jzb
-                          mode: test
-                          createdAt: '2021-12-29T13:38:26+00:00'
-                          amount:
-                            value: '10.00'
-                            currency: EUR
-                          description: This is the description
-                          method: creditcard
-                          metadata: null
-                          status: open
-                          isCancelable: false
-                          expiresAt: '2021-12-29T13:55:26+00:00'
-                          locale: nl_NL
-                          profileId: pfl_85dxyKqNHa
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/redirect
-                          webhookUrl: https://example.com/webhook
-                          settlementAmount:
-                            value: '10.00'
-                            currency: EUR
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            checkout:
-                              href: https://www.mollie.com/checkout/test-mode?method=creditcard&token=3.nnw5dc
-                              type: text/html
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_13514547/payments/tr_TNFzqz7jzb
-                              type: text/html
-                        - resource: payment
-                          id: tr_h7uqbSUNbG
-                          mode: test
-                          createdAt: '2021-12-29T13:07:29+00:00'
-                          amount:
-                            value: '10.00'
-                            currency: EUR
-                          description: Description
-                          method: ideal
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-29T13:24:02+00:00'
-                          profileId: pfl_85dxyKqNHa
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com
-                          webhookUrl: https://example.com/webhook
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_13514547/payments/tr_h7uqbSUNbG
-                              type: text/html
-                        - resource: payment
-                          id: tr_FE9UrEs9zU
-                          mode: test
-                          createdAt: '2021-12-29T13:01:35+00:00'
-                          amount:
-                            value: '10.00'
-                            currency: EUR
-                          description: Updated payment description
-                          method: ideal
-                          metadata:
-                            someProperty: someValue
-                            anotherProperty: anotherValue
-                          status: expired
-                          expiredAt: '2021-12-29T13:25:03+00:00'
-                          locale: en_GB
-                          restrictPaymentMethodsToCountry: NL
-                          profileId: pfl_85dxyKqNHa
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com
-                          webhookUrl: https://example.com/webhook
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_13514547/payments/tr_FE9UrEs9zU
-                              type: text/html
-                        - resource: payment
-                          id: tr_dFWesfS4F7
-                          mode: test
-                          createdAt: '2021-12-23T08:25:22+00:00'
-                          amount:
-                            value: '10.00'
-                            currency: EUR
-                          description: Description
-                          method: ideal
-                          metadata:
-                            someProperty: someValue
-                            anotherProperty: anotherValue
-                          status: expired
-                          expiredAt: '2021-12-23T08:42:02+00:00'
-                          locale: en_GB
-                          restrictPaymentMethodsToCountry: NL
-                          profileId: pfl_85dxyKqNHa
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com
-                          webhookUrl: https://example.com/webhook
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_13514547/payments/tr_dFWesfS4F7
-                              type: text/html
-                        - resource: payment
-                          id: tr_8N2vfqD9Q9
-                          mode: test
-                          createdAt: '2021-12-22T08:48:38+00:00'
-                          amount:
-                            value: '10.00'
-                            currency: EUR
-                          description: My first routed payment
-                          method: creditcard
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-22T09:06:02+00:00'
-                          locale: en_US
-                          countryCode: NL
-                          profileId: pfl_85dxyKqNHa
-                          sequenceType: oneoff
-                          redirectUrl: https://www.mollie.com/en
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_13514547/payments/tr_8N2vfqD9Q9
-                              type: text/html
-                        - resource: payment
-                          id: tr_nBs82Ujy7g
-                          mode: test
-                          createdAt: '2021-12-10T12:37:35+00:00'
-                          amount:
-                            value: '10.00'
-                            currency: EUR
-                          description: 'Payment for invoice number #000121'
-                          method: ideal
-                          metadata:
-                            order_id: '4590962'
-                          status: paid
-                          paidAt: '2021-12-10T12:39:18+00:00'
-                          amountRefunded:
-                            value: '0.00'
-                            currency: EUR
-                          amountRemaining:
-                            value: '10.00'
-                            currency: EUR
-                          locale: en_US
-                          countryCode: NL
-                          profileId: pfl_85dxyKqNHa
-                          sequenceType: oneoff
-                          redirectUrl: https://webshop.example.org/payment-links/redirectUrl
-                          webhookUrl: https://webshop.example.org/payment-links/webhook
-                          settlementAmount:
-                            value: '10.00'
-                            currency: EUR
-                          details:
-                            consumerName: T. TEST
-                            consumerAccount: NL68RABO0638606673
-                            consumerBic: RABONL2U
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_13514547/payments/tr_nBs82Ujy7g
-                              type: text/html
-                            changePaymentState:
-                              href: https://www.mollie.com/checkout/test-mode?method=ideal&token=3.st50hq
-                              type: text/html
-                        - resource: payment
-                          id: tr_6qh37hS3FF
-                          mode: test
-                          createdAt: '2021-12-08T16:02:20+00:00'
-                          amount:
-                            value: '10.00'
-                            currency: EUR
-                          description: My first payment
-                          method: ideal
-                          metadata: null
-                          status: paid
-                          paidAt: '2021-12-08T16:04:10+00:00'
-                          amountRefunded:
-                            value: '10.00'
-                            currency: EUR
-                          amountRemaining:
-                            value: '0.00'
-                            currency: EUR
-                          locale: en_US
-                          countryCode: NL
-                          profileId: pfl_85dxyKqNHa
-                          sequenceType: oneoff
-                          redirectUrl: https://www.mollie.com/en
-                          settlementAmount:
-                            value: '10.00'
-                            currency: EUR
-                          details:
-                            consumerName: T. TEST
-                            consumerAccount: NL55RABO0282361409
-                            consumerBic: RABONL2U
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_13514547/payments/tr_6qh37hS3FF
-                              type: text/html
-                            changePaymentState:
-                              href: https://www.mollie.com/checkout/test-mode?method=ideal&token=3.ee5j0m
-                              type: text/html
-                            refunds:
-                              href: https://api.mollie.com/v2/payments/tr_6qh37hS3FF/refunds
-                              type: application/hal+json
-                    count: 8
-                    _links:
-                      documentation:
-                        href: ...
-                        type: text/html
-                      self:
-                        href: ...
-                        type: application/hal+json
-                      previous: null
-                      next: null
-                list-payments-200-3:
-                  summary: List payments for specific profile
-                  x-request: ./../_components/requests/common-payment-requests.yaml#/oauth-list-payments-for-specific-profile
-                  value:
-                    _embedded:
-                      payments:
-                        - resource: payment
-                          id: tr_jDqwhKQVgW
-                          mode: live
-                          createdAt: '2022-01-19T13:28:30+00:00'
-                          amount:
-                            value: '10.00'
-                            currency: EUR
-                          description: I can do payments now
-                          method: ideal
-                          metadata: null
-                          status: open
-                          isCancelable: false
-                          expiresAt: '2022-01-19T13:43:30+00:00'
-                          profileId: pfl_zcfJRjkf6P
-                          applicationFee:
-                            amount:
-                              value: '1.50'
-                              currency: EUR
-                            description: Platform free
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            checkout:
-                              href: https://www.mollie.com/checkout/select-method/jDqwhKQVgW
-                              type: text/html
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_jDqwhKQVgW
-                              type: text/html
-                        - resource: payment
-                          id: tr_95my2qPt3H
-                          mode: live
-                          createdAt: '2022-01-19T13:22:39+00:00'
-                          amount:
-                            value: '10.00'
-                            currency: EUR
-                          description: I can do payments now
-                          method: ideal
-                          metadata: null
-                          status: open
-                          isCancelable: false
-                          expiresAt: '2022-01-19T13:37:39+00:00'
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            checkout:
-                              href: https://www.mollie.com/checkout/select-method/95my2qPt3H
-                              type: text/html
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_95my2qPt3H
-                              type: text/html
-                        - resource: payment
-                          id: tr_ntnfCGP6mv
-                          mode: live
-                          createdAt: '2022-01-19T07:42:59+00:00'
-                          amount:
-                            value: '10.00'
-                            currency: EUR
-                          description: I can do payments now
-                          method: ideal
-                          metadata: null
-                          status: expired
-                          expiredAt: '2022-01-19T07:59:02+00:00'
-                          profileId: pfl_zcfJRjkf6P
-                          applicationFee:
-                            amount:
-                              value: '1.50'
-                              currency: EUR
-                            description: Platform free
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_ntnfCGP6mv
-                              type: text/html
-                        - resource: payment
-                          id: tr_EdTCRdcfCs
-                          mode: live
-                          createdAt: '2022-01-18T15:16:07+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: 'Mollie  #136'
-                          method: creditcard
-                          metadata:
-                            order_id: '136'
-                            customer_id: null
-                            billing_address:
-                              first_name: Amanda
-                              email: test@mollie.com
-                              last_name: Walsh
-                              city: Paris
-                              state: Centre
-                              country: FR
-                              country_code: FR
-                              zip: '75007'
-                              phone: 628351095
-                              address1: Champ de Mars, 5 Avenue Anatole France
-                              address2: null
-                              name: Amanda Walsh
-                              state_code: null
-                              phone_number: 628351095
-                            default_instrument: false
-                          status: failed
-                          failedAt: '2022-01-18T15:16:30+00:00'
-                          locale: nl_NL
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/pay/external/store/1001879680/order/136/provider/mollie/return
-                          webhookUrl: https://example.com/api/public/v1/payments/stores/1001879680/providers/mollie/notifications?currency_code=EUR
-                          details:
-                            cardToken: tkn_t67GnF6USB
-                            cardFingerprint: 3uzqSxyue3dDWJMHdPkBvfy6
-                            cardNumber: '9996'
-                            cardHolder: Mollie
-                            cardAudience: consumer
-                            cardLabel: Visa
-                            cardCountryCode: MU
-                            cardSecurity: 3dsecure
-                            failureReason: authentication_failed
-                            failureMessage: 3-D Secure authenticatie is gefaald.
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_EdTCRdcfCs
-                              type: text/html
-                        - resource: payment
-                          id: tr_8KwCUNMVJe
-                          mode: live
-                          createdAt: '2022-01-18T14:04:24+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: 'Mollie  #135'
-                          method: creditcard
-                          metadata:
-                            order_id: '135'
-                            customer_id: '5'
-                            billing_address:
-                              first_name: Amanda
-                              email: test@mollie.com
-                              last_name: Walsh
-                              city: Paris
-                              state: centre
-                              country: FR
-                              country_code: FR
-                              zip: '75007'
-                              phone: 628351095
-                              address1: Champ de Mars, 5 Avenue Anatole France
-                              address2: null
-                              name: Amanda Walsh
-                              state_code: null
-                              phone_number: 628351095
-                            default_instrument: false
-                          status: paid
-                          paidAt: '2022-01-18T14:04:25+00:00'
-                          amountRefunded:
-                            value: '0.01'
-                            currency: EUR
-                          amountRemaining:
-                            value: '0.00'
-                            currency: EUR
-                          locale: nl_NL
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_77Ffsgn3ny
-                          mandateId: mdt_DPRgAhbMDG
-                          sequenceType: recurring
-                          redirectUrl: null
-                          webhookUrl: https://example.com/api/public/v1/payments/stores/1001879680/providers/mollie/notifications?currency_code=EUR
-                          settlementAmount:
-                            value: '0.01'
-                            currency: EUR
-                          details:
-                            cardFingerprint: BN895ync4krH6kr9TBhstfhh
-                            cardNumber: '9267'
-                            cardHolder: A.J. Walsh
-                            cardAudience: consumer
-                            cardLabel: Mastercard
-                            cardCountryCode: NL
-                            cardSecurity: normal
-                            feeRegion: intra-eu
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_8KwCUNMVJe
-                              type: text/html
-                            refunds:
-                              href: https://api.mollie.com/v2/payments/tr_8KwCUNMVJe/refunds
-                              type: application/hal+json
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_77Ffsgn3ny
-                              type: application/hal+json
-                            mandate:
-                              href: https://api.mollie.com/v2/customers/cst_77Ffsgn3ny/mandates/mdt_DPRgAhbMDG
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_QcQPGvh9Du
-                          mode: live
-                          createdAt: '2022-01-18T14:03:08+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: 'Mollie  #134'
-                          method: creditcard
-                          metadata:
-                            order_id: '134'
-                            customer_id: '5'
-                            billing_address:
-                              first_name: Amanda
-                              email: test@mollie.com
-                              last_name: Walsh
-                              city: Paris
-                              state: centre
-                              country: FR
-                              country_code: FR
-                              zip: '75007'
-                              phone: 628351095
-                              address1: Champ de Mars, 5 Avenue Anatole France
-                              address2: null
-                              name: Amanda Walsh
-                              state_code: null
-                              phone_number: 628351095
-                            default_instrument: false
-                          status: paid
-                          paidAt: '2022-01-18T14:03:10+00:00'
-                          amountRefunded:
-                            value: '0.01'
-                            currency: EUR
-                          amountRemaining:
-                            value: '0.00'
-                            currency: EUR
-                          locale: nl_NL
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_77Ffsgn3ny
-                          mandateId: mdt_DPRgAhbMDG
-                          sequenceType: recurring
-                          redirectUrl: null
-                          webhookUrl: https://example.com/api/public/v1/payments/stores/1001879680/providers/mollie/notifications?currency_code=EUR
-                          settlementAmount:
-                            value: '0.01'
-                            currency: EUR
-                          details:
-                            cardFingerprint: BN895ync4krH6kr9TBhstfhh
-                            cardNumber: '9267'
-                            cardHolder: A.J. Walsh
-                            cardAudience: consumer
-                            cardLabel: Mastercard
-                            cardCountryCode: NL
-                            cardSecurity: normal
-                            feeRegion: intra-eu
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_QcQPGvh9Du
-                              type: text/html
-                            refunds:
-                              href: https://api.mollie.com/v2/payments/tr_QcQPGvh9Du/refunds
-                              type: application/hal+json
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_77Ffsgn3ny
-                              type: application/hal+json
-                            mandate:
-                              href: https://api.mollie.com/v2/customers/cst_77Ffsgn3ny/mandates/mdt_DPRgAhbMDG
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_wk6m2eaWcB
-                          mode: live
-                          createdAt: '2022-01-18T14:00:44+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: 'Mollie  #133'
-                          method: creditcard
-                          metadata:
-                            order_id: '133'
-                            customer_id: '5'
-                            billing_address:
-                              first_name: Amanda
-                              email: test@mollie.com
-                              last_name: Walsh
-                              city: Paris
-                              state: centre
-                              country: FR
-                              country_code: FR
-                              zip: '75007'
-                              phone: 628351095
-                              address1: Champ de Mars, 5 Avenue Anatole France
-                              address2: null
-                              name: Amanda Walsh
-                              state_code: null
-                              phone_number: 628351095
-                            default_instrument: false
-                          status: paid
-                          paidAt: '2022-01-18T14:01:27+00:00'
-                          amountRefunded:
-                            value: '0.01'
-                            currency: EUR
-                          amountRemaining:
-                            value: '0.00'
-                            currency: EUR
-                          locale: nl_NL
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_77Ffsgn3ny
-                          mandateId: mdt_DPRgAhbMDG
-                          sequenceType: first
-                          redirectUrl: https://example.com/pay/external/store/1001879680/order/133/provider/mollie/return
-                          webhookUrl: https://example.com/api/public/v1/payments/stores/1001879680/providers/mollie/notifications?currency_code=EUR
-                          settlementAmount:
-                            value: '0.01'
-                            currency: EUR
-                          details:
-                            cardToken: tkn_xtbTh68DMH
-                            cardFingerprint: BN895ync4krH6kr9TBhstfhh
-                            cardNumber: '9267'
-                            cardHolder: A.J. Walsh
-                            cardAudience: consumer
-                            cardLabel: Mastercard
-                            cardCountryCode: NL
-                            cardSecurity: 3dsecure
-                            feeRegion: intra-eu
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_wk6m2eaWcB
-                              type: text/html
-                            refunds:
-                              href: https://api.mollie.com/v2/payments/tr_wk6m2eaWcB/refunds
-                              type: application/hal+json
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_77Ffsgn3ny
-                              type: application/hal+json
-                            mandate:
-                              href: https://api.mollie.com/v2/customers/cst_77Ffsgn3ny/mandates/mdt_DPRgAhbMDG
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_4nvqTDgb2V
-                          mode: live
-                          createdAt: '2022-01-17T16:06:27+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: Order 000000376
-                          method: creditcard
-                          metadata: null
-                          status: expired
-                          expiredAt: '2022-01-17T16:23:02+00:00'
-                          locale: en_US
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_uU9yQjJwHV
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZo
-                          sequenceType: first
-                          redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=394&payment_token=123&utm_nooverride=1
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_4nvqTDgb2V
-                              type: text/html
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_uU9yQjJwHV
-                              type: application/hal+json
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZo
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_WSmqbH9dmk
-                          mode: live
-                          createdAt: '2022-01-17T16:01:41+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: Order 000000375
-                          method: creditcard
-                          metadata: null
-                          status: paid
-                          paidAt: '2022-01-17T16:02:19+00:00'
-                          amountRefunded:
-                            value: '0.00'
-                            currency: EUR
-                          amountRemaining:
-                            value: '0.01'
-                            currency: EUR
-                          locale: en_US
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_uU9yQjJwHV
-                          mandateId: mdt_Ff284cNKht
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ1
-                          sequenceType: first
-                          redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=393&payment_token=123&utm_nooverride=1
-                          settlementAmount:
-                            value: '0.01'
-                            currency: EUR
-                          details:
-                            cardToken: tkn_bnmP3THUuD
-                            cardFingerprint: BN895ync4krH6kr9TBhstfhh
-                            cardNumber: '9267'
-                            cardHolder: A.J. Walsh
-                            cardAudience: consumer
-                            cardLabel: Mastercard
-                            cardCountryCode: NL
-                            cardSecurity: 3dsecure
-                            feeRegion: intra-eu
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_WSmqbH9dmk
-                              type: text/html
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_uU9yQjJwHV
-                              type: application/hal+json
-                            mandate:
-                              href: https://api.mollie.com/v2/customers/cst_uU9yQjJwHV/mandates/mdt_Ff284cNKht
-                              type: application/hal+json
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ1
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_QgUjvHbA8Q
-                          mode: live
-                          createdAt: '2022-01-14T11:27:53+00:00'
-                          amount:
-                            value: '1007.00'
-                            currency: EUR
-                          description: Order a036907f-6221-4611-a7ab-2725e1e80c2b
-                          method: ideal
-                          metadata: null
-                          status: expired
-                          expiredAt: '2022-01-14T11:44:05+00:00'
-                          locale: en_US
-                          profileId: pfl_zcfJRjkf6P
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ2
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/redirect?wixMerchantId=d122df9a-ae27-42e2-94bc-d7ed17f9a447&orderId=a036907f-6221-4611-a7ab-2725e1e80c2b
-                          webhookUrl: https://example.com/webhooks?wixMerchantId=d122df9a-ae27-42e2-94bc-d7ed17f9a447
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_QgUjvHbA8Q
-                              type: text/html
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ2
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_ErjmfS5B86
-                          mode: live
-                          createdAt: '2021-12-16T18:56:21+00:00'
-                          amount:
-                            value: '59.00'
-                            currency: EUR
-                          description: '000000367'
-                          method: ideal
-                          metadata:
-                            order_id: '385'
-                            store_id: '1'
-                            payment_token: 0G5kVTik8qigzB5DLXiuJsVOiH7ZbPpy
-                          status: expired
-                          expiredAt: '2021-12-16T19:13:00+00:00'
-                          locale: nl_NL
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=385&payment_token=123utm_nooverride=1
-                          webhookUrl: https://example.com/dev/mollie/checkout/webhook/?isAjax=1
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_ErjmfS5B86
-                              type: text/html
-                        - resource: payment
-                          id: tr_zegQDmfHp5
-                          mode: live
-                          createdAt: '2021-12-16T18:54:22+00:00'
-                          amount:
-                            value: '59.00'
-                            currency: EUR
-                          description: '000000366'
-                          method: ideal
-                          metadata:
-                            order_id: '384'
-                            store_id: '1'
-                            payment_token: 0G5kVTik8qigzB5DLXiuJsVOiH7ZbPpy
-                          status: expired
-                          expiredAt: '2021-12-16T19:10:43+00:00'
-                          locale: nl_NL
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=384&payment_token=123&utm_nooverride=1
-                          webhookUrl: https://example.com/dev/mollie/checkout/webhook/?isAjax=1
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_zegQDmfHp5
-                              type: text/html
-                        - resource: payment
-                          id: tr_4jbEGjvw3C
-                          mode: live
-                          createdAt: '2021-12-15T16:07:37+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: Order 462a4c86-bcf0-4e47-84c3-fd24fb6d907d
-                          method: banktransfer
-                          metadata: null
-                          status: paid
-                          paidAt: '2021-12-15T16:41:10+00:00'
-                          amountRefunded:
-                            value: '0.00'
-                            currency: EUR
-                          amountRemaining:
-                            value: '25.01'
-                            currency: EUR
-                          locale: en_US
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ3
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/redirect?wixMerchantId=d122df9a-ae27-42e2-94bc-d7ed17f9a447&orderId=462a4c86-bcf0-4e47-84c3-fd24fb6d907d
-                          webhookUrl: https://example.com/webhooks?wixMerchantId=d122df9a-ae27-42e2-94bc-d7ed17f9a447
-                          settlementAmount:
-                            value: '0.01'
-                            currency: EUR
-                          details:
-                            bankName: Stichting Mollie Payments
-                            bankAccount: NL70DEUT0265262313
-                            bankBic: DEUTNL2A
-                            transferReference: RF74-4500-4966-8489
-                            billingEmail: test@mollie.com
-                            consumerName: AJ WALSH
-                            consumerAccount: NL71ABNA0825509440
-                            consumerBic: ABNANL2AXXX
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_4jbEGjvw3C
-                              type: text/html
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ3
-                              type: application/hal+json
-                            status:
-                              href: https://www.mollie.com/checkout/bank-transfer/status/3.lkmvuw
-                              type: text/html
-                        - resource: payment
-                          id: tr_zTnKhNvPUT
-                          mode: live
-                          createdAt: '2021-12-14T15:48:48+00:00'
-                          amount:
-                            value: '85.00'
-                            currency: EUR
-                          description: Order c4cca02f-5ce2-4936-bbba-dc6ef1f1e3d9
-                          method: banktransfer
-                          metadata: null
-                          status: canceled
-                          canceledAt: '2022-01-11T15:50:08+00:00'
-                          locale: en_US
-                          countryCode: RS
-                          profileId: pfl_zcfJRjkf6P
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ4
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/redirect?wixMerchantId=d122df9a-ae27-42e2-94bc-d7ed17f9a447&orderId=c4cca02f-5ce2-4936-bbba-dc6ef1f1e3d9
-                          webhookUrl: https://example.com/webhooks?wixMerchantId=d122df9a-ae27-42e2-94bc-d7ed17f9a447
-                          details:
-                            bankName: Stichting Mollie Payments
-                            bankAccount: NL70DEUT0265262313
-                            bankBic: DEUTNL2A
-                            transferReference: RF18-6008-0499-7965
-                            billingEmail: test@mollie.com
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_zTnKhNvPUT
-                              type: text/html
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ4
-                              type: application/hal+json
-                            status:
-                              href: https://www.mollie.com/checkout/bank-transfer/status/3.8bkxfw
-                              type: text/html
-                        - resource: payment
-                          id: tr_ksNqVyqbab
-                          mode: live
-                          createdAt: '2021-12-14T15:24:16+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: Order 000000365
-                          method: creditcard
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-14T15:42:07+00:00'
-                          locale: en_US
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_Fe48Wu9Eva
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ5
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=383&payment_token=123&utm_nooverride=1
-                          details:
-                            cardSecurity: normal
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_ksNqVyqbab
-                              type: text/html
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
-                              type: application/hal+json
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ5
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_csHVQWJm3W
-                          mode: live
-                          createdAt: '2021-12-14T15:13:20+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: Order 000000364
-                          method: creditcard
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-14T15:30:02+00:00'
-                          locale: en_US
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_Fe48Wu9Eva
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ6
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=382&payment_token=123&utm_nooverride=1
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_csHVQWJm3W
-                              type: text/html
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
-                              type: application/hal+json
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ6
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_9C6FGvRBFN
-                          mode: live
-                          createdAt: '2021-12-14T15:11:40+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: Order 000000363
-                          method: creditcard
-                          metadata: null
-                          status: paid
-                          paidAt: '2021-12-14T15:11:52+00:00'
-                          amountRefunded:
-                            value: '0.00'
-                            currency: EUR
-                          amountRemaining:
-                            value: '0.01'
-                            currency: EUR
-                          locale: en_US
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_Fe48Wu9Eva
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ7
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=381&payment_token=123&utm_nooverride=1
-                          settlementAmount:
-                            value: '0.01'
-                            currency: EUR
-                          details:
-                            cardToken: tkn_J9bAGBpw9S
-                            cardFingerprint: 2xWzgJFwNnC3kNE4WNTvrkfD
-                            cardNumber: '4335'
-                            cardHolder: Amanda Walsh
-                            cardAudience: consumer
-                            cardLabel: Visa
-                            cardCountryCode: US
-                            cardSecurity: 3dsecure
-                            feeRegion: other
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_9C6FGvRBFN
-                              type: text/html
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
-                              type: application/hal+json
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ7
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_UxxzHS8sAW
-                          mode: live
-                          createdAt: '2021-12-14T14:41:55+00:00'
-                          amount:
-                            value: '7.50'
-                            currency: EUR
-                          description: Order 53c0b522-d15b-4209-96b7-25cf98bb4631
-                          method: banktransfer
-                          metadata: null
-                          status: canceled
-                          canceledAt: '2022-01-11T14:45:03+00:00'
-                          locale: en_US
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ8
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/redirect?wixMerchantId=d122df9a-ae27-42e2-94bc-d7ed17f9a447&orderId=53c0b522-d15b-4209-96b7-25cf98bb4631
-                          webhookUrl: https://example.com/webhooks?wixMerchantId=d122df9a-ae27-42e2-94bc-d7ed17f9a447
-                          details:
-                            bankName: Stichting Mollie Payments
-                            bankAccount: NL70DEUT0265262313
-                            bankBic: DEUTNL2A
-                            transferReference: RF06-7000-7948-6191
-                            billingEmail: test@mollie.com
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_UxxzHS8sAW
-                              type: text/html
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ8
-                              type: application/hal+json
-                            status:
-                              href: https://www.mollie.com/checkout/bank-transfer/status/3.ub14cw
-                              type: text/html
-                        - resource: payment
-                          id: tr_HEsCwNjSwj
-                          mode: live
-                          createdAt: '2021-12-14T10:38:32+00:00'
-                          amount:
-                            value: '10.00'
-                            currency: EUR
-                          description: My first payment
-                          method: ideal
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-14T10:55:05+00:00'
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_uTrTNdhD5M
-                          mandateId: mdt_d9HvU2evHH
-                          sequenceType: first
-                          redirectUrl: https://www.mollie.com/en
-                          webhookUrl: https://www.mollie.com/en
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_HEsCwNjSwj
-                              type: text/html
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_uTrTNdhD5M
-                              type: application/hal+json
-                            mandate:
-                              href: https://api.mollie.com/v2/customers/cst_uTrTNdhD5M/mandates/mdt_d9HvU2evHH
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_7PR5ujgAf5
-                          mode: live
-                          createdAt: '2021-12-14T10:37:32+00:00'
-                          amount:
-                            value: '10.00'
-                            currency: EUR
-                          description: My first payment
-                          method: ideal
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-14T10:54:02+00:00'
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_uTrTNdhD5M
-                          sequenceType: first
-                          redirectUrl: https://www.mollie.com/en
-                          webhookUrl: https://www.mollie.com/en
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_7PR5ujgAf5
-                              type: text/html
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_uTrTNdhD5M
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_gHCKaEgz7A
-                          mode: live
-                          createdAt: '2021-12-13T13:08:59+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: Order 000000362
-                          method: creditcard
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-13T13:25:03+00:00'
-                          locale: en_US
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_Fe48Wu9Eva
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZ9
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=380&payment_token=123&utm_nooverride=1
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_gHCKaEgz7A
-                              type: text/html
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
-                              type: application/hal+json
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZ9
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_UMtHEnx6rW
-                          mode: live
-                          createdAt: '2021-12-13T13:06:46+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: Order 000000361
-                          method: creditcard
-                          metadata: null
-                          status: paid
-                          paidAt: '2021-12-13T13:07:27+00:00'
-                          amountRefunded:
-                            value: '0.00'
-                            currency: EUR
-                          amountRemaining:
-                            value: '0.01'
-                            currency: EUR
-                          locale: en_US
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_Fe48Wu9Eva
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZa
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=379&payment_token=123&utm_nooverride=1
-                          settlementAmount:
-                            value: '0.01'
-                            currency: EUR
-                          details:
-                            cardToken: tkn_M7nNTAr6AC
-                            cardFingerprint: BN895ync4krH6kr9TBhstfhh
-                            cardNumber: '9267'
-                            cardHolder: A.J. Walsh
-                            cardAudience: consumer
-                            cardLabel: Mastercard
-                            cardCountryCode: NL
-                            cardSecurity: 3dsecure
-                            feeRegion: intra-eu
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_UMtHEnx6rW
-                              type: text/html
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
-                              type: application/hal+json
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZa
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_KNdnVCzdfv
-                          mode: live
-                          createdAt: '2021-12-13T12:59:14+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: Order 000000360
-                          method: creditcard
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-13T13:16:02+00:00'
-                          locale: en_US
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_Fe48Wu9Eva
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZb
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=378&payment_token=123&utm_nooverride=1
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_KNdnVCzdfv
-                              type: text/html
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
-                              type: application/hal+json
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZb
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_pWMGnvESfx
-                          mode: live
-                          createdAt: '2021-12-13T12:56:11+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: Order 000000359
-                          method: creditcard
-                          metadata: null
-                          status: paid
-                          paidAt: '2021-12-13T12:57:33+00:00'
-                          amountRefunded:
-                            value: '0.00'
-                            currency: EUR
-                          amountRemaining:
-                            value: '0.01'
-                            currency: EUR
-                          locale: en_US
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_Fe48Wu9Eva
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZc
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=377&payment_token=123&utm_nooverride=1
-                          settlementAmount:
-                            value: '0.01'
-                            currency: EUR
-                          details:
-                            cardToken: tkn_NqHkEPJQcc
-                            cardFingerprint: BN895ync4krH6kr9TBhstfhh
-                            cardNumber: '9267'
-                            cardHolder: A.J. Walsh
-                            cardAudience: consumer
-                            cardLabel: Mastercard
-                            cardCountryCode: NL
-                            cardSecurity: 3dsecure
-                            feeRegion: intra-eu
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_pWMGnvESfx
-                              type: text/html
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
-                              type: application/hal+json
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZc
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_DdMxvERTUe
-                          mode: live
-                          createdAt: '2021-12-13T12:54:15+00:00'
-                          amount:
-                            value: '45.00'
-                            currency: EUR
-                          description: Order 000000358
-                          method: creditcard
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-13T13:11:02+00:00'
-                          locale: en_US
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_Fe48Wu9Eva
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZd
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=376&payment_token=123&utm_nooverride=1
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_DdMxvERTUe
-                              type: text/html
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
-                              type: application/hal+json
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZd
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_2yGeVFFBdW
-                          mode: live
-                          createdAt: '2021-12-09T12:18:20+00:00'
-                          amount:
-                            value: '45.00'
-                            currency: EUR
-                          description: Order 000000357
-                          method: creditcard
-                          metadata: null
-                          status: canceled
-                          canceledAt: '2021-12-09T12:19:26+00:00'
-                          locale: en_US
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_Fe48Wu9Eva
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZe
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=375&payment_token=123&utm_nooverride=1
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_2yGeVFFBdW
-                              type: text/html
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
-                              type: application/hal+json
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZe
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_xb55QTpsVT
-                          mode: live
-                          createdAt: '2021-12-09T12:17:33+00:00'
-                          amount:
-                            value: '45.00'
-                            currency: EUR
-                          description: Order 000000356
-                          method: creditcard
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-09T12:35:07+00:00'
-                          locale: en_US
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_Fe48Wu9Eva
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZf
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=374&payment_token=123&utm_nooverride=1
-                          details:
-                            cardSecurity: normal
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_xb55QTpsVT
-                              type: text/html
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
-                              type: application/hal+json
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZf
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_5ygWQpgwBE
-                          mode: live
-                          createdAt: '2021-12-09T12:14:11+00:00'
-                          amount:
-                            value: '45.00'
-                            currency: EUR
-                          description: Order 000000355
-                          method: creditcard
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-09T12:31:02+00:00'
-                          locale: en_US
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_Fe48Wu9Eva
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZg
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=373&payment_token=123&utm_nooverride=1
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_5ygWQpgwBE
-                              type: text/html
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
-                              type: application/hal+json
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZg
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_e8PGEKcS2h
-                          mode: live
-                          createdAt: '2021-12-09T12:11:19+00:00'
-                          amount:
-                            value: '22.00'
-                            currency: EUR
-                          description: Order 000000354
-                          method: creditcard
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-09T12:28:02+00:00'
-                          locale: en_US
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_Fe48Wu9Eva
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZh
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=372&payment_token=123&utm_nooverride=1
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_e8PGEKcS2h
-                              type: text/html
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
-                              type: application/hal+json
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZh
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_pubnh4PCd4
-                          mode: live
-                          createdAt: '2021-12-09T12:03:42+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: Order 000000353
-                          method: creditcard
-                          metadata: null
-                          status: paid
-                          paidAt: '2021-12-09T12:04:22+00:00'
-                          amountRefunded:
-                            value: '0.00'
-                            currency: EUR
-                          amountRemaining:
-                            value: '0.01'
-                            currency: EUR
-                          locale: en_US
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          customerId: cst_Fe48Wu9Eva
-                          orderId: ord_5B8cwPMGnU6qLbRvo7qEZi
-                          sequenceType: oneoff
-                          redirectUrl: https://example.com/dev/mollie/checkout/process/?order_id=371&payment_token=123&utm_nooverride=1
-                          settlementAmount:
-                            value: '0.01'
-                            currency: EUR
-                          details:
-                            cardToken: tkn_VEGsUNt3uq
-                            cardFingerprint: BN895ync4krH6kr9TBhstfhh
-                            cardNumber: '9267'
-                            cardHolder: A.J. Walsh
-                            cardAudience: consumer
-                            cardLabel: Mastercard
-                            cardCountryCode: NL
-                            cardSecurity: 3dsecure
-                            feeRegion: intra-eu
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_pubnh4PCd4
-                              type: text/html
-                            customer:
-                              href: https://api.mollie.com/v2/customers/cst_Fe48Wu9Eva
-                              type: application/hal+json
-                            order:
-                              href: https://api.mollie.com/v2/orders/ord_5B8cwPMGnU6qLbRvo7qEZi
-                              type: application/hal+json
-                        - resource: payment
-                          id: tr_DPb2GgeB2B
-                          mode: live
-                          createdAt: '2021-12-08T08:38:08+00:00'
-                          amount:
-                            value: '10.00'
-                            currency: EUR
-                          description: My first routed payment
-                          method: directdebit
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-08T08:54:02+00:00'
-                          locale: en_US
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: https://www.mollie.com/en
-                          webhookUrl: https://www.mollie.com/en
-                          details:
-                            transferReference: SD03-5014-9920-7495
-                            creditorIdentifier: NL08ZZZ502057730000
-                            consumerName: null
-                            consumerAccount: null
-                            consumerBic: null
-                            dueDate: '2022-01-20'
-                            bankReasonCode: null
-                            bankReason: null
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_DPb2GgeB2B
-                              type: text/html
-                        - resource: payment
-                          id: tr_ydTSdxn8An
-                          mode: live
-                          createdAt: '2021-12-06T13:58:00+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-06T14:14:20+00:00'
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/55
-                          webhookUrl: https://example.com/payments/55/webhook
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_ydTSdxn8An
-                              type: text/html
-                        - resource: payment
-                          id: tr_JK35Azc9cb
-                          mode: live
-                          createdAt: '2021-12-06T13:57:12+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: paid
-                          paidAt: '2021-12-06T13:57:29+00:00'
-                          amountRefunded:
-                            value: '0.00'
-                            currency: EUR
-                          amountRemaining:
-                            value: '25.01'
-                            currency: EUR
-                          locale: en_US
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/54
-                          webhookUrl: https://example.com/payments/54/webhook
-                          settlementAmount:
-                            value: '0.01'
-                            currency: EUR
-                          details:
-                            consumerName: L.E. Kok
-                            consumerAccount: NL04RABO0148504558
-                            consumerBic: RABONL2U
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_JK35Azc9cb
-                              type: text/html
-                        - resource: payment
-                          id: tr_sQSvH3pMPR
-                          mode: live
-                          createdAt: '2021-12-06T13:49:12+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-06T14:06:02+00:00'
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/53
-                          webhookUrl: https://example.com/payments/53/webhook
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_sQSvH3pMPR
-                              type: text/html
-                        - resource: payment
-                          id: tr_PFEKtRWTqN
-                          mode: live
-                          createdAt: '2021-12-06T13:40:30+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-06T13:57:02+00:00'
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/52
-                          webhookUrl: https://example.com/payments/52/webhook
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_PFEKtRWTqN
-                              type: text/html
-                        - resource: payment
-                          id: tr_tkf3hujUn5
-                          mode: live
-                          createdAt: '2021-12-06T13:39:49+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-06T13:56:02+00:00'
-                          locale: en_US
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/51
-                          webhookUrl: https://example.com/payments/51/webhook
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_tkf3hujUn5
-                              type: text/html
-                        - resource: payment
-                          id: tr_Kba2FsryW3
-                          mode: live
-                          createdAt: '2021-12-06T13:25:52+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-06T13:42:02+00:00'
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/50
-                          webhookUrl: https://example.com/payments/50/webhook
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_Kba2FsryW3
-                              type: text/html
-                        - resource: payment
-                          id: tr_RxA7KvSrtJ
-                          mode: live
-                          createdAt: '2021-12-06T13:19:46+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: paid
-                          paidAt: '2021-12-06T13:19:58+00:00'
-                          amountRefunded:
-                            value: '0.00'
-                            currency: EUR
-                          amountRemaining:
-                            value: '25.01'
-                            currency: EUR
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/49
-                          webhookUrl: https://example.com/payments/49/webhook
-                          settlementAmount:
-                            value: '0.01'
-                            currency: EUR
-                          details:
-                            consumerName: L.E. Kok
-                            consumerAccount: NL04RABO0148504558
-                            consumerBic: RABONL2U
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_RxA7KvSrtJ
-                              type: text/html
-                        - resource: payment
-                          id: tr_MwSQRteNjB
-                          mode: live
-                          createdAt: '2021-12-06T13:02:31+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: paid
-                          paidAt: '2021-12-06T13:02:58+00:00'
-                          amountRefunded:
-                            value: '0.00'
-                            currency: EUR
-                          amountRemaining:
-                            value: '25.01'
-                            currency: EUR
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/48
-                          webhookUrl: https://example.com/payments/48/webhook
-                          settlementAmount:
-                            value: '0.01'
-                            currency: EUR
-                          details:
-                            consumerName: L.E. Kok
-                            consumerAccount: NL04RABO0148504558
-                            consumerBic: RABONL2U
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_MwSQRteNjB
-                              type: text/html
-                        - resource: payment
-                          id: tr_m257hQC5tk
-                          mode: live
-                          createdAt: '2021-12-06T12:55:53+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: paid
-                          paidAt: '2021-12-06T12:56:35+00:00'
-                          amountRefunded:
-                            value: '0.00'
-                            currency: EUR
-                          amountRemaining:
-                            value: '25.01'
-                            currency: EUR
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/47
-                          webhookUrl: https://example.com/payments/47/webhook
-                          settlementAmount:
-                            value: '0.01'
-                            currency: EUR
-                          details:
-                            consumerName: L.E. Kok
-                            consumerAccount: NL04RABO0148504558
-                            consumerBic: RABONL2U
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_m257hQC5tk
-                              type: text/html
-                        - resource: payment
-                          id: tr_eEPrW72gH3
-                          mode: live
-                          createdAt: '2021-12-06T12:19:15+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: paid
-                          paidAt: '2021-12-06T12:19:46+00:00'
-                          amountRefunded:
-                            value: '0.00'
-                            currency: EUR
-                          amountRemaining:
-                            value: '25.01'
-                            currency: EUR
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/46
-                          webhookUrl: https://example.com/payments/46/webhook
-                          settlementAmount:
-                            value: '0.01'
-                            currency: EUR
-                          details:
-                            consumerName: L.E. Kok
-                            consumerAccount: NL04RABO0148504558
-                            consumerBic: RABONL2U
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_eEPrW72gH3
-                              type: text/html
-                        - resource: payment
-                          id: tr_NwQjTuvhMW
-                          mode: live
-                          createdAt: '2021-12-06T12:17:04+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-06T12:33:09+00:00'
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/45
-                          webhookUrl: https://example.com/payments/45/webhook
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_NwQjTuvhMW
-                              type: text/html
-                        - resource: payment
-                          id: tr_HRMmGPqnmS
-                          mode: live
-                          createdAt: '2021-12-06T12:16:45+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-06T12:32:49+00:00'
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/44
-                          webhookUrl: https://example.com/payments/44/webhook
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_HRMmGPqnmS
-                              type: text/html
-                        - resource: payment
-                          id: tr_B7B2cenDkC
-                          mode: live
-                          createdAt: '2021-12-06T12:16:44+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-06T12:32:53+00:00'
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/43
-                          webhookUrl: https://example.com/payments/43/webhook
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_B7B2cenDkC
-                              type: text/html
-                        - resource: payment
-                          id: tr_z5PREjDv5C
-                          mode: live
-                          createdAt: '2021-12-06T12:16:29+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: canceled
-                          canceledAt: '2021-12-06T12:16:36+00:00'
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/42
-                          webhookUrl: https://example.com/payments/42/webhook
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_z5PREjDv5C
-                              type: text/html
-                        - resource: payment
-                          id: tr_56nDe2G7NM
-                          mode: live
-                          createdAt: '2021-12-06T12:14:39+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-06T12:30:54+00:00'
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/41
-                          webhookUrl: https://example.com/payments/41/webhook
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_56nDe2G7NM
-                              type: text/html
-                        - resource: payment
-                          id: tr_9MyFrrbAS8
-                          mode: live
-                          createdAt: '2021-12-06T12:13:54+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: paid
-                          paidAt: '2021-12-06T12:14:20+00:00'
-                          amountRefunded:
-                            value: '0.00'
-                            currency: EUR
-                          amountRemaining:
-                            value: '25.01'
-                            currency: EUR
-                          countryCode: NL
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/40
-                          webhookUrl: https://example.com/payments/40/webhook
-                          settlementAmount:
-                            value: '0.01'
-                            currency: EUR
-                          details:
-                            consumerName: L.E. Kok
-                            consumerAccount: NL04RABO0148504558
-                            consumerBic: RABONL2U
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_9MyFrrbAS8
-                              type: text/html
-                        - resource: payment
-                          id: tr_KPgBxSyWfU
-                          mode: live
-                          createdAt: '2021-12-06T12:13:08+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-06T12:29:22+00:00'
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/39
-                          webhookUrl: https://example.com/payments/39/webhook
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_KPgBxSyWfU
-                              type: text/html
-                        - resource: payment
-                          id: tr_9rwyrM6jcw
-                          mode: live
-                          createdAt: '2021-12-06T12:13:07+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-06T12:29:44+00:00'
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/38
-                          webhookUrl: https://example.com/payments/38/webhook
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_9rwyrM6jcw
-                              type: text/html
-                        - resource: payment
-                          id: tr_gdE6pzp9Qs
-                          mode: live
-                          createdAt: '2021-12-06T12:12:37+00:00'
-                          amount:
-                            value: '0.01'
-                            currency: EUR
-                          description: TEST Webuildapps - Mollie example
-                          method: ideal
-                          metadata: null
-                          status: expired
-                          expiredAt: '2021-12-06T12:28:55+00:00'
-                          profileId: pfl_zcfJRjkf6P
-                          sequenceType: oneoff
-                          redirectUrl: mollie-checkout://payments/37
-                          webhookUrl: https://example.com/payments/37/webhook
-                          _links:
-                            self:
-                              href: ...
-                              type: application/hal+json
-                            dashboard:
-                              href: https://www.mollie.com/dashboard/org_7049691/payments/tr_gdE6pzp9Qs
-                              type: text/html
-                    count: 50
-                    _links:
-                      documentation:
-                        href: ...
-                        type: text/html
-                      self:
-                        href: ...
-                        type: application/hal+json
-                      previous: null
-                      next:
-                        href: https://api.mollie.com/v2/payments?profileId=pfl_zcfJRjkf6P&from=tr_KBwM9rn7sm&limit=50
-                        type: application/hal+json
         '400':
           description: The request contains issues. For example, if the specified `from` value is not a valid ID.
           content: *ref_42
+        '404':
+          description: No entity with this ID exists.
+          content: *ref_27
       x-readme:
         code-samples:
           - language: shell
@@ -21344,7 +19566,7 @@ paths:
         description: Provide the ID of the related subscription.
         in: path
         required: true
-        schema: *ref_69
+        schema: *ref_70
     get:
       summary: List subscription payments
       x-speakeasy-name-override: list-payments
@@ -23590,7 +21812,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_70
+                          properties: &ref_71
                             resource:
                               type: string
                               description: |-
@@ -23929,7 +22151,7 @@ paths:
         description: Provide the ID of the related permission.
         in: path
         required: true
-        schema: &ref_145
+        schema: &ref_147
           type: string
           example: payments.read
     get:
@@ -23958,7 +22180,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_70
+                properties: *ref_71
               examples:
                 get-permission-200-1:
                   summary: The permission object
@@ -24070,7 +22292,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_71
+                properties: &ref_72
                   resource:
                     type: string
                     description: |-
@@ -24099,7 +22321,7 @@ paths:
                   address:
                     description: The address of the organization.
                     type: object
-                    properties: &ref_74
+                    properties: &ref_75
                       streetAndNumber:
                         type: string
                         description: A street and street number.
@@ -24240,7 +22462,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_71
+                properties: *ref_72
               examples:
                 get-current-organization-200-1:
                   summary: The current organization object
@@ -24501,7 +22723,7 @@ paths:
                 - email
                 - phone
               type: object
-              properties: &ref_72
+              properties: &ref_73
                 resource:
                   type: string
                   description: Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
@@ -24673,11 +22895,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_72
+                properties: *ref_73
               examples:
                 create-profile-201-1:
                   summary: The profile object
-                  value: &ref_73
+                  value: &ref_74
                     resource: profile
                     id: pfl_QkEhN94Ba
                     mode: live
@@ -24883,7 +23105,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: *ref_72
+                          properties: *ref_73
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -25002,11 +23224,11 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_72
+                properties: *ref_73
               examples:
                 get-profile-200-1:
                   summary: The profile object
-                  value: *ref_73
+                  value: *ref_74
         '404':
           description: No entity with this ID exists.
           content: *ref_27
@@ -25160,7 +23382,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_72
+                properties: *ref_73
               examples:
                 update-profile-200-1:
                   summary: The updated profile object
@@ -25421,7 +23643,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_72
+                properties: *ref_73
               examples:
                 get-current-profile-200-1:
                   summary: The current profile object
@@ -25516,7 +23738,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_75
+                properties: &ref_76
                   resource:
                     type: string
                     description: |-
@@ -25668,7 +23890,7 @@ paths:
                     address:
                       description: The address of the organization.
                       type: object
-                      properties: *ref_74
+                      properties: *ref_75
                     registrationNumber:
                       type: string
                       description: The registration number of the organization at their local chamber of commerce.
@@ -25884,7 +24106,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_76
+                          properties: &ref_77
                             resource:
                               type: string
                               description: Always the word `capability` for this resource type.
@@ -25912,7 +24134,7 @@ paths:
                               type: array
                               items:
                                 type: object
-                                properties: &ref_130
+                                properties: &ref_132
                                   id:
                                     type: string
                                     description: |-
@@ -26085,7 +24307,7 @@ paths:
                         items:
                           allOf:
                             - type: object
-                              properties: &ref_77
+                              properties: &ref_78
                                 resource:
                                   type: string
                                   description: Indicates the response contains a client object. Will always contain the string `client` for this resource type.
@@ -26141,13 +24363,13 @@ paths:
                                   properties:
                                     organization:
                                       type: object
-                                      properties: *ref_71
+                                      properties: *ref_72
                                     onboarding:
                                       type: object
-                                      properties: *ref_75
+                                      properties: *ref_76
                                     capabilities:
                                       type: object
-                                      properties: *ref_76
+                                      properties: *ref_77
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -26267,7 +24489,7 @@ paths:
               schema:
                 allOf:
                   - type: object
-                    properties: *ref_77
+                    properties: *ref_78
                   - type: object
                     properties:
                       _embedded:
@@ -26275,13 +24497,13 @@ paths:
                         properties:
                           organization:
                             type: object
-                            properties: *ref_71
+                            properties: *ref_72
                           onboarding:
                             type: object
-                            properties: *ref_75
+                            properties: *ref_76
                           capabilities:
                             type: object
-                            properties: *ref_76
+                            properties: *ref_77
               examples:
                 get-client-200-1:
                   summary: The client object
@@ -26512,7 +24734,7 @@ paths:
                 - name
                 - address
               type: object
-              properties: &ref_78
+              properties: &ref_79
                 resource:
                   type: string
                   description: |-
@@ -26640,7 +24862,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_78
+                properties: *ref_79
               examples:
                 create-client-link-201-1:
                   summary: The newly created client link object
@@ -26688,7 +24910,7 @@ paths:
           content: *ref_27
         '422':
           description: The request contains issues. For example, if the `owner` field is missing.
-          content: &ref_146
+          content: &ref_148
             application/hal+json:
               schema:
                 type: object
@@ -26773,13 +24995,13 @@ paths:
                 eventTypes:
                   type: string
                   description: The list of events to enable for this webhook. You may specify `'*'` to add all events, except those that require explicit selection. Separate multiple event types with a comma.
-                  enum: &ref_79
+                  enum: &ref_80
                     - payment-link.paid
                     - sales-invoice.created
                     - sales-invoice.issued
                     - sales-invoice.canceled
                     - sales-invoice.paid
-                  x-enumDescriptions: &ref_80
+                  x-enumDescriptions: &ref_81
                     payment-link.paid: A payment link has been paid.
                     sales-invoice.created: A sales invoice has been created.
                     sales-invoice.issued: A sales invoice has been issued.
@@ -26806,7 +25028,7 @@ paths:
           content:
             application/hal+json:
               schema:
-                properties: &ref_131
+                properties: &ref_133
                   resource:
                     type: string
                     description: Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
@@ -26961,8 +25183,8 @@ paths:
           in: query
           schema:
             type: string
-            enum: *ref_79
-            x-enumDescriptions: *ref_80
+            enum: *ref_80
+            x-enumDescriptions: *ref_81
             example: payment-link.paid
         - name: testmode
           description: |-
@@ -27002,7 +25224,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_81
+                          properties: &ref_82
                             resource:
                               type: string
                               description: |-
@@ -27156,8 +25378,8 @@ paths:
                 eventTypes:
                   type: string
                   description: The list of events to enable for this webhook. You may specify `'*'` to add all events, except those that require explicit selection. Separate multiple event types with a comma.
-                  enum: *ref_79
-                  x-enumDescriptions: *ref_80
+                  enum: *ref_80
+                  x-enumDescriptions: *ref_81
                   example: payment-link.paid
                 testmode:
                   type: *ref_56
@@ -27175,7 +25397,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_81
+                properties: *ref_82
               examples:
                 create-webhook-200:
                   summary: The webhook subscription object
@@ -27261,7 +25483,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_81
+                properties: *ref_82
               examples:
                 get-webhook-200:
                   summary: An enabled hook subscription object
@@ -27497,7 +25719,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_132
+                properties: &ref_134
                   resource:
                     type: string
                     description: Indicates the response contains a webhook event object. Will always contain the string `event` for this endpoint.
@@ -27538,7 +25760,7 @@ paths:
                             properties: *ref_54
                           - title: profile
                             type: object
-                            properties: *ref_72
+                            properties: *ref_73
                   _links:
                     type: object
                     description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -27701,7 +25923,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_82
+                          properties: &ref_83
                             resource:
                               type: string
                               description: Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
@@ -27728,7 +25950,7 @@ paths:
                               description: The balance's ISO 4217 currency code.
                               readOnly: true
                               type: string
-                              enum: &ref_87
+                              enum: &ref_88
                                 - EUR
                                 - GBP
                                 - CHF
@@ -27741,7 +25963,7 @@ paths:
                                 - HUF
                                 - AUD
                                 - CAD
-                              x-enumDescriptions: &ref_88
+                              x-enumDescriptions: &ref_89
                                 EUR: Euro
                                 GBP: British Pound
                                 CHF: Swiss Franc
@@ -28076,7 +26298,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_82
+                properties: *ref_83
               examples:
                 get-balance-200-1:
                   summary: The balance object
@@ -28200,7 +26422,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_82
+                properties: *ref_83
               examples:
                 get-primary-balance-200-1:
                   summary: Get primary balance
@@ -28265,7 +26487,7 @@ paths:
         description: Provide the ID of the related balance.
         in: path
         required: true
-        schema: &ref_86
+        schema: &ref_87
           type: string
           example: bal_gVMhHKqSSRYJyPsuoPNFH
     get:
@@ -28340,7 +26562,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_135
+                properties: &ref_137
                   resource:
                     type: string
                     description: |-
@@ -28419,7 +26641,7 @@ paths:
                         properties:
                           open:
                             type: object
-                            properties: &ref_85
+                            properties: &ref_86
                               amount:
                                 type: object
                                 description: In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -28431,24 +26653,24 @@ paths:
                                   - 'null'
                                 items:
                                   type: object
-                                  properties: &ref_134
+                                  properties: &ref_136
                                     sub-totals:
                                       type:
                                         - array
                                         - 'null'
                                       items:
                                         type: object
-                                        properties: &ref_133
+                                        properties: &ref_135
                                           count:
                                             type: integer
                                             description: Number of transactions of this type
                                             example: 50
                                           method:
                                             description: Payment type of the transactions
-                                            type: &ref_83
+                                            type: &ref_84
                                               - string
                                               - 'null'
-                                            enum: &ref_84
+                                            enum: &ref_85
                                               - alma
                                               - bacs
                                               - applepay
@@ -28621,8 +26843,8 @@ paths:
                                       example: 50
                                     method:
                                       description: Payment type of the transactions
-                                      type: *ref_83
-                                      enum: *ref_84
+                                      type: *ref_84
+                                      enum: *ref_85
                                       example: creditcard
                                     cardIssuer:
                                       type:
@@ -28749,13 +26971,13 @@ paths:
                                       example: payment
                           close:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           pending:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           movedToAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                       availableBalance:
                         type:
                           - object
@@ -28764,140 +26986,140 @@ paths:
                         properties:
                           open:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           movedFromPending:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           immediatelyAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           close:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                       open:
                         type: object
                         description: Only available on `transaction-categories` grouping.
                         properties:
                           pending:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           available:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                       close:
                         type: object
                         description: Only available on `transaction-categories` grouping.
                         properties:
                           pending:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           available:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                       payments:
                         type: object
                         description: Only available on `transaction-categories` grouping.
                         properties:
                           pending:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           movedToAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           immediatelyAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                       refunds:
                         type: object
                         description: Only available on `transaction-categories` grouping.
                         properties:
                           pending:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           movedToAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           immediatelyAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                       chargebacks:
                         type: object
                         description: Only available on `transaction-categories` grouping.
                         properties:
                           pending:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           movedToAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           immediatelyAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                       capital:
                         type: object
                         description: Only available on `transaction-categories` grouping.
                         properties:
                           pending:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           movedToAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           immediatelyAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                       transfers:
                         type: object
                         description: Only available on `transaction-categories` grouping.
                         properties:
                           pending:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           movedToAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           immediatelyAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                       fee-prepayments:
                         type: object
                         description: Only available on `transaction-categories` grouping.
                         properties:
                           pending:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           movedToAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           immediatelyAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                       corrections:
                         type: object
                         description: Only available on `transaction-categories` grouping.
                         properties:
                           pending:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           movedToAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           immediatelyAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                       topups:
                         type: object
                         description: Only available on `transaction-categories` grouping.
                         properties:
                           pending:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           movedToAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                           immediatelyAvailable:
                             type: object
-                            properties: *ref_85
+                            properties: *ref_86
                   _links:
                     type: object
                     description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -29685,7 +27907,7 @@ paths:
         description: Provide the ID of the related balance.
         in: path
         required: true
-        schema: *ref_86
+        schema: *ref_87
     get:
       summary: List balance transactions
       x-speakeasy-name-override: list-transactions
@@ -29755,7 +27977,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_136
+                          properties: &ref_138
                             resource:
                               type: string
                               description: |-
@@ -31128,8 +29350,8 @@ paths:
             examples:
               - EUR
               - EUR,GBP
-            enum: *ref_87
-            x-enumDescriptions: *ref_88
+            enum: *ref_88
+            x-enumDescriptions: *ref_89
             example: EUR
       responses:
         '200':
@@ -31162,7 +29384,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: &ref_89
+                          properties: &ref_90
                             resource:
                               type: string
                               description: |-
@@ -31264,9 +29486,9 @@ paths:
                                                 description: A description of the cost subtotal
                                                 example: Credit card - Visa debit consumer domestic
                                               method:
-                                                type: *ref_83
+                                                type: *ref_84
                                                 description: The payment method, if applicable
-                                                enum: *ref_84
+                                                enum: *ref_85
                                                 example: creditcard
                                               count:
                                                 type: integer
@@ -31312,9 +29534,9 @@ paths:
                                                 description: A description of the revenue subtotal
                                                 example: Credit card
                                               method:
-                                                type: *ref_83
+                                                type: *ref_84
                                                 description: The payment method, if applicable
-                                                enum: *ref_84
+                                                enum: *ref_85
                                                 example: creditcard
                                               count:
                                                 type: integer
@@ -31524,7 +29746,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_89
+                properties: *ref_90
               examples:
                 get-settlement-200-1:
                   summary: The settlement object
@@ -31690,7 +29912,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_89
+                properties: *ref_90
               examples:
                 get-settlement-200-1:
                   summary: The settlement object
@@ -31852,7 +30074,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_89
+                properties: *ref_90
               examples:
                 get-settlement-200-1:
                   summary: The settlement object
@@ -31993,7 +30215,7 @@ paths:
         description: Provide the ID of the related settlement.
         in: path
         required: true
-        schema: &ref_90
+        schema: &ref_91
           type: string
           example: stl_jDk30akdN
     get:
@@ -34212,7 +32434,7 @@ paths:
         description: Provide the ID of the related settlement.
         in: path
         required: true
-        schema: *ref_90
+        schema: *ref_91
     get:
       summary: List settlement captures
       x-speakeasy-name-override: list-captures
@@ -34427,7 +32649,7 @@ paths:
         description: Provide the ID of the related settlement.
         in: path
         required: true
-        schema: *ref_90
+        schema: *ref_91
     get:
       summary: List settlement refunds
       x-speakeasy-name-override: list-refunds
@@ -34603,7 +32825,7 @@ paths:
         description: Provide the ID of the related settlement.
         in: path
         required: true
-        schema: *ref_90
+        schema: *ref_91
     get:
       summary: List settlement chargebacks
       x-speakeasy-name-override: list-chargebacks
@@ -35933,7 +34155,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: &ref_137
+                properties: &ref_139
                   resource:
                     type: string
                     description: |-
@@ -36150,7 +34372,7 @@ paths:
                 - recipient
                 - lines
               type: object
-              properties: &ref_94
+              properties: &ref_95
                 resource:
                   type: string
                   description: |-
@@ -36261,12 +34483,12 @@ paths:
                   description: |-
                     Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
                     provided details. Required for `paid` status.
-                  type: &ref_95
+                  type: &ref_96
                     - object
                     - 'null'
-                  required: &ref_96
+                  required: &ref_97
                     - source
-                  properties: &ref_97
+                  properties: &ref_98
                     source:
                       example: payment-link
                       type: string
@@ -36287,13 +34509,13 @@ paths:
                   description: |-
                     Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the
                     recipient with the provided `subject` and `body`. Required for `issued` status.
-                  type: &ref_98
+                  type: &ref_99
                     - object
                     - 'null'
-                  required: &ref_99
+                  required: &ref_100
                     - subject
                     - body
-                  properties: &ref_100
+                  properties: &ref_101
                     subject:
                       example: Your invoice is available
                       type: string
@@ -36323,10 +34545,10 @@ paths:
                     so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
                     is not required to send a first invoice to a recipient.
                 recipient:
-                  type: &ref_101
+                  type: &ref_102
                     - object
                     - 'null'
-                  required: &ref_102
+                  required: &ref_103
                     - type
                     - email
                     - streetAndNumber
@@ -36334,7 +34556,7 @@ paths:
                     - city
                     - country
                     - locale
-                  properties: &ref_103
+                  properties: &ref_104
                     type:
                       example: consumer
                       type: string
@@ -36451,12 +34673,12 @@ paths:
                     All lines must have the same currency as the invoice.
                   items:
                     type: object
-                    required: &ref_104
+                    required: &ref_105
                       - description
                       - quantity
                       - vatRate
                       - unitPrice
-                    properties: &ref_105
+                    properties: &ref_106
                       description:
                         example: LEGO 4440 Forest Police Station
                         type: string
@@ -36483,13 +34705,13 @@ paths:
                         properties: *ref_1
                       discount:
                         description: The discount to be applied to the line item.
-                        type: &ref_91
+                        type: &ref_92
                           - object
                           - 'null'
-                        required: &ref_92
+                        required: &ref_93
                           - type
                           - value
-                        properties: &ref_93
+                        properties: &ref_94
                           type:
                             example: amount
                             type: string
@@ -36503,9 +34725,9 @@ paths:
                             description: A string containing an exact monetary amount in the given currency, or the percentage.
                 discount:
                   description: The discount to be applied to the entire invoice, applied on top of any line item discounts.
-                  type: *ref_91
-                  required: *ref_92
-                  properties: *ref_93
+                  type: *ref_92
+                  required: *ref_93
+                  properties: *ref_94
                 amountDue:
                   description: The amount that is left to be paid.
                   readOnly: true
@@ -36606,7 +34828,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_94
+                properties: *ref_95
               example:
                 resource: sales-invoice
                 id: invoice_4Y0eZitmBnQ6IDoMqZQKh
@@ -36817,7 +35039,7 @@ paths:
                         type: array
                         items:
                           type: object
-                          properties: *ref_94
+                          properties: *ref_95
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -36946,7 +35168,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_94
+                properties: *ref_95
               example:
                 resource: sales-invoice
                 id: invoice_4Y0eZitmBnQ6IDoMqZQKh
@@ -37082,7 +35304,7 @@ paths:
           application/json:
             schema:
               type: object
-              properties: &ref_139
+              properties: &ref_141
                 testmode:
                   type: *ref_56
                   description: |-
@@ -37127,16 +35349,16 @@ paths:
                   description: |-
                     Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
                     provided details. Required for `paid` status.
-                  type: *ref_95
-                  required: *ref_96
-                  properties: *ref_97
+                  type: *ref_96
+                  required: *ref_97
+                  properties: *ref_98
                 emailDetails:
                   description: |-
                     Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the
                     recipient with the provided `subject` and `body`. Required for `issued` status.
-                  type: *ref_98
-                  required: *ref_99
-                  properties: *ref_100
+                  type: *ref_99
+                  required: *ref_100
+                  properties: *ref_101
                 recipientIdentifier:
                   example: customer-xyz-0123
                   type: string
@@ -37148,9 +35370,9 @@ paths:
                   description: |-
                     The recipient object should contain all the information relevant to create an invoice for an intended
                     recipient. This data will be stored, updated, and re-used as appropriate, based on the `recipientIdentifier`.
-                  type: *ref_101
-                  required: *ref_102
-                  properties: *ref_103
+                  type: *ref_102
+                  required: *ref_103
+                  properties: *ref_104
                 lines:
                   type:
                     - array
@@ -37162,13 +35384,13 @@ paths:
                     All lines must have the same currency as the invoice.
                   items:
                     type: object
-                    required: *ref_104
-                    properties: *ref_105
+                    required: *ref_105
+                    properties: *ref_106
                 discount:
                   description: The discount to be applied to the entire invoice, possibly on top of the line item discounts.
-                  type: *ref_91
-                  required: *ref_92
-                  properties: *ref_93
+                  type: *ref_92
+                  required: *ref_93
+                  properties: *ref_94
       responses:
         '200':
           description: The sales invoice object.
@@ -37176,7 +35398,7 @@ paths:
             application/hal+json:
               schema:
                 type: object
-                properties: *ref_94
+                properties: *ref_95
               example:
                 resource: sales-invoice
                 id: invoice_4Y0eZitmBnQ6IDoMqZQKh
@@ -37326,7 +35548,7 @@ paths:
           application/json:
             schema:
               type: object
-              properties: &ref_138
+              properties: &ref_140
                 testmode:
                   type: *ref_56
                   description: |-
@@ -37551,7 +35773,7 @@ components:
       example: false
     entity-payment:
       type: object
-      properties: *ref_106
+      properties: *ref_107
     payment-response:
       allOf: *ref_22
     url-nullable:
@@ -37586,7 +35808,7 @@ components:
       maxLength: 255
       example: Chess Board
     redirectUrl:
-      type: *ref_107
+      type: *ref_108
       description: |-
         The URL your customer will be redirected to after the payment process.
 
@@ -37597,7 +35819,7 @@ components:
         Apple Pay payments with an `applePayPaymentToken`.
       example: https://example.org/redirect
     cancelUrl:
-      type: *ref_108
+      type: *ref_109
       description: |-
         The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
         provided, the customer will be redirected to the `redirectUrl` instead — see above.
@@ -37607,7 +35829,7 @@ components:
         payment cancellations.
       example: https://example.org/cancel
     webhookUrl:
-      type: *ref_109
+      type: *ref_110
       description: |-
         The webhook URL where we will send payment status updates to.
 
@@ -37623,7 +35845,7 @@ components:
       example: '2025-01-01'
       writeOnly: true
     restrictPaymentMethodsToCountry:
-      type: *ref_110
+      type: *ref_111
       description: |-
         For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
         rates you have used for the order to ensure your customer's country matches the VAT country.
@@ -37635,7 +35857,7 @@ components:
         The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
       example: NL
     issuer:
-      type: *ref_111
+      type: *ref_112
       description: |-
         **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**
 
@@ -37660,7 +35882,7 @@ components:
       default: oneoff
     order-line-categories:
       type: string
-      enum: *ref_112
+      enum: *ref_113
       example: eco
     amount-nullable:
       type: *ref_36
@@ -37672,15 +35894,15 @@ components:
       required: *ref_32
       properties: *ref_33
     entity-method-all:
-      allOf: *ref_113
+      allOf: *ref_114
     giftcard:
       type: object
-      required: *ref_114
-      properties: *ref_115
+      required: *ref_115
+      properties: *ref_116
     voucher:
       type: object
-      required: *ref_116
-      properties: *ref_117
+      required: *ref_117
+      properties: *ref_118
     refundToken:
       type: string
       example: re_5B8cwPMGnU
@@ -37689,8 +35911,8 @@ components:
       properties: *ref_40
     refund-request:
       type: object
-      required: *ref_118
-      properties: *ref_119
+      required: *ref_119
+      properties: *ref_120
     chargebackToken:
       type: string
       example: chb_xFzwUN4ci8HAmSGUACS4J
@@ -37710,11 +35932,11 @@ components:
       properties: *ref_49
     capture-request:
       type: object
-      properties: *ref_120
+      properties: *ref_121
     entity-session:
       type: object
       additionalProperties: true
-      properties: *ref_121
+      properties: *ref_122
     paymentLinkToken:
       type: string
       example: pl_d9fQur83kFdhH8hIhaZfq
@@ -37734,7 +35956,7 @@ components:
       properties: *ref_54
     payment-link-request:
       type: object
-      properties: *ref_122
+      properties: *ref_123
     testmode:
       type: *ref_56
       description: |-
@@ -37756,101 +35978,105 @@ components:
       example: crt_dyARQ3JzCgtPDhU2Pbq3J
     entity-route:
       type: object
-      properties: *ref_123
+      properties: *ref_124
     route-get-response:
       type: object
-      required: *ref_124
-      allOf: *ref_125
+      required: *ref_125
+      allOf: *ref_126
     route-create-request:
       type: object
-      properties: *ref_126
+      properties: *ref_127
     route-create-response:
       type: object
-      required: *ref_127
-      properties: *ref_128
+      required: *ref_128
+      properties: *ref_129
     entity-customer:
       type: object
       properties: *ref_60
     entity-event:
       type: object
-      properties: *ref_129
+      properties: *ref_130
     entity-mandate:
       type: object
       properties: *ref_65
-    entity-subscription:
+    subscription-response:
       type: object
-      properties: *ref_67
+      required: *ref_67
+      properties: *ref_68
+    subscription-request:
+      type: object
+      properties: *ref_131
     permissionToken:
       type: string
       example: payments.read
     entity-permission:
       type: object
-      properties: *ref_70
+      properties: *ref_71
     address:
       type: object
-      properties: *ref_74
+      properties: *ref_75
     entity-organization:
       type: object
-      properties: *ref_71
+      properties: *ref_72
     entity-profile:
       type: object
-      properties: *ref_72
+      properties: *ref_73
     entity-onboarding-status:
       type: object
-      properties: *ref_75
+      properties: *ref_76
     entity-capability-requirement:
       type: object
-      properties: *ref_130
+      properties: *ref_132
     entity-capability:
       type: object
-      properties: *ref_76
+      properties: *ref_77
     entity-client:
       type: object
-      properties: *ref_77
+      properties: *ref_78
     entity-client-link:
       type: object
-      properties: *ref_78
+      properties: *ref_79
     event-types:
       type: string
-      enum: *ref_79
-      x-enumDescriptions: *ref_80
+      enum: *ref_80
+      x-enumDescriptions: *ref_81
       example: payment-link.paid
     entity-webhook:
       type: object
-      properties: *ref_81
+      properties: *ref_82
     create-webhook:
-      properties: *ref_131
+      properties: *ref_133
     entity-webhook-event:
       type: object
-      properties: *ref_132
+      properties: *ref_134
     balanceToken:
       type: string
       example: bal_gVMhHKqSSRYJyPsuoPNFH
     currencies:
       type: string
-      enum: *ref_87
-      x-enumDescriptions: *ref_88
+      enum: *ref_88
+      x-enumDescriptions: *ref_89
       example: EUR
     entity-balance:
       type: object
-      properties: *ref_82
+      properties: *ref_83
     payment-method:
-      type: *ref_83
+      type: *ref_84
       description: The payment method, if applicable
-      enum: *ref_84
+      enum: *ref_85
       example: creditcard
     sub-totals:
       type: object
-      properties: *ref_133
+      properties: *ref_135
     components-sub-totals:
       type: object
-      properties: *ref_134
+      properties: *ref_136
     sub-group:
       type: object
-      properties: *ref_85
+      properties: *ref_86
     entity-balance-report:
       type: object
-      properties: *ref_135
+      properties: *ref_137
     balanceTransactionToken:
       type: string
       example: baltr_QM24QwzUWR4ev4Xfgyt29d
@@ -37862,45 +36088,45 @@ components:
       example: inv_aHbjjdrUdm
     entity-balance-transaction:
       type: object
-      properties: *ref_136
+      properties: *ref_138
     entity-settlement:
       type: object
-      properties: *ref_89
+      properties: *ref_90
     entity-invoice:
       type: object
-      properties: *ref_137
+      properties: *ref_139
     salesInvoiceToken:
       type: string
       example: invoice_4Y0eZitmBnQ6IDoMqZQKh
     sales-invoice-payment-details:
-      type: *ref_95
-      required: *ref_96
-      properties: *ref_97
+      type: *ref_96
+      required: *ref_97
+      properties: *ref_98
     sales-invoice-email-details:
-      type: *ref_98
-      required: *ref_99
-      properties: *ref_100
+      type: *ref_99
+      required: *ref_100
+      properties: *ref_101
     sales-invoice-recipient:
-      type: *ref_101
-      required: *ref_102
-      properties: *ref_103
+      type: *ref_102
+      required: *ref_103
+      properties: *ref_104
     sales-invoice-discount:
-      type: *ref_91
-      required: *ref_92
-      properties: *ref_93
+      type: *ref_92
+      required: *ref_93
+      properties: *ref_94
     sales-invoice-line-item:
       type: object
-      required: *ref_104
-      properties: *ref_105
+      required: *ref_105
+      properties: *ref_106
     entity-sales-invoice:
       type: object
-      properties: *ref_94
+      properties: *ref_95
     delete-values-sales-invoice:
       type: object
-      properties: *ref_138
+      properties: *ref_140
     update-values-sales-invoice:
       type: object
-      properties: *ref_139
+      properties: *ref_141
   parameters:
     list-limit:
       name: limit
@@ -37989,19 +36215,19 @@ components:
       description: Provide the ID of the related refund.
       in: path
       required: true
-      schema: *ref_140
+      schema: *ref_142
     parent-chargeback-id:
       name: chargebackId
       description: Provide the ID of the related chargeback.
       in: path
       required: true
-      schema: *ref_141
+      schema: *ref_143
     parent-capture-id:
       name: captureId
       description: Provide the ID of the related capture.
       in: path
       required: true
-      schema: *ref_142
+      schema: *ref_144
     parent-payment-link-id:
       name: paymentLinkId
       description: Provide the ID of the related payment link.
@@ -38013,7 +36239,7 @@ components:
       description: Provide the ID of the related terminal.
       in: path
       required: true
-      schema: *ref_143
+      schema: *ref_145
     parent-customer-id:
       name: customerId
       description: Provide the ID of the related customer.
@@ -38025,19 +36251,13 @@ components:
       description: Provide the ID of the related mandate.
       in: path
       required: true
-      schema: *ref_144
+      schema: *ref_146
     parent-subscription-id:
       name: subscriptionId
       description: Provide the ID of the related subscription.
       in: path
       required: true
-      schema: *ref_69
-    parent-permission-id:
-      name: permissionId
-      description: Provide the ID of the related permission.
-      in: path
-      required: true
-      schema: *ref_145
+      schema: *ref_70
     list-from:
       name: from
       description: |-
@@ -38048,18 +36268,24 @@ components:
         type:
           - string
           - 'null'
+    parent-permission-id:
+      name: permissionId
+      description: Provide the ID of the related permission.
+      in: path
+      required: true
+      schema: *ref_147
     parent-balance-id:
       name: balanceId
       description: Provide the ID of the related balance.
       in: path
       required: true
-      schema: *ref_86
+      schema: *ref_87
     parent-settlement-id:
       name: settlementId
       description: Provide the ID of the related settlement.
       in: path
       required: true
-      schema: *ref_90
+      schema: *ref_91
   responses:
     400-invalid-list-request:
       description: The request contains issues. For example, if the specified `from` value is not a valid ID.
@@ -38069,14 +36295,14 @@ components:
       content: *ref_27
     422-mandatory-owner:
       description: The request contains issues. For example, if the `owner` field is missing.
-      content: *ref_146
+      content: *ref_148
   examples:
     get-payment:
       summary: The payment object
       value: *ref_26
     cancel-payment:
       summary: The canceled payment object
-      value: *ref_147
+      value: *ref_149
     get-method:
       summary: The payment method object
       value: *ref_34
@@ -38100,13 +36326,13 @@ components:
       value: *ref_66
     get-subscription:
       summary: The subscription object
-      value: *ref_68
+      value: *ref_69
     get-profile:
       summary: The profile object
-      value: *ref_73
+      value: *ref_74
   requestBodies:
     requestBody:
-      content: *ref_148
+      content: *ref_150
 x-speakeasy-retries:
   strategy: backoff
   backoff:
