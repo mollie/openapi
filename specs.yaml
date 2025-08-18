@@ -2408,21 +2408,23 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Data\Money;
+              use Mollie\Api\Http\Requests\CreatePaymentRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $payment = $mollie->payments->create([
-                  "amount" => [
-                      "currency" => "EUR",
-                      "value" => "10.00",
-                  ],
-                  "description" => "Order #12345",
-                  "redirectUrl" => "https://webshop.example.org/order/12345/",
-                  "webhookUrl" => "https://webshop.example.org/payments/webhook/",
-                  "metadata" => [
-                      "order_id" => "12345",
-                  ],
-              ]);
+              $payment = $mollie->send(
+                  new CreatePaymentRequest(
+                      description: "Order #12345",
+                      amount: new Money(currency: "EUR", value: "10.00"),
+                      redirectUrl: "https://webshop.example.org/order/12345/",
+                      webhookUrl: "https://webshop.example.org/payments/webhook/",
+                      metadata: [
+                          "order_id" => "12345",
+                      ]
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -4723,10 +4725,12 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetPaginatedPaymentsRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $payments = $mollie->payments->page();
+              $payments = $mollie->send(new GetPaginatedPaymentsRequest());
 
               // get the next page
               $next_payments = $payments->next();
@@ -4961,10 +4965,14 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetPaymentRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $payment = $mollie->payments->get("tr_5B8cwPMGnU6qLbRvo7qEZo");
+              $payment = $mollie->send(
+                  new GetPaymentRequest(id: "tr_5B8cwPMGnU6qLbRvo7qEZo")
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -5306,17 +5314,19 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\UpdatePaymentRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $mollie->payments->update(
-                  "tr_5B8cwPMGnU6qLbRvo7qEZo",
-                  [
-                      "description" => "Order #98765",
-                      "redirectUrl" => "https://example.org/webshop/order/98765/",
-                      "webhookUrl" => "https://example.org/webshop/payments/webhook/",
-                      "metadata" => ["order_id" => "98765"],
-                  ],
+              $payment = $mollie->send(
+                  new UpdatePaymentRequest(
+                      id: "tr_5B8cwPMGnU6qLbRvo7qEZo",
+                      description: "Order #98765",
+                      redirectUrl: "https://example.org/webshop/order/98765/",
+                      webhookUrl: "https://example.org/webshop/payments/webhook/",
+                      metadata: ["order_id" => "98765"]
+                  )
               );
           - language: node
             code: |-
@@ -5472,10 +5482,14 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\CancelPaymentRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $canceledPayment = $mollie->payments->delete("tr_WDqYK6vllg");
+              $canceledPayment = $mollie->send(
+                  new CancelPaymentRequest(id: "tr_WDqYK6vllg")
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -5589,7 +5603,16 @@ paths:
               curl -X POST https://api.mollie.com/v2/payments/tr_WDqYK6vllg/release-authorization \
                   -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
           - language: php
-            code: ''
+            code: |-
+              <?php
+              use Mollie\Api\Http\Requests\ReleasePaymentAuthorizationRequest;
+
+              $mollie = new \Mollie\Api\MollieApiClient();
+              $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+
+              $mollie->send(
+                  new ReleasePaymentAuthorizationRequest(paymentId: "tr_WDqYK6vllg")
+              );
           - language: node
             code: ''
           - language: python
@@ -6429,14 +6452,25 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetEnabledMethodsRequest;
+              use Mollie\Api\Types\MethodQuery;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
               // Methods for the Payments API
-              $methods = $mollie->methods->allActive();
+              $methods = $mollie->send(
+                  new GetEnabledMethodsRequest(
+                      resource: MethodQuery::RESOURCE_PAYMENTS
+                  )
+              );
 
               // Methods for the Orders API
-              $methods = $mollie->methods->allActive(["resource" => "orders"]);
+              $methods = $mollie->send(
+                  new GetEnabledMethodsRequest(
+                      resource: MethodQuery::RESOURCE_ORDERS
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -7843,10 +7877,12 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetAllMethodsRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $methods = $mollie->methods->allAvailable();
+              $methods = $mollie->send(new GetAllMethodsRequest());
           - language: node
             code: ''
           - language: python
@@ -8023,14 +8059,25 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetEnabledMethodsRequest;
+              use Mollie\Api\Types\MethodQuery;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
               // Methods for the Payments API
-              $methods = $mollie->methods->allActive();
+              $methods = $mollie->send(
+                  new GetEnabledMethodsRequest(
+                      resource: MethodQuery::RESOURCE_PAYMENTS
+                  )
+              );
 
               // Methods for the Orders API
-              $methods = $mollie->methods->allActive(["resource" => "orders"]);
+              $methods = $mollie->send(
+                  new GetEnabledMethodsRequest(
+                      resource: MethodQuery::RESOURCE_ORDERS
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -8188,14 +8235,26 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\EnableMethodRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
               // Enable on a specific profile
-              $method = $mollie->profileMethods->createForId("pfl_QkEhN94Ba", "ideal");
+              $method = $mollie->send(
+                  new EnableMethodRequest(
+                      profileId: "pfl_QkEhN94Ba",
+                      methodId: "ideal"
+                  )
+              );
 
               // Enable on the current profile
-              $method = $mollie->profileMethods->createForCurrentProfile("ideal");
+              $method = $mollie->send(
+                  new EnableMethodRequest(
+                      profileId: "me",
+                      methodId: "ideal"
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -8251,14 +8310,26 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\DisableMethodRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
               // Disable on a specific profile
-              $method = $mollie->profileMethods->deleteForId("pfl_QkEhN94Ba", "ideal");
+              $mollie->send(
+                  new DisableMethodRequest(
+                      profileId: "pfl_QkEhN94Ba",
+                      methodId: "ideal"
+                  )
+              );
 
               // Disable on the current profile
-              $method = $mollie->profileMethods->createForCurrentProfile("ideal");
+              $mollie->send(
+                  new DisableMethodRequest(
+                      profileId: "me",
+                      methodId: "ideal"
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -8507,13 +8578,17 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\EnableMethodIssuerRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $issuer = $mollie->methodIssuers->enable(
-                  "pfl_QkEhN94Ba",
-                  "giftcard",
-                  "festivalcadeau",
+              $issuer = $mollie->send(
+                  new EnableMethodIssuerRequest(
+                      profileId: "pfl_QkEhN94Ba",
+                      methodId: "giftcard",
+                      issuerId: "festivalcadeau"
+                  )
               );
           - language: node
             code: |-
@@ -8574,13 +8649,17 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\DisableMethodIssuerRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $mollie->methodIssuers->enable(
-                  "pfl_QkEhN94Ba",
-                  "giftcard",
-                  "festivalcadeau",
+              $mollie->send(
+                  new DisableMethodIssuerRequest(
+                      profileId: "pfl_QkEhN94Ba",
+                      methodId: "giftcard",
+                      issuerId: "festivalcadeau"
+                  )
               );
           - language: node
             code: |-
@@ -9138,19 +9217,22 @@ paths:
                   -d "metadata={\"bookkeeping_id\": 12345}"
           - language: php
             code: |-
+              use Mollie\Api\Http\Requests\CreatePaymentRefundRequest;
+              use Mollie\Api\Http\Data\Money;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $payment = $mollie->payments->get("tr_5B8cwPMGnU6qLbRvo7qEZo");
-              $refund = $payment->refund([
-                  "amount" => [
-                      "currency" => "EUR",
-                      "value" => "5.95",
-                  ],
-                  "metadata" => [
-                      "bookkeeping_id" => 12345,
-                  ],
-              ]);
+              $refund = $mollie->send(
+                  new CreatePaymentRefundRequest(
+                      paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo",
+                      description: "Refund for order",
+                      amount: new Money(currency: "EUR", value: "5.95"),
+                      metadata: [
+                          "bookkeeping_id" => 12345,
+                      ]
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -9336,10 +9418,17 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetPaginatedPaymentRefundsRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $refunds = $mollie->payments->get("tr_5B8cwPMGnU6qLbRvo7qEZo")->refunds();
+              $refunds = $mollie->send(
+                  new GetPaginatedPaymentRefundsRequest(
+                      paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo",
+                      limit: 5
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -9436,10 +9525,17 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetPaymentRefundRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $refund = $mollie->payments->get("tr_5B8cwPMGnU6qLbRvo7qEZo")->getRefund("re_4qqhO89gsT");
+              $refund = $mollie->send(
+                  new GetPaymentRefundRequest(
+                      paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo",
+                      refundId: "re_4qqhO89gsT"
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -9515,11 +9611,17 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\CancelPaymentRefundRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $refund = $mollie->payments->get("tr_5B8cwPMGnU6qLbRvo7qEZo")->getRefund("re_4qqhO89gsT");
-              $refund->cancel();
+              $mollie->send(
+                  new CancelPaymentRefundRequest(
+                      paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo",
+                      id: "re_4qqhO89gsT"
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -9698,10 +9800,16 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetPaginatedRefundsRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $refunds = $mollie->refunds()->page();
+              $refunds = $mollie->send(
+                  new GetPaginatedRefundsRequest(
+                      limit: 5
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -10110,10 +10218,16 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetPaginatedPaymentChargebacksRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $chargebacks = $mollie->payments->get("tr_5B8cwPMGnU6qLbRvo7qEZo")->chargebacks();
+              $chargebacks = $mollie->send(
+                  new GetPaginatedPaymentChargebacksRequest(
+                      paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -10258,10 +10372,17 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetPaymentChargebackRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $chargeback = $mollie->payments->get("tr_5B8cwPMGnU6qLbRvo7qEZo")->getChargeback("chb_xFzwUN4ci8HAmSGUACS4J");
+              $chargeback = $mollie->send(
+                  new GetPaymentChargebackRequest(
+                      paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo",
+                      chargebackId: "chb_xFzwUN4ci8HAmSGUACS4J"
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -10644,10 +10765,14 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetPaginatedChargebacksRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $chargebacks = $mollie->chargebacks->page();
+              $chargebacks = $mollie->send(
+                  new GetPaginatedChargebacksRequest()
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -11044,7 +11169,23 @@ paths:
                   -d "amount[currency]=EUR" \
                   -d "amount[value]=35.95"
           - language: php
-            code: ''
+            code: |-
+              use Mollie\Api\Http\Requests\CreatePaymentCaptureRequest;
+              use Mollie\Api\Http\Data\Money;
+
+              $mollie = new \Mollie\Api\MollieApiClient();
+              $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+
+              $capture = $mollie->send(
+                  new CreatePaymentCaptureRequest(
+                      paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo",
+                      description: "Capture for cart #12345",
+                      amount: new Money(currency: "EUR", value: "35.95"),
+                      metadata: [
+                          "bookkeeping_id" => 12345,
+                      ]
+                  )
+              );
           - language: node
             code: ''
           - language: python
@@ -11244,11 +11385,16 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetPaginatedPaymentCapturesRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $payment = $mollie->payments->get("tr_5B8cwPMGnU6qLbRvo7qEZo");
-              $captures = $payment->captures();
+              $captures = $mollie->send(
+                  new GetPaginatedPaymentCapturesRequest(
+                      paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -11377,11 +11523,17 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetPaymentCaptureRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $payment = $mollie->payments->get("tr_5B8cwPMGnU6qLbRvo7qEZo");
-              $capture = $payment->getCapture("cpt_vytxeTZskVKR7C7WgdSP3d");
+              $capture = $mollie->send(
+                  new GetPaymentCaptureRequest(
+                      paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo",
+                      captureId: "cpt_vytxeTZskVKR7C7WgdSP3d"
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -11531,13 +11683,18 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
-              $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+              use Mollie\Api\MollieApiClient;
+              use Mollie\Api\Http\Requests\ApplePayPaymentSessionRequest;
 
-              $session = $mollie->wallets->requestApplePayPaymentSession(
-                  "pay.example.org",
-                  "https://apple-pay-gateway-cert.apple.com/paymentservices/paymentSession",
+              $mollie = new MollieApiClient();
+              $mollie->setApiKey('live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM');
+
+              $request = new ApplePayPaymentSessionRequest(
+                  domain: 'pay.example.org',
+                  validationUrl: 'https://apple-pay-gateway-cert.apple.com/paymentservices/paymentSession'
               );
+
+              $session = $mollie->send($request);
           - language: node
             code: ''
           - language: python
@@ -12245,24 +12402,24 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Data\Money;
+              use Mollie\Api\Http\Requests\CreatePaymentLinkRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $paymentLink = $mollie->paymentLinks->create([
-                "description" => "Bicycle tires",
-                "amount" => [
-                  "currency" => "EUR",
-                  "value" => "24.95",
-                ],
-                "minimumAmount" => null,
-                "redirectUrl" => "https://webshop.example.org/thanks",
-                "webhookUrl" => "https://webshop.example.org/payment-links/webhook/",
-                "expiresAt" => "2023-06-06T11:00:00+00:00",
-                "reusable" => false,
-                "allowedMethods" => ["ideal"],
-                "sequenceType" => "first",
-                "customerId" => "cst_vsKJpSsabw",
-              ]);
+              $paymentLink = $mollie->send(new CreatePaymentLinkRequest(
+                description: "Bicycle tires",
+                amount: new Money(currency: "EUR", value: "24.95"),
+                redirectUrl: "https://webshop.example.org/thanks",
+                webhookUrl: "https://webshop.example.org/payment-links/webhook/",
+                expiresAt: "2023-06-06T11:00:00+00:00",
+                reusable: false,
+                allowedMethods: ["ideal"],
+                sequenceType: "first",
+                customerId: "cst_vsKJpSsabw"
+              ));
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -12531,10 +12688,16 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Requests\GetPaginatedPaymentLinksRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $paymentLinks = $mollie->paymentLinks->page(null, 5);
+              $paymentLinks = $mollie->send(new GetPaginatedPaymentLinksRequest(
+                from: null,
+                limit: 5
+              ));
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -12607,10 +12770,13 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Requests\GetPaymentLinkRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $paymentLink = $mollie->paymentLinks->get("pl_4Y0eZitmBnQ6IDoMqZQKh");
+              $paymentLink = $mollie->send(new GetPaymentLinkRequest("pl_4Y0eZitmBnQ6IDoMqZQKh"));
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -12799,14 +12965,18 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Requests\UpdatePaymentLinkRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $paymentLink = $mollie->paymentLinks->update("pl_4Y0eZitmBnQ6IDoMqZQKh", [
-                  "description" => "Bicycle tires",
-                  "archived" => true,
-                  "allowedMethods" => ["creditcard"]
-              ]);
+              $paymentLink = $mollie->send(new UpdatePaymentLinkRequest(
+                  "pl_4Y0eZitmBnQ6IDoMqZQKh",
+                  description: "Bicycle tires",
+                  archived: true,
+                  allowedMethods: ["creditcard"]
+              ));
           - language: node
             code: ''
           - language: python
@@ -12883,10 +13053,13 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Requests\DeletePaymentLinkRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $mollie->paymentLinks->delete("pl_4Y0eZitmBnQ6IDoMqZQKh");
+              $mollie->send(new DeletePaymentLinkRequest("pl_4Y0eZitmBnQ6IDoMqZQKh"));
           - language: node
             code: ''
           - language: python
@@ -13361,10 +13534,12 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetPaginatedTerminalsRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $terminals = $mollie->terminals->page(null, 5);
+              $terminals = $mollie->send(new GetPaginatedTerminalsRequest(limit: 5));
           - language: node
             code: ''
           - language: python
@@ -13452,10 +13627,12 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetTerminalRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $terminal = $mollie->terminals->get("term_7MgL4wea46qkRcoTZjWEH");
+              $terminal = $mollie->send(new GetTerminalRequest(id: "term_7MgL4wea46qkRcoTZjWEH"));
           - language: node
             code: ''
           - language: python
@@ -13703,7 +13880,23 @@ paths:
                   -d "destination[type]=organization"
                   -d "destination[organizationId]=org_123"
           - language: php
-            code: ''
+            code: |-
+              <?php
+              use Mollie\Api\Http\Data\Money;
+              use Mollie\Api\Http\Requests\CreateDelayedPaymentRouteRequest;
+
+              $mollie->setApiKey('live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM');
+
+              $route = $mollie->send(
+                  new CreateDelayedPaymentRouteRequest(
+                      paymentId: 'tr_5B8cwPMGnU6qLbRvo7qEZo',
+                      amount: new Money(currency: 'EUR', value: '5.95'),
+                      destination: [
+                          'type' => 'organization',
+                          'organizationId' => 'org_123'
+                      ]
+                  )
+              );
           - language: node
             code: ''
           - language: python
@@ -13948,7 +14141,17 @@ paths:
               curl -X GET https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo/routes \
                   -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM"
           - language: php
-            code: ''
+            code: |-
+              <?php
+              use Mollie\Api\Http\Requests\ListPaymentRoutesRequest;
+
+              $mollie->setApiKey('live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM');
+
+              $routes = $mollie->send(
+                  new ListPaymentRoutesRequest(
+                      paymentId: 'tr_5B8cwPMGnU6qLbRvo7qEZo'
+                  )
+              );
           - language: node
             code: ''
           - language: python
@@ -14232,13 +14435,16 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Requests\CreateCustomerRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $customer = $mollie->customers->create([
-                  "name" => "John Doe",
-                  "email" => "customer@example.org",
-              ]);
+              $customer = $mollie->send(new CreateCustomerRequest(
+                  name: "John Doe",
+                  email: "customer@example.org"
+              ));
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -14398,10 +14604,13 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Requests\GetPaginatedCustomerRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $customers = $mollie->customers();
+              $customers = $mollie->send(new GetPaginatedCustomerRequest());
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -14527,10 +14736,15 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Requests\GetCustomerRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $customer = $mollie->customers->get("cst_8wmqcHMN4U");
+              $customer = $mollie->send(new GetCustomerRequest(
+                  id: "cst_8wmqcHMN4U"
+              ));
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -14642,13 +14856,17 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Requests\UpdateCustomerRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $mollie->customers->update("cst_8wmqcHMN4U", [
-                  "name" => "Jane Doe",
-                  "email" => "jane@example.org",
-              ]);
+              $customer = $mollie->send(new UpdateCustomerRequest(
+                  id: "cst_8wmqcHMN4U",
+                  name: "Jane Doe",
+                  email: "jane@example.org"
+              ));
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -14726,10 +14944,15 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Requests\DeleteCustomerRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $mollie->customers->delete("cst_8wmqcHMN4U");
+              $mollie->send(new DeleteCustomerRequest(
+                  id: "cst_8wmqcHMN4U"
+              ));
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -15312,21 +15535,21 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Data\Money;
+              use Mollie\Api\Http\Requests\CreateCustomerPaymentRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $payment = $mollie->customers->get("cst_8wmqcHMN4U")->createPayment([
-                  "amount" => [
-                      "currency" => "EUR",
-                      "value" => "10.00",
-                  ],
-                  "description" => "Order #12345",
-                  "redirectUrl" => "https://webshop.example.org/order/12345/",
-                  "webhookUrl" => "https://webshop.example.org/payments/webhook/",
-                  "metadata" => [
-                      "order_id" => "12345",
-                  ],
-              ]);
+              $payment = $mollie->send(new CreateCustomerPaymentRequest(
+                  customerId: "cst_8wmqcHMN4U",
+                  description: "Order #12345",
+                  amount: new Money(currency: "EUR", value: "10.00"),
+                  redirectUrl: "https://webshop.example.org/order/12345/",
+                  webhookUrl: "https://webshop.example.org/payments/webhook/",
+                  metadata: ["order_id" => "12345"]
+              ));
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -17559,10 +17782,15 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Requests\GetPaginatedCustomerPaymentsRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $payments = $mollie->customers->get("cst_8wmqcHMN4U")->payments();
+              $payments = $mollie->send(new GetPaginatedCustomerPaymentsRequest(
+                  customerId: "cst_8wmqcHMN4U"
+              ));
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -18124,17 +18352,22 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Requests\CreateMandateRequest;
+              use Mollie\Api\MollieApiClient;
+              use Mollie\Api\Types\MandateMethod;
+
+              $mollie = new MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $mandate = $mollie->customers->get("cst_4qqhO89gsT")->createMandate([
-                  "method" => \Mollie\Api\Types\MandateMethod::DIRECTDEBIT,
-                  "consumerName" => "John Doe",
-                  "consumerAccount" => "NL55INGB0000000000",
-                  "consumerBic" => "INGBNL2A",
-                  "signatureDate" => "2023-05-07",
-                  "mandateReference" => "EXAMPLE-CORP-MD13804",
-              ]);
+              $mandate = $mollie->send(new CreateMandateRequest(
+                  customerId: "cst_4qqhO89gsT",
+                  method: MandateMethod::DIRECTDEBIT,
+                  consumerName: "John Doe",
+                  consumerAccount: "NL55INGB0000000000",
+                  consumerBic: "INGBNL2A",
+                  signatureDate: "2023-05-07",
+                  mandateReference: "EXAMPLE-CORP-MD13804"
+              ));
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -18311,11 +18544,15 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Requests\GetPaginatedMandateRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $customer = $mollie->customers->get("cst_4qqhO89gsT");
-              $mandates = $customer->mandates();
+              $mandates = $mollie->send(new GetPaginatedMandateRequest(
+                  customerId: "cst_4qqhO89gsT"
+              ));
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -18404,11 +18641,16 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Requests\GetMandateRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $customer = $mollie->customers->get("cst_4qqhO89gsT");
-              $mandate = $customer->getMandate("mdt_h3gAaD5zP");
+              $mandate = $mollie->send(new GetMandateRequest(
+                  customerId: "cst_4qqhO89gsT",
+                  mandateId: "mdt_h3gAaD5zP"
+              ));
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -18483,12 +18725,16 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Requests\RevokeMandateRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $customer = $mollie->customers->get("cst_stTC2WHAuS");
-              $mandate = $customer->getMandate("mdt_h3gAaD5zP");
-              $mandate->revoke();
+              $mollie->send(new RevokeMandateRequest(
+                  customerId: "cst_4qqhO89gsT",
+                  mandateId: "mdt_h3gAaD5zP"
+              ));
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -19054,21 +19300,23 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Data\Money;
+              use Mollie\Api\Http\Requests\CreateSubscriptionRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $customer = $mollie->customers->get("cst_stTC2WHAuS");
-              $customer->createSubscription([
-                  "amount" => [
-                      "currency" => "EUR",
-                      "value" => "25.00",
-                  ],
-                  "times" => 4,
-                  "interval" => "3 months",
-                  "startDate" => "2023-06-01",
-                  "description" => "Quarterly payment",
-                  "webhookUrl" => "https://webshop.example.org/subscriptions/webhook/",
-              ]);
+              $subscription = $mollie->send(
+                  new CreateSubscriptionRequest(
+                      customerId: "cst_stTC2WHAuS",
+                      amount: new Money(currency: "EUR", value: "25.00"),
+                      interval: "3 months",
+                      description: "Quarterly payment",
+                      times: 4,
+                      startDate: "2023-06-01",
+                      webhookUrl: "https://webshop.example.org/subscriptions/webhook/"
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -19263,11 +19511,16 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetPaginatedSubscriptionsRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $customer = $mollie->customers->get("cst_stTC2WHAuS");
-              $subscriptions = $customer->subscriptions();
+              $subscriptions = $mollie->send(
+                  new GetPaginatedSubscriptionsRequest(
+                      customerId: "cst_stTC2WHAuS"
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -19354,11 +19607,17 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetSubscriptionRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $customer = $mollie->customers->get("cst_stTC2WHAuS");
-              $subscription = $customer->getSubscription("sub_rVKGtNd6s3");
+              $subscription = $mollie->send(
+                  new GetSubscriptionRequest(
+                      customerId: "cst_stTC2WHAuS",
+                      id: "sub_rVKGtNd6s3"
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -19580,16 +19839,20 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Data\Money;
+              use Mollie\Api\Http\Requests\UpdateSubscriptionRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $mollie->subscriptions->update("cst_stTC2WHAuS", "sub_rVKGtNd6s3", [
-                  "amount" => [
-                      "currency" => "EUR",
-                      "value" => "10.00",
-                  ],
-                  "times" => 10,
-              ]);
+              $subscription = $mollie->send(
+                  new UpdateSubscriptionRequest(
+                      customerId: "cst_stTC2WHAuS",
+                      subscriptionId: "sub_rVKGtNd6s3",
+                      amount: new Money(currency: "EUR", value: "10.00"),
+                      times: 10
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -19721,10 +19984,17 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\CancelSubscriptionRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $mollie->subscriptions->cancelForId("cst_stTC2WHAuS", "sub_rVKGtNd6s3");
+              $subscription = $mollie->send(
+                  new CancelSubscriptionRequest(
+                      customerId: "cst_stTC2WHAuS",
+                      subscriptionId: "sub_rVKGtNd6s3"
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -19904,10 +20174,14 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetAllPaginatedSubscriptionsRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $subscriptions = $mollie->subscriptions->page();
+              $subscriptions = $mollie->send(
+                  new GetAllPaginatedSubscriptionsRequest()
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -22120,12 +22394,16 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetPaginatedSubscriptionPaymentsRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $subscriptions = $mollie->subscriptionPayments->pageForIds(
-                  "cst_stTC2WHAuS",
-                  "sub_8JfGzs6v3K",
+              $payments = $mollie->send(
+                  new GetPaginatedSubscriptionPaymentsRequest(
+                      customerId: "cst_stTC2WHAuS",
+                      subscriptionId: "sub_8JfGzs6v3K"
+                  )
               );
           - language: node
             code: |-
@@ -22792,10 +23070,13 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
-              $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+              use Mollie\Api\Http\Requests\GetOrganizationRequest;
 
-              $organization = $mollie->organizations->get("org_12345678");
+              $mollie->setAccessToken('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ');
+
+              $organization = $mollie->send(
+                  new GetOrganizationRequest(id: 'org_12345678')
+              );
           - language: node
             code: ''
           - language: python
@@ -22898,10 +23179,13 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
-              $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+              use Mollie\Api\Http\Requests\GetOrganizationRequest;
 
-              $organization = $mollie->organizations->current();
+              $mollie->setAccessToken('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ');
+
+              $organization = $mollie->send(
+                  new GetOrganizationRequest(id: 'me')
+              );
           - language: node
             code: ''
           - language: python
@@ -23059,7 +23343,13 @@ paths:
               curl -X GET https://api.mollie.com/v2/organizations/me/partner \
                   -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
           - language: php
-            code: ''
+            code: |-
+              <?php
+              use Mollie\Api\Http\Requests\GetOrganizationPartnerStatusRequest;
+
+              $mollie->setAccessToken('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ');
+
+              $partner = $mollie->send(new GetOrganizationPartnerStatusRequest());
           - language: node
             code: ''
           - language: python
@@ -23372,17 +23662,20 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\CreateProfileRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
 
-              $profile = $mollie->profiles->create([
-                  "name" => "My website name",
-                  "website" => "https://shop.example.org",
-                  "email" => "info@example.org",
-                  "phone" => "+31208202070",
-                  "businessCategory" => "OTHER_MERCHANDISE",
-                  "mode" => "live",
-              ]);
+              $profile = $mollie->send(
+                  new CreateProfileRequest(
+                      name: "My website name",
+                      website: "https://shop.example.org",
+                      email: "info@example.org",
+                      phone: "+31208202070",
+                      businessCategory: "OTHER_MERCHANDISE"
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -23536,10 +23829,12 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetPaginatedProfilesRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
 
-              $profiles = $mollie->profiles();
+              $profiles = $mollie->send(new GetPaginatedProfilesRequest());
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -23636,10 +23931,12 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetProfileRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
 
-              $profile = $mollie->profiles->get("pfl_QkEhN94Ba");
+              $profile = $mollie->send(new GetProfileRequest("pfl_QkEhN94Ba"));
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -23878,13 +24175,18 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\UpdateProfileRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
 
-              $mollie->profiles->update("pfl_QkEhN94Ba", [
-                  "name" => "My updated website name",
-                  "website" => "https://updated.example.org",
-              ]);
+              $profile = $mollie->send(
+                  new UpdateProfileRequest(
+                      id: "pfl_QkEhN94Ba",
+                      name: "My updated website name",
+                      website: "https://updated.example.org"
+                  )
+              );
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -23967,10 +24269,12 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\DeleteProfileRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
 
-              $mollie->profiles->delete("pfl_QkEhN94Ba");
+              $mollie->send(new DeleteProfileRequest("pfl_QkEhN94Ba"));
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -24068,10 +24372,12 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetCurrentProfileRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
 
-              $profile = $mollie->profiles->getCurrent();
+              $profile = $mollie->send(new GetCurrentProfileRequest());
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -24210,10 +24516,12 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetOnboardingStatusRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
 
-              $onboarding = $mollie->onboarding->get();
+              $onboarding = $mollie->send(new GetOnboardingStatusRequest());
           - language: node
             code: ''
           - language: python
@@ -24358,29 +24666,34 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\DynamicPostRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
 
-              $mollie->onboarding->submit([
-                  "organization" => [
-                      "name" => "Mollie B.V.",
-                      "address" => [
-                          "streetAndNumber" => "Keizersgracht 126",
-                          "postalCode" => "1015 CW",
-                          "city" => "Amsterdam",
-                          "country" => "NL",
+              $mollie->send(new DynamicPostRequest(
+                  url: "onboarding/me",
+                  payload: [
+                      "organization" => [
+                          "name" => "Mollie B.V.",
+                          "address" => [
+                              "streetAndNumber" => "Keizersgracht 126",
+                              "postalCode" => "1015 CW",
+                              "city" => "Amsterdam",
+                              "country" => "NL",
+                          ],
+                          "registrationNumber" => "30204462",
+                          "vatNumber" => "NL815839091B01",
                       ],
-                      "registrationNumber" => "30204462",
-                      "vatNumber" => "NL815839091B01",
-                  ],
-                  "profile" => [
-                      "name" => "Mollie",
-                      "url" => "https://www.mollie.com",
-                      "email" => "info@mollie.com",
-                      "phone" => "+31208202070",
-                      "businessCategory": "MONEY_SERVICES",
-                  ],
-              ]);
+                      "profile" => [
+                          "name" => "Mollie",
+                          "url" => "https://www.mollie.com",
+                          "email" => "info@mollie.com",
+                          "phone" => "+31208202070",
+                          "businessCategory" => "MONEY_SERVICES",
+                      ],
+                  ]
+              ));
           - language: node
             code: ''
           - language: python
@@ -24599,7 +24912,20 @@ paths:
               curl -X GET https://api.mollie.com/v2/capabilities \
                   -H "Authorization: Bearer access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ"
           - language: php
-            code: ''
+            code: |-
+              <?php
+              use Mollie\Api\Http\Requests\ListCapabilitiesRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
+              $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+
+              $capabilities = $mollie->send(new ListCapabilitiesRequest());
+
+              foreach ($capabilities as $capability) {
+                  echo "Capability: " . $capability->name . "\n";
+                  echo "Status: " . $capability->status . "\n\n";
+              }
           - language: node
             code: ''
           - language: python
@@ -24796,10 +25122,12 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetPaginatedClientRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
 
-              $clients = $mollie->clients();
+              $clients = $mollie->send(new GetPaginatedClientRequest());
           - language: node
             code: ''
           - language: python
@@ -25013,10 +25341,12 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetClientRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
 
-              $client = $mollie->clients->get("org_12345678");
+              $client = $mollie->send(new GetClientRequest(id: "org_12345678"));
           - language: node
             code: ''
           - language: python
@@ -25316,7 +25646,27 @@ paths:
                   -d "registrationNumber=30204462" \
                   -d "vatNumber=NL815839091B01"
           - language: php
-            code: ''
+            code: |-
+              <?php
+              use Mollie\Api\Http\Data\Owner;
+              use Mollie\Api\Http\Data\OwnerAddress;
+              use Mollie\Api\Http\Requests\CreateClientLinkRequest;
+
+              $mollie->setAccessToken('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ');
+
+              $clientLink = $mollie->send(
+                  new CreateClientLinkRequest(
+                      owner: new Owner(
+                          email: 'info@example.org',
+                          givenName: 'Chuck',
+                          familyName: 'Norris'
+                      ),
+                      name: 'Mollie B.V.',
+                      address: new OwnerAddress(countryCode: 'NL'),
+                      registrationNumber: '30204462',
+                      vatNumber: 'NL815839091B01'
+                  )
+              );
           - language: node
             code: ''
           - language: python
@@ -25518,7 +25868,20 @@ paths:
                   -d "url=https://mollie.com" \
                   -d "eventTypes=payments.read"
           - language: php
-            code: ''
+            code: |-
+              <?php
+              use Mollie\Api\Http\Requests\CreateWebhookRequest;
+              use Mollie\Api\Types\WebhookEventType;
+
+              $mollie->setAccessToken('access_UsJwq8nzcHbSrDuh82pyjjEaTbd5SAPtVebEJ5BH');
+
+              $webhook = $mollie->send(
+                  new CreateWebhookRequest(
+                      url: 'https://mollie.com',
+                      name: 'Payment notification',
+                      eventTypes: 'payments.read'
+                  )
+              );
           - language: node
             code: ''
           - language: python
@@ -25711,7 +26074,15 @@ paths:
               curl -X GET https://api.mollie.com/v2/webhooks/hook_B2EyhTH5N4KWUnoYPcgiH \
                   -H "Authorization: Bearer access_UsJwq8nzcHbSrDuh82pyjjEaTbd5SAPtVebEJ5BH"
           - language: php
-            code: ''
+            code: |-
+              <?php
+              use Mollie\Api\Http\Requests\GetWebhookRequest;
+
+              $mollie->setAccessToken('access_UsJwq8nzcHbSrDuh82pyjjEaTbd5SAPtVebEJ5BH');
+
+              $webhook = $mollie->send(
+                  new GetWebhookRequest(id: 'hook_B2EyhTH5N4KWUnoYPcgiH')
+              );
           - language: node
             code: ''
           - language: python
@@ -25825,7 +26196,20 @@ paths:
                   -d "url=https://mollie.com" \
                   -d "eventTypes=payments.read"
           - language: php
-            code: ''
+            code: |-
+              <?php
+              use Mollie\Api\Http\Requests\UpdateWebhookRequest;
+
+              $mollie->setAccessToken('access_UsJwq8nzcHbSrDuh82pyjjEaTbd5SAPtVebEJ5BH');
+
+              $webhook = $mollie->send(
+                  new UpdateWebhookRequest(
+                      id: 'hook_B2EyhTH5N4KWUnoYPcgiH',
+                      url: 'https://mollie.com',
+                      name: 'Payment notification',
+                      eventTypes: 'payments.read'
+                  )
+              );
           - language: node
             code: ''
           - language: python
@@ -25924,7 +26308,15 @@ paths:
               curl -X GET https://api.mollie.com/v2/webhooks/hook_B2EyhTH5N4KWUnoYPcgiH \
                   -H "Authorization: Bearer access_UsJwq8nzcHbSrDuh82pyjjEaTbd5SAPtVebEJ5BH"
           - language: php
-            code: ''
+            code: |-
+              <?php
+              use Mollie\Api\Http\Requests\GetWebhookRequest;
+
+              $mollie->setAccessToken('access_UsJwq8nzcHbSrDuh82pyjjEaTbd5SAPtVebEJ5BH');
+
+              $webhook = $mollie->send(
+                  new GetWebhookRequest(id: 'hook_B2EyhTH5N4KWUnoYPcgiH')
+              );
           - language: node
             code: ''
           - language: python
@@ -25991,7 +26383,15 @@ paths:
               curl -X DELETE https://api.mollie.com/v2/webhooks/hook_B2EyhTH5N4KWUnoYPcgiH \
                   -H "Authorization: Bearer access_UsJwq8nzcHbSrDuh82pyjjEaTbd5SAPtVebEJ5BH"
           - language: php
-            code: ''
+            code: |-
+              <?php
+              use Mollie\Api\Http\Requests\DeleteWebhookRequest;
+
+              $mollie->setAccessToken('access_UsJwq8nzcHbSrDuh82pyjjEaTbd5SAPtVebEJ5BH');
+
+              $mollie->send(
+                  new DeleteWebhookRequest(id: 'hook_B2EyhTH5N4KWUnoYPcgiH')
+              );
           - language: node
             code: ''
           - language: python
@@ -26067,7 +26467,15 @@ paths:
               curl -X POST https://api.mollie.com/v2/webhooks/hook_B2EyhTH5N4KWUnoYPcgiH/ping \
                   -H "Authorization: Bearer access_UsJwq8nzcHbSrDuh82pyjjEaTbd5SAPtVebEJ5BH"
           - language: php
-            code: ''
+            code: |-
+              <?php
+              use Mollie\Api\Http\Requests\TestWebhookRequest;
+
+              $mollie->setAccessToken('access_UsJwq8nzcHbSrDuh82pyjjEaTbd5SAPtVebEJ5BH');
+
+              $result = $mollie->send(
+                  new TestWebhookRequest(id: 'hook_B2EyhTH5N4KWUnoYPcgiH')
+              );
           - language: node
             code: ''
           - language: python
@@ -26232,7 +26640,15 @@ paths:
               curl -X GET https://api.mollie.com/v2/events/event_GvJ8WHrp5isUdRub9CJyH \
                   -H "Authorization: Bearer access_UsJwq8nzcHbSrDuh82pyjjEaTbd5SAPtVebEJ5BH"
           - language: php
-            code: ''
+            code: |-
+              <?php
+              use Mollie\Api\Http\Requests\GetWebhookEventRequest;
+
+              $mollie->setAccessToken('access_UsJwq8nzcHbSrDuh82pyjjEaTbd5SAPtVebEJ5BH');
+
+              $webhookEvent = $mollie->send(
+                  new GetWebhookEventRequest(id: 'event_GvJ8WHrp5isUdRub9CJyH')
+              );
           - language: node
             code: ''
           - language: python
@@ -26614,10 +27030,14 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetPaginatedBalanceRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
 
-              $balances = $mollie->balances();
+              $balances = $mollie->send(
+                  new GetPaginatedBalanceRequest()
+              );
           - language: node
             code: ''
           - language: python
@@ -26766,10 +27186,14 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetBalanceRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
 
-              $balance = $mollie->balances->get("bal_gVMhHKqSSRYJyPsuoPNFH");
+              $balance = $mollie->send(
+                  new GetBalanceRequest("bal_gVMhHKqSSRYJyPsuoPNFH")
+              );
           - language: node
             code: ''
           - language: python
@@ -26855,10 +27279,14 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetBalanceRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
 
-              $balance = $mollie->balances->primary();
+              $balance = $mollie->send(
+                  new GetBalanceRequest("primary")
+              );
           - language: node
             code: ''
           - language: python
@@ -28271,16 +28699,18 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetBalanceReportRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
 
-              $report = $mollie->balanceReports->get(
-                  "bal_gVMhHKqSSRYJyPsuoPNFH",
-                  [
-                      "from" => "2024-01-01",
-                      "until" => "2024-02-01",
-                      "grouping" => "transaction-categories",
-                  ],
+              $report = $mollie->send(
+                  new GetBalanceReportRequest(
+                      balanceId: "bal_gVMhHKqSSRYJyPsuoPNFH",
+                      from: new \DateTime("2024-01-01"),
+                      until: new \DateTime("2024-02-01"),
+                      grouping: "transaction-categories"
+                  )
               );
           - language: node
             code: ''
@@ -29663,10 +30093,14 @@ paths:
           - language: php
             code: |-
               <?php
+              use Mollie\Api\Http\Requests\GetPaginatedBalanceTransactionRequest;
+
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
 
-              $balanceTransactions = $mollie->balanceTransactions->listFor("bal_gVMhHKqSSRYJyPsuoPNFH");
+              $balanceTransactions = $mollie->send(
+                  new GetPaginatedBalanceTransactionRequest("bal_gVMhHKqSSRYJyPsuoPNFH")
+              );
           - language: node
             code: ''
           - language: python
@@ -30066,10 +30500,15 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
-              $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+              use Mollie\Api\MollieApiClient;
+              use Mollie\Api\Http\Requests\GetPaginatedSettlementsRequest;
 
-              $settlements = $mollie->settlements();
+              $mollie = new MollieApiClient();
+              $mollie->setAccessToken('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ');
+
+              $request = new GetPaginatedSettlementsRequest();
+
+              $settlements = $mollie->send($request);
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -30242,10 +30681,15 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
-              $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+              use Mollie\Api\MollieApiClient;
+              use Mollie\Api\Http\Requests\GetSettlementRequest;
 
-              $settlement = $mollie->settlements->get("stl_jDk30akdN");
+              $mollie = new MollieApiClient();
+              $mollie->setAccessToken('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ');
+
+              $request = new GetSettlementRequest('stl_jDk30akdN');
+
+              $settlement = $mollie->send($request);
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -30405,10 +30849,15 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
-              $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+              use Mollie\Api\MollieApiClient;
+              use Mollie\Api\Http\Requests\GetSettlementRequest;
 
-              $settlement = $mollie->settlements->open();
+              $mollie = new MollieApiClient();
+              $mollie->setAccessToken('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ');
+
+              $request = new GetSettlementRequest('open');
+
+              $settlement = $mollie->send($request);
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -30567,10 +31016,15 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
-              $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+              use Mollie\Api\MollieApiClient;
+              use Mollie\Api\Http\Requests\GetSettlementRequest;
 
-              $settlement = $mollie->settlements->next();
+              $mollie = new MollieApiClient();
+              $mollie->setAccessToken('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ');
+
+              $request = new GetSettlementRequest('next');
+
+              $settlement = $mollie->send($request);
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -32782,11 +33236,15 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
-              $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+              use Mollie\Api\MollieApiClient;
+              use Mollie\Api\Http\Requests\GetPaginatedSettlementPaymentsRequest;
 
-              $settlement = $mollie->settlements->get("stl_jDk30akdN");
-              $payments = $settlement->payments();
+              $mollie = new MollieApiClient();
+              $mollie->setAccessToken('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ');
+
+              $request = new GetPaginatedSettlementPaymentsRequest('stl_jDk30akdN');
+
+              $payments = $mollie->send($request);
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -32997,11 +33455,15 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
-              $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+              use Mollie\Api\MollieApiClient;
+              use Mollie\Api\Http\Requests\GetPaginatedSettlementCapturesRequest;
 
-              $settlement = $mollie->settlements->get("stl_jDk30akdN");
-              $captures = $settlement->captures();
+              $mollie = new MollieApiClient();
+              $mollie->setAccessToken('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ');
+
+              $request = new GetPaginatedSettlementCapturesRequest('stl_jDk30akdN');
+
+              $captures = $mollie->send($request);
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -33173,11 +33635,15 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
-              $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+              use Mollie\Api\MollieApiClient;
+              use Mollie\Api\Http\Requests\GetPaginatedSettlementRefundsRequest;
 
-              $settlement = $mollie->settlements->get("stl_jDk30akdN");
-              $refunds = $settlement->refunds();
+              $mollie = new MollieApiClient();
+              $mollie->setAccessToken('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ');
+
+              $request = new GetPaginatedSettlementRefundsRequest('stl_jDk30akdN');
+
+              $refunds = $mollie->send($request);
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -33436,11 +33902,15 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
-              $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
+              use Mollie\Api\MollieApiClient;
+              use Mollie\Api\Http\Requests\GetPaginatedSettlementChargebacksRequest;
 
-              $settlement = $mollie->settlements->get("stl_jDk30akdN");
-              $chargebacks = $settlement->chargebacks();
+              $mollie = new MollieApiClient();
+              $mollie->setAccessToken('access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ');
+
+              $request = new GetPaginatedSettlementChargebacksRequest('stl_jDk30akdN');
+
+              $chargebacks = $mollie->send($request);
           - language: node
             code: |-
               const { createMollieClient } = require('@mollie/api-client');
@@ -34487,10 +34957,13 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Requests\GetPaginatedInvoiceRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
               $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
 
-              $invoices = $mollie->invoices();
+              $invoices = $mollie->send(new GetPaginatedInvoiceRequest());
           - language: node
             code: ''
           - language: python
@@ -34707,10 +35180,13 @@ paths:
           - language: php
             code: |-
               <?php
-              $mollie = new \Mollie\Api\MollieApiClient();
+              use Mollie\Api\Http\Requests\GetInvoiceRequest;
+              use Mollie\Api\MollieApiClient;
+
+              $mollie = new MollieApiClient();
               $mollie->setAccessToken("access_Wwvu7egPcJLLJ9Kb7J632x8wJ2zMeJ");
 
-              $invoice = $mollie->invoices->get("inv_xBEbP9rvAq");
+              $invoice = $mollie->send(new GetInvoiceRequest("inv_xBEbP9rvAq"));
           - language: node
             code: ''
           - language: python
@@ -35320,12 +35796,56 @@ paths:
           - language: php
             install: composer require mollie/mollie-api-php
             code: |-
-              # We don't have a Php code example for this
-              # API call yet.
-              #
-              # If you have some time to spare, feel free to
-              # share suggestions on our Discord:
-              # https://discord.gg/VaTVkXB4aQ
+              <?php
+              use Mollie\Api\MollieApiClient;
+              use Mollie\Api\Http\Requests\CreateSalesInvoiceRequest;
+              use Mollie\Api\Http\Data\Money;
+              use Mollie\Api\Http\Data\Recipient;
+              use Mollie\Api\Http\Data\InvoiceLine;
+              use Mollie\Api\Http\Data\DataCollection;
+              use Mollie\Api\Types\RecipientType;
+              use Mollie\Api\Types\VatScheme;
+              use Mollie\Api\Types\VatMode;
+              use Mollie\Api\Types\PaymentTerm;
+              use Mollie\Api\Types\SalesInvoiceStatus;
+
+              $mollie = new MollieApiClient();
+              $mollie->setApiKey('live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM');
+
+              $recipient = new Recipient(
+                  type: RecipientType::CONSUMER,
+                  email: 'given.family@mollie.com',
+                  streetAndNumber: 'Street 1',
+                  postalCode: '1000 AA',
+                  city: 'Amsterdam',
+                  country: 'NL',
+                  locale: 'nl_NL',
+                  givenName: 'Given',
+                  familyName: 'Family'
+              );
+
+              $invoiceLines = new DataCollection([
+                  new InvoiceLine(
+                      description: 'Product number 1',
+                      quantity: 1,
+                      vatRate: '21.00',
+                      unitPrice: new Money(currency: 'EUR', value: '12.50')
+                  )
+              ]);
+
+              $request = new CreateSalesInvoiceRequest(
+                  currency: 'EUR',
+                  status: SalesInvoiceStatus::DRAFT,
+                  vatScheme: VatScheme::STANDARD,
+                  vatMode: VatMode::INCLUSIVE,
+                  paymentTerm: PaymentTerm::DAYS_30,
+                  recipientIdentifier: 'customer-12354123',
+                  recipient: $recipient,
+                  lines: $invoiceLines,
+                  profileId: 'pfl_QkEhN94Ba'
+              );
+
+              $salesInvoice = $mollie->send($request);
           - language: node
             install: npm install @mollie/api-client
             code: |-
@@ -35488,12 +36008,16 @@ paths:
           - language: php
             install: composer require mollie/mollie-api-php
             code: |-
-              # We don't have a Php code example for this
-              # API call yet.
-              #
-              # If you have some time to spare, feel free to
-              # share suggestions on our Discord:
-              # https://discord.gg/VaTVkXB4aQ
+              <?php
+              use Mollie\Api\MollieApiClient;
+              use Mollie\Api\Http\Requests\GetPaginatedSalesInvoicesRequest;
+
+              $mollie = new MollieApiClient();
+              $mollie->setApiKey('live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM');
+
+              $request = new GetPaginatedSalesInvoicesRequest();
+
+              $salesInvoices = $mollie->send($request);
           - language: node
             install: npm install @mollie/api-client
             code: |-
@@ -35623,12 +36147,16 @@ paths:
           - language: php
             install: composer require mollie/mollie-api-php
             code: |-
-              # We don't have a Php code example for this
-              # API call yet.
-              #
-              # If you have some time to spare, feel free to
-              # share suggestions on our Discord:
-              # https://discord.gg/VaTVkXB4aQ
+              <?php
+              use Mollie\Api\MollieApiClient;
+              use Mollie\Api\Http\Requests\GetSalesInvoiceRequest;
+
+              $mollie = new MollieApiClient();
+              $mollie->setApiKey('live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM');
+
+              $request = new GetSalesInvoiceRequest('invoice_4Y0eZitmBnQ6IDoMqZQKh');
+
+              $salesInvoice = $mollie->send($request);
           - language: node
             install: npm install @mollie/api-client
             code: |-
@@ -35872,14 +36400,23 @@ paths:
           - language: php
             install: composer require mollie/mollie-api-php
             code: |-
-              /*
-              We don't have a Php code example for this
-              API call yet.
+              <?php
+              use Mollie\Api\MollieApiClient;
+              use Mollie\Api\Http\Requests\UpdateSalesInvoiceRequest;
+              use Mollie\Api\Types\PaymentTerm;
+              use Mollie\Api\Types\SalesInvoiceStatus;
 
-              If you have some time to spare, feel free to
-              share suggestions on our Discord:
-              https://discord.gg/VaTVkXB4aQ
-              */
+              $mollie = new MollieApiClient();
+              $mollie->setApiKey('live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM');
+
+              $request = new UpdateSalesInvoiceRequest(
+                  id: 'invoice_4Y0eZitmBnQ6IDoMqZQKh',
+                  status: SalesInvoiceStatus::DRAFT,
+                  recipientIdentifier: 'customer-12354123',
+                  paymentTerm: PaymentTerm::DAYS_14
+              );
+
+              $salesInvoice = $mollie->send($request);
           - language: node
             install: npm install @mollie/api-client
             code: |-
@@ -35980,14 +36517,16 @@ paths:
           - language: php
             install: composer require mollie/mollie-api-php
             code: |-
-              /*
-              We don't have a Php code example for this
-              API call yet.
+              <?php
+              use Mollie\Api\MollieApiClient;
+              use Mollie\Api\Http\Requests\DeleteSalesInvoiceRequest;
 
-              If you have some time to spare, feel free to
-              share suggestions on our Discord:
-              https://discord.gg/VaTVkXB4aQ
-              */
+              $mollie = new MollieApiClient();
+              $mollie->setApiKey('live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM');
+
+              $request = new DeleteSalesInvoiceRequest('invoice_4Y0eZitmBnQ6IDoMqZQKh');
+
+              $mollie->send($request);
           - language: node
             install: npm install @mollie/api-client
             code: |-
