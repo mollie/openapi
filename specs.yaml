@@ -33342,7 +33342,10 @@ paths:
                   example: https://mollie.com/
                 eventTypes:
                   type: string
-                  description: The list of events to enable for this webhook. You may specify `'*'` to add all events, except those that require explicit selection. Separate multiple event types with a comma.
+                  description: |-
+                    The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
+                    that require explicit selection. Separate multiple event types with a comma.
+                  x-speakeasy-name-override: webhook-event-types
                   enum: &ref_12
                     - payment-link.paid
                     - balance-transaction.created
@@ -33350,6 +33353,7 @@ paths:
                     - sales-invoice.issued
                     - sales-invoice.canceled
                     - sales-invoice.paid
+                    - '*'
                   x-enumDescriptions: &ref_13
                     payment-link.paid: Occurs when a payment link has been paid.
                     balance-transaction.created: Occurs when a balance transaction is created to add to your available balance. It currently only supports positive amounts and non-captured payments.
@@ -33357,6 +33361,7 @@ paths:
                     sales-invoice.issued: Occurs when a sales invoice has been issued.
                     sales-invoice.canceled: Occurs when a sales invoice has been canceled.
                     sales-invoice.paid: Occurs when a sales invoice has been paid.
+                    '*': All event types.
                   example: payment-link.paid
                 testmode:
                   type: &ref_24
@@ -33380,6 +33385,19 @@ paths:
           content:
             application/hal+json:
               schema:
+                type: object
+                required:
+                  - resource
+                  - id
+                  - url
+                  - profileId
+                  - createdAt
+                  - name
+                  - eventTypes
+                  - status
+                  - mode
+                  - webhookSecret
+                  - _links
                 properties:
                   resource:
                     type: string
@@ -33413,6 +33431,26 @@ paths:
                     type: array
                     items:
                       type: string
+                      description: The event's type
+                      x-speakeasy-name-override: webhook-event-types
+                      enum:
+                        - payment-link.paid
+                        - balance-transaction.created
+                        - sales-invoice.created
+                        - sales-invoice.issued
+                        - sales-invoice.canceled
+                        - sales-invoice.paid
+                        - '*'
+                      x-enumDescriptions:
+                        payment-link.paid: Occurs when a payment link has been paid.
+                        balance-transaction.created: Occurs when a balance transaction is created to add to your available balance. It currently only supports positive amounts and non-captured payments.
+                        sales-invoice.created: Occurs when a sales invoice has been created.
+                        sales-invoice.issued: Occurs when a sales invoice has been issued.
+                        sales-invoice.canceled: Occurs when a sales invoice has been canceled.
+                        sales-invoice.paid: Occurs when a sales invoice has been paid.
+                        '*': All event types.
+                      example: payment-link.paid
+                      x-speakeasy-unknown-values: allow
                     description: The events types that are subscribed.
                     example:
                       - sales-invoice.paid, sales-invoice.canceled
@@ -33427,10 +33465,11 @@ paths:
                     x-speakeasy-unknown-values: allow
                   mode:
                     type: string
-                    description: The subscription's mode.
+                    description: Whether this entity was created in live mode or in test mode.
                     enum:
                       - live
                       - test
+                    readOnly: true
                     example: live
                     x-speakeasy-unknown-values: allow
                   webhookSecret:
@@ -33440,6 +33479,8 @@ paths:
                   _links:
                     type: object
                     description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                    required:
+                      - documentation
                     properties:
                       documentation:
                         type: object
@@ -33601,6 +33642,8 @@ paths:
           in: query
           schema:
             type: string
+            description: The event's type
+            x-speakeasy-name-override: webhook-event-types
             enum: *ref_12
             x-enumDescriptions: *ref_13
             example: payment-link.paid
@@ -33622,6 +33665,10 @@ paths:
             application/hal+json:
               schema:
                 type: object
+                required:
+                  - count
+                  - _embedded
+                  - _links
                 properties:
                   count:
                     type: integer
@@ -33636,12 +33683,25 @@ paths:
                     example: 5
                   _embedded:
                     type: object
+                    required:
+                      - webhooks
                     properties:
                       webhooks:
                         description: A list of webhooks.
                         type: array
                         items:
                           type: object
+                          required:
+                            - resource
+                            - id
+                            - url
+                            - createdAt
+                            - name
+                            - eventTypes
+                            - status
+                            - mode
+                            - profileId
+                            - _links
                           properties:
                             resource:
                               type: string
@@ -33660,7 +33720,9 @@ paths:
                               description: The subscription's events destination.
                               example: https://example.com/webhook-endpoint
                             profileId:
-                              type: string
+                              type:
+                                - string
+                                - 'null'
                               description: The identifier uniquely referring to the profile that created the subscription.
                               readOnly: true
                               example: pfl_YyoaNFjtHc
@@ -33677,6 +33739,26 @@ paths:
                               type: array
                               items:
                                 type: string
+                                description: The event's type
+                                x-speakeasy-name-override: webhook-event-types
+                                enum:
+                                  - payment-link.paid
+                                  - balance-transaction.created
+                                  - sales-invoice.created
+                                  - sales-invoice.issued
+                                  - sales-invoice.canceled
+                                  - sales-invoice.paid
+                                  - '*'
+                                x-enumDescriptions:
+                                  payment-link.paid: Occurs when a payment link has been paid.
+                                  balance-transaction.created: Occurs when a balance transaction is created to add to your available balance. It currently only supports positive amounts and non-captured payments.
+                                  sales-invoice.created: Occurs when a sales invoice has been created.
+                                  sales-invoice.issued: Occurs when a sales invoice has been issued.
+                                  sales-invoice.canceled: Occurs when a sales invoice has been canceled.
+                                  sales-invoice.paid: Occurs when a sales invoice has been paid.
+                                  '*': All event types.
+                                example: payment-link.paid
+                                x-speakeasy-unknown-values: allow
                               description: The events types that are subscribed.
                               example:
                                 - profile.create
@@ -33693,12 +33775,35 @@ paths:
                               x-speakeasy-unknown-values: allow
                             mode:
                               type: string
-                              description: The subscription's mode.
+                              description: Whether this entity was created in live mode or in test mode.
                               enum:
                                 - live
                                 - test
+                              readOnly: true
                               example: live
                               x-speakeasy-unknown-values: allow
+                            _links:
+                              type: object
+                              description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                              required:
+                                - documentation
+                              properties:
+                                documentation:
+                                  type: object
+                                  description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                                  required:
+                                    - href
+                                    - type
+                                  properties:
+                                    href:
+                                      type: string
+                                      description: The actual URL string.
+                                      example: https://...
+                                    type:
+                                      type: string
+                                      description: The content type of the page or endpoint the URL points to.
+                                      example: application/hal+json
+                              readOnly: true
                   _links:
                     type: object
                     description: Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -33780,9 +33885,13 @@ paths:
                           name: 'Webhook #2'
                           eventTypes:
                             - payment-link.paid
-                            - payment.failed
+                            - sales-invoice.created
                           status: enabled
                           mode: live
+                          _links:
+                            documentation:
+                              href: https://docs.mollie.com/reference/get-webhook
+                              type: text/html
                         - resource: webhook
                           id: hook_qHknfTxaDx6s8JNhuGPzH
                           url: https://mollie.com
@@ -33793,6 +33902,10 @@ paths:
                             - payment-link.paid
                           status: blocked
                           mode: live
+                          _links:
+                            documentation:
+                              href: https://docs.mollie.com/reference/get-webhook
+                              type: text/html
                     count: 2
                     _links:
                       documentation:
@@ -33868,7 +33981,10 @@ paths:
                   example: https://mollie.com/
                 eventTypes:
                   type: string
-                  description: The list of events to enable for this webhook. You may specify `'*'` to add all events, except those that require explicit selection. Separate multiple event types with a comma.
+                  description: |-
+                    The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
+                    that require explicit selection. Separate multiple event types with a comma.
+                  x-speakeasy-name-override: webhook-event-types
                   enum: *ref_12
                   x-enumDescriptions: *ref_13
                   example: payment-link.paid
@@ -33890,6 +34006,17 @@ paths:
             application/hal+json:
               schema:
                 type: object
+                required:
+                  - resource
+                  - id
+                  - url
+                  - createdAt
+                  - name
+                  - eventTypes
+                  - status
+                  - mode
+                  - profileId
+                  - _links
                 properties:
                   resource:
                     type: string
@@ -33908,7 +34035,9 @@ paths:
                     description: The subscription's events destination.
                     example: https://example.com/webhook-endpoint
                   profileId:
-                    type: string
+                    type:
+                      - string
+                      - 'null'
                     description: The identifier uniquely referring to the profile that created the subscription.
                     readOnly: true
                     example: pfl_YyoaNFjtHc
@@ -33925,6 +34054,26 @@ paths:
                     type: array
                     items:
                       type: string
+                      description: The event's type
+                      x-speakeasy-name-override: webhook-event-types
+                      enum:
+                        - payment-link.paid
+                        - balance-transaction.created
+                        - sales-invoice.created
+                        - sales-invoice.issued
+                        - sales-invoice.canceled
+                        - sales-invoice.paid
+                        - '*'
+                      x-enumDescriptions:
+                        payment-link.paid: Occurs when a payment link has been paid.
+                        balance-transaction.created: Occurs when a balance transaction is created to add to your available balance. It currently only supports positive amounts and non-captured payments.
+                        sales-invoice.created: Occurs when a sales invoice has been created.
+                        sales-invoice.issued: Occurs when a sales invoice has been issued.
+                        sales-invoice.canceled: Occurs when a sales invoice has been canceled.
+                        sales-invoice.paid: Occurs when a sales invoice has been paid.
+                        '*': All event types.
+                      example: payment-link.paid
+                      x-speakeasy-unknown-values: allow
                     description: The events types that are subscribed.
                     example:
                       - profile.create
@@ -33941,12 +34090,35 @@ paths:
                     x-speakeasy-unknown-values: allow
                   mode:
                     type: string
-                    description: The subscription's mode.
+                    description: Whether this entity was created in live mode or in test mode.
                     enum:
                       - live
                       - test
+                    readOnly: true
                     example: live
                     x-speakeasy-unknown-values: allow
+                  _links:
+                    type: object
+                    description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                    required:
+                      - documentation
+                    properties:
+                      documentation:
+                        type: object
+                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                        required:
+                          - href
+                          - type
+                        properties:
+                          href:
+                            type: string
+                            description: The actual URL string.
+                            example: https://...
+                          type:
+                            type: string
+                            description: The content type of the page or endpoint the URL points to.
+                            example: application/hal+json
+                    readOnly: true
               examples:
                 create-webhook-200: *ref_14
         '404':
@@ -34067,6 +34239,17 @@ paths:
             application/hal+json:
               schema:
                 type: object
+                required:
+                  - resource
+                  - id
+                  - url
+                  - createdAt
+                  - name
+                  - eventTypes
+                  - status
+                  - mode
+                  - profileId
+                  - _links
                 properties:
                   resource:
                     type: string
@@ -34085,7 +34268,9 @@ paths:
                     description: The subscription's events destination.
                     example: https://example.com/webhook-endpoint
                   profileId:
-                    type: string
+                    type:
+                      - string
+                      - 'null'
                     description: The identifier uniquely referring to the profile that created the subscription.
                     readOnly: true
                     example: pfl_YyoaNFjtHc
@@ -34102,6 +34287,26 @@ paths:
                     type: array
                     items:
                       type: string
+                      description: The event's type
+                      x-speakeasy-name-override: webhook-event-types
+                      enum:
+                        - payment-link.paid
+                        - balance-transaction.created
+                        - sales-invoice.created
+                        - sales-invoice.issued
+                        - sales-invoice.canceled
+                        - sales-invoice.paid
+                        - '*'
+                      x-enumDescriptions:
+                        payment-link.paid: Occurs when a payment link has been paid.
+                        balance-transaction.created: Occurs when a balance transaction is created to add to your available balance. It currently only supports positive amounts and non-captured payments.
+                        sales-invoice.created: Occurs when a sales invoice has been created.
+                        sales-invoice.issued: Occurs when a sales invoice has been issued.
+                        sales-invoice.canceled: Occurs when a sales invoice has been canceled.
+                        sales-invoice.paid: Occurs when a sales invoice has been paid.
+                        '*': All event types.
+                      example: payment-link.paid
+                      x-speakeasy-unknown-values: allow
                     description: The events types that are subscribed.
                     example:
                       - profile.create
@@ -34118,12 +34323,35 @@ paths:
                     x-speakeasy-unknown-values: allow
                   mode:
                     type: string
-                    description: The subscription's mode.
+                    description: Whether this entity was created in live mode or in test mode.
                     enum:
                       - live
                       - test
+                    readOnly: true
                     example: live
                     x-speakeasy-unknown-values: allow
+                  _links:
+                    type: object
+                    description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                    required:
+                      - documentation
+                    properties:
+                      documentation:
+                        type: object
+                        description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+                        required:
+                          - href
+                          - type
+                        properties:
+                          href:
+                            type: string
+                            description: The actual URL string.
+                            example: https://...
+                          type:
+                            type: string
+                            description: The content type of the page or endpoint the URL points to.
+                            example: application/hal+json
+                    readOnly: true
               examples:
                 get-webhook-200:
                   summary: An enabled hook subscription object
@@ -34498,6 +34726,13 @@ paths:
             application/hal+json:
               schema:
                 type: object
+                required:
+                  - resource
+                  - id
+                  - type
+                  - entityId
+                  - createdAt
+                  - _links
                 properties:
                   resource:
                     type: string
@@ -34510,10 +34745,28 @@ paths:
                     readOnly: true
                     example: event_GvJ8WHrp5isUdRub9CJyH
                   type:
-                    type: string
-                    description: The event's type.
                     readOnly: true
+                    type: string
+                    description: The event's type
+                    x-speakeasy-name-override: webhook-event-types
+                    enum:
+                      - payment-link.paid
+                      - balance-transaction.created
+                      - sales-invoice.created
+                      - sales-invoice.issued
+                      - sales-invoice.canceled
+                      - sales-invoice.paid
+                      - '*'
+                    x-enumDescriptions:
+                      payment-link.paid: Occurs when a payment link has been paid.
+                      balance-transaction.created: Occurs when a balance transaction is created to add to your available balance. It currently only supports positive amounts and non-captured payments.
+                      sales-invoice.created: Occurs when a sales invoice has been created.
+                      sales-invoice.issued: Occurs when a sales invoice has been issued.
+                      sales-invoice.canceled: Occurs when a sales invoice has been canceled.
+                      sales-invoice.paid: Occurs when a sales invoice has been paid.
+                      '*': All event types.
                     example: payment-link.paid
+                    x-speakeasy-unknown-values: allow
                   entityId:
                     type: string
                     description: The entity token that triggered the event
@@ -35404,6 +35657,9 @@ paths:
                   _links:
                     type: object
                     description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+                    required:
+                      - self
+                      - documentation
                     properties:
                       self:
                         type: object
@@ -75635,11 +75891,24 @@ components:
       properties: *ref_166
     event-types:
       type: string
+      description: The event's type
+      x-speakeasy-name-override: webhook-event-types
       enum: *ref_12
       x-enumDescriptions: *ref_13
       example: payment-link.paid
     entity-webhook:
       type: object
+      required:
+        - resource
+        - id
+        - url
+        - createdAt
+        - name
+        - eventTypes
+        - status
+        - mode
+        - profileId
+        - _links
       properties:
         resource:
           type: string
@@ -75658,7 +75927,9 @@ components:
           description: The subscription's events destination.
           example: https://example.com/webhook-endpoint
         profileId:
-          type: string
+          type:
+            - string
+            - 'null'
           description: The identifier uniquely referring to the profile that created the subscription.
           readOnly: true
           example: pfl_YyoaNFjtHc
@@ -75675,6 +75946,11 @@ components:
           type: array
           items:
             type: string
+            description: The event's type
+            x-speakeasy-name-override: webhook-event-types
+            enum: *ref_12
+            x-enumDescriptions: *ref_13
+            example: payment-link.paid
           description: The events types that are subscribed.
           example:
             - profile.create
@@ -75690,12 +75966,36 @@ components:
           example: enabled
         mode:
           type: string
-          description: The subscription's mode.
-          enum:
-            - live
-            - test
+          description: Whether this entity was created in live mode or in test mode.
+          enum: *ref_19
+          readOnly: true
           example: live
+        _links:
+          type: object
+          description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+          required:
+            - documentation
+          properties:
+            documentation:
+              type: object
+              description: In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+              required: *ref_8
+              properties: *ref_9
+          readOnly: true
     create-webhook:
+      type: object
+      required:
+        - resource
+        - id
+        - url
+        - profileId
+        - createdAt
+        - name
+        - eventTypes
+        - status
+        - mode
+        - webhookSecret
+        - _links
       properties:
         resource:
           type: string
@@ -75729,6 +76029,11 @@ components:
           type: array
           items:
             type: string
+            description: The event's type
+            x-speakeasy-name-override: webhook-event-types
+            enum: *ref_12
+            x-enumDescriptions: *ref_13
+            example: payment-link.paid
           description: The events types that are subscribed.
           example:
             - sales-invoice.paid, sales-invoice.canceled
@@ -75742,10 +76047,9 @@ components:
           example: enabled
         mode:
           type: string
-          description: The subscription's mode.
-          enum:
-            - live
-            - test
+          description: Whether this entity was created in live mode or in test mode.
+          enum: *ref_19
+          readOnly: true
           example: live
         webhookSecret:
           type: string
@@ -75754,6 +76058,8 @@ components:
         _links:
           type: object
           description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+          required:
+            - documentation
           properties:
             documentation:
               type: object
@@ -75827,6 +76133,13 @@ components:
         _links: *ref_189
     entity-webhook-event:
       type: object
+      required:
+        - resource
+        - id
+        - type
+        - entityId
+        - createdAt
+        - _links
       properties:
         resource:
           type: string
@@ -75839,9 +76152,12 @@ components:
           readOnly: true
           example: event_GvJ8WHrp5isUdRub9CJyH
         type:
-          type: string
-          description: The event's type.
           readOnly: true
+          type: string
+          description: The event's type
+          x-speakeasy-name-override: webhook-event-types
+          enum: *ref_12
+          x-enumDescriptions: *ref_13
           example: payment-link.paid
         entityId:
           type: string
@@ -75872,6 +76188,9 @@ components:
         _links:
           type: object
           description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+          required:
+            - self
+            - documentation
           properties:
             self:
               type: object
