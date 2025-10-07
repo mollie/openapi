@@ -9279,6 +9279,9 @@ paths:
                     eventTypes:
                       - payment-link.paid
                     _links:
+                      self:
+                        href: ...
+                        type: application/hal+json
                       documentation:
                         href: https://docs.mollie.com/reference/create-webhook
                         type: text/html
@@ -9400,6 +9403,9 @@ paths:
                           status: enabled
                           mode: live
                           _links:
+                            self:
+                              href: ...
+                              type: application/hal+json
                             documentation:
                               href: https://docs.mollie.com/reference/get-webhook
                               type: text/html
@@ -9414,6 +9420,9 @@ paths:
                           status: blocked
                           mode: live
                           _links:
+                            self:
+                              href: ...
+                              type: application/hal+json
                             documentation:
                               href: https://docs.mollie.com/reference/get-webhook
                               type: text/html
@@ -9517,6 +9526,9 @@ paths:
                     eventTypes:
                       - payment-link.paid
                     _links:
+                      self:
+                        href: ...
+                        type: application/hal+json
                       documentation:
                         href: https://docs.mollie.com/reference/create-webhook
                         type: text/html
@@ -9606,6 +9618,9 @@ paths:
                       - payment-link.paid
                       - sales-invoice.paid
                     _links:
+                      self:
+                        href: ...
+                        type: application/hal+json
                       documentation:
                         href: https://docs.mollie.com/reference/get-webhook
                         type: text/html
@@ -9623,6 +9638,9 @@ paths:
                     eventTypes:
                       - payment-link.paid
                     _links:
+                      self:
+                        href: ...
+                        type: application/hal+json
                       documentation:
                         href: https://docs.mollie.com/reference/get-webhook
                         type: text/html
@@ -31585,8 +31603,11 @@ components:
           type: object
           description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
           required:
+            - self
             - documentation
           properties:
+            self:
+              $ref: '#/components/schemas/url'
             documentation:
               $ref: '#/components/schemas/url'
           readOnly: true
@@ -31653,8 +31674,11 @@ components:
           type: object
           description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
           required:
+            - self
             - documentation
           properties:
+            self:
+              $ref: '#/components/schemas/url'
             documentation:
               $ref: '#/components/schemas/url'
           readOnly: true
