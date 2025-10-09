@@ -27792,6 +27792,7 @@ components:
         - klarnasliceit
         - klarna
         - mbway
+        - mobilepay
         - multibanco
         - mybank
         - paybybank
@@ -27807,6 +27808,7 @@ components:
         - swish
         - trustly
         - twint
+        - vipps
         - voucher
       example: creditcard
       x-speakeasy-unknown-values: allow
@@ -29362,6 +29364,7 @@ components:
         - klarnapaynow
         - klarnasliceit
         - mbway
+        - mobilepay
         - multibanco
         - mybank
         - paybybank
@@ -29375,6 +29378,7 @@ components:
         - swish
         - trustly
         - twint
+        - vipps
         - voucher
     metadata:
       oneOf:
@@ -35586,6 +35590,7 @@ components:
         - klarnapaynow
         - klarnasliceit
         - mbway
+        - mobilepay
         - multibanco
         - mybank
         - paybybank
@@ -35599,6 +35604,7 @@ components:
         - swish
         - trustly
         - twint
+        - vipps
         - voucher
       x-speakeasy-unknown-values: allow
     capture-mode-response:
