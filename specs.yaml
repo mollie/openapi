@@ -37802,6 +37802,10 @@ x-readme:
     - ruby
 x-speakeasy-globals:
   parameters:
+    - $ref: ./_components/query-parameters/profile-id.yaml
+      x-speakeasy-globals-hidden: true
+    - $ref: ./_components/query-parameters/testmode.yaml
+      x-speakeasy-globals-hidden: true
     - name: customUserAgent
       in: header
       description: Custom user agent string to be appended to the default Mollie SDK user agent.
