@@ -27257,9 +27257,7 @@ components:
         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
       in: query
       schema:
-        type:
-          - boolean
-          - 'null'
+        type: boolean
         example: false
     id:
       name: id
@@ -37812,7 +37810,6 @@ x-speakeasy-globals:
       in: query
       schema:
         type: string
-      x-speakeasy-globals-hidden: true
     - name: testmode
       description: |-
         Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -37823,7 +37820,6 @@ x-speakeasy-globals:
       in: query
       schema:
         type: boolean
-      x-speakeasy-globals-hidden: true
     - name: customUserAgent
       in: header
       description: Custom user agent string to be appended to the default Mollie SDK user agent.
