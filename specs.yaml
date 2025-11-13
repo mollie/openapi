@@ -30441,6 +30441,7 @@ components:
     payment-response:
       allOf:
         - $ref: '#/components/schemas/entity-payment-response'
+        - type: object
           required:
             - resource
             - id
@@ -30564,6 +30565,7 @@ components:
     capture-response:
       allOf:
         - $ref: '#/components/schemas/entity-capture-response'
+        - type: object
           required:
             - resource
             - id
@@ -31286,6 +31288,7 @@ components:
     profile-response:
       allOf:
         - $ref: '#/components/schemas/entity-profile-response'
+        - type: object
           required:
             - resource
             - id
@@ -31302,6 +31305,7 @@ components:
     profile-request:
       allOf:
         - $ref: '#/components/schemas/entity-profile'
+        - type: object
           required:
             - name
             - website
@@ -31639,6 +31643,7 @@ components:
     client-link-request:
       allOf:
         - $ref: '#/components/schemas/entity-client-link'
+        - type: object
           required:
             - owner
             - name
@@ -31646,6 +31651,7 @@ components:
     client-link-response:
       allOf:
         - $ref: '#/components/schemas/entity-client-link-response'
+        - type: object
           required:
             - resource
             - id
@@ -32085,6 +32091,7 @@ components:
     payment-link-response:
       allOf:
         - $ref: '#/components/schemas/entity-payment-link'
+        - type: object
           required:
             - resource
             - id
@@ -32418,6 +32425,7 @@ components:
     payment-request:
       allOf:
         - $ref: '#/components/schemas/entity-payment'
+        - type: object
           required:
             - amount
             - description
@@ -32862,6 +32870,7 @@ components:
     refund-request:
       allOf:
         - $ref: '#/components/schemas/entity-refund'
+        - type: object
           required:
             - amount
     entity-session:
@@ -33059,6 +33068,7 @@ components:
     route-get-response:
       allOf:
         - $ref: '#/components/schemas/entity-route-response'
+        - type: object
           required:
             - resource
             - id
@@ -33077,6 +33087,7 @@ components:
     route-create-response:
       allOf:
         - $ref: '#/components/schemas/entity-route-response'
+        - type: object
           required:
             - resource
             - id
@@ -33159,6 +33170,7 @@ components:
     customer-response:
       allOf:
         - $ref: '#/components/schemas/entity-customer-response'
+        - type: object
           required:
             - resource
             - id
@@ -33390,6 +33402,7 @@ components:
     mandate-response:
       allOf:
         - $ref: '#/components/schemas/entity-mandate-response'
+        - type: object
           required:
             - resource
             - id
@@ -33406,6 +33419,7 @@ components:
     mandate-request:
       allOf:
         - $ref: '#/components/schemas/entity-mandate'
+        - type: object
           required:
             - method
             - consumerName
@@ -33597,6 +33611,7 @@ components:
     subscription-response:
       allOf:
         - $ref: '#/components/schemas/entity-subscription'
+        - type: object
           required:
             - resource
             - id
