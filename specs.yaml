@@ -26196,7 +26196,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/sales-invoice-request'
+              $ref: '#/components/schemas/entity-sales-invoice'
+              required:
+                - status
+                - recipientIdentifier
+                - recipient
+                - lines
       responses:
         '201':
           description: |-
@@ -26205,7 +26210,7 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/sales-invoice-response'
+                $ref: '#/components/schemas/entity-sales-invoice-response'
               example:
                 resource: sales-invoice
                 id: invoice_4Y0eZitmBnQ6IDoMqZQKh
@@ -26427,7 +26432,7 @@ paths:
                           the [Get sales invoice endpoint](get-sales-invoice) documentation.
                         type: array
                         items:
-                          $ref: '#/components/schemas/sales-invoice-response'
+                          $ref: '#/components/schemas/entity-sales-invoice-response'
                   _links:
                     $ref: '#/components/schemas/list-links'
                     writeOnly: false
@@ -26551,7 +26556,7 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/sales-invoice-response'
+                $ref: '#/components/schemas/entity-sales-invoice-response'
               example:
                 resource: sales-invoice
                 id: invoice_4Y0eZitmBnQ6IDoMqZQKh
@@ -26682,7 +26687,7 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/sales-invoice-response'
+                $ref: '#/components/schemas/entity-sales-invoice-response'
               example:
                 resource: sales-invoice
                 id: invoice_4Y0eZitmBnQ6IDoMqZQKh
@@ -33807,7 +33812,9 @@ components:
         - payment
       example: payment-link
     sales-invoice-payment-details:
-      type: object
+      type:
+        - object
+        - 'null'
       required:
         - source
       properties:
@@ -34030,8 +34037,6 @@ components:
           type: string
           description: 'The identifier uniquely referring to this invoice. Example: `invoice_4Y0eZitmBnQ6IDoMqZQKh`.'
           readOnly: true
-        mode:
-          $ref: '#/components/schemas/mode'
         testmode:
           $ref: '#/components/schemas/testmode-create'
         invoiceNumber:
@@ -34076,12 +34081,10 @@ components:
         paymentTerm:
           $ref: '#/components/schemas/sales-invoice-payment-term'
         paymentDetails:
-          type: array
+          $ref: '#/components/schemas/sales-invoice-payment-details'
           description: |-
             Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
             provided details. Required for `paid` status.
-          items:
-            $ref: '#/components/schemas/sales-invoice-payment-details'
         emailDetails:
           $ref: '#/components/schemas/sales-invoice-email-details'
           description: |-
@@ -34209,31 +34212,6 @@ components:
                 - 'null'
           readOnly: true
           writeOnly: false
-    sales-invoice-response:
-      allOf:
-        - $ref: '#/components/schemas/entity-sales-invoice-response'
-        - type: object
-          required:
-            - resource
-            - id
-            - mode
-      x-speakeasy-unknown-values: allow
-    sales-invoice-request:
-      allOf:
-        - $ref: '#/components/schemas/entity-sales-invoice'
-        - type: object
-          required:
-            - status
-            - recipientIdentifier
-            - recipient
-            - lines
-        - type: object
-          properties:
-            paymentDetails:
-              $ref: '#/components/schemas/sales-invoice-payment-details'
-              description: |-
-                Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
-                provided details. Required for `paid` status.
     delete-values-sales-invoice:
       type: object
       properties:
@@ -36810,8 +36788,6 @@ components:
           type: string
           description: 'The identifier uniquely referring to this invoice. Example: `invoice_4Y0eZitmBnQ6IDoMqZQKh`.'
           readOnly: true
-        mode:
-          $ref: '#/components/schemas/mode'
         testmode:
           $ref: '#/components/schemas/testmode-create'
         invoiceNumber:
@@ -36856,12 +36832,10 @@ components:
         paymentTerm:
           $ref: '#/components/schemas/sales-invoice-payment-term-response'
         paymentDetails:
-          type: array
+          $ref: '#/components/schemas/sales-invoice-payment-details-response'
           description: |-
             Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
             provided details. Required for `paid` status.
-          items:
-            $ref: '#/components/schemas/sales-invoice-payment-details-response'
         emailDetails:
           $ref: '#/components/schemas/sales-invoice-email-details'
           description: |-
@@ -37046,7 +37020,9 @@ components:
       example: 30 days
       x-speakeasy-unknown-values: allow
     sales-invoice-payment-details-response:
-      type: object
+      type:
+        - object
+        - 'null'
       required:
         - source
       properties:
