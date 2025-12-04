@@ -27192,6 +27192,7 @@ components:
 
         Settlements created during weekends or on bank holidays will take place on the next business day.
       enum:
+        - every-day
         - daily
         - every-monday
         - every-tuesday
@@ -27199,8 +27200,10 @@ components:
         - every-thursday
         - every-friday
         - monthly
+        - revenue-day
         - never
       x-enumDescriptions:
+        every-day: Every day (Business Account required)
         daily: Every business day
         every-monday: Every Monday
         every-tuesday: Every Tuesday
@@ -27208,6 +27211,7 @@ components:
         every-thursday: Every Thursday
         every-friday: Every Friday
         monthly: On the first of the month
+        revenue-day: Revenue day (eligibility applies)
         never: Automatic settlements are paused for this balance
       example: daily
       x-speakeasy-unknown-values: allow
