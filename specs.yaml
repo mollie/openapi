@@ -9882,6 +9882,9 @@ paths:
                       code: request_created
                       message: Balance transfer request created.
                     category: invoice_collection
+                    metadata:
+                      order_id: 12345
+                      customer_id: 9876
                     createdAt: '2025-05-01T10:00:00+00:00'
                     mode: live
         '422':
@@ -9918,6 +9921,8 @@ paths:
                 -d "destination[type]=organization" \
                 -d "destination[id]=org_456" \
                 -d "destination[description]=Invoice fee retrieval #12345"
+                -d "metadata[order_id]=12345" \
+                -d "metadata[customer_id]=9876"
           - language: php
             code: ''
           - language: node
@@ -10020,6 +10025,9 @@ paths:
                           statusReason:
                             code: request_created
                             message: Balance transfer request created.
+                          metadata:
+                            order_id: 12345
+                            customer_id: 9876
                           createdAt: '2025-05-01T06:00:00+00:00'
                           mode: live
                     count: 2
@@ -10097,6 +10105,9 @@ paths:
                     statusReason:
                       code: success
                       message: Balance transfer completed successfully.
+                    metadata:
+                      order_id: 12345
+                      customer_id: 9876
                     createdAt: '2025-05-01T10:00:00+00:00'
                     executedAt: '2025-05-01T10:05:00+00:00'
                     mode: live
@@ -32225,6 +32236,15 @@ components:
             - message
         category:
           $ref: '#/components/schemas/balance-transfer-category'
+        metadata:
+          type: object
+          description: |-
+            A JSON object that you can attach to a balance transfer.
+            This can be useful for storing additional information about the transfer in a structured format. Maximum size is approximately 1KB.
+          additionalProperties: true
+          example:
+            order_id: 12345
+            customer_id: 9876
         createdAt:
           $ref: '#/components/schemas/created-at'
         executedAt:
@@ -36367,6 +36387,15 @@ components:
             - message
         category:
           $ref: '#/components/schemas/balance-transfer-category-response'
+        metadata:
+          type: object
+          description: |-
+            A JSON object that you can attach to a balance transfer.
+            This can be useful for storing additional information about the transfer in a structured format. Maximum size is approximately 1KB.
+          additionalProperties: true
+          example:
+            order_id: 12345
+            customer_id: 9876
         createdAt:
           $ref: '#/components/schemas/created-at'
         executedAt:
