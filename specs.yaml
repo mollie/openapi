@@ -9159,11 +9159,14 @@ paths:
                   description: The URL Mollie will send the events to. This URL must be publicly accessible.
                   example: https://mollie.com/
                 eventTypes:
-                  type: string
-                  description: |-
-                    The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
-                    that require explicit selection. Separate multiple event types with a comma.
-                  $ref: '#/components/schemas/webhook-event-types'
+                  oneOf:
+                    - type: array
+                      description: |-
+                        The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
+                        that require explicit selection.
+                      items:
+                        $ref: '#/components/schemas/webhook-event-types'
+                    - $ref: '#/components/schemas/webhook-event-types'
                 testmode:
                   $ref: '#/components/schemas/testmode-create'
               required:
@@ -9410,11 +9413,14 @@ paths:
                   description: The URL Mollie will send the events to. This URL must be publicly accessible.
                   example: https://mollie.com/
                 eventTypes:
-                  type: string
-                  description: |-
-                    The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
-                    that require explicit selection. Separate multiple event types with a comma.
-                  $ref: '#/components/schemas/webhook-event-types'
+                  oneOf:
+                    - type: array
+                      description: |-
+                        The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
+                        that require explicit selection.
+                      items:
+                        $ref: '#/components/schemas/webhook-event-types'
+                    - $ref: '#/components/schemas/webhook-event-types'
                 testmode:
                   $ref: '#/components/schemas/testmode'
       responses:
@@ -31599,7 +31605,9 @@ components:
       x-speakeasy-unknown-values: allow
     webhook-event-types:
       type: string
-      description: The event's type
+      description: |-
+        The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
+        that require explicit selection.
       x-speakeasy-name-override: webhook-event-types
       enum:
         - payment-link.paid
@@ -36267,7 +36275,9 @@ components:
       x-speakeasy-unknown-values: allow
     webhook-event-types-response:
       type: string
-      description: The event's type
+      description: |-
+        The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
+        that require explicit selection.
       x-speakeasy-name-override: webhook-event-types
       enum:
         - payment-link.paid
