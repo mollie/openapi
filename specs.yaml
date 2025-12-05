@@ -27494,7 +27494,6 @@ components:
         - multibanco
         - mybank
         - paybybank
-        - payconiq
         - paypal
         - paysafecard
         - przelewy24
@@ -27508,6 +27507,10 @@ components:
         - twint
         - vipps
         - voucher
+      x-deprecated-enum:
+        - payconiq
+      x-speakeasy-enum-descriptions:
+        payconiq: No longer available
       example: creditcard
       x-speakeasy-unknown-values: allow
     balance-card-issuer:
@@ -28977,7 +28980,6 @@ components:
         - multibanco
         - mybank
         - paybybank
-        - payconiq
         - paypal
         - paysafecard
         - pointofsale
@@ -35450,7 +35452,6 @@ components:
         - multibanco
         - mybank
         - paybybank
-        - payconiq
         - paypal
         - paysafecard
         - pointofsale
@@ -35465,10 +35466,12 @@ components:
         - klarnapaylater
         - klarnapaynow
         - klarnasliceit
+        - payconiq
       x-speakeasy-enum-descriptions:
         klarnapaylater: Deprecated, use 'klarna' instead
         klarnapaynow: Deprecated, use 'klarna' instead
         klarnasliceit: Deprecated, use 'klarna' instead
+        payconiq: No longer available
       x-speakeasy-unknown-values: allow
     capture-mode-response:
       type:
