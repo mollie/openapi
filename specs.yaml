@@ -33584,6 +33584,17 @@ components:
             subscription is not canceled (yet).
           example: '2025-01-01T13:10:19+00:00'
           readOnly: true
+        profileId:
+          allOf:
+            - $ref: '#/components/schemas/profileToken'
+              description: |-
+                The identifier referring to the [profile](get-profile) this entity belongs to.
+
+                When using an API Key, the `profileId` can be omitted since it is linked to the key. However, for OAuth and
+                Organization tokens, the `profileId` is required.
+
+                For more information, see [Authentication](authentication).
+          writeOnly: true
         testmode:
           $ref: '#/components/schemas/testmode-create'
         _links:
@@ -33770,6 +33781,17 @@ components:
             subscription is not canceled (yet).
           example: '2025-01-01T13:10:19+00:00'
           readOnly: true
+        profileId:
+          allOf:
+            - $ref: '#/components/schemas/profileToken'
+              description: |-
+                The identifier referring to the [profile](get-profile) this entity belongs to.
+
+                When using an API Key, the `profileId` can be omitted since it is linked to the key. However, for OAuth and
+                Organization tokens, the `profileId` is required.
+
+                For more information, see [Authentication](authentication).
+          writeOnly: true
         testmode:
           $ref: '#/components/schemas/testmode-create'
         _links:
@@ -37094,6 +37116,17 @@ components:
             subscription is not canceled (yet).
           example: '2025-01-01T13:10:19+00:00'
           readOnly: true
+        profileId:
+          allOf:
+            - $ref: '#/components/schemas/profileToken'
+              description: |-
+                The identifier referring to the [profile](get-profile) this entity belongs to.
+
+                When using an API Key, the `profileId` can be omitted since it is linked to the key. However, for OAuth and
+                Organization tokens, the `profileId` is required.
+
+                For more information, see [Authentication](authentication).
+          writeOnly: true
         testmode:
           $ref: '#/components/schemas/testmode-create'
         _links:
