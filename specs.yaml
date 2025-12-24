@@ -40707,9 +40707,9 @@ x-speakeasy-retries:
   strategy: backoff
   backoff:
     initialInterval: 500
-    maxInterval: 60000
-    maxElapsedTime: 3600000
-    exponent: 1.5
+    maxInterval: 5000
+    maxElapsedTime: 7500
+    exponent: 2
   statusCodes:
     - 5xx
   retryConnectionErrors: true
