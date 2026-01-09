@@ -32412,6 +32412,14 @@ components:
             - amount
             - description
             - redirectUrl
+        - type: object
+          properties:
+            method:
+              allOf:
+                - $ref: '#/components/schemas/method'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/method'
         - $ref: '#/components/schemas/extra-parameter-parameters'
     description:
       type: string
