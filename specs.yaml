@@ -29298,6 +29298,7 @@ components:
                 - login_failed_unknown_user
                 - login_failed_invalid_password
                 - invalid_ean_code
+                - card_error
               x-methodSpecific: true
         message:
           type: string
