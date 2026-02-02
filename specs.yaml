@@ -23494,6 +23494,7 @@ paths:
                     The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
 
                     Possible values: `... days`, `... weeks`, `... months`.
+                  pattern: ^\d+ (days?|weeks?|months?)$
                   example: 1 months
                 startDate:
                   type: string
@@ -28850,7 +28851,7 @@ components:
             Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
 
             Possible values: `... days`, `... weeks`, `... months`.
-          pattern: ^(\d+) (months|weeks|days)$
+          pattern: ^(\d+) (days?|weeks?|months?)$
           example: 12 months
         amount:
           $ref: '#/components/schemas/amount'
@@ -29712,7 +29713,7 @@ components:
 
             Possible values: `... hours` `... days`
           example: 8 hours
-          pattern: ^\d+ (hours|days)$
+          pattern: ^\d+ (hours?|days?)$
         captureBefore:
           type:
             - string
@@ -33626,7 +33627,7 @@ components:
             The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
 
             Possible values: `... days`, `... weeks`, `... months`.
-          pattern: ^\d+ (days|weeks|months)$
+          pattern: ^\d+ (days?|weeks?|months?)$
           example: 2 days
         startDate:
           type: string
@@ -33825,7 +33826,7 @@ components:
             The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
 
             Possible values: `... days`, `... weeks`, `... months`.
-          pattern: ^\d+ (days|weeks|months)$
+          pattern: ^\d+ (days?|weeks?|months?)$
           example: 2 days
         startDate:
           type: string
@@ -35061,7 +35062,7 @@ components:
 
             Possible values: `... hours` `... days`
           example: 8 hours
-          pattern: ^\d+ (hours|days)$
+          pattern: ^\d+ (hours?|days?)$
         captureBefore:
           type:
             - string
@@ -37163,7 +37164,7 @@ components:
             The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
 
             Possible values: `... days`, `... weeks`, `... months`.
-          pattern: ^\d+ (days|weeks|months)$
+          pattern: ^\d+ (days?|weeks?|months?)$
           example: 2 days
         startDate:
           type: string
@@ -37760,7 +37761,7 @@ components:
 
             Possible values: `... hours` `... days`
           example: 8 hours
-          pattern: ^\d+ (hours|days)$
+          pattern: ^\d+ (hours?|days?)$
         captureBefore:
           type:
             - string
