@@ -31617,6 +31617,21 @@ components:
           description: |-
             The legal entity type of the organization, based on its country of origin. Please refer to the
             [legal entity list](common-data-types#legal-entity) for all possible options.
+          example: nl-bv
+          writeOnly: true
+        registrationOffice:
+          type: string
+          description: |-
+            The registration office that the organization was registered at. Please refer to the
+            [registration office list](common-data-types#registration-office) for all possible options.
+          example: aachen
+          writeOnly: true
+        incorporationDate:
+          type:
+            - string
+            - 'null'
+          description: The incorporation date of the organization (format `YYYY-MM-DD`)
+          example: '2024-12-24'
           writeOnly: true
         _links:
           type: object
@@ -39439,6 +39454,21 @@ components:
           description: |-
             The legal entity type of the organization, based on its country of origin. Please refer to the
             [legal entity list](common-data-types#legal-entity) for all possible options.
+          example: nl-bv
+          writeOnly: true
+        registrationOffice:
+          type: string
+          description: |-
+            The registration office that the organization was registered at. Please refer to the
+            [registration office list](common-data-types#registration-office) for all possible options.
+          example: aachen
+          writeOnly: true
+        incorporationDate:
+          type:
+            - string
+            - 'null'
+          description: The incorporation date of the organization (format `YYYY-MM-DD`)
+          example: '2024-12-24'
           writeOnly: true
         _links:
           type: object
