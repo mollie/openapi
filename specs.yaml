@@ -13779,6 +13779,7 @@ paths:
       - $ref: '#/components/parameters/parent-session-id'
     get:
       summary: Get session
+      x-speakeasy-name-override: get
       description: "> \U0001F6A7 Beta feature\n>\n> This feature is currently in private beta, and the final specification may still change.\n\nRetrieve a session to view its details and status to inform your customers about the checkout process."
       tags:
         - Sessions API
