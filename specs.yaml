@@ -7608,6 +7608,20 @@ paths:
                       documentation:
                         href: '...'
                         type: text/html
+        '403':
+          description: Profile limit has been reached for demo accounts.
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+              example:
+                status: 403
+                title: Forbidden
+                detail: Profile limit has been reached for demo accounts.
+                _links:
+                  documentation:
+                    href: '...'
+                    type: text/html
         '422':
           description: The request contains issues. For example, if a profile name is missing or website URL is invalid.
           content:
@@ -8062,6 +8076,20 @@ paths:
                       documentation:
                         href: '...'
                         type: text/html
+        '403':
+          description: This profile cannot be edited because it belongs to a demo account.
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+              example:
+                status: 403
+                title: Forbidden
+                detail: This profile cannot be edited because it belongs to a demo account.
+                _links:
+                  documentation:
+                    href: '...'
+                    type: text/html
         '404':
           $ref: '#/components/responses/404-invalid-id'
         '410':
