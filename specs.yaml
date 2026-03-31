@@ -27573,7 +27573,7 @@ paths:
           required: true
           schema:
             type: string
-          example: aa84d3c0-1484-4f45-8a8d-4674a0147f3f
+          example: 12345678-abcd
         - $ref: '#/components/parameters/idempotency-key'
       requestBody:
         content:
@@ -27631,7 +27631,7 @@ paths:
               https://api.mollie.com/v2/business-accounts/transfers \
               -H 'Authorization: Bearer <YOUR_TOKEN_HERE>' \
               -H 'Content-Type: application/json' \
-              -H 'Idempotency-Key: aa84d3c0-1484-4f45-8a8d-4674a0147f3f' \
+              -H 'Idempotency-Key: 12345678-abcd' \
               -H 'X-Client-Signature: string' \
               -H 'X-Client-Signed-At: 2025-01-01T12:00:00Z' \
                 -d '{
