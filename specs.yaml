@@ -21736,6 +21736,13 @@ paths:
             $ref: '#/components/schemas/mandateToken'
         - $ref: '#/components/parameters/list-limit'
         - $ref: '#/components/parameters/list-sort'
+        - name: scopes
+          in: query
+          description: Returns only mandates that include the specified scopes.
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/mandate-scopes'
         - $ref: '#/components/parameters/testmode'
         - $ref: '#/components/parameters/idempotency-key'
       responses:
@@ -33970,6 +33977,16 @@ components:
           properties:
             url:
               $ref: '#/components/schemas/url'
+    mandate-scopes:
+      type: string
+      description: "An array defining the eligible use cases for the mandate. For creditcard mandates, this field will always be \npresent and can contain one or both of the following values:"
+      enum:
+        - customer-present
+        - customer-not-present
+      x-enumDescriptions:
+        customer-present: "Indicates the mandate can be used for payments where the customer is present (e.g., \"one-click\" \npayments with a saved card)."
+        customer-not-present: "Indicates the mandate can be used for Merchant-Initiated Transactions (MIT), such as recurring \npayments or subscriptions, where the customer is not present."
+      example: customer-present
     mandate-method:
       type: string
       description: |-
@@ -34000,13 +34017,6 @@ components:
         - Unionpay
         - Visa
       example: Visa
-    mandate-scopes:
-      type: string
-      description: "An array defining the eligible use cases for the mandate. For creditcard mandates, this field will always be \npresent and can contain one or both of the following values:\n\n`customer-present`: Indicates the mandate can be used for payments where the customer is present (e.g., \"one-click\" \npayments with a saved card).\n`customer-not-present`: Indicates the mandate can be used for Merchant-Initiated Transactions (MIT), such as recurring \npayments or subscriptions, where the customer is not present."
-      enum:
-        - customer-present
-        - customer-not-present
-      example: customer-present
     mandate-status:
       type: string
       description: |-
@@ -34145,7 +34155,7 @@ components:
           type:
             - array
             - 'null'
-          description: "An array defining the eligible use cases for the mandate. This field will always be \npresent and can contain one or both of the following values:\n\n`customer-present`: Indicates the mandate can be used for payments where the customer is present (e.g., \"one-click\" \npayments with a saved card).\n`customer-not-present`: Indicates the mandate can be used for Merchant-Initiated Transactions (MIT), such as recurring \npayments or subscriptions, where the customer is not present."
+          description: "An array defining the eligible use cases for the mandate. This field will always be \npresent and can contain one or both of the following values:"
           readOnly: true
           items:
             allOf:
@@ -38438,7 +38448,7 @@ components:
           type:
             - array
             - 'null'
-          description: "An array defining the eligible use cases for the mandate. This field will always be \npresent and can contain one or both of the following values:\n\n`customer-present`: Indicates the mandate can be used for payments where the customer is present (e.g., \"one-click\" \npayments with a saved card).\n`customer-not-present`: Indicates the mandate can be used for Merchant-Initiated Transactions (MIT), such as recurring \npayments or subscriptions, where the customer is not present."
+          description: "An array defining the eligible use cases for the mandate. This field will always be \npresent and can contain one or both of the following values:"
           readOnly: true
           items:
             allOf:
@@ -41501,7 +41511,7 @@ components:
           type:
             - array
             - 'null'
-          description: "An array defining the eligible use cases for the mandate. This field will always be \npresent and can contain one or both of the following values:\n\n`customer-present`: Indicates the mandate can be used for payments where the customer is present (e.g., \"one-click\" \npayments with a saved card).\n`customer-not-present`: Indicates the mandate can be used for Merchant-Initiated Transactions (MIT), such as recurring \npayments or subscriptions, where the customer is not present."
+          description: "An array defining the eligible use cases for the mandate. This field will always be \npresent and can contain one or both of the following values:"
           readOnly: true
           items:
             allOf:
@@ -41570,10 +41580,13 @@ components:
       x-speakeasy-unknown-values: allow
     mandate-scopes-response:
       type: string
-      description: "An array defining the eligible use cases for the mandate. For creditcard mandates, this field will always be \npresent and can contain one or both of the following values:\n\n`customer-present`: Indicates the mandate can be used for payments where the customer is present (e.g., \"one-click\" \npayments with a saved card).\n`customer-not-present`: Indicates the mandate can be used for Merchant-Initiated Transactions (MIT), such as recurring \npayments or subscriptions, where the customer is not present."
+      description: "An array defining the eligible use cases for the mandate. For creditcard mandates, this field will always be \npresent and can contain one or both of the following values:"
       enum:
         - customer-present
         - customer-not-present
+      x-enumDescriptions:
+        customer-present: "Indicates the mandate can be used for payments where the customer is present (e.g., \"one-click\" \npayments with a saved card)."
+        customer-not-present: "Indicates the mandate can be used for Merchant-Initiated Transactions (MIT), such as recurring \npayments or subscriptions, where the customer is not present."
       example: customer-present
       x-speakeasy-unknown-values: allow
     mandate-status-response:
