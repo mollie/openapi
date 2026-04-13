@@ -1,0 +1,31 @@
+name: Update SDK Global Usage
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sdk-global-usage-generator
+        uses: actions/checkout@v4
+        with:
+          repository: mollie/sdk-global-usage-generator
+          path: sdk-global-usage-generator
+          token: ${{ secrets.PUSH_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r sdk-global-usage-generator/requirements.txt
+
+      - name: Run global usage update
+        env:
+          PUSH_TOKEN: ${{ secrets.PUSH_TOKEN }}
+        run: python sdk-global-usage-generator/main.py
