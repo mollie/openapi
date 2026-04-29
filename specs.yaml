@@ -6873,22 +6873,27 @@ paths:
                 successful-response-200-1:
                   summary: Description of a capability.
                   value:
-                    count: 1
+                    count: 2
                     _embedded:
                       capabilities:
                         - resource: capability
                           name: payments
+                          status: enabled
+                          statusReason: null
+                          requirements: []
+                        - resource: capability
+                          name: settlements
                           status: pending
                           statusReason: onboarding-information-needed
                           requirements:
-                            - id: onboarding-stakeholder-ubo-identity-document
+                            - id: process-first-payment
                               dueDate: null
                               status: requested
                               _links:
                                 dashboard:
                                   href: https://my.mollie.com/dashboard/...
                                   type: text/html
-                            - id: onboarding-bank-account
+                            - id: needs-data
                               dueDate: '2024-05-14T01:29:09+00:00'
                               status: past-due
                               _links:
@@ -31391,6 +31396,7 @@ components:
       enum:
         - requirement-past-due
         - onboarding-information-needed
+        - null
       example: requirement-past-due
       x-speakeasy-unknown-values: allow
     capability-requirement-status:
@@ -31417,9 +31423,8 @@ components:
           description: |-
             The name of this requirement, referring to the task to be fulfilled by the organization
             to enable or re-enable the capability. The name is unique among other requirements
-            of the same capability. Requirements related to the onboarding process start with 'onboarding-', while
-            requirements related to information requests start with 'information-request-'.
-          example: information-request-aml-charities-and-donations
+            of the same capability. Examples include `needs-data` and `process-first-payment`.
+          example: needs-data
         status:
           $ref: '#/components/schemas/capability-requirement-status'
         dueDate:
