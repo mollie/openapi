@@ -68,8 +68,8 @@ tags:
     description: Operations related to the Transfers API
   - name: Unmatched Credit Transfers API
     description: Operations related to the Unmatched Credit Transfers API
-  - name: Verify Payees API
-    description: Operations related to the Verify Payees API
+  - name: Verify Payee API
+    description: Operations related to the Verify Payee API
   - name: Wallets API
     description: Operations related to the Wallets API
   - name: Webhook Events API
@@ -26829,7 +26829,7 @@ paths:
       summary: Verify Payee
       x-speakeasy-name-override: create
       tags:
-        - Verify Payees API
+        - Verify Payee API
       operationId: verify-payee
       security:
         - organizationAccessToken:
@@ -27012,7 +27012,7 @@ paths:
                   account_number: 'NL02ABNA0123456789'
                 }
               )
-      x-speakeasy-group: verify-payees
+      x-speakeasy-group: verify-payee
       parameters:
         - $ref: '#/components/parameters/idempotency-key'
 components:
