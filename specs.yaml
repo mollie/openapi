@@ -3623,7 +3623,7 @@ paths:
                         description: A list of chargeback objects.
                         type: array
                         items:
-                          $ref: '#/components/schemas/list-entity-chargeback'
+                          $ref: '#/components/schemas/list-settlement-chargeback-response'
                   _links:
                     $ref: '#/components/schemas/list-links'
               examples:
@@ -29448,17 +29448,18 @@ components:
             zero.
           readOnly: true
         settlementAmount:
+          deprecated: true
           allOf:
             - $ref: '#/components/schemas/amount'
           description: |-
-            This optional field will contain the approximate amount that will be settled to your account, converted to the
-            currency your account is settled in.
+            **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
+            the [List balance transactions endpoint](list-balance-transactions) for settlement data.
 
-            Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is
-            settled by Mollie the `settlementAmount` is omitted from the response.
+            The amount that will be settled to your account, converted to the currency your account is settled in. Only
+            available once the payment is finalized and the final settlement amount has been determined.
 
-            Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest
-            using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
+            Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is settled by
+            Mollie, this field is omitted from the response.
           readOnly: true
         redirectUrl:
           type:
@@ -30363,6 +30364,15 @@ components:
               $ref: '#/components/schemas/settlement-mode'
             status:
               $ref: '#/components/schemas/settlement-payment-status'
+            settlementAmount:
+              allOf:
+                - $ref: '#/components/schemas/amount'
+              description: |-
+                The amount settled to your account for this payment, converted to the currency your account is settled in.
+
+                Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is settled by
+                Mollie, this field is omitted from the response.
+              readOnly: true
       x-speakeasy-unknown-values: allow
     capture-status:
       type: string
@@ -30400,15 +30410,15 @@ components:
           $ref: '#/components/schemas/amount-nullable'
           description: The amount captured. If no amount is provided, the full authorized amount is captured.
         settlementAmount:
+          deprecated: true
           allOf:
             - $ref: '#/components/schemas/amount-nullable'
           description: |-
-            This optional field will contain the approximate amount that will be settled to your account, converted to the
-            currency your account is settled in.
+            **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
+            the [List balance transactions endpoint](list-balance-transactions) for settlement data.
 
-            Since the field contains an estimated amount during capture processing, it may change over time. To retrieve
-            accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
-            instead.
+            The amount that will be settled to your account for this capture, converted to the currency your account is
+            settled in. Only available once the capture is finalized and the final settlement amount has been determined.
           readOnly: true
         status:
           allOf:
@@ -30502,6 +30512,11 @@ components:
               $ref: '#/components/schemas/settlement-mode'
             status:
               $ref: '#/components/schemas/settlement-capture-status'
+            settlementAmount:
+              allOf:
+                - $ref: '#/components/schemas/amount-nullable'
+              description: The amount settled to your account for this capture, converted to the currency your account is settled in.
+              readOnly: true
       x-speakeasy-unknown-values: allow
     refund-status:
       type: string
@@ -30563,22 +30578,18 @@ components:
             The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
             amount.
         settlementAmount:
+          deprecated: true
           allOf:
             - $ref: '#/components/schemas/amount-nullable'
           description: |-
-            This optional field will contain the approximate amount that will be deducted from your account balance, converted
-            to the currency your account is settled in.
+            **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
+            the [List balance transactions endpoint](list-balance-transactions) for settlement data.
 
-            The amount is a **negative** amount.
+            The amount deducted from your account balance for this refund, converted to the currency your account is settled
+            in. Always a **negative** amount. Only available once the refund is finalized and the final settlement amount has
+            been determined.
 
-            If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
-            zero.
-
-            Since the field contains an estimated amount during refund processing, it may change over time. For example, while
-            the refund is queued the settlement amount is likely not yet available.
-
-            To retrieve accurate settlement amounts we recommend using the
-            [List balance transactions endpoint](list-balance-transactions) instead.
+            For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
           readOnly: true
         metadata:
           $ref: '#/components/schemas/metadata'
@@ -30702,6 +30713,15 @@ components:
               $ref: '#/components/schemas/settlement-mode'
             status:
               $ref: '#/components/schemas/settlement-refund-status'
+            settlementAmount:
+              allOf:
+                - $ref: '#/components/schemas/amount-nullable'
+              description: |-
+                The amount deducted from your account balance for this refund, converted to the currency your account is
+                settled in. Always a **negative** amount.
+
+                For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
+              readOnly: true
       x-speakeasy-unknown-values: allow
     entity-chargeback:
       type: object
@@ -30729,17 +30749,16 @@ components:
           $ref: '#/components/schemas/amount'
           description: The amount charged back by the customer.
         settlementAmount:
+          deprecated: true
           allOf:
             - $ref: '#/components/schemas/amount-nullable'
           description: |-
-            This optional field will contain the approximate amount that will be deducted from your account balance, converted
-            to the currency your account is settled in.
+            **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
+            the [List balance transactions endpoint](list-balance-transactions) for settlement data.
 
-            The amount is a **negative** amount.
-
-            Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve
-            accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
-            instead.
+            The amount deducted from your account balance for this chargeback, converted to the currency your account is
+            settled in. Always a **negative** amount. Only available once the chargeback is finalized and the final settlement
+            amount has been determined.
           readOnly: true
         reason:
           type:
@@ -30808,6 +30827,21 @@ components:
             documentation:
               $ref: '#/components/schemas/url'
           readOnly: true
+    settlement-chargeback-response:
+      allOf:
+        - $ref: '#/components/schemas/entity-chargeback'
+        - type: object
+          properties:
+            mode:
+              $ref: '#/components/schemas/settlement-mode'
+            settlementAmount:
+              allOf:
+                - $ref: '#/components/schemas/amount-nullable'
+              description: |-
+                The amount deducted from your account balance for this chargeback, converted to the currency your account is
+                settled in. Always a **negative** amount.
+              readOnly: true
+      x-speakeasy-unknown-values: allow
     invoice-status:
       type: string
       description: Status of the invoice.
@@ -36069,17 +36103,18 @@ components:
             zero.
           readOnly: true
         settlementAmount:
+          deprecated: true
           allOf:
             - $ref: '#/components/schemas/amount'
           description: |-
-            This optional field will contain the approximate amount that will be settled to your account, converted to the
-            currency your account is settled in.
+            **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
+            the [List balance transactions endpoint](list-balance-transactions) for settlement data.
 
-            Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is
-            settled by Mollie the `settlementAmount` is omitted from the response.
+            The amount that will be settled to your account, converted to the currency your account is settled in. Only
+            available once the payment is finalized and the final settlement amount has been determined.
 
-            Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest
-            using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
+            Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is settled by
+            Mollie, this field is omitted from the response.
           readOnly: true
         redirectUrl:
           type:
@@ -36965,6 +37000,15 @@ components:
               $ref: '#/components/schemas/settlement-mode'
             status:
               $ref: '#/components/schemas/settlement-payment-status'
+            settlementAmount:
+              allOf:
+                - $ref: '#/components/schemas/amount'
+              description: |-
+                The amount settled to your account for this payment, converted to the currency your account is settled in.
+
+                Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is settled by
+                Mollie, this field is omitted from the response.
+              readOnly: true
     list-entity-capture:
       type: object
       properties:
@@ -36989,15 +37033,15 @@ components:
           $ref: '#/components/schemas/amount-nullable'
           description: The amount captured. If no amount is provided, the full authorized amount is captured.
         settlementAmount:
+          deprecated: true
           allOf:
             - $ref: '#/components/schemas/amount-nullable'
           description: |-
-            This optional field will contain the approximate amount that will be settled to your account, converted to the
-            currency your account is settled in.
+            **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
+            the [List balance transactions endpoint](list-balance-transactions) for settlement data.
 
-            Since the field contains an estimated amount during capture processing, it may change over time. To retrieve
-            accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
-            instead.
+            The amount that will be settled to your account for this capture, converted to the currency your account is
+            settled in. Only available once the capture is finalized and the final settlement amount has been determined.
           readOnly: true
         status:
           allOf:
@@ -37079,6 +37123,11 @@ components:
               $ref: '#/components/schemas/settlement-mode'
             status:
               $ref: '#/components/schemas/settlement-capture-status'
+            settlementAmount:
+              allOf:
+                - $ref: '#/components/schemas/amount-nullable'
+              description: The amount settled to your account for this capture, converted to the currency your account is settled in.
+              readOnly: true
     list-entity-refund:
       type: object
       required:
@@ -37117,22 +37166,18 @@ components:
             The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
             amount.
         settlementAmount:
+          deprecated: true
           allOf:
             - $ref: '#/components/schemas/amount-nullable'
           description: |-
-            This optional field will contain the approximate amount that will be deducted from your account balance, converted
-            to the currency your account is settled in.
+            **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
+            the [List balance transactions endpoint](list-balance-transactions) for settlement data.
 
-            The amount is a **negative** amount.
+            The amount deducted from your account balance for this refund, converted to the currency your account is settled
+            in. Always a **negative** amount. Only available once the refund is finalized and the final settlement amount has
+            been determined.
 
-            If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
-            zero.
-
-            Since the field contains an estimated amount during refund processing, it may change over time. For example, while
-            the refund is queued the settlement amount is likely not yet available.
-
-            To retrieve accurate settlement amounts we recommend using the
-            [List balance transactions endpoint](list-balance-transactions) instead.
+            For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
           readOnly: true
         metadata:
           $ref: '#/components/schemas/metadata'
@@ -37245,6 +37290,15 @@ components:
               $ref: '#/components/schemas/settlement-mode'
             status:
               $ref: '#/components/schemas/settlement-refund-status'
+            settlementAmount:
+              allOf:
+                - $ref: '#/components/schemas/amount-nullable'
+              description: |-
+                The amount deducted from your account balance for this refund, converted to the currency your account is
+                settled in. Always a **negative** amount.
+
+                For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
+              readOnly: true
     list-entity-chargeback:
       type: object
       required:
@@ -37271,17 +37325,16 @@ components:
           $ref: '#/components/schemas/amount'
           description: The amount charged back by the customer.
         settlementAmount:
+          deprecated: true
           allOf:
             - $ref: '#/components/schemas/amount-nullable'
           description: |-
-            This optional field will contain the approximate amount that will be deducted from your account balance, converted
-            to the currency your account is settled in.
+            **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
+            the [List balance transactions endpoint](list-balance-transactions) for settlement data.
 
-            The amount is a **negative** amount.
-
-            Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve
-            accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
-            instead.
+            The amount deducted from your account balance for this chargeback, converted to the currency your account is
+            settled in. Always a **negative** amount. Only available once the chargeback is finalized and the final settlement
+            amount has been determined.
           readOnly: true
         reason:
           type:
@@ -37347,6 +37400,20 @@ components:
                 The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if
                 not yet settled.
           readOnly: true
+    list-settlement-chargeback-response:
+      allOf:
+        - $ref: '#/components/schemas/list-entity-chargeback'
+        - type: object
+          properties:
+            mode:
+              $ref: '#/components/schemas/settlement-mode'
+            settlementAmount:
+              allOf:
+                - $ref: '#/components/schemas/amount-nullable'
+              description: |-
+                The amount deducted from your account balance for this chargeback, converted to the currency your account is
+                settled in. Always a **negative** amount.
+              readOnly: true
     list-entity-invoice:
       type: object
       required:
@@ -38954,17 +39021,18 @@ components:
             zero.
           readOnly: true
         settlementAmount:
+          deprecated: true
           allOf:
             - $ref: '#/components/schemas/amount'
           description: |-
-            This optional field will contain the approximate amount that will be settled to your account, converted to the
-            currency your account is settled in.
+            **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
+            the [List balance transactions endpoint](list-balance-transactions) for settlement data.
 
-            Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is
-            settled by Mollie the `settlementAmount` is omitted from the response.
+            The amount that will be settled to your account, converted to the currency your account is settled in. Only
+            available once the payment is finalized and the final settlement amount has been determined.
 
-            Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest
-            using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
+            Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is settled by
+            Mollie, this field is omitted from the response.
           readOnly: true
         redirectUrl:
           type:
@@ -40308,15 +40376,15 @@ components:
           $ref: '#/components/schemas/amount-nullable'
           description: The amount captured. If no amount is provided, the full authorized amount is captured.
         settlementAmount:
+          deprecated: true
           allOf:
             - $ref: '#/components/schemas/amount-nullable'
           description: |-
-            This optional field will contain the approximate amount that will be settled to your account, converted to the
-            currency your account is settled in.
+            **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
+            the [List balance transactions endpoint](list-balance-transactions) for settlement data.
 
-            Since the field contains an estimated amount during capture processing, it may change over time. To retrieve
-            accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
-            instead.
+            The amount that will be settled to your account for this capture, converted to the currency your account is
+            settled in. Only available once the capture is finalized and the final settlement amount has been determined.
           readOnly: true
         status:
           allOf:
@@ -40427,22 +40495,18 @@ components:
             The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
             amount.
         settlementAmount:
+          deprecated: true
           allOf:
             - $ref: '#/components/schemas/amount-nullable'
           description: |-
-            This optional field will contain the approximate amount that will be deducted from your account balance, converted
-            to the currency your account is settled in.
+            **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements API](list-settlements) or
+            the [List balance transactions endpoint](list-balance-transactions) for settlement data.
 
-            The amount is a **negative** amount.
+            The amount deducted from your account balance for this refund, converted to the currency your account is settled
+            in. Always a **negative** amount. Only available once the refund is finalized and the final settlement amount has
+            been determined.
 
-            If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
-            zero.
-
-            Since the field contains an estimated amount during refund processing, it may change over time. For example, while
-            the refund is queued the settlement amount is likely not yet available.
-
-            To retrieve accurate settlement amounts we recommend using the
-            [List balance transactions endpoint](list-balance-transactions) instead.
+            For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
           readOnly: true
         metadata:
           $ref: '#/components/schemas/metadata'
