@@ -27020,10 +27020,26 @@ components:
     apiKey:
       type: http
       scheme: bearer
+      description: |-
+        Authenticates API requests for a single website profile. Each key targets
+        either live mode (`live_...`) or test mode (`test_...`).
+
+        Keys are shown only once, at creation. Store the key securely — it cannot
+        be retrieved afterwards. If lost, create a new key under Developers → API
+        access tokens in the Dashboard and revoke the old one.
       x-default: live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM
     organizationAccessToken:
       type: http
       scheme: bearer
+      description: |-
+        Authenticates API requests with configurable permissions. Can access
+        organization-level resources and optionally scope to a specific payment
+        profile (`access_...`). Use for advanced integrations — such as bookkeeping
+        or reporting tools — that need fine-grained control over API access.
+
+        Tokens are shown only once, at creation. Store it securely — it cannot be
+        retrieved afterwards. If lost, create a new token under Developers → API
+        access tokens in the Dashboard and revoke the old one.
       x-default: access_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM
     oAuth:
       type: oauth2
