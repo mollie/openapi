@@ -32727,9 +32727,7 @@ components:
           readOnly: true
           example: payout_j8NvRAM2WNZtsykpLEX8J
         balanceId:
-          type:
-            - string
-            - 'null'
+          type: string
           description: 'The identifier of the balance that will be paid out. Example: `bal_gVMhHKqSSRYJyPsuoPNFH`.'
           example: bal_gVMhHKqSSRYJyPsuoPNFH
         amount:
@@ -39556,9 +39554,7 @@ components:
           readOnly: true
           example: payout_j8NvRAM2WNZtsykpLEX8J
         balanceId:
-          type:
-            - string
-            - 'null'
+          type: string
           description: 'The identifier of the balance that will be paid out. Example: `bal_gVMhHKqSSRYJyPsuoPNFH`.'
           example: bal_gVMhHKqSSRYJyPsuoPNFH
         amount:
@@ -41723,9 +41719,7 @@ components:
           readOnly: true
           example: payout_j8NvRAM2WNZtsykpLEX8J
         balanceId:
-          type:
-            - string
-            - 'null'
+          type: string
           description: 'The identifier of the balance that will be paid out. Example: `bal_gVMhHKqSSRYJyPsuoPNFH`.'
           example: bal_gVMhHKqSSRYJyPsuoPNFH
         amount:
