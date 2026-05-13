@@ -32731,8 +32731,7 @@ components:
           description: 'The identifier of the balance that will be paid out. Example: `bal_gVMhHKqSSRYJyPsuoPNFH`.'
           example: bal_gVMhHKqSSRYJyPsuoPNFH
         amount:
-          allOf:
-            - $ref: '#/components/schemas/amount-nullable'
+          $ref: '#/components/schemas/amount-nullable'
           description: |-
             The amount to pay out. When omitted from the request, the full available balance minus any configured
             balance reserve is paid out.
@@ -39558,8 +39557,7 @@ components:
           description: 'The identifier of the balance that will be paid out. Example: `bal_gVMhHKqSSRYJyPsuoPNFH`.'
           example: bal_gVMhHKqSSRYJyPsuoPNFH
         amount:
-          allOf:
-            - $ref: '#/components/schemas/amount-nullable'
+          $ref: '#/components/schemas/amount-nullable'
           description: |-
             The amount to pay out. When omitted from the request, the full available balance minus any configured
             balance reserve is paid out.
@@ -41723,8 +41721,7 @@ components:
           description: 'The identifier of the balance that will be paid out. Example: `bal_gVMhHKqSSRYJyPsuoPNFH`.'
           example: bal_gVMhHKqSSRYJyPsuoPNFH
         amount:
-          allOf:
-            - $ref: '#/components/schemas/amount-nullable'
+          $ref: '#/components/schemas/amount-nullable'
           description: |-
             The amount to pay out. When omitted from the request, the full available balance minus any configured
             balance reserve is paid out.
