@@ -33795,6 +33795,16 @@ components:
           example: tkn_12345
           writeOnly: true
           x-methodSpecific: true
+        googlePayPaymentToken:
+          type: string
+          description: |-
+            The Google Pay payment token object (encoded as JSON) returned by the Google Pay SDK after the customer authorizes
+            the payment. The token contains the payment information needed to complete the payment.
+
+            The object should be passed encoded in a JSON string.
+          example: '{"signature": "MEYCIQCv...", "protocolVersion": "ECv2", "signedMessage": "{\"encryptedMessage\":\"...\",\"ephemeralPublicKey\":\"...\",\"tag\":\"...\"}"}'
+          writeOnly: true
+          x-methodSpecific: true
         voucherNumber:
           type: string
           description: |-
