@@ -84,7 +84,7 @@ paths:
       - url: https://api.mollie.com/oauth2
     post:
       security:
-        - oAuth: []
+        - basicAuth: []
       summary: Generate tokens
       x-speakeasy-name-override: generate
       tags:
@@ -221,7 +221,7 @@ paths:
       x-speakeasy-group: oauth
     delete:
       security:
-        - oAuth: []
+        - basicAuth: []
       summary: Revoke tokens
       x-speakeasy-name-override: revoke
       tags:
@@ -27470,6 +27470,12 @@ components:
           authorizationUrl: https://my.mollie.com/oauth2/authorize
           tokenUrl: https://api.mollie.com/oauth2/tokens
           scopes: {}
+    basicAuth:
+      type: http
+      scheme: basic
+      description: |-
+        Authenticates requests using HTTP Basic Authentication. Encode the credentials as
+        `"Basic " + toBase64(username + ":" + password)` and pass the result in the `Authorization` header.
   schemas:
     oauth-grant-type:
       type: string
