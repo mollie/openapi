@@ -80,8 +80,6 @@ tags:
     description: Operations related to the Webhooks API
 paths:
   /oauth2/tokens:
-    servers:
-      - url: https://api.mollie.com/oauth2
     post:
       security:
         - basicAuth: []
