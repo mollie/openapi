@@ -32205,8 +32205,6 @@ components:
         - name
         - email
         - locale
-        - address
-        - registrationNumber
         - _links
       properties:
         resource:
