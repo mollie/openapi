@@ -31319,6 +31319,15 @@ components:
               description: Multibanco entity reference of the transaction
               example: 98765
               x-methodSpecific: true
+            bizumReference:
+              type:
+                - string
+                - 'null'
+              description: |-
+                Bizum's unique ID for this payment. Only set when the customer provided a phone number
+                at checkout — Bizum requires a phone number to initiate the transaction.
+              example: 2901tq2ure1d
+              x-methodSpecific: true
         createdAt:
           $ref: '#/components/schemas/created-at'
         authorizedAt:
@@ -38256,6 +38265,15 @@ components:
               description: Multibanco entity reference of the transaction
               example: 98765
               x-methodSpecific: true
+            bizumReference:
+              type:
+                - string
+                - 'null'
+              description: |-
+                Bizum's unique ID for this payment. Only set when the customer provided a phone number
+                at checkout — Bizum requires a phone number to initiate the transaction.
+              example: 2901tq2ure1d
+              x-methodSpecific: true
         createdAt:
           $ref: '#/components/schemas/created-at'
         authorizedAt:
@@ -41264,6 +41282,15 @@ components:
                 - 'null'
               description: Multibanco entity reference of the transaction
               example: 98765
+              x-methodSpecific: true
+            bizumReference:
+              type:
+                - string
+                - 'null'
+              description: |-
+                Bizum's unique ID for this payment. Only set when the customer provided a phone number
+                at checkout — Bizum requires a phone number to initiate the transaction.
+              example: 2901tq2ure1d
               x-methodSpecific: true
         createdAt:
           $ref: '#/components/schemas/created-at'
