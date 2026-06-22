@@ -27854,8 +27854,6 @@ paths:
         - apiKey: []
         - advancedAccessToken:
             - payouts.write
-        - oAuth:
-            - payouts.write
       description: |-
         Request a payout from one of your balances to the balance's configured bank account.
 
@@ -28013,8 +28011,6 @@ paths:
         - apiKey: []
         - advancedAccessToken:
             - payouts.read
-        - oAuth:
-            - payouts.read
       description: |-
         Retrieve a list of all payouts for your organization, including payouts initiated automatically by the
         balance's payout schedule and payouts requested via the API or dashboard.
@@ -28123,8 +28119,6 @@ paths:
         - apiKey: []
         - advancedAccessToken:
             - payouts.read
-        - oAuth:
-            - payouts.read
       description: Retrieve a single payout by its ID.
       parameters:
         - $ref: '#/components/parameters/testmode'
@@ -28193,8 +28187,6 @@ paths:
       security:
         - apiKey: []
         - advancedAccessToken:
-            - payouts.write
-        - oAuth:
             - payouts.write
       description: |-
         Cancel a payout. A payout can only be canceled while it has the status `requested`. Once the payout moves
