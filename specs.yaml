@@ -32810,7 +32810,9 @@ components:
             - NL
             - GB
         businessCategory:
-          type: string
+          type:
+            - string
+            - 'null'
           description: |-
             The industry associated with the profile's trade name or brand. Please refer to the
             [business category list](common-data-types#business-category) for all possible options.
@@ -32887,7 +32889,9 @@ components:
               href: '...'
               type: text/html
     businessCategory:
-      type: string
+      type:
+        - string
+        - 'null'
       description: |-
         The industry associated with the profile's trade name or brand. Please refer to the
         [business category list](common-data-types#business-category) for all possible options.
@@ -39217,7 +39221,9 @@ components:
             - NL
             - GB
         businessCategory:
-          type: string
+          type:
+            - string
+            - 'null'
           description: |-
             The industry associated with the profile's trade name or brand. Please refer to the
             [business category list](common-data-types#business-category) for all possible options.
@@ -42271,7 +42277,9 @@ components:
             - NL
             - GB
         businessCategory:
-          type: string
+          type:
+            - string
+            - 'null'
           description: |-
             The industry associated with the profile's trade name or brand. Please refer to the
             [business category list](common-data-types#business-category) for all possible options.
