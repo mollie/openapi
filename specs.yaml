@@ -28403,6 +28403,7 @@ components:
         - HUF
         - AUD
         - CAD
+        - RON
       x-enumDescriptions:
         EUR: Euro
         GBP: British Pound
@@ -28416,6 +28417,7 @@ components:
         HUF: Hungarian Forint
         AUD: Australian Dollar
         CAD: Canadian Dollar
+        RON: Romanian Leu
       example: EUR
       x-speakeasy-unknown-values: allow
     balance-status:
