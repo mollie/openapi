@@ -32705,7 +32705,9 @@ components:
           $ref: '#/components/schemas/address'
           description: The address of the organization.
         registrationNumber:
-          type: string
+          type:
+            - string
+            - 'null'
           description: The registration number of the organization at their local chamber of commerce.
           example: '12345678'
         vatNumber:
