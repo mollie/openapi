@@ -28695,6 +28695,7 @@ components:
         - 'null'
       description: The payment method, if applicable
       enum:
+        - null
         - alma
         - bacs
         - applepay
@@ -30733,9 +30734,22 @@ components:
         - intra-eu-corporate
         - domestic
         - maestro
+        - mastercard-credit-business-domestic
+        - mastercard-credit-consumer-domestic
+        - mastercard-credit-consumer-intra-eea
+        - mastercard-debit-business-domestic
+        - mastercard-debit-business-intra-eea
+        - mastercard-debit-consumer-domestic
+        - mastercard-debit-consumer-intra-eea
         - other
         - inter
         - intra_eea
+        - visa-credit-business-domestic
+        - visa-credit-consumer-domestic
+        - visa-credit-consumer-intra-eea
+        - visa-debit-business-domestic
+        - visa-debit-business-intra-eea
+        - visa-debit-consumer-domestic
       example: maestro
     payment-details-failure-reason:
       type:
@@ -41773,9 +41787,22 @@ components:
         - intra-eu-corporate
         - domestic
         - maestro
+        - mastercard-credit-business-domestic
+        - mastercard-credit-consumer-domestic
+        - mastercard-credit-consumer-intra-eea
+        - mastercard-debit-business-domestic
+        - mastercard-debit-business-intra-eea
+        - mastercard-debit-consumer-domestic
+        - mastercard-debit-consumer-intra-eea
         - other
         - inter
         - intra_eea
+        - visa-credit-business-domestic
+        - visa-credit-consumer-domestic
+        - visa-credit-consumer-intra-eea
+        - visa-debit-business-domestic
+        - visa-debit-business-intra-eea
+        - visa-debit-consumer-domestic
       example: maestro
       x-speakeasy-unknown-values: allow
     payment-details-failure-reason-response:
