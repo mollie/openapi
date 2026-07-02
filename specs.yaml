@@ -28853,6 +28853,9 @@ components:
         - to-be-released-rolling-reserve
         - held-rolling-reserve
         - released-rolling-reserve
+        - movement
+        - invoice-compensation
+        - topup
       example: payment
       x-speakeasy-unknown-values: allow
     sub-totals:
