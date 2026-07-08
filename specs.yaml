@@ -28367,7 +28367,7 @@ components:
 
         The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
         limit is 50 items.
-      minimum: 1
+      minimum: 0
       maximum: 250
       example: 5
     balanceToken:
