@@ -36278,6 +36278,7 @@ components:
       enum:
         - PAX
         - Tap
+        - null
       example: PAX
       description: The brand of the terminal.
       x-speakeasy-unknown-values: allow
@@ -36292,6 +36293,7 @@ components:
         - A920Pro
         - IM30
         - Tap
+        - null
       example: A920
       description: The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
       x-speakeasy-unknown-values: allow
