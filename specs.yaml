@@ -32072,6 +32072,8 @@ components:
           readOnly: true
         createdAt:
           $ref: '#/components/schemas/created-at'
+        testmode:
+          $ref: '#/components/schemas/testmode-create'
         _links:
           type: object
           description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -38706,6 +38708,8 @@ components:
           readOnly: true
         createdAt:
           $ref: '#/components/schemas/created-at'
+        testmode:
+          $ref: '#/components/schemas/testmode-create'
         _links:
           type: object
           description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -42033,6 +42037,8 @@ components:
           readOnly: true
         createdAt:
           $ref: '#/components/schemas/created-at'
+        testmode:
+          $ref: '#/components/schemas/testmode-create'
         _links:
           type: object
           description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
