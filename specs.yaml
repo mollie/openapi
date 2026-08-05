@@ -33946,7 +33946,9 @@ components:
 
             The value in the response reflects the amount paid out, excluding any applicable fees.
         description:
-          type: string
+          type:
+            - string
+            - 'null'
           description: The description that will appear on the bank statement for this payout.
           maxLength: 255
           example: My payout description
@@ -40632,7 +40634,9 @@ components:
 
             The value in the response reflects the amount paid out, excluding any applicable fees.
         description:
-          type: string
+          type:
+            - string
+            - 'null'
           description: The description that will appear on the bank statement for this payout.
           maxLength: 255
           example: My payout description
@@ -42730,7 +42734,9 @@ components:
 
             The value in the response reflects the amount paid out, excluding any applicable fees.
         description:
-          type: string
+          type:
+            - string
+            - 'null'
           description: The description that will appear on the bank statement for this payout.
           maxLength: 255
           example: My payout description
