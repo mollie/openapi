@@ -36177,11 +36177,6 @@ components:
                 method selection screen will be skipped.
               example: ideal
               readOnly: true
-    profile-path-id:
-      type: string
-      enum:
-        - me
-      example: me
     method-id-with-issuer:
       type: string
       enum:
@@ -44166,9 +44161,7 @@ components:
       in: path
       required: true
       schema:
-        oneOf:
-          - $ref: '#/components/schemas/profileToken'
-          - $ref: '#/components/schemas/profile-path-id'
+        $ref: '#/components/schemas/profileToken'
     parent-method-with-issuer-id:
       name: methodId
       description: Provide the ID of the related payment method.
