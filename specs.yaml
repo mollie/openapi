@@ -18727,6 +18727,8 @@ paths:
         Revoke a pairing code, preventing the onboarding of new point-of-sale terminals.
 
         Terminals that have already paired with this code are not affected.
+
+        We keep a revoked pairing code for one month, then delete it. Once deleted, this endpoint returns a 404.
       parameters:
         - $ref: '#/components/parameters/parent-terminal-pairing-code-id'
         - $ref: '#/components/parameters/idempotency-key'
