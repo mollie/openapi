@@ -28805,6 +28805,7 @@ components:
     balance-transaction-type:
       type: string
       enum:
+        - application-fee
         - balance-charge-fee
         - balance-correction
         - balance-reserve
@@ -28830,6 +28831,7 @@ components:
         - outgoing-custom-amount-transfer
         - outgoing-transfer
         - payment
+        - payment-fee
         - pending-rolling-reserve
         - platform-payment-chargeback
         - platform-payment-refund
