@@ -14973,7 +14973,7 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/entity-refund-response'
+                $ref: '#/components/schemas/refund-response'
               examples:
                 create-refund-201-1:
                   $ref: '#/components/examples/get-refund'
@@ -15185,7 +15185,7 @@ paths:
                         description: An array of refund objects.
                         type: array
                         items:
-                          $ref: '#/components/schemas/list-entity-refund'
+                          $ref: '#/components/schemas/list-refund-response'
                   _links:
                     $ref: '#/components/schemas/list-links'
               examples:
@@ -15320,7 +15320,7 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/entity-refund-response'
+                $ref: '#/components/schemas/refund-response'
               examples:
                 get-refund-200-1:
                   $ref: '#/components/examples/get-refund'
@@ -15521,7 +15521,7 @@ paths:
                         description: An array of refund objects.
                         type: array
                         items:
-                          $ref: '#/components/schemas/list-entity-refund'
+                          $ref: '#/components/schemas/list-refund-response'
                   _links:
                     $ref: '#/components/schemas/list-links'
               examples:
@@ -32668,17 +32668,6 @@ components:
       example: organization
     entity-refund:
       type: object
-      required:
-        - resource
-        - id
-        - mode
-        - amount
-        - status
-        - createdAt
-        - description
-        - metadata
-        - paymentId
-        - _links
       properties:
         resource:
           type: string
@@ -32809,6 +32798,21 @@ components:
             documentation:
               $ref: '#/components/schemas/url'
           readOnly: true
+    refund-response:
+      type: object
+      required:
+        - resource
+        - id
+        - mode
+        - createdAt
+        - amount
+        - description
+        - status
+        - paymentId
+        - metadata
+        - _links
+      allOf:
+        - $ref: '#/components/schemas/entity-refund-response'
     settlement-refund-status:
       type: string
       description: |-
@@ -32825,7 +32829,7 @@ components:
       x-speakeasy-unknown-values: allow
     settlement-refund-response:
       allOf:
-        - $ref: '#/components/schemas/entity-refund'
+        - $ref: '#/components/schemas/refund-response'
         - type: object
           properties:
             mode:
@@ -35304,7 +35308,7 @@ components:
                 - title: payment.*
                   $ref: '#/components/schemas/payment-response'
                 - title: refund.*
-                  $ref: '#/components/schemas/entity-refund-response'
+                  $ref: '#/components/schemas/refund-response'
                 - title: chargeback.*
                   $ref: '#/components/schemas/entity-chargeback'
                 - title: capture.*
@@ -39343,17 +39347,6 @@ components:
               readOnly: true
     list-entity-refund:
       type: object
-      required:
-        - resource
-        - id
-        - mode
-        - amount
-        - status
-        - createdAt
-        - description
-        - metadata
-        - paymentId
-        - _links
       properties:
         resource:
           type: string
@@ -39481,9 +39474,24 @@ components:
                 The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
                 yet settled.
           readOnly: true
-    list-settlement-refund-response:
+    list-refund-response:
+      type: object
+      required:
+        - resource
+        - id
+        - mode
+        - createdAt
+        - amount
+        - description
+        - status
+        - paymentId
+        - metadata
+        - _links
       allOf:
         - $ref: '#/components/schemas/list-entity-refund'
+    list-settlement-refund-response:
+      allOf:
+        - $ref: '#/components/schemas/list-refund-response'
         - type: object
           properties:
             mode:
@@ -42802,17 +42810,6 @@ components:
       x-speakeasy-unknown-values: allow
     entity-refund-response:
       type: object
-      required:
-        - resource
-        - id
-        - mode
-        - amount
-        - status
-        - createdAt
-        - description
-        - metadata
-        - paymentId
-        - _links
       properties:
         resource:
           type: string
