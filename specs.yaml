@@ -12469,6 +12469,126 @@ paths:
               examples:
                 create-session-201-1:
                   $ref: '#/components/examples/get-session'
+                create-session-201-2:
+                  summary: Minimum viable request
+                  x-request: ./../_components/requests/common-session-requests.yaml#/api-minimum-viable-request
+                  value:
+                    resource: session
+                    id: sess_hJT2ZmqxL8vN4wRfy76sPq
+                    mode: live
+                    clientAccessToken: ewogICJzZXNzaW9uVG9rZW4iOiAic2Vzc19oSlQyWm1xeEw4dk40d1JmeTc2c1BxIiwKICAic2VjcmV0IjogImhhY2tlcnMtYmUtbmljZSIsCiAgInRlc3Rtb2RlIjogZmFsc2UsCiAgInByb2ZpbGVUb2tlbiI6ICJwZmxfUWtFaE45NEJhIiwKICAiYXZhaWxhYmxlUGF5bWVudE1ldGhvZHMiOiBbCiAgICAiaWRlYWwiLAogICAgImNyZWRpdGNhcmQiLAogICAgInBheXBhbCIKICBdCn0=
+                    amount:
+                      value: '10.00'
+                      currency: EUR
+                    description: 'Order #12345'
+                    lines:
+                      - description: T-shirt
+                        quantity: 1
+                        unitPrice:
+                          value: '10.00'
+                          currency: EUR
+                        totalAmount:
+                          value: '10.00'
+                          currency: EUR
+                    sequenceType: oneoff
+                    redirectUrl: https://webshop.example.org/order/12345/
+                    profileId: pfl_QkEhN94Ba
+                    status: open
+                    createdAt: '2024-03-20T09:13:37+00:00'
+                    expiresAt: '2024-03-20T09:28:37+00:00'
+                    _links:
+                      self:
+                        href: ...
+                        type: application/hal+json
+                      documentation:
+                        href: ...
+                        type: text/html
+                create-session-201-3:
+                  summary: Session with billing and shipping address
+                  x-request: ./../_components/requests/common-session-requests.yaml#/api-session-with-addresses
+                  value:
+                    resource: session
+                    id: sess_9wR4Kq6ZxJ8vNfT2ymLpBq
+                    mode: live
+                    clientAccessToken: ewogICJzZXNzaW9uVG9rZW4iOiAic2Vzc185d1I0S3E2WnhKOHZOZlQyeW1McEJxIiwKICAic2VjcmV0IjogImhhY2tlcnMtYmUtbmljZSIsCiAgInRlc3Rtb2RlIjogZmFsc2UsCiAgInByb2ZpbGVUb2tlbiI6ICJwZmxfUWtFaE45NEJhIiwKICAiYXZhaWxhYmxlUGF5bWVudE1ldGhvZHMiOiBbCiAgICAiaWRlYWwiLAogICAgImNyZWRpdGNhcmQiLAogICAgInBheXBhbCIKICBdCn0=
+                    amount:
+                      value: '10.00'
+                      currency: EUR
+                    description: 'Order #12345'
+                    lines:
+                      - description: T-shirt
+                        quantity: 1
+                        unitPrice:
+                          value: '10.00'
+                          currency: EUR
+                        totalAmount:
+                          value: '10.00'
+                          currency: EUR
+                    sequenceType: oneoff
+                    redirectUrl: https://webshop.example.org/order/12345/
+                    billingAddress:
+                      givenName: Piet
+                      familyName: Mondriaan
+                      email: piet@example.org
+                      streetAndNumber: Keizersgracht 126
+                      city: Amsterdam
+                      region: Noord-Holland
+                      postalCode: 1015 CW
+                      country: NL
+                    shippingAddress:
+                      givenName: Piet
+                      familyName: Mondriaan
+                      streetAndNumber: Keizersgracht 126
+                      city: Amsterdam
+                      region: Noord-Holland
+                      postalCode: 1015 CW
+                      country: NL
+                    profileId: pfl_QkEhN94Ba
+                    status: open
+                    createdAt: '2024-03-20T09:13:37+00:00'
+                    expiresAt: '2024-03-20T09:28:37+00:00'
+                    _links:
+                      self:
+                        href: ...
+                        type: application/hal+json
+                      documentation:
+                        href: ...
+                        type: text/html
+                create-session-201-4:
+                  summary: Set up a recurring payment
+                  x-request: ./../_components/requests/common-session-requests.yaml#/api-recurring-payment-session
+                  value:
+                    resource: session
+                    id: sess_3vTq7NxKm9RfY4wZbL2sJp
+                    mode: live
+                    clientAccessToken: ewogICJzZXNzaW9uVG9rZW4iOiAic2Vzc18zdlRxN054S205UmZZNHdaYkwyc0pwIiwKICAic2VjcmV0IjogImhhY2tlcnMtYmUtbmljZSIsCiAgInRlc3Rtb2RlIjogZmFsc2UsCiAgInByb2ZpbGVUb2tlbiI6ICJwZmxfUWtFaE45NEJhIiwKICAiYXZhaWxhYmxlUGF5bWVudE1ldGhvZHMiOiBbCiAgICAiaWRlYWwiLAogICAgImNyZWRpdGNhcmQiLAogICAgInBheXBhbCIKICBdCn0=
+                    amount:
+                      value: '10.00'
+                      currency: EUR
+                    description: 'Order #12345'
+                    lines:
+                      - description: T-shirt
+                        quantity: 1
+                        unitPrice:
+                          value: '10.00'
+                          currency: EUR
+                        totalAmount:
+                          value: '10.00'
+                          currency: EUR
+                    customerId: cst_tKt44u85MM
+                    sequenceType: first
+                    redirectUrl: https://webshop.example.org/order/12345/
+                    profileId: pfl_QkEhN94Ba
+                    status: open
+                    createdAt: '2024-03-20T09:13:37+00:00'
+                    expiresAt: '2024-03-20T09:28:37+00:00'
+                    _links:
+                      self:
+                        href: ...
+                        type: application/hal+json
+                      documentation:
+                        href: ...
+                        type: text/html
         '422':
           description: The request contains issues.
           content:
@@ -12490,7 +12610,7 @@ paths:
         code-samples:
           - language: shell
             code: |-
-              curl -X POST https://api.mollie.com/v2/payments \
+              curl -X POST https://api.mollie.com/v2/sessions \
                   -H "Authorization: Bearer live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
                   -d "amount[currency]=EUR" \
                   -d "amount[value]=10.00" \
@@ -12501,17 +12621,12 @@ paths:
                   -d "lines[0][unitPrice][value]=10.00" \
                   -d "lines[0][totalAmount][currency]=EUR" \
                   -d "lines[0][totalAmount][value]=10.00" \
-                  -d "payment[webhookUrl]=https://webshop.example.org/payments/webhook/" \
-                  -d "redirectUrl=https://webshop.example.org/order/12345/" \
-                  -d "metadata={\"order_id\": \"12345\"}" \
-                  -d "requiredCustomerDetails[]=email" \
-                  -d "requiredCustomerDetails[]=billing-address" \
-                  -d "requiredCustomerDetails[]=shipping-address"
+                  -d "redirectUrl=https://webshop.example.org/order/12345/"
           - language: php
             code: |-
               <?php
               use Mollie\Api\Http\Data\Money;
-              use Mollie\Api\Http\Requests\CreatePaymentRequest;
+              use Mollie\Api\Http\Requests\CreateSessionRequest;
 
               $mollie = new \Mollie\Api\MollieApiClient();
               $mollie->setApiKey("live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
@@ -12529,13 +12644,6 @@ paths:
                           ],
                       ],
                       redirectUrl: "https://webshop.example.org/order/12345/",
-                      payment: [
-                          "webhookUrl" => "https://webshop.example.org/payments/webhook/",
-                      ],
-                      metadata: [
-                          "order_id" => "12345",
-                      ],
-                      requiredCustomerDetails: ["email", "billing-address", "shipping-address"]
                   )
               );
           - language: node
@@ -12563,17 +12671,40 @@ paths:
                     }
                   }
                 ],
-                redirectUrl: 'https://webshop.example.org/order/12345/',
-                payment: {
-                  webhookUrl: 'https://webshop.example.org/payments/webhook/'
-                },
-                metadata: {
-                  order_id: '12345'
-                },
-                requiredCustomerDetails: ['email', 'billing-address', 'shipping-address']
+                redirectUrl: 'https://webshop.example.org/order/12345/'
               });
           - language: python
-            code: No example available.
+            code: |-
+              import mollie
+              from mollie import ClientSDK
+
+              with ClientSDK(
+                  security=mollie.Security(
+                      api_key="live_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM",
+                  ),
+              ) as client_sdk:
+                  session = client_sdk.sessions.create(session_request=mollie.SessionRequest(
+                      amount=mollie.Amount(
+                          currency="EUR",
+                          value="10.00",
+                      ),
+                      description="Order #12345",
+                      lines=[
+                          mollie.SessionLineItem(
+                              description="T-shirt",
+                              quantity=1,
+                              unit_price=mollie.Amount(
+                                  currency="EUR",
+                                  value="10.00",
+                              ),
+                              total_amount=mollie.Amount(
+                                  currency="EUR",
+                                  value="10.00",
+                              ),
+                          ),
+                      ],
+                      redirect_url="https://webshop.example.org/order/12345/",
+                  ))
           - language: ruby
             code: No example available.
       x-speakeasy-group: sessions
