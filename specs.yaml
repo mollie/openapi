@@ -27016,6 +27016,12 @@ paths:
 
         The results are paginated.
       parameters:
+        - name: iban
+          in: query
+          description: Filter the results by IBAN. Only the business account with an exact match is returned.
+          schema:
+            type: string
+            example: NL95MLLE1234567890
         - name: from
           in: query
           description: |-
@@ -27062,8 +27068,8 @@ paths:
                             accountHolderName: Mollie B.V.
                             name: Main Checking Account
                             currency: EUR
-                            iban: NL02MLLE123456780
-                            bic: MLLEXX
+                            iban: NL95MLLE1234567890
+                            bic: MLLENL2AXXX
                           status: active
                           balance:
                             total:
@@ -27209,11 +27215,40 @@ paths:
 
         The results are paginated.
       parameters:
+        - name: creditDebitIndicator
+          in: query
+          description: Filter the transactions by whether they credited or debited the account balance.
+          schema:
+            $ref: '#/components/schemas/credit-debit-indicator'
+        - name: processedAfter
+          in: query
+          description: |-
+            Filter the transactions to only include those processed on or after this date and time. Filters on the
+            `processedAt` property.
+
+            Cannot be combined with `from`.
+          schema:
+            type: string
+            format: date-time
+            example: '2025-02-01T00:00:00+00:00'
+        - name: processedBefore
+          in: query
+          description: |-
+            Filter the transactions to only include those processed on or before this date and time. Filters on the
+            `processedAt` property.
+
+            Cannot be combined with `from`.
+          schema:
+            type: string
+            format: date-time
+            example: '2025-02-26T23:59:59+00:00'
         - name: from
           in: query
           description: |-
             Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
             the result set.
+
+            Cannot be combined with `processedAfter` or `processedBefore`.
           schema:
             $ref: '#/components/schemas/businessAccountTransactionToken'
         - $ref: '#/components/parameters/list-limit'
@@ -27259,7 +27294,7 @@ paths:
                             value: '100.00'
                           description: Payment for services
                           counterparty:
-                            identifier: NL11ABNA01234567890
+                            identifier: NL02ABNA0123456789
                             name: Beneficiary Name
                           afterBalance:
                             total:
@@ -27272,11 +27307,11 @@ paths:
                           businessAccountId: ba_nopqrstuvwxyz23456789A
                           mode: live
                           creditDebitIndicator: credit
-                          type: ideal-payment
+                          type: bank-transfer
                           amount:
                             currency: EUR
                             value: '250.00'
-                          description: iDEAL payment received
+                          description: Bank transfer received
                           counterparty:
                             identifier: NL91ABNA0417164300
                             name: Jan Jansen
@@ -27380,11 +27415,11 @@ paths:
                     businessAccountId: ba_nopqrstuvwxyz23456789A
                     mode: live
                     creditDebitIndicator: credit
-                    type: ideal-payment
+                    type: bank-transfer
                     amount:
                       currency: EUR
                       value: '250.00'
-                    description: iDEAL payment received
+                    description: Bank transfer received
                     counterparty:
                       identifier: NL91ABNA0417164300
                       name: Jan Jansen
@@ -38470,7 +38505,7 @@ components:
         iban:
           type: string
           description: The IBAN (International Bank Account Number) of the account.
-          example: NL02MLLE123456780
+          example: NL95MLLE1234567890
         bic:
           type: string
           description: The BIC (Bank Identifier Code) of the account.
@@ -38554,6 +38589,7 @@ components:
         - correction
         - direct-debit
         - direct-debit-refund
+        - rewards-payout
       x-enumDescriptions:
         card-payment: A card payment transaction.
         bank-transfer: A bank transfer transaction.
@@ -38564,6 +38600,7 @@ components:
         correction: A correction transaction.
         direct-debit: A direct debit transaction.
         direct-debit-refund: A refund of a direct debit transaction.
+        rewards-payout: A payout of rewards earned on the account.
       readOnly: true
       example: bank-transfer
       x-speakeasy-unknown-values: allow
@@ -38574,7 +38611,7 @@ components:
         identifier:
           type: string
           description: The account identifier (e.g. IBAN) of the counterparty.
-          example: NL11ABNA01234567890
+          example: NL02ABNA0123456789
         name:
           type: string
           description: The name of the counterparty.
@@ -45838,8 +45875,8 @@ components:
           accountHolderName: Mollie B.V.
           name: Main Checking Account
           currency: EUR
-          iban: NL02MLLE123456780
-          bic: MLLEXX
+          iban: NL95MLLE1234567890
+          bic: MLLENL2AXXX
         status: active
         balance:
           total:
@@ -45860,7 +45897,7 @@ components:
           value: '100.00'
         description: Payment for services
         counterparty:
-          identifier: NL11ABNA01234567890
+          identifier: NL02ABNA0123456789
           name: Beneficiary Name
         afterBalance:
           total:
