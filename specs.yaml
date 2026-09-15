@@ -31432,6 +31432,7 @@ components:
         - Unionpay
         - Visa
         - Vpay
+        - null
       example: Mastercard
     payment-details-card-funding:
       type:
@@ -37737,6 +37738,7 @@ components:
         - American Express
         - Carta Si
         - Carte Bleue
+        - Cartes Bancaires
         - Dankort
         - Diners Club
         - Discover
@@ -37746,6 +37748,7 @@ components:
         - Mastercard
         - Unionpay
         - Visa
+        - null
       example: Visa
     mandate-status:
       type: string
@@ -42640,6 +42643,7 @@ components:
         - Unionpay
         - Visa
         - Vpay
+        - null
       example: Mastercard
       x-speakeasy-unknown-values: allow
     payment-details-card-funding-response:
@@ -45005,6 +45009,7 @@ components:
         - American Express
         - Carta Si
         - Carte Bleue
+        - Cartes Bancaires
         - Dankort
         - Diners Club
         - Discover
@@ -45014,6 +45019,7 @@ components:
         - Mastercard
         - Unionpay
         - Visa
+        - null
       example: Visa
       x-speakeasy-unknown-values: allow
     mandate-scopes-response:
