@@ -30918,6 +30918,7 @@ components:
         - de_CH
         - de_DE
         - de_LU
+        - el_GR
         - en_BE
         - en_GB
         - en_NL
@@ -30938,7 +30939,9 @@ components:
         - pl_PL
         - pt_PT
         - sk_SK
+        - sl_SI
         - sv_SE
+        - tr_TR
         - null
       example: en_US
     metadata:
@@ -42203,6 +42206,7 @@ components:
         - de_CH
         - de_DE
         - de_LU
+        - el_GR
         - en_BE
         - en_GB
         - en_NL
@@ -42223,7 +42227,9 @@ components:
         - pl_PL
         - pt_PT
         - sk_SK
+        - sl_SI
         - sv_SE
+        - tr_TR
         - null
       example: en_US
       x-speakeasy-unknown-values: allow
