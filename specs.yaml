@@ -36812,7 +36812,6 @@ components:
             - createdAt
             - amount
             - description
-            - lines
             - redirectUrl
             - status
             - profileId
