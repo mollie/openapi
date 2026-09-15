@@ -34360,6 +34360,7 @@ components:
         - creditcard
         - eps
         - giftcard
+        - googlepay
         - ideal
         - in3
         - kbc
@@ -43518,6 +43519,7 @@ components:
         - creditcard
         - eps
         - giftcard
+        - googlepay
         - ideal
         - in3
         - kbc
