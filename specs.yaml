@@ -32932,7 +32932,9 @@ components:
         mode:
           $ref: '#/components/schemas/mode'
         description:
-          type: string
+          type:
+            - string
+            - 'null'
           description: The description of the refund that may be shown to your customer, depending on the payment method used.
           maxLength: 255
           example: Refunding a Chess Board
@@ -34113,6 +34115,13 @@ components:
         - business-account-draft-transfer.approved
         - business-account-draft-transfer.declined
         - unmatched-credit-transfer.received
+        - unmatched-credit-transfer.matched
+        - unmatched-credit-transfer.returned
+        - unmatched-credit-transfer.expired
+        - unmatched-credit-transfer.match.completed
+        - unmatched-credit-transfer.match.failed
+        - unmatched-credit-transfer.return.completed
+        - unmatched-credit-transfer.return.failed
         - '*'
       x-enumDescriptions:
         payment.paid: A payment has been completed successfully.
@@ -34157,6 +34166,13 @@ components:
         business-account-draft-transfer.approved: The draft transfer is approved by the initiator.
         business-account-draft-transfer.declined: The draft transfer is declined, either by the initiator, the creator, or because the debtor account was closed.
         unmatched-credit-transfer.received: An incoming credit transfer has been received and could not be automatically matched to a payment.
+        unmatched-credit-transfer.matched: An unmatched credit transfer resource has transitioned to the matched state after a successful match.
+        unmatched-credit-transfer.returned: An unmatched credit transfer resource has transitioned to the returned state after a successful return.
+        unmatched-credit-transfer.expired: An unmatched credit transfer has expired.
+        unmatched-credit-transfer.match.completed: A user-triggered match action has completed successfully.
+        unmatched-credit-transfer.match.failed: A user-triggered match action has failed.
+        unmatched-credit-transfer.return.completed: A user-triggered return action has completed successfully.
+        unmatched-credit-transfer.return.failed: A user-triggered return action has failed.
         '*': All event types.
       example: payment-link.paid
     webhook-status:
@@ -39629,7 +39645,9 @@ components:
         mode:
           $ref: '#/components/schemas/mode'
         description:
-          type: string
+          type:
+            - string
+            - 'null'
           description: The description of the refund that may be shown to your customer, depending on the payment method used.
           maxLength: 255
           example: Refunding a Chess Board
@@ -42975,7 +42993,9 @@ components:
         mode:
           $ref: '#/components/schemas/mode'
         description:
-          type: string
+          type:
+            - string
+            - 'null'
           description: The description of the refund that may be shown to your customer, depending on the payment method used.
           maxLength: 255
           example: Refunding a Chess Board
@@ -43455,6 +43475,13 @@ components:
         - business-account-draft-transfer.approved
         - business-account-draft-transfer.declined
         - unmatched-credit-transfer.received
+        - unmatched-credit-transfer.matched
+        - unmatched-credit-transfer.returned
+        - unmatched-credit-transfer.expired
+        - unmatched-credit-transfer.match.completed
+        - unmatched-credit-transfer.match.failed
+        - unmatched-credit-transfer.return.completed
+        - unmatched-credit-transfer.return.failed
         - '*'
       x-enumDescriptions:
         payment.paid: A payment has been completed successfully.
@@ -43499,6 +43526,13 @@ components:
         business-account-draft-transfer.approved: The draft transfer is approved by the initiator.
         business-account-draft-transfer.declined: The draft transfer is declined, either by the initiator, the creator, or because the debtor account was closed.
         unmatched-credit-transfer.received: An incoming credit transfer has been received and could not be automatically matched to a payment.
+        unmatched-credit-transfer.matched: An unmatched credit transfer resource has transitioned to the matched state after a successful match.
+        unmatched-credit-transfer.returned: An unmatched credit transfer resource has transitioned to the returned state after a successful return.
+        unmatched-credit-transfer.expired: An unmatched credit transfer has expired.
+        unmatched-credit-transfer.match.completed: A user-triggered match action has completed successfully.
+        unmatched-credit-transfer.match.failed: A user-triggered match action has failed.
+        unmatched-credit-transfer.return.completed: A user-triggered return action has completed successfully.
+        unmatched-credit-transfer.return.failed: A user-triggered return action has failed.
         '*': All event types.
       example: payment-link.paid
       x-speakeasy-unknown-values: allow
