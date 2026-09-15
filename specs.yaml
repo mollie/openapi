@@ -36102,7 +36102,6 @@ components:
           required:
             - amount
             - description
-            - redirectUrl
         - type: object
           properties:
             method:
