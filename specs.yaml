@@ -32373,6 +32373,9 @@ components:
 
             If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
             `routing` parameter.
+          required:
+            - amount
+            - description
           properties:
             amount:
               $ref: '#/components/schemas/amount'
@@ -32387,7 +32390,7 @@ components:
                 The description of the application fee. This will appear on settlement reports towards both you and the
                 connected merchant.
               maxLength: 255
-              example: 10
+              example: Platform fee
         routing:
           type:
             - array
@@ -39193,6 +39196,9 @@ components:
 
             If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
             `routing` parameter.
+          required:
+            - amount
+            - description
           properties:
             amount:
               $ref: '#/components/schemas/amount'
@@ -39207,7 +39213,7 @@ components:
                 The description of the application fee. This will appear on settlement reports towards both you and the
                 connected merchant.
               maxLength: 255
-              example: 10
+              example: Platform fee
         routing:
           type:
             - array
@@ -41812,6 +41818,9 @@ components:
 
             If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
             `routing` parameter.
+          required:
+            - amount
+            - description
           properties:
             amount:
               $ref: '#/components/schemas/amount'
@@ -41826,7 +41835,7 @@ components:
                 The description of the application fee. This will appear on settlement reports towards both you and the
                 connected merchant.
               maxLength: 255
-              example: 10
+              example: Platform fee
         routing:
           type:
             - array
