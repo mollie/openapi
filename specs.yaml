@@ -38448,6 +38448,7 @@ components:
         - issued
         - paid
         - cancelled
+        - payment_reversed
       example: draft
     update-values-sales-invoice:
       type: object
@@ -38460,6 +38461,8 @@ components:
             The status for the invoice to end up in.
 
             Dependent parameters: `paymentDetails` for `paid`, `emailDetails` for `issued` and `paid`.
+
+            To cancel a `paid` invoice, first set the status to `payment_reversed`, then set it to `cancelled`.
         memo:
           example: An updated memo!
           type:
