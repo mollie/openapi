@@ -30926,12 +30926,21 @@ components:
                         example: 10
                       rate:
                         type: object
-                        description: The service rates, further divided into `fixed` and `percentage` costs.
+                        description: |-
+                          The service rates, further divided into `fixed` and `percentage` costs.
+
+                          For pass-through fees, which are charged by an external party rather than at an agreed Mollie
+                          rate, both `fixed` and `percentage` are `null`.
+                        required:
+                          - fixed
+                          - percentage
                         properties:
                           fixed:
-                            $ref: '#/components/schemas/amount'
+                            $ref: '#/components/schemas/amount-nullable'
                           percentage:
-                            type: string
+                            type:
+                              - string
+                              - 'null'
                             example: '2.5'
                       amountNet:
                         $ref: '#/components/schemas/amount'
