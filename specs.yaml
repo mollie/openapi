@@ -37294,6 +37294,7 @@ components:
         - paybybank
         - paypal
         - paysafecard
+        - pointofsale
         - przelewy24
         - riverty
         - satispay
@@ -37511,7 +37512,7 @@ components:
           properties:
             id:
               allOf:
-                - $ref: '#/components/schemas/method-response'
+                - $ref: '#/components/schemas/method-id'
               type: string
               description: |-
                 The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
@@ -45777,7 +45778,7 @@ components:
       in: path
       required: true
       schema:
-        $ref: '#/components/schemas/method'
+        $ref: '#/components/schemas/method-id'
     parent-profile-and-me-id:
       name: profileId
       description: Provide the ID of the related profile.
