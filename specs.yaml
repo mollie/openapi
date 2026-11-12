@@ -36119,9 +36119,7 @@ components:
           x-method: credit-card
         voucherNumber:
           type: string
-          description: |-
-            The card token you received from the card component of Mollie Components. The token represents the customer's
-            card information needed to complete the payment.
+          description: Number of the voucher.
           example: '1234567890'
           writeOnly: true
           x-methodSpecific: true
