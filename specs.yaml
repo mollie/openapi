@@ -27249,6 +27249,200 @@ paths:
       parameters:
         - $ref: '#/components/parameters/idempotency-key'
   /v2/business-accounts/accounts:
+    post:
+      summary: Create business account
+      x-speakeasy-name-override: create-account
+      tags:
+        - Accounts API
+      operationId: create-business-account
+      security:
+        - oAuth:
+            - business-accounts.write
+      description: |-
+        > 🔒 Restricted access
+        >
+        > This API is currently only available to Mollie's authorized partners via OAuth. Direct access for individual businesses isn't available yet, but it's on our roadmap — check back here for updates.
+
+        Create a new business account for the authenticated organization.
+
+        The response contains the newly created business account.
+
+        Each organization can have up to 5 active business accounts. Need more? [Contact us](https://www.mollie.com/contact)
+        and we'll help you out.
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          description: |-
+            A unique value that identifies this request, so you can safely retry it without creating a second account.
+            Retrying with the same key within one hour returns the original response. We recommend a UUIDv4.
+
+            Keys are tied to the credential that sent the original request, so a refreshed OAuth token won't match
+            earlier keys. View the [public documentation](https://docs.mollie.com/reference/api-idempotency) to learn
+            more.
+          required: false
+          schema:
+            type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+        - $ref: '#/components/parameters/idempotency-key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - currency
+              properties:
+                name:
+                  type: string
+                  description: The name of the business account, as shown to the account holder.
+                  minLength: 1
+                  maxLength: 80
+                  example: Main Checking Account
+                currency:
+                  $ref: '#/components/schemas/account-currency'
+                testmode:
+                  $ref: '#/components/schemas/oauth-testmode-create'
+      responses:
+        '201':
+          description: The newly created business account object.
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/business-account-response'
+              examples:
+                create-business-account-201:
+                  summary: The newly created business account
+                  value:
+                    resource: business-account
+                    id: ba_nopqrstuvwxyz23456789A
+                    mode: live
+                    accountDetails:
+                      accountHolderName: Mollie B.V.
+                      name: Main Checking Account
+                      currency: EUR
+                      iban: NL95MLLE1234567890
+                      bic: MLLENL2AXXX
+                    status: active
+                    balance:
+                      total:
+                        currency: EUR
+                        value: '0.00'
+                    createdAt: '2024-03-20T09:13:37+00:00'
+                    _links:
+                      self:
+                        href: https://api.mollie.com/v2/business-accounts/accounts/ba_nopqrstuvwxyz23456789A
+                        type: application/hal+json
+                      documentation:
+                        href: https://docs.mollie.com/reference/create-business-account
+                        type: text/html
+        '400':
+          description: |-
+            The request is malformed. For example, the body isn't valid JSON, a required field such as `name` is missing,
+            or the `Idempotency-Key` was already used for a request with different parameters.
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+              example:
+                status: 400
+                title: Bad Request
+                detail: The 'name' field is missing
+                field: name
+                _links:
+                  documentation:
+                    href: https://docs.mollie.com/overview/handling-errors
+                    type: text/html
+        '409':
+          description: |-
+            Your organization already has a business account with this name, or a request with the same
+            `Idempotency-Key` is still being processed.
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+              example:
+                status: 409
+                title: Conflict
+                detail: A business account with the name 'Main Checking Account' already exists
+                field: name
+                _links:
+                  documentation:
+                    href: https://docs.mollie.com/overview/handling-errors
+                    type: text/html
+        '422':
+          description: |-
+            The request is well-formed, but Mollie can't create the account. For example, your organization already
+            has 5 active business accounts, the maximum allowed. [Contact us](https://www.mollie.com/contact) if you
+            need more.
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/error-response'
+              example:
+                status: 422
+                title: Unprocessable Entity
+                detail: Your organization has reached the maximum of 5 active business accounts
+                _links:
+                  documentation:
+                    href: https://docs.mollie.com/overview/handling-errors
+                    type: text/html
+        '429':
+          $ref: '#/components/responses/429-rate-limit'
+      x-readme:
+        code-samples:
+          - language: shell
+            code: |-
+              curl -X POST https://api.mollie.com/v2/business-accounts/accounts \
+                  -H "Authorization: Bearer access_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM" \
+                  -H "Content-Type: application/json" \
+                  -d '{
+                    "name": "Main Checking Account",
+                    "currency": "EUR"
+                  }'
+          - language: php
+            code: |-
+              <?php
+              $mollie = new \Mollie\Api\MollieApiClient();
+              $mollie->setAccessToken("access_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM");
+
+              $account = $mollie->businessAccounts->create([
+                  "name" => "Main Checking Account",
+                  "currency" => "EUR",
+              ]);
+          - language: node
+            code: |-
+              const { createMollieClient } = require('mollie-api-typescript');
+              const mollieClient = createMollieClient({ apiKey: 'access_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM' });
+
+              const account = await mollieClient.businessAccounts.create({
+                name: 'Main Checking Account',
+                currency: 'EUR',
+              });
+          - language: python
+            code: |-
+              from mollie.api.client import Client
+
+              mollie_client = Client()
+              mollie_client.set_access_token("access_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM")
+
+              account = mollie_client.business_accounts.create({
+                  "name": "Main Checking Account",
+                  "currency": "EUR",
+              })
+          - language: ruby
+            code: |-
+              require 'mollie-api-ruby'
+
+              Mollie::Client.configure do |config|
+                config.api_key = 'access_dHar4XY7LxsDOtmnkVtjNVWXLSlXsM'
+              end
+
+              account = Mollie::BusinessAccount.create(
+                name: 'Main Checking Account',
+                currency: 'EUR'
+              )
+      x-speakeasy-group: accounts
     get:
       summary: List business accounts
       x-speakeasy-name-override: list-accounts
@@ -27304,7 +27498,7 @@ paths:
                         description: An array of business account objects.
                         type: array
                         items:
-                          $ref: '#/components/schemas/business-account-response'
+                          $ref: '#/components/schemas/list-business-account-response'
               examples:
                 list-business-accounts-200:
                   summary: A list of business accounts
@@ -27327,6 +27521,22 @@ paths:
                               currency: EUR
                               value: '5000.00'
                           createdAt: '2024-03-20T09:13:37+00:00'
+                          _links:
+                            self:
+                              href: https://api.mollie.com/v2/business-accounts/accounts/ba_nopqrstuvwxyz23456789A
+                              type: application/hal+json
+                            documentation:
+                              href: https://docs.mollie.com/reference/get-business-account
+                              type: text/html
+                    _links:
+                      self:
+                        href: https://api.mollie.com/v2/business-accounts/accounts?limit=50
+                        type: application/hal+json
+                      previous: null
+                      next: null
+                      documentation:
+                        href: https://docs.mollie.com/reference/list-business-accounts
+                        type: text/html
         '400':
           $ref: '#/components/responses/400-invalid-list-request'
         '429':
@@ -34192,6 +34402,7 @@ components:
         - business-account-draft-transfer.created
         - business-account-draft-transfer.approved
         - business-account-draft-transfer.declined
+        - business-account.created
         - unmatched-credit-transfer.received
         - unmatched-credit-transfer.matched
         - unmatched-credit-transfer.returned
@@ -34245,6 +34456,7 @@ components:
         business-account-draft-transfer.created: The draft transfer is created and awaiting review by a human initiator in Mollie Apps.
         business-account-draft-transfer.approved: The draft transfer is approved by the initiator.
         business-account-draft-transfer.declined: The draft transfer is declined, either by the initiator, the creator, or because the debtor account was closed.
+        business-account.created: Occurs when a business account has been created.
         unmatched-credit-transfer.received: An incoming credit transfer has been received and could not be automatically matched to a payment.
         unmatched-credit-transfer.matched: An unmatched credit transfer resource has transitioned to the matched state after a successful match.
         unmatched-credit-transfer.returned: An unmatched credit transfer resource has transitioned to the returned state after a successful return.
@@ -35801,6 +36013,116 @@ components:
         - status
         - createdAt
         - _links
+    businessAccountToken:
+      type: string
+      pattern: ^ba_.+$
+      example: ba_nopqrstuvwxyz23456789A
+    account-details:
+      type: object
+      description: The account holder details and bank account information for the business account.
+      required:
+        - accountHolderName
+        - currency
+        - iban
+      properties:
+        accountHolderName:
+          type: string
+          description: The name of the account holder.
+          example: Mollie B.V.
+        name:
+          type: string
+          description: A name of the account.
+          example: Main Checking Account
+        currency:
+          type: string
+          description: The currency of the account in ISO 4217 format.
+          example: EUR
+        iban:
+          type: string
+          description: The IBAN (International Bank Account Number) of the account.
+          example: NL95MLLE1234567890
+        bic:
+          type: string
+          description: The BIC (Bank Identifier Code) of the account.
+          example: MLLENL2AXXX
+    balance:
+      type: object
+      description: The balance of the business account.
+      required:
+        - total
+      properties:
+        total:
+          $ref: '#/components/schemas/amount'
+          description: The total available balance of the business account.
+    account-status:
+      type: string
+      description: The status of the business account.
+      enum:
+        - active
+        - blocked
+        - closed
+      x-enumDescriptions:
+        active: The account is active and operational.
+        blocked: The account is blocked and cannot be used for transactions.
+        closed: The account has been closed.
+      readOnly: true
+      example: active
+      x-speakeasy-unknown-values: allow
+    entity-business-account:
+      type: object
+      properties:
+        resource:
+          type: string
+          description: |-
+            Indicates the response contains a business account object. Will always contain the string `business-account`
+            for this endpoint.
+          readOnly: true
+          example: business-account
+        id:
+          allOf:
+            - $ref: '#/components/schemas/businessAccountToken'
+          description: |-
+            The identifier uniquely referring to this business account. Mollie assigns this identifier at account creation
+            time.
+          readOnly: true
+        accountDetails:
+          $ref: '#/components/schemas/account-details'
+        balance:
+          $ref: '#/components/schemas/balance'
+        status:
+          $ref: '#/components/schemas/account-status'
+        mode:
+          $ref: '#/components/schemas/mode'
+        createdAt:
+          $ref: '#/components/schemas/created-at'
+    business-account-response:
+      allOf:
+        - $ref: '#/components/schemas/entity-business-account'
+        - type: object
+          properties:
+            _links:
+              type: object
+              description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+              readOnly: true
+              required:
+                - self
+                - documentation
+              properties:
+                self:
+                  $ref: '#/components/schemas/url'
+                  description: The URL to this business account.
+                documentation:
+                  $ref: '#/components/schemas/url'
+                  description: The URL to the business account endpoint documentation.
+      required:
+        - resource
+        - id
+        - mode
+        - accountDetails
+        - status
+        - balance
+        - createdAt
+        - _links
     entity-webhook-event:
       type: object
       required:
@@ -35862,6 +36184,8 @@ components:
                   $ref: '#/components/schemas/transfer-response'
                 - title: business-account-draft-transfer.*
                   $ref: '#/components/schemas/draft-transfer-response'
+                - title: business-account.*
+                  $ref: '#/components/schemas/business-account-response'
         _links:
           type: object
           description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -38638,100 +38962,17 @@ components:
             otherwise delivery will fail. Note: for recipients in Germany, the `vatNumber` is the required identifier
             for Peppol registration.
           example: false
-    businessAccountToken:
+    account-currency:
       type: string
-      pattern: ^ba_.+$
-      example: ba_nopqrstuvwxyz23456789A
-    account-details:
-      type: object
-      description: The account holder details and bank account information for the business account.
-      required:
-        - accountHolderName
-        - currency
-        - iban
-      properties:
-        accountHolderName:
-          type: string
-          description: The name of the account holder.
-          example: Mollie B.V.
-        name:
-          type: string
-          description: A name of the account.
-          example: Main Checking Account
-        currency:
-          type: string
-          description: The currency of the account in ISO 4217 format.
-          example: EUR
-        iban:
-          type: string
-          description: The IBAN (International Bank Account Number) of the account.
-          example: NL95MLLE1234567890
-        bic:
-          type: string
-          description: The BIC (Bank Identifier Code) of the account.
-          example: MLLENL2AXXX
-    balance:
-      type: object
-      description: The balance of the business account.
-      required:
-        - total
-      properties:
-        total:
-          $ref: '#/components/schemas/amount'
-          description: The total available balance of the business account.
-    account-status:
-      type: string
-      description: The status of the business account.
+      description: |-
+        The currency of the business account, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
+
+        Only `EUR` is supported for now. We're working on more currencies, and they'll be available soon.
       enum:
-        - active
-        - blocked
-        - closed
+        - EUR
       x-enumDescriptions:
-        active: The account is active and operational.
-        blocked: The account is blocked and cannot be used for transactions.
-        closed: The account has been closed.
-      readOnly: true
-      example: active
-      x-speakeasy-unknown-values: allow
-    entity-business-account:
-      type: object
-      properties:
-        resource:
-          type: string
-          description: |-
-            Indicates the response contains a business account object. Will always contain the string `business-account`
-            for this endpoint.
-          readOnly: true
-          example: business-account
-        id:
-          allOf:
-            - $ref: '#/components/schemas/businessAccountToken'
-          description: |-
-            The identifier uniquely referring to this business account. Mollie assigns this identifier at account creation
-            time.
-          readOnly: true
-        accountDetails:
-          $ref: '#/components/schemas/account-details'
-        balance:
-          $ref: '#/components/schemas/balance'
-        status:
-          $ref: '#/components/schemas/account-status'
-        mode:
-          $ref: '#/components/schemas/mode'
-        createdAt:
-          $ref: '#/components/schemas/created-at'
-    business-account-response:
-      allOf:
-        - $ref: '#/components/schemas/entity-business-account'
-        - type: object
-          required:
-            - resource
-            - id
-            - mode
-            - accountDetails
-            - status
-            - balance
-            - createdAt
+        EUR: Euro
+      example: EUR
     transaction-type:
       type: string
       description: |-
@@ -41596,6 +41837,34 @@ components:
                 provided details. Required for `paid` status.
               items:
                 $ref: '#/components/schemas/sales-invoice-payment-details-response'
+    list-business-account-response:
+      allOf:
+        - $ref: '#/components/schemas/entity-business-account'
+        - type: object
+          properties:
+            _links:
+              type: object
+              description: An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+              readOnly: true
+              required:
+                - self
+                - documentation
+              properties:
+                self:
+                  $ref: '#/components/schemas/url'
+                  description: The URL to this business account.
+                documentation:
+                  $ref: '#/components/schemas/url'
+                  description: The URL to the business account endpoint documentation.
+      required:
+        - resource
+        - id
+        - mode
+        - accountDetails
+        - status
+        - balance
+        - createdAt
+        - _links
     list-entity-payout:
       type: object
       required:
@@ -43597,6 +43866,7 @@ components:
         - business-account-draft-transfer.created
         - business-account-draft-transfer.approved
         - business-account-draft-transfer.declined
+        - business-account.created
         - unmatched-credit-transfer.received
         - unmatched-credit-transfer.matched
         - unmatched-credit-transfer.returned
@@ -43650,6 +43920,7 @@ components:
         business-account-draft-transfer.created: The draft transfer is created and awaiting review by a human initiator in Mollie Apps.
         business-account-draft-transfer.approved: The draft transfer is approved by the initiator.
         business-account-draft-transfer.declined: The draft transfer is declined, either by the initiator, the creator, or because the debtor account was closed.
+        business-account.created: Occurs when a business account has been created.
         unmatched-credit-transfer.received: An incoming credit transfer has been received and could not be automatically matched to a payment.
         unmatched-credit-transfer.matched: An unmatched credit transfer resource has transitioned to the matched state after a successful match.
         unmatched-credit-transfer.returned: An unmatched credit transfer resource has transitioned to the returned state after a successful return.
@@ -46202,6 +46473,13 @@ components:
             currency: EUR
             value: '5000.00'
         createdAt: '2024-03-20T09:13:37+00:00'
+        _links:
+          self:
+            href: https://api.mollie.com/v2/business-accounts/accounts/ba_nopqrstuvwxyz23456789A
+            type: application/hal+json
+          documentation:
+            href: https://docs.mollie.com/reference/get-business-account
+            type: text/html
     get-transaction:
       summary: The transaction object
       value:
